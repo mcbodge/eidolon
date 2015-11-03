@@ -12,6 +12,15 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+obj/
+*.svd
+*.userprefs
+*.pidb
+*.suo
+*.user
+*.unityproj
+*.booproj
+
 
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
@@ -24,6 +33,7 @@ sysinfo.txt
 # =========================
 
 .DS_Store
+.DS_Store?
 .AppleDouble
 .LSOverride
 
