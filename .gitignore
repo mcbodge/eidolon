@@ -23,6 +23,7 @@ obj/
 # OS generated #
 # ============ #
 .DS_Store
+desktop.ini
 .DS_Store?
 ._*
 .Spotlight-V100
