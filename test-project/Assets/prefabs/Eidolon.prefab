@@ -531,7 +531,6 @@ GameObject:
   - 92: {fileID: 9245726}
   - 81: {fileID: 8119116}
   - 114: {fileID: 11445728}
-  - 135: {fileID: 13576306}
   m_Layer: 0
   m_Name: Camera
   m_TagString: FpsCamera
@@ -1690,7 +1689,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173904}
-  m_LocalRotation: {x: -.333641678, y: -.583797753, z: .367608458, w: .64243865}
+  m_LocalRotation: {x: -.333641708, y: -.583797812, z: .367608488, w: .64243871}
   m_LocalPosition: {x: -1.2434206, y: -.0876369625, z: .242181689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2769,7 +2768,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.963686, y: 4.17222736e-07, z: 2.39994335}
+  m_LocalPosition: {x: 14.2338419, y: -6.65941229e-07, z: -3.65754843}
   m_LocalScale: {x: .225245506, y: .225245595, z: .225245595}
   m_Children:
   - {fileID: 456904}
@@ -3715,18 +3714,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144330}
   m_Enabled: 1
---- !u!135 &13576306
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 144330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .200000003
-  m_Center: {x: 0, y: 1, z: 3}
 --- !u!136 &13610746
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3736,10 +3723,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2
-  m_Height: 10
+  m_Radius: 3
+  m_Height: 10.5
   m_Direction: 1
-  m_Center: {x: -.5, y: 5, z: -.200000003}
+  m_Center: {x: -.5, y: 5, z: 0}
 --- !u!137 &13765182
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3750,9 +3737,9 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 40ea9770f5383bc4789a003288a58bc4, type: 2}
-  - {fileID: 2100000, guid: 7e9b7ae08bf74f24ba89149aa4b256ca, type: 2}
-  - {fileID: 2100000, guid: 5d037bcc525b32e498e7cb545019fc25, type: 2}
+  - {fileID: 2100000, guid: 69e8cfcdf34b6844cb88198d7d606a55, type: 2}
+  - {fileID: 2100000, guid: 69e8cfcdf34b6844cb88198d7d606a55, type: 2}
+  - {fileID: 2100000, guid: 69e8cfcdf34b6844cb88198d7d606a55, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

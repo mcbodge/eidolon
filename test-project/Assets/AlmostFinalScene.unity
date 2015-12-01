@@ -316,7 +316,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a84e3210d8ea4131a286487e1dfa628, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -378,7 +378,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a84e3210d8ea4131a286487e1dfa628, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -569,7 +569,7 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -823,7 +823,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 9024d905e27354c15a4cfab423efdf48, type: 2}
   - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: 7a304b300fe98437a85776dae7242996, type: 2}
+  - {fileID: 2100000, guid: e14140b749f7842d3a599167f89d9657, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1184,8 +1184,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: bed5c2752dec6451fb8e3f4870aa75b8, type: 2}
+  - {fileID: 2100000, guid: 3672ee871f3b69742b44c67593d5cab5, type: 2}
+  - {fileID: 2100000, guid: daae75c7045b1b44e993fe35bad6d7d9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1314,7 +1314,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1377,8 +1377,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -1452,9 +1452,9 @@ Transform:
   - {fileID: 1467150305}
   - {fileID: 1237509283}
   - {fileID: 412021598}
-  - {fileID: 1189646811}
   - {fileID: 2068602585}
   - {fileID: 813875548}
+  - {fileID: 1351554803}
   m_Father: {fileID: 1256047139}
   m_RootOrder: 2
 --- !u!1001 &376338726
@@ -1696,8 +1696,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -1925,59 +1925,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 462748826}
   m_Mesh: {fileID: 4300078, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &471981367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 176
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1744966696}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Grab
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &487849961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,8 +2113,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -2234,9 +2181,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6e82201a72c2749678b1c7c4e942d859, type: 2}
-  - {fileID: 2100000, guid: e594e8e127add43b6b523cafbfea506f, type: 2}
-  - {fileID: 2100000, guid: 653148918a82f48abb3050a7de7a68cf, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2298,8 +2245,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2361,8 +2308,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2517,9 +2464,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: 7a304b300fe98437a85776dae7242996, type: 2}
-  - {fileID: 2100000, guid: 18bfd0ba211f846f3a091cf7ab57c234, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3027,9 +2974,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9024d905e27354c15a4cfab423efdf48, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: 7a304b300fe98437a85776dae7242996, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3284,6 +3231,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b39d5eb1cc84957ba129bde5602150, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &711098603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 12
+    y: 224
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 0}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: 
+  sendValue: 1
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &722453162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3506,8 +3506,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: bed5c2752dec6451fb8e3f4870aa75b8, type: 2}
+  - {fileID: 2100000, guid: 3672ee871f3b69742b44c67593d5cab5, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3594,7 +3594,7 @@ Transform:
   m_LocalScale: {x: 2.84991264, y: 2.54227853, z: 1.8336724}
   m_Children: []
   m_Father: {fileID: 372628646}
-  m_RootOrder: 28
+  m_RootOrder: 27
 --- !u!23 &813875549
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3808,9 +3808,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: 7a304b300fe98437a85776dae7242996, type: 2}
-  - {fileID: 2100000, guid: 18bfd0ba211f846f3a091cf7ab57c234, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3890,7 +3890,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: .801470578, g: .99178499, b: 1, a: 1}
-  m_Intensity: .649999976
+  m_Intensity: .50999999
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3968,8 +3968,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: bed5c2752dec6451fb8e3f4870aa75b8, type: 2}
+  - {fileID: 2100000, guid: 3672ee871f3b69742b44c67593d5cab5, type: 2}
+  - {fileID: 2100000, guid: daae75c7045b1b44e993fe35bad6d7d9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -4183,10 +4183,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: 361f40cb6a51f4536aa8f3a0c5d0f0f0, type: 2}
-  - {fileID: 2100000, guid: 37f6100f7e7ee40e2831a818550bf9f7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -4337,6 +4337,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 986051015}
   m_Mesh: {fileID: 4300102, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &988912766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
 --- !u!1001 &994455009
 Prefab:
   m_ObjectHideFlags: 0
@@ -4439,7 +4487,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -4832,7 +4880,7 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -4917,68 +4965,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   ignoreWhenSkipping: 0
---- !u!1 &1189646810
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114634, guid: 25f1f450a445567458d4bccd3babcde6, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1189646811}
-  - 33: {fileID: 1189646813}
-  - 23: {fileID: 1189646812}
-  m_Layer: 0
-  m_Name: RoofBot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1189646811
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 488744, guid: 25f1f450a445567458d4bccd3babcde6, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1189646810}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.531780005, y: -1.23000002, z: -.363779992}
-  m_LocalScale: {x: 11.0655603, y: 9.33407879, z: 8.06877708}
-  m_Children: []
-  m_Father: {fileID: 372628646}
-  m_RootOrder: 26
---- !u!23 &1189646812
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2321338, guid: 25f1f450a445567458d4bccd3babcde6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1189646810}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 7452d07fb1e6ce64997ca78403b6a694, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &1189646813
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3301516, guid: 25f1f450a445567458d4bccd3babcde6,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1189646810}
-  m_Mesh: {fileID: 4300114, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
 --- !u!1001 &1189687709
 Prefab:
   m_ObjectHideFlags: 0
@@ -5104,10 +5090,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: 361f40cb6a51f4536aa8f3a0c5d0f0f0, type: 2}
-  - {fileID: 2100000, guid: 37f6100f7e7ee40e2831a818550bf9f7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -5157,54 +5143,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
---- !u!114 &1231928278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 0
-  skipActionActual: {fileID: 1231928278}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 140
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
 --- !u!1 &1236205072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5245,10 +5183,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: 361f40cb6a51f4536aa8f3a0c5d0f0f0, type: 2}
-  - {fileID: 2100000, guid: 37f6100f7e7ee40e2831a818550bf9f7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -5533,7 +5471,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -5595,10 +5533,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: 361f40cb6a51f4536aa8f3a0c5d0f0f0, type: 2}
-  - {fileID: 2100000, guid: 37f6100f7e7ee40e2831a818550bf9f7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -5959,6 +5897,59 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 218412514}
   m_Script: {fileID: 11500000, guid: 6a1e6413216104fd580c7ce85907039c, type: 3}
+--- !u!114 &1338415841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 1
+  skipActionActual: {fileID: 1338415841}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 2059616698}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Grab
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!114 &1349004256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6047,7 +6038,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -6069,6 +6060,79 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349382411}
   m_Mesh: {fileID: 4300128, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!1 &1351554802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1351554803}
+  - 33: {fileID: 1351554806}
+  - 65: {fileID: 1351554805}
+  - 23: {fileID: 1351554804}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1351554803
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1351554802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.26000023, z: 2.72000003}
+  m_LocalScale: {x: 25.1117725, y: .22110121, z: 24.7799911}
+  m_Children: []
+  m_Father: {fileID: 372628646}
+  m_RootOrder: 28
+--- !u!23 &1351554804
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1351554802}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 7475271976a207f4f974a332838d073c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1351554805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1351554802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1351554806
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1351554802}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1362002281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6192,7 +6256,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -6374,7 +6438,7 @@ MeshRenderer:
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -6796,11 +6860,11 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: 361f40cb6a51f4536aa8f3a0c5d0f0f0, type: 2}
-  - {fileID: 2100000, guid: 37f6100f7e7ee40e2831a818550bf9f7, type: 2}
-  - {fileID: 2100000, guid: ea063a7e3ad194d9e9eb1e8bda69227b, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -6862,7 +6926,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -6979,10 +7043,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: db124133b4127450c8c1ccd3e7cac392, type: 2}
-  - {fileID: 2100000, guid: 361f40cb6a51f4536aa8f3a0c5d0f0f0, type: 2}
-  - {fileID: 2100000, guid: 37f6100f7e7ee40e2831a818550bf9f7, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   - {fileID: 2100000, guid: 648a8630c958c0b49af39a9751448a70, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -7049,9 +7113,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9024d905e27354c15a4cfab423efdf48, type: 2}
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: 7a304b300fe98437a85776dae7242996, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -7270,8 +7334,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -7376,59 +7440,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c6d82e28b280448ea70b3f4f7011508, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1645136161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 12
-    y: 224
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 0}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: 
-  sendValue: 1
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &1645339174
 GameObject:
   m_ObjectHideFlags: 0
@@ -7541,6 +7552,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a39e31ce28cc48b096320990773071b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1657327429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1744966696}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Grab
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &1675624194 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -7573,8 +7637,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 9024d905e27354c15a4cfab423efdf48, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -7650,7 +7714,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -7800,7 +7864,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 755ffc6d18c924e94ab888859be2b0eb, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -8021,7 +8085,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a84e3210d8ea4131a286487e1dfa628, type: 2}
+  - {fileID: 2100000, guid: 37c42c4e7a4c84044bd2bc4db207005c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -8171,7 +8235,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1844968884}
---- !u!114 &1892972594
+--- !u!114 &1897736689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -8180,7 +8244,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
   category: 11
@@ -8197,9 +8261,9 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 1
-  skipActionActual: {fileID: 0}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 1897736689}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -8211,14 +8275,14 @@ MonoBehaviour:
     x: 14
     y: 14
     width: 300
-    height: 158
+    height: 140
   nodeHeight: 0
   constantID: 0
   parameterID: -1
   isPlayer: 0
   obToAffect: {fileID: 0}
   materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
+  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
 --- !u!1001 &1905027504
 Prefab:
   m_ObjectHideFlags: 0
@@ -8308,59 +8372,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!114 &1912016571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 1
-  skipActionActual: {fileID: 1912016571}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 176
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 2059616698}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Grab
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &1953427578
 GameObject:
   m_ObjectHideFlags: 0
@@ -8492,7 +8503,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6df777a5e9e084c828de9889f441e13a, type: 2}
+  - {fileID: 2100000, guid: a9b58e0eb1364a540a4af823e27d4a6d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -9033,8 +9044,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -9085,7 +9096,7 @@ Transform:
   m_LocalScale: {x: 3.9629941, y: 2.54227805, z: 1.83367193}
   m_Children: []
   m_Father: {fileID: 372628646}
-  m_RootOrder: 27
+  m_RootOrder: 26
 --- !u!23 &2068602586
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9253,8 +9264,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
-  - {fileID: 2100000, guid: 45bda6b3310724dcdb4c8f77d6a752d4, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
+  - {fileID: 2100000, guid: c81638b3753872e499b7d86a071b6e32, type: 2}
   - {fileID: 2100000, guid: cb64d13ab02b3054e883327f7e8a29ec, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
@@ -9437,9 +9448,9 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5f9745fe1c9047d1821433bc193a6a7, type: 2}
-  - {fileID: 2100000, guid: 7a304b300fe98437a85776dae7242996, type: 2}
-  - {fileID: 2100000, guid: 18bfd0ba211f846f3a091cf7ab57c234, type: 2}
+  - {fileID: 2100000, guid: 2f09cb415fe643449adc89385d136a81, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
+  - {fileID: 2100000, guid: 8d2db65c0a311db4b88a1ae1d2df7ce9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
