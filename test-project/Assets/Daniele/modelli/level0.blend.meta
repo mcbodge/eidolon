@@ -631,6 +631,101 @@ ModelImporter:
     4300186: spine_shape_001
     4300188: toe_shape_001
     4300190: upper_arm_FK_shape_L_001
+    6400000: bed
+    6400002: bed_001
+    6400004: bed_002
+    6400006: bed_003
+    6400008: bed_004
+    6400010: bed_005
+    6400012: Circle
+    6400014: Circle_002
+    6400016: Circle_006
+    6400018: Circle_007
+    6400020: comodino
+    6400022: comodino_001
+    6400024: Cube_003
+    6400026: Cube_007
+    6400028: Cube_008
+    6400030: Cube_010
+    6400032: Cube_016
+    6400034: Cube_017
+    6400036: Cube_018
+    6400038: Cube_019
+    6400040: Cube_020
+    6400042: Cube_021
+    6400044: Cube_022
+    6400046: doccia
+    6400048: doccia_001
+    6400050: doccia_002
+    6400052: finger_FK_shape_001
+    6400054: finger_main_shape_001
+    6400056: finger_main_shape_R_001
+    6400058: foot_IK_shape_L_001
+    6400060: foot_IK_shape_R_001
+    6400062: foot_roll_shape_001
+    6400064: forearm_FK_shape_L_001
+    6400066: hand_shape_L_001
+    6400068: hand_shape_R_001
+    6400070: head_shape_001
+    6400072: hips_shape_001
+    6400074: minifrigo
+    6400076: muro
+    6400078: muro_001
+    6400080: muro_002
+    6400082: muro_003
+    6400084: muro_004
+    6400086: muro_005
+    6400088: muro_006
+    6400090: muro_008
+    6400092: muro_009
+    6400094: muro_010
+    6400096: muro_011
+    6400098: muro_012
+    6400100: muro_013
+    6400102: muro_014
+    6400104: muro_015
+    6400106: muro_016
+    6400108: muro_017
+    6400110: muro_018
+    6400112: muro_019
+    6400114: muro_020
+    6400116: muro_021
+    6400118: muro_022
+    6400120: muro_023
+    6400122: muro_024
+    6400124: muro_025
+    6400126: muro_026
+    6400128: muro_027
+    6400130: neck_shape_001
+    6400132: palm_shape_L_001
+    6400134: palm_shape_R_001
+    6400136: pianta1
+    6400138: pianta4
+    6400140: pianta4_001
+    6400142: pianta4_002
+    6400144: pianta4_003
+    6400146: pianta4_004
+    6400148: pianta4_005
+    6400150: Plane_001
+    6400152: Plane_002
+    6400154: pole_shape_L_001
+    6400156: pole_shape_R_001
+    6400158: ribs_shape_001
+    6400160: sgabello
+    6400162: sgabello_001
+    6400164: sgabello_002
+    6400166: sgabello_003
+    6400168: sgabello_004
+    6400170: shoulder_shape_L_001
+    6400172: shoulder_shape_R_001
+    6400174: Sphere
+    6400176: spine_shape_001
+    6400178: table
+    6400180: toe_shape_001
+    6400182: tv
+    6400184: tv_001
+    6400186: tv_002
+    6400188: upper_arm_FK_shape_L_001
     7400000: Default Take
     7400002: ArmatureAction
     7400004: fridge
@@ -2127,7 +2222,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
