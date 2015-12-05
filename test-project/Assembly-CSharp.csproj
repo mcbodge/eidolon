@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{27292EFF-E4F1-034A-90B7-406F1956988A}</ProjectGuid>
+	<ProjectGuid>{2CD12E51-54A3-1B49-BB94-EBEDE003A4F7}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -325,23 +325,15 @@
      <Compile Include="Assets\AdventureCreator\Scripts\Variables\LocalVariables.cs" />
      <Compile Include="Assets\AdventureCreator\Scripts\Variables\RuntimeVariables.cs" />
      <Compile Include="Assets\AdventureCreator\Scripts\Variables\VarPreset.cs" />
+     <Compile Include="Assets\MyScripts\ActionHelper.cs" />
      <Compile Include="Assets\MyScripts\ObjectHolder.cs" />
-     <None Include="Assets\Daniele\shader\shader.shader" />
      <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />
-     <None Include="Assets\Daniele\shader\fog.shader" />
-     <None Include="Assets\Daniele\shader\fog2.shader" />
      <None Include="Assets\PBS Materials Variety Pack\readme.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

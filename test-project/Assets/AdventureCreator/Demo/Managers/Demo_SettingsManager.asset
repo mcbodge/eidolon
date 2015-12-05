@@ -75,7 +75,10 @@ MonoBehaviour:
   useFPCamDuringConversations: 1
   onlyInteractWhenCursorUnlocked: 0
   assumeInputsDefined: 0
-  activeInputs: []
+  activeInputs:
+  - inputName: 
+    gameState: 0
+    actionListAsset: {fileID: 0}
   freeAimTouchSpeed: .00999999978
   dragWalkThreshold: 5
   dragRunThreshold: 20
@@ -103,7 +106,7 @@ MonoBehaviour:
   hideIconUnderInteractionMenu: 0
   hotspotDrawing: 0
   navMeshRaycastLength: 100
-  hotspotRaycastLength: 100
+  hotspotRaycastLength: 3
   moveableRaycastLength: 30
   hotspotLayer: Default
   navMeshLayer: NavMesh

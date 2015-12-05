@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{9EB26621-BE29-404E-B0C6-EE8B7A19F88B}</ProjectGuid>
+	<ProjectGuid>{73416636-1A90-72B6-D188-CAF7CC2CDA1B}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -116,14 +116,8 @@
      <Compile Include="Assets\AdventureCreator\Scripts\Save system\Editor\RememberTriggerEditor.cs" />
      <Compile Include="Assets\AdventureCreator\Scripts\Save system\Editor\RememberVisibilityEditor.cs" />
      <Compile Include="Assets\AdventureCreator\Scripts\Speech\Editor\LipSyncTextureEditor.cs" />
-     <None Include="Assets\Daniele\shader\shader.shader" />
      <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />
-     <None Include="Assets\Daniele\shader\fog.shader" />
-     <None Include="Assets\Daniele\shader\fog2.shader" />
      <None Include="Assets\PBS Materials Variety Pack\readme.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -138,9 +132,6 @@
  </Reference>
  <Reference Include="UnityEditor.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -184,7 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{27292EFF-E4F1-034A-90B7-406F1956988A}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{2CD12E51-54A3-1B49-BB94-EBEDE003A4F7}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
