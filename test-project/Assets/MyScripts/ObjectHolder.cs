@@ -7,12 +7,14 @@ public class ObjectHolder : MonoBehaviour {
     Rigidbody rb;
     bool isHeld = false;
 	int actionID;
+	ActionHelper ahReference;
 
 	// Use this for initialization
 	void Start () {
 		actionID = -1;
         rb = GetComponent<Rigidbody>();
         fpsCamera = GameObject.FindWithTag("FpsCamera");
+		ahReference = ActionHelper.HelperReference;
 	}
 
     void Update ()
@@ -46,17 +48,17 @@ public class ObjectHolder : MonoBehaviour {
 	
 	public void Grab (int param)
 	{	
-		Debug.Log(param.ToString());
+		Debug.Log("Object launching Grab() has param=" + param.ToString());
 		isHeld = true;
 		rb.isKinematic = true;
 		if (param > 0) {
 			actionID = param;
-			ActionHelper.HelperReference.Dispatcher (actionID, "grab");
-			ActionHelper.HelperReference.ObjectInHand = this.gameObject;
-			Debug.Log ("Object in hand: " + ActionHelper.HelperReference.ObjectInHand.name);
+			ahReference.Dispatcher (actionID, "grab");
+			ahReference.ObjectInHand = this.gameObject;
+			Debug.Log ("Object in hand set to " + ahReference.ObjectInHand.name);
 		} else {
-			ActionHelper.HelperReference.ObjectInHand = null;
-			Debug.Log ("none");
+			ahReference.ObjectInHand = null;
+			Debug.Log ("No object in hand");
 		}
 	}
 
@@ -66,8 +68,7 @@ public class ObjectHolder : MonoBehaviour {
         rb.useGravity = true;
         rb.isKinematic = false;
 		if (actionID > 0) {
-			Debug.Log("UnGrab with param");
-			ActionHelper.HelperReference.Dispatcher (actionID, "ungrab");
+			ahReference.Dispatcher (actionID, "ungrab");
 		}
     }
 
@@ -78,8 +79,7 @@ public class ObjectHolder : MonoBehaviour {
 		rb.isKinematic = false;
 		rb.AddForce (- transform.up * 7f, ForceMode.Impulse);
 		if (actionID > 0) {
-			Debug.Log("Launch with param");
-			ActionHelper.HelperReference.Dispatcher (actionID, "ungrab");
+			ahReference.Dispatcher (actionID, "launch");
 		}
     }
 

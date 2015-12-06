@@ -66,8 +66,10 @@ public class ActionHelper : MonoBehaviour {
 
 	public void putObjectInFloorHS () {
 		//TODO place the object in the floor hotspot
+		ObjectHolder ohReference = ((ObjectHolder)ObjectInHand.GetComponent<ObjectHolder> ());
 		floorHotspot.SetActive(false);
-		((ObjectHolder)ObjectInHand.GetComponent<ObjectHolder> ()).Drop ();
+		ohReference.Drop ();
+		Debug.Log (" Dropping object " + ohReference.name + " into floorHotspot");
 		ObjectInHand.transform.position = floorHotspot.transform.position + 0.3f * transform.up;
 		orsacchiottoInPosition = true;
 	}
