@@ -51,6 +51,11 @@ public class ObjectHolder : MonoBehaviour {
 		Debug.Log("Object launching Grab() has param=" + param.ToString());
 		isHeld = true;
 		rb.isKinematic = true;
+		// disable the child hotspot
+		// transform.getchild gets the transform of the Hotspot
+		// .gameobject gets the gameobject associated to the Hotspot transform
+		// that is the hotspot itself
+		gameObject.transform.GetChild (0).gameObject.SetActive (false);
 		if (param > 0) {
 			actionID = param;
 			ahReference.Dispatcher (actionID, "grab");
@@ -67,6 +72,7 @@ public class ObjectHolder : MonoBehaviour {
         this.isHeld = false;
         rb.useGravity = true;
         rb.isKinematic = false;
+		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 		if (actionID > 0) {
 			ahReference.Dispatcher (actionID, "ungrab");
 		}
@@ -77,6 +83,7 @@ public class ObjectHolder : MonoBehaviour {
 		this.isHeld = false;
 		rb.useGravity = true;
 		rb.isKinematic = false;
+		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 		rb.AddForce (- transform.up * 7f, ForceMode.Impulse);
 		if (actionID > 0) {
 			ahReference.Dispatcher (actionID, "launch");
