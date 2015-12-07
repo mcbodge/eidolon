@@ -7,14 +7,14 @@ public class ObjectHolder : MonoBehaviour {
     Rigidbody rb;
     bool isHeld = false;
 	int actionID;
-	ActionHelper ahReference;
+	ActionHelper actionManager;
 
 	// Use this for initialization
 	void Start () {
 		actionID = -1;
         rb = GetComponent<Rigidbody>();
         fpsCamera = GameObject.FindWithTag("FpsCamera");
-		ahReference = ActionHelper.HelperReference;
+		actionManager = ActionHelper.GetManager();
 	}
 
     void Update ()
@@ -58,10 +58,10 @@ public class ObjectHolder : MonoBehaviour {
 		gameObject.transform.GetChild (0).gameObject.SetActive (false);
 		if (param > 0) {
 			actionID = param;
-			ahReference.Dispatcher (actionID, "grab");
-			ahReference.ObjectInHand = this.gameObject;
+			actionManager.Dispatcher (actionID, "grab");
+			actionManager.ObjectInHand = this.gameObject;
 		} else {
-			ahReference.ObjectInHand = null;
+			actionManager.ObjectInHand = null;
 		}
 	}
 
@@ -72,7 +72,7 @@ public class ObjectHolder : MonoBehaviour {
         rb.isKinematic = false;
 		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 		if (actionID > 0) {
-			ahReference.Dispatcher (actionID, "ungrab");
+			actionManager.Dispatcher (actionID, "ungrab");
 		}
     }
 
@@ -84,7 +84,7 @@ public class ObjectHolder : MonoBehaviour {
 		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 		rb.AddForce (- transform.up * 7f, ForceMode.Impulse);
 		if (actionID > 0) {
-			ahReference.Dispatcher (actionID, "launch");
+			actionManager.Dispatcher (actionID, "launch");
 		}
     }
 
