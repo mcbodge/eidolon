@@ -8,7 +8,6 @@ public class TextureControl : MonoBehaviour {
 
     public void Start()
     {
-        //TODO test
         defaultTexture = gameObject.GetComponent<Renderer>().material.GetTexture("_MainTex");
     }
 
