@@ -3,16 +3,16 @@ using System.Collections;
 
 public class ObjectHolder : MonoBehaviour {
 
-    GameObject fpsCamera;
-    Rigidbody rb;
-    bool isHeld = false;
-	int actionID;
-	ActionHelper actionManager;
+    private GameObject fpsCamera;
+    private Rigidbody rigidBody;
+    private bool isHeld = false;
+	private int actionID;
+	private ActionHelper actionManager;
 
 	// Use this for initialization
 	void Start () {
 		actionID = -1;
-        rb = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
         fpsCamera = GameObject.FindWithTag("FpsCamera");
 		actionManager = ActionHelper.GetManager();
 	}
@@ -50,7 +50,7 @@ public class ObjectHolder : MonoBehaviour {
 	{	
 		Debug.Log("Object launching Grab() has param=" + param.ToString());
 		isHeld = true;
-		rb.isKinematic = true;
+		rigidBody.isKinematic = true;
 		// disable the child hotspot
 		// transform.getchild gets the transform of the Hotspot
 		// .gameobject gets the gameobject associated to the Hotspot transform
@@ -67,9 +67,9 @@ public class ObjectHolder : MonoBehaviour {
 
     public void UnGrab()
     {
-        this.isHeld = false;
-        rb.useGravity = true;
-        rb.isKinematic = false;
+        isHeld = false;
+        rigidBody.useGravity = true;
+        rigidBody.isKinematic = false;
 		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 		if (actionID > 0) {
 			actionManager.Dispatcher (actionID, "ungrab");
@@ -78,11 +78,11 @@ public class ObjectHolder : MonoBehaviour {
 
     public void Launch()
     {
-		this.isHeld = false;
-		rb.useGravity = true;
-		rb.isKinematic = false;
+		isHeld = false;
+		rigidBody.useGravity = true;
+		rigidBody.isKinematic = false;
 		gameObject.transform.GetChild (0).gameObject.SetActive (true);
-		rb.AddForce (- transform.up * 7f, ForceMode.Impulse);
+		rigidBody.AddForce (- transform.up * 7f, ForceMode.Impulse);
 		if (actionID > 0) {
 			actionManager.Dispatcher (actionID, "launch");
 		}
@@ -90,8 +90,8 @@ public class ObjectHolder : MonoBehaviour {
 
 	public void Drop() {
 		isHeld = false;
-		rb.useGravity = true;
-		rb.isKinematic = false;
+		rigidBody.useGravity = true;
+		rigidBody.isKinematic = false;
 		gameObject.transform.GetChild (0).gameObject.SetActive (true);
 	}
 	

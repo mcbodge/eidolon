@@ -105,7 +105,7 @@ public class ActionHelper : MonoBehaviour
             // Disabled by ketchup's grab
             TeddyBearHotspot.SetActive(true);
             KetchupHotspot.SetActive(false);
-            Debug.Log("Dropping object " + objectHolderReference.name + " in Kstatement");
+            Debug.Log("Dropping object " + objectHolderReference.name + " in K statement");
         }
         FloorHotspot.SetActive(false);
     }

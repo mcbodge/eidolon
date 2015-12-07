@@ -126,10 +126,10 @@ MonoBehaviour:
   sfxAttentuationParameter: sfxVolume
   speechAttentuationParameter: speechVolume
   defaultLanguage: 0
-  defaultShowSubtitles: 1
-  defaultSfxVolume: .381600708
-  defaultMusicVolume: .199394986
-  defaultSpeechVolume: .972909868
+  defaultShowSubtitles: 0
+  defaultSfxVolume: .899999976
+  defaultMusicVolume: .600000024
+  defaultSpeechVolume: 1
   showDebugLogs: 0
   showActiveActionLists: 0
   showHierarchyIcons: 1

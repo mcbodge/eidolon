@@ -350,6 +350,7 @@
     <Compile Include="Assets\AdventureCreator\Scripts\Variables\VarPreset.cs" />
     <Compile Include="Assets\Scripts\ActionHelper.cs" />
     <Compile Include="Assets\Scripts\ObjectHolder.cs" />
+    <Compile Include="Assets\Scripts\PhysicsActions.cs" />
     <Compile Include="Assets\Scripts\TextureControl.cs" />
   </ItemGroup>
   <ItemGroup>
