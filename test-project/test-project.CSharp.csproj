@@ -348,9 +348,10 @@
     <Compile Include="Assets\AdventureCreator\Scripts\Variables\LocalVariables.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Variables\RuntimeVariables.cs" />
     <Compile Include="Assets\AdventureCreator\Scripts\Variables\VarPreset.cs" />
-    <Compile Include="Assets\MyScripts\ActionHelper.cs" />
-    <Compile Include="Assets\MyScripts\ObjectHolder.cs" />
-    <Compile Include="Assets\MyScripts\TextureControl.cs" />
+    <Compile Include="Assets\ChangeTexture.cs" />
+    <Compile Include="Assets\Scripts\ActionHelper.cs" />
+    <Compile Include="Assets\Scripts\ObjectHolder.cs" />
+    <Compile Include="Assets\Scripts\TextureControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />

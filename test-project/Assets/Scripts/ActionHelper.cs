@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ActionHelper : MonoBehaviour {
 
-	public GameObject Orso;
-	public Texture BloodyTexture;
+	public GameObject TeddyBear;
+    public GameObject TeddyBearHotspot;
 	public GameObject FloorHotspot;
 	public GameObject ObjectInHand;
 	public bool TeddyBearInPosition;
@@ -43,14 +43,14 @@ public class ActionHelper : MonoBehaviour {
 	private void TeddyBearAction( string sender ) {
 		switch (sender) {
 		case "grab":
-			//attivare hotspot
-			FloorHotspot.SetActive(true);
+            // Activate hotspot
+            FloorHotspot.SetActive(true);
 			Debug.Log ("Activating hotspot - State:" + FloorHotspot.activeSelf.ToString());
 			TeddyBearInPosition = false;
 			break;
 		case "ungrab":
 		case "launch":
-			//disattivare hotspot
+			// Deactivate hotspot
 			FloorHotspot.SetActive(false);
 			Debug.Log ("Deactivating hotspot - State:" + FloorHotspot.activeSelf.ToString());
 			break;
@@ -60,15 +60,16 @@ public class ActionHelper : MonoBehaviour {
 	private void KetchupAction(string sender) {
 
 		if (sender == "grab" && TeddyBearInPosition) {
-			//attivare hotspot
+			// Activate hotspot
 			FloorHotspot.SetActive (true);
 			Debug.Log ("Activating hotspot - State:" + FloorHotspot.activeSelf.ToString ());
+            TeddyBearHotspot.SetActive(false);
 		} else {
-			//disattivare hotspot
-			FloorHotspot.SetActive (false);
+            // Deactivate hotspot
+            FloorHotspot.SetActive (false);
 			Debug.Log ("Deactivating hotspot - State:" + FloorHotspot.activeSelf.ToString ());
-		}
-	
+            TeddyBearHotspot.SetActive(true);
+        }
 	}
 
 	public void putObjectInFloorHS () {
@@ -82,8 +83,11 @@ public class ActionHelper : MonoBehaviour {
 		} else {
 			if (ObjectInHand.name == "Ketchup") {
 				Debug.Log ("changing texture to Bear with the bloody one");
-                Orso.GetComponent<TextureControl>().ChangeMainTextureToTarget();
-			}
+                TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
+                // Re-set the hotspots
+                FloorHotspot.SetActive(false);
+                TeddyBearHotspot.SetActive(true);
+            }
 			Debug.Log ("Dropping object " + objectHolderReference.name + " after TeddyBear");
 			objectHolderReference.Drop();
 			ObjectInHand.transform.position = (FloorHotspot.transform.position + 0.3f * transform.up)
