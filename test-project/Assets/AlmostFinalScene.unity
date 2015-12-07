@@ -208,7 +208,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -350,7 +350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fe86ccd22fa03454eacf90df8d7944f9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 21.6580009
+      value: 21.3400002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fe86ccd22fa03454eacf90df8d7944f9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -358,7 +358,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fe86ccd22fa03454eacf90df8d7944f9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.375
+      value: 1.10500002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fe86ccd22fa03454eacf90df8d7944f9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -418,11 +418,64 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: fe86ccd22fa03454eacf90df8d7944f9, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe86ccd22fa03454eacf90df8d7944f9, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &96253625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 12
+    y: 224
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 0}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: 
+  sendValue: 1
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1001 &99313020
 Prefab:
   m_ObjectHideFlags: 0
@@ -526,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7c3ce72f27144c1be5a4a8ce09121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showInEditor: 0
+  showInEditor: 1
   interactionSource: 0
   limitToCamera: {fileID: 0}
   hotspotName: Peroni
@@ -654,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7c3ce72f27144c1be5a4a8ce09121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showInEditor: 0
+  showInEditor: 1
   interactionSource: 0
   limitToCamera: {fileID: 0}
   hotspotName: 
@@ -803,59 +856,92 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 177580893}
   m_Mesh: {fileID: 4300104, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &182784164
-MonoBehaviour:
+--- !u!1 &185996709
+GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 185996710}
+  - 33: {fileID: 185996714}
+  - 65: {fileID: 185996713}
+  - 23: {fileID: 185996712}
+  - 65: {fileID: 185996711}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &185996710
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185996709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.51099968, y: 1.68000007, z: -1.66999996}
+  m_LocalScale: {x: 1.20618546, y: 3.25826097, z: .692467511}
+  m_Children: []
+  m_Father: {fileID: 1256047139}
+  m_RootOrder: 5
+--- !u!65 &185996711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185996709}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 188007244}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Grab
-  sendValue: 1
-  customValue: 2
-  ignoreWhenSkipping: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &185996712
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185996709}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 9272fbc4a28504249bab90ecee2c518e, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &185996713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185996709}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &185996714
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185996709}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &188007244 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 114822, guid: afe932519a8386946bcb62db7c60610f, type: 2}
@@ -901,6 +987,156 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602b859721448d0459d1857fe549ab81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &198137292
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1953427579}
+    m_Modifications:
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.3999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .540000021
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.27999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_Name
+      value: OnExitCloset
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 7.30216789
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.26535916
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[0]
+      value: 
+      objectReference: {fileID: 495610673}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: triggerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actionListType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &205147270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 205147271}
+  - 222: {fileID: 205147273}
+  - 114: {fileID: 205147272}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &205147271
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 205147270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.17410207}
+  m_Children: []
+  m_Father: {fileID: 718454251}
+  m_RootOrder: 0
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -207, y: 168}
+  m_SizeDelta: {x: 270, y: 76}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &205147272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 205147270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .95588237, g: .941825271, b: .941825271, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Hello
+--- !u!222 &205147273
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 205147270}
+--- !u!1 &205600544 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
+  m_PrefabInternal: {fileID: 1065828457}
 --- !u!1001 &206896466
 Prefab:
   m_ObjectHideFlags: 0
@@ -954,7 +1190,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -1021,6 +1257,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251082073}
   m_Mesh: {fileID: 4300094, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &252961157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 452368440}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1744966696}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: KnockOut
+  sendValue: 0
+  customValue: 2
+  ignoreWhenSkipping: 0
 --- !u!1001 &253159491
 Prefab:
   m_ObjectHideFlags: 0
@@ -1078,7 +1367,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -1395,7 +1684,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -1461,7 +1750,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -1661,6 +1950,59 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1987208720}
+--- !u!114 &423109202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 3
+  skipActionActual: {fileID: 1873448604}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 784
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 659465702}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1001 &423351013
 Prefab:
   m_ObjectHideFlags: 0
@@ -1723,10 +2065,10 @@ Prefab:
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[0]
       value: 
-      objectReference: {fileID: 1349004256}
+      objectReference: {fileID: 1095289490}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actionListType
@@ -1751,7 +2093,7 @@ Prefab:
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[1]
       value: 
-      objectReference: {fileID: 1362002281}
+      objectReference: {fileID: 1169719114}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[2]
       value: 
@@ -1859,6 +2201,60 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
   m_PrefabInternal: {fileID: 1188742148}
+--- !u!114 &452368440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Move to point
+  description: Moves a character to a given Marker object. By default, the character
+    will attempt to pathfind their way to the marker, but can optionally just move
+    in a straight line.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 4
+  skipActionActual: {fileID: 1326411962}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 238
+    width: 300
+    height: 194
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  markerParameterID: -1
+  charToMoveID: 0
+  markerID: 0
+  marker: {fileID: 1474258278}
+  isPlayer: 0
+  charToMove: {fileID: 1412198258}
+  speed: 0
+  pathFind: 1
+  doFloat: 0
 --- !u!1 &457706801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,11 +2420,64 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &495610673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: SetDefaultMessage
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &521276448 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -2117,7 +2566,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -2265,6 +2714,8 @@ GameObject:
   - 33: {fileID: 598108738}
   - 65: {fileID: 598108737}
   - 23: {fileID: 598108736}
+  - 20: {fileID: 598108740}
+  - 114: {fileID: 598108739}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -2330,6 +2781,51 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 598108734}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &598108739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 598108734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2d6ab11cf774699b278b05698b386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!20 &598108740
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 598108734}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!1 &600811720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,7 +2935,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -2497,11 +2993,69 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &646490151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d93df5227e14ac692429ea860d7d05, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 7
+  title: Check
+  description: Queries whether or not the player is carrying an item. If the player
+    can carry multiple amounts of the item, more options will show.
+  isDisplayed: 1
+  numSockets: 2
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 140
+  nodeHeight: 0
+  resultActionTrue: 0
+  skipActionTrue: -1
+  skipActionTrueActual: {fileID: 0}
+  linkedCutsceneTrue: {fileID: 0}
+  linkedAssetTrue: {fileID: 0}
+  resultActionFail: 1
+  skipActionFail: -1
+  skipActionFailActual: {fileID: 0}
+  linkedCutsceneFail: {fileID: 0}
+  linkedAssetFail: {fileID: 0}
+  inputName: Ungrab
+  parameterID: -1
+  checkType: 2
+  axisCondition: 0
+  axisValue: 0
 --- !u!1001 &647728019
 Prefab:
   m_ObjectHideFlags: 0
@@ -2555,11 +3109,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &651113797 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_PrefabInternal: {fileID: 198137292}
+--- !u!1 &659465702 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_PrefabInternal: {fileID: 1396839518}
+--- !u!4 &659465703 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_PrefabInternal: {fileID: 1396839518}
 --- !u!1 &677012776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,7 +3280,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -2723,6 +3289,59 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 692284497}
+--- !u!114 &694046740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 2
+  skipActionActual: {fileID: 1107560600}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 462
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 659465702}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &701409006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,6 +3510,111 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b39d5eb1cc84957ba129bde5602150, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &718454247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 718454251}
+  - 223: {fileID: 718454250}
+  - 114: {fileID: 718454249}
+  - 114: {fileID: 718454248}
+  - 114: {fileID: 718454252}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &718454248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718454247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &718454249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718454247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &718454250
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718454247}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 1
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!224 &718454251
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718454247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 205147271}
+  m_Father: {fileID: 774214132}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &718454252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718454247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72e60470f1fa4fd1825cd67ce482cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constantID: 804866
+  retainInPrefab: 1
+  autoManual: 0
 --- !u!1 &730367988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,7 +3639,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 730367988}
   m_LocalRotation: {x: -.707106829, y: -6.18172535e-08, z: -6.18172464e-08, w: .707106829}
-  m_LocalPosition: {x: -8.08276081, y: 1.98018825, z: -1.81005359}
+  m_LocalPosition: {x: -6.98799992, y: 1.98018825, z: -1.80999994}
   m_LocalScale: {x: .760558188, y: .760558188, z: .760558188}
   m_Children: []
   m_Father: {fileID: 1405592675}
@@ -3011,7 +3735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -3047,6 +3771,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &758063294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 4
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 614
+    width: 300
+    height: 140
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &774214131
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,9 +3848,63 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 718454251}
   m_Father: {fileID: 0}
   m_RootOrder: 13
+--- !u!114 &784900476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 452368440}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1744966696}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: KnockOut
+  sendValue: 0
+  customValue: 2
+  ignoreWhenSkipping: 0
 --- !u!1 &798205402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,7 +3991,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1601204440}
   m_Father: {fileID: 279928774}
   m_RootOrder: 1
 --- !u!4 &800838032 stripped
@@ -3430,7 +4262,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -3439,6 +4271,59 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 847556182}
+--- !u!114 &859739715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 188007244}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Grab
+  sendValue: 1
+  customValue: 2
+  ignoreWhenSkipping: 0
 --- !u!1 &864326831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,7 +4443,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -3729,6 +4614,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 891119566}
   m_Mesh: {fileID: 4300132, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &895756406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
 --- !u!1 &897300733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3789,10 +4722,165 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &906455211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 1
+  title: Switch
+  description: Moves the MainCamera to the position, rotation and field of view of
+    a specified GameCamera. Can be instantaneous or transition over time.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 1
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 2
+  skipActionActual: {fileID: 2042343310}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 184
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedCamera: {fileID: 1601204441}
+  transitionTime: 4
+  transitionTimeParameterID: -1
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveMethod: 3
+  returnToLast: 0
 --- !u!4 &909273367 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1095468208}
+--- !u!1001 &923085335
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1953427579}
+    m_Modifications:
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 20.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .529999971
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 12.9899998
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_Name
+      value: WallTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 5.67087221
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 5.9530921
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[0]
+      value: 
+      objectReference: {fileID: 997973774}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[1]
+      value: 
+      objectReference: {fileID: 1100844709}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[2]
+      value: 
+      objectReference: {fileID: 2042343310}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[3]
+      value: 
+      objectReference: {fileID: 758063294}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.82438385
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: triggerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &926813961
 Prefab:
   m_ObjectHideFlags: 0
@@ -3875,6 +4963,59 @@ Transform:
   - {fileID: 1256047139}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!114 &950750273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 1
+  skipActionActual: {fileID: 950750273}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 212
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 842193068}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Grab
+  sendValue: 1
+  customValue: 1
+  ignoreWhenSkipping: 0
 --- !u!1001 &956005212
 Prefab:
   m_ObjectHideFlags: 0
@@ -3932,7 +5073,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -3998,7 +5139,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -4069,6 +5210,112 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 997698436}
   m_Mesh: {fileID: 4300136, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &997973774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d93df5227e14ac692429ea860d7d05, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 7
+  title: Check
+  description: Queries whether or not the player is carrying an item. If the player
+    can carry multiple amounts of the item, more options will show.
+  isDisplayed: 1
+  numSockets: 2
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 140
+  nodeHeight: 0
+  resultActionTrue: 0
+  skipActionTrue: -1
+  skipActionTrueActual: {fileID: 0}
+  linkedCutsceneTrue: {fileID: 0}
+  linkedAssetTrue: {fileID: 0}
+  resultActionFail: 1
+  skipActionFail: -1
+  skipActionFailActual: {fileID: 0}
+  linkedCutsceneFail: {fileID: 0}
+  linkedAssetFail: {fileID: 0}
+  inputName: Ungrab
+  parameterID: -1
+  checkType: 2
+  axisCondition: 0
+  axisValue: 0
+--- !u!114 &1005088324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 1005088324}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 140
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
 --- !u!1 &1017062178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,54 +5471,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1021631521}
   m_Mesh: {fileID: 4300122, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1047824234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 0
-  skipActionActual: {fileID: 1047824234}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 140
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
 --- !u!1001 &1065828457
 Prefab:
   m_ObjectHideFlags: 0
@@ -4329,7 +5528,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -4427,6 +5626,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1091012672}
   m_Mesh: {fileID: 4300052, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1095289490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
 --- !u!1001 &1095468208
 Prefab:
   m_ObjectHideFlags: 0
@@ -4480,7 +5727,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -4548,6 +5795,71 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1098875789}
   m_Mesh: {fileID: 4300024, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1100844709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 1
+  title: Switch
+  description: Moves the MainCamera to the position, rotation and field of view of
+    a specified GameCamera. Can be instantaneous or transition over time.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 1
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 2
+  skipActionActual: {fileID: 2042343310}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 184
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedCamera: {fileID: 1601204441}
+  transitionTime: 4
+  transitionTimeParameterID: -1
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveMethod: 3
+  returnToLast: 0
 --- !u!1 &1104656310
 GameObject:
   m_ObjectHideFlags: 0
@@ -4611,6 +5923,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1104656310}
   m_Mesh: {fileID: 4300000, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1107560600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 5
+  title: Wait
+  description: Waits a set time before continuing.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 5
+  skipActionActual: {fileID: 423109202}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 650
+    width: 300
+    height: 104
+  nodeHeight: 0
+  parameterID: -1
+  timeToPause: 4
 --- !u!1 &1109427115
 GameObject:
   m_ObjectHideFlags: 0
@@ -4635,7 +5991,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1109427115}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -6.85743713, y: -.0381938294, z: -.94455409}
+  m_LocalPosition: {x: -5.76300001, y: -.0381938294, z: -.944999993}
   m_LocalScale: {x: .664265215, y: .664265215, z: .664265215}
   m_Children: []
   m_Father: {fileID: 1405592675}
@@ -4709,6 +6065,63 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 616801260}
+--- !u!4 &1161549827 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_PrefabInternal: {fileID: 923085335}
+--- !u!114 &1169719114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 12
+    y: 224
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 0}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: 
+  sendValue: 1
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &1178928559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,7 +6358,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -5014,6 +6427,84 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1190007079}
   m_Mesh: {fileID: 4300130, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!1001 &1196771671
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 798983838}
+    m_Modifications:
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 14.9300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 4.38000011
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 10.5200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: .00251357979
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .999996841
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: m_Name
+      value: TestCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: lockYLocAxis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: followCursor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: lockXLocAxis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: lockZLocAxis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: lockXRotAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: lockYRotAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: lockFOV
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+      propertyPath: yRotConstrainType
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1197385910
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,7 +6529,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1474258277}
+  - {fileID: 1345242628}
   m_Father: {fileID: 677012777}
   m_RootOrder: 2
 --- !u!4 &1200129287 stripped
@@ -5075,7 +6568,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1412198259}
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!1 &1219399746
@@ -5143,7 +6637,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1219399746}
   m_Mesh: {fileID: 4300046, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1245635022
+--- !u!114 &1241418086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5151,13 +6645,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
   m_Name: (Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
   category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
   isDisplayed: 1
   numSockets: 1
   willWait: 0
@@ -5169,9 +6665,9 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 0
-  skipActionActual: {fileID: 1245635022}
+  endAction: 2
+  skipAction: 3
+  skipActionActual: {fileID: 1873448604}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -5181,16 +6677,19 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 14
-    y: 14
+    y: 784
     width: 300
-    height: 140
+    height: 158
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
+  linkedObject: {fileID: 659465702}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &1256047139
 Transform:
   m_ObjectHideFlags: 0
@@ -5206,6 +6705,7 @@ Transform:
   - {fileID: 466552468}
   - {fileID: 188007245}
   - {fileID: 842193067}
+  - {fileID: 185996710}
   m_Father: {fileID: 940650304}
   m_RootOrder: 0
 --- !u!1 &1263111011
@@ -5323,11 +6823,117 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1274879298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 4
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 614
+    width: 300
+    height: 140
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
+--- !u!114 &1280928445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: SetDefaultMessage
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &1287621824
 GameObject:
   m_ObjectHideFlags: 0
@@ -5390,6 +6996,80 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1287621824}
   m_Mesh: {fileID: 4300064, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!1 &1291826482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1291826486}
+  - 114: {fileID: 1291826485}
+  - 114: {fileID: 1291826484}
+  - 114: {fileID: 1291826483}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1291826483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291826482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1997211142, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ForceModuleActive: 0
+--- !u!114 &1291826484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291826482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: .5
+  m_ForceModuleActive: 0
+--- !u!114 &1291826485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291826482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &1291826486
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291826482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1 &1291893733
 GameObject:
   m_ObjectHideFlags: 0
@@ -5668,6 +7348,59 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 647728019}
+--- !u!114 &1326411962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 2
+  skipActionActual: {fileID: 1107560600}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 462
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 659465702}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &1338004942
 GameObject:
   m_ObjectHideFlags: 0
@@ -5732,54 +7465,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1338004942}
   m_Mesh: {fileID: 4300036, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1349004256
+--- !u!114 &1345242627 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
+  m_PrefabParentObject: {fileID: 11400000, guid: 3e1798ea59d214a2c84c5064331b19a5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1628229442}
+  m_Script: {fileID: 11500000, guid: bbbbb3c8d2a7340dab40d45d6033e69e, type: 3}
+--- !u!4 &1345242628 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+  m_PrefabInternal: {fileID: 1628229442}
 --- !u!1 &1356757020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5842,59 +7537,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1356757020}
   m_Mesh: {fileID: 4300110, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1362002281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 12
-    y: 224
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 0}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: 
-  sendValue: 1
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &1366764956 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
@@ -5925,59 +7567,120 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
   m_PrefabInternal: {fileID: 1517028123}
---- !u!114 &1380898610
-MonoBehaviour:
+--- !u!1001 &1396839518
+Prefab:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 12
-    y: 224
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 0}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: 
-  sendValue: 1
-  customValue: 0
-  ignoreWhenSkipping: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1953427579}
+    m_Modifications:
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: parameters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.4379997
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.55599999
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_Name
+      value: OnEnterCloset
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 7.1443944
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.42352355
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1866299686}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actionListType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: useParameters
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: parameters.Array.data[0].label
+      value: Collision object
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: parameters.Array.data[0].intValue
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[5]
+      value: 
+      objectReference: {fileID: 1298004804}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: triggerType
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1398303433
 Prefab:
   m_ObjectHideFlags: 0
@@ -6035,7 +7738,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -6167,6 +7870,257 @@ Transform:
   - {fileID: 2061880924}
   m_Father: {fileID: 1256047139}
   m_RootOrder: 1
+--- !u!1 &1412198257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1412198259}
+  - 33: {fileID: 1412198263}
+  - 135: {fileID: 1412198262}
+  - 23: {fileID: 1412198261}
+  - 114: {fileID: 1412198260}
+  - 114: {fileID: 1412198258}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1412198258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412198257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ac5d1aa43234b1a948b4f8f3072f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charState: 0
+  animationEngine: 2
+  customAnimationClass: 
+  motionControl: 0
+  talkingAnimation: 0
+  speechLabel: 
+  speechColor: {r: 1, g: 1, b: 1, a: 1}
+  portraitIcon:
+    texture: {fileID: 0}
+    isAnimated: 0
+    numFrames: 1
+    numRows: 1
+    numCols: 1
+    size: .0149999997
+    animSpeed: 4
+    endAnimOnLastFrame: 0
+    clickOffset: {x: 0, y: 0}
+  useExpressions: 0
+  expressions: []
+  isLipSyncing: 0
+  phonemeParameter: 
+  lipSyncGroupID: 0
+  leftHandBone: {fileID: 0}
+  rightHandBone: {fileID: 0}
+  idleAnim: {fileID: 0}
+  walkAnim: {fileID: 0}
+  runAnim: {fileID: 0}
+  talkAnim: {fileID: 0}
+  turnLeftAnim: {fileID: 0}
+  turnRightAnim: {fileID: 0}
+  headLookLeftAnim: {fileID: 0}
+  headLookRightAnim: {fileID: 0}
+  headLookUpAnim: {fileID: 0}
+  headLookDownAnim: {fileID: 0}
+  upperBodyBone: {fileID: 0}
+  leftArmBone: {fileID: 0}
+  rightArmBone: {fileID: 0}
+  neckBone: {fileID: 0}
+  animCrossfadeSpeed: .200000003
+  moveSpeedParameter: Speed
+  verticalMovementParameter: 
+  turnParameter: 
+  talkParameter: IsTalking
+  directionParameter: Direction
+  angleParameter: Angle
+  headYawParameter: 
+  headPitchParameter: 
+  expressionParameter: 
+  rootTurningFactor: 0
+  headLayer: 1
+  mouthLayer: 2
+  spriteChild: {fileID: 0}
+  rotateSprite3D: 0
+  idleAnimSprite: idle
+  walkAnimSprite: walk
+  runAnimSprite: run
+  talkAnimSprite: talk
+  lockScale: 0
+  spriteScale: 1
+  lockDirection: 0
+  spriteDirection: D
+  doDirections: 1
+  crossfadeAnims: 0
+  doDiagonals: 0
+  isTalking: 0
+  frameFlipping: 0
+  flipCustomAnims: 0
+  walkSpeedScale: 2
+  runSpeedScale: 6
+  turnSpeed: 7
+  acceleration: 6
+  deceleration: 0
+  turnBeforeWalking: 0
+  runDistanceThreshold: 1
+  antiGlideMode: 0
+  ignoreGravity: 0
+  freezeRigidbodyWhenIdle: 0
+  doWallReduction: 0
+  wallLayer: Default
+  wallDistance: .5
+  walkSound: {fileID: 0}
+  runSound: {fileID: 0}
+  textScrollClip: {fileID: 0}
+  soundChild: {fileID: 0}
+  speechAudioSource: {fileID: 0}
+  headTurnTarget: {x: 0, y: 0, z: 0}
+  headFacing: 0
+  ikHeadTurning: 0
+  moveOutOfPlayersWay: 0
+  minPlayerDistance: 1
+--- !u!4 &1412198259
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412198257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.8920002, y: 1.06181073, z: 3.0309999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1218543883}
+  m_RootOrder: 0
+--- !u!114 &1412198260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412198257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db50f5eff40d94cfdac2b1ad5c44d735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes: []
+  nodeCommands: []
+  commandSource: 0
+  pathType: 2
+  pathSpeed: 0
+  teleportToStart: 0
+  affectY: 0
+  nodePause: 0
+--- !u!23 &1412198261
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412198257}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 37c42c4e7a4c84044bd2bc4db207005c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!135 &1412198262
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412198257}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1412198263
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412198257}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1415349902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f082ec839c73045bcabc1244bb57d1dc, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Face object
+  description: Makes a Character turn, either instantly or over time. Can turn to
+    face another object, or copy that object's facing direction.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 1
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 3
+  skipActionActual: {fileID: 758063294}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 372
+    width: 300
+    height: 212
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  faceObjectParameterID: -1
+  charToMoveID: 0
+  faceObjectID: 0
+  isInstant: 0
+  charToMove: {fileID: 0}
+  faceObject: {fileID: 251082073}
+  copyRotation: 0
+  facePlayer: 0
+  faceType: 0
+  isPlayer: 1
+  lookUpDown: 0
+  stopLooking: 0
 --- !u!1 &1415839052
 GameObject:
   m_ObjectHideFlags: 0
@@ -6285,6 +8239,60 @@ MonoBehaviour:
   sendValue: 1
   customValue: 2
   ignoreWhenSkipping: 0
+--- !u!114 &1419167219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Move to point
+  description: Moves a character to a given Marker object. By default, the character
+    will attempt to pathfind their way to the marker, but can optionally just move
+    in a straight line.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 4
+  skipActionActual: {fileID: 1326411962}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 238
+    width: 300
+    height: 194
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  markerParameterID: -1
+  charToMoveID: 0
+  markerID: 0
+  marker: {fileID: 1474258278}
+  isPlayer: 0
+  charToMove: {fileID: 1412198258}
+  speed: 0
+  pathFind: 1
+  doFloat: 0
 --- !u!1 &1420589410
 GameObject:
   m_ObjectHideFlags: 0
@@ -6356,7 +8364,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
       propertyPath: actions.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
       propertyPath: m_LocalPosition.x
@@ -6397,10 +8405,34 @@ Prefab:
     - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
       propertyPath: actions.Array.data[0]
       value: 
-      objectReference: {fileID: 1967449498}
+      objectReference: {fileID: 784900476}
     - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
       propertyPath: actionListType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
+      propertyPath: actions.Array.data[1]
+      value: 
+      objectReference: {fileID: 452368440}
+    - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
+      propertyPath: actions.Array.data[2]
+      value: 
+      objectReference: {fileID: 1107560600}
+    - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
+      propertyPath: actions.Array.data[3]
+      value: 
+      objectReference: {fileID: 1873448604}
+    - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
+      propertyPath: actions.Array.data[4]
+      value: 
+      objectReference: {fileID: 1326411962}
+    - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
+      propertyPath: actions.Array.data[5]
+      value: 
+      objectReference: {fileID: 423109202}
+    - target: {fileID: 11400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
+      propertyPath: actions.Array.data[6]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
@@ -6732,6 +8764,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1464325515}
   m_Mesh: {fileID: 4300128, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!4 &1474258277 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+  m_PrefabInternal: {fileID: 1709976899}
+--- !u!114 &1474258278 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 3e1798ea59d214a2c84c5064331b19a5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1709976899}
+  m_Script: {fileID: 11500000, guid: bbbbb3c8d2a7340dab40d45d6033e69e, type: 3}
 --- !u!1 &1480546842
 GameObject:
   m_ObjectHideFlags: 0
@@ -6915,6 +8957,59 @@ Prefab:
     - {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1526797027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: SetCaughtMessage
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &1528266211 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
@@ -6928,6 +9023,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1551777296}
   - 114: {fileID: 1551777297}
+  - 114: {fileID: 1551777298}
   m_Layer: 0
   m_Name: SceneHelper
   m_TagString: Untagged
@@ -6964,6 +9060,18 @@ MonoBehaviour:
   KetchupHotspot: {fileID: 832795188}
   FloorHotspot: {fileID: 429312014}
   ObjectInHand: {fileID: 0}
+--- !u!114 &1551777298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551777295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ec12d76813dd0478184396f6e99592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestText: {fileID: 205147272}
 --- !u!1 &1555990405
 GameObject:
   m_ObjectHideFlags: 0
@@ -7053,7 +9161,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -7182,59 +9290,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1568922053}
   m_Mesh: {fileID: 4300076, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1594549316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 1
-  skipActionActual: {fileID: 1594549316}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 212
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 842193068}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Grab
-  sendValue: 1
-  customValue: 1
-  ignoreWhenSkipping: 0
 --- !u!1 &1600353126
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,6 +9352,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1600353126}
   m_Mesh: {fileID: 4300074, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!4 &1601204440 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
+  m_PrefabInternal: {fileID: 1196771671}
+--- !u!114 &1601204441 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: ac8da0983da1047639d0d518a4d05319,
+    type: 2}
+  m_PrefabInternal: {fileID: 1196771671}
+  m_Script: {fileID: 11500000, guid: e2e80c1b0012c4108b659894f7112db7, type: 3}
 --- !u!4 &1607085592 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -7325,7 +9390,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607588183}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -8.81464672, y: -.0381933227, z: 1.09267902}
+  m_LocalPosition: {x: -7.71999979, y: -.0381933227, z: 1.09300005}
   m_LocalScale: {x: .634577632, y: .634577632, z: .634577632}
   m_Children: []
   m_Father: {fileID: 1405592675}
@@ -7364,6 +9429,80 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607588183}
   m_Mesh: {fileID: 4300004, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!1 &1610634085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1610634089}
+  - 33: {fileID: 1610634088}
+  - 136: {fileID: 1610634087}
+  - 23: {fileID: 1610634086}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1610634086
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1610634085}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!136 &1610634087
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1610634085}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1610634088
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1610634085}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1610634089
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1610634085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.9529991, y: .688094854, z: 12.2368412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1 &1620568298
 GameObject:
   m_ObjectHideFlags: 0
@@ -7434,6 +9573,52 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 2135141135}
+--- !u!1001 &1628229442
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1197385911}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13.8997211
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.15597844
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -.993046165
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -.117725439
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_Name
+      value: BedMarker_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1628998665
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,7 +9771,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1686946237}
   m_LocalRotation: {x: -.707106829, y: -6.18172464e-08, z: -6.18172393e-08, w: .707106829}
-  m_LocalPosition: {x: -8.02738571, y: .595170438, z: -1.81934392}
+  m_LocalPosition: {x: -6.93300009, y: .595170438, z: -1.81900001}
   m_LocalScale: {x: .446260422, y: .446260422, z: .446260422}
   m_Children: []
   m_Father: {fileID: 1405592675}
@@ -7630,6 +9815,52 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1189687709}
+--- !u!1001 &1709976899
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1197385911}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 11.9399996
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.1500001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -.973811746
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .227355734
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+      propertyPath: m_Name
+      value: CoolerMarker_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3e1798ea59d214a2c84c5064331b19a5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1725723311
 GameObject:
   m_ObjectHideFlags: 0
@@ -7716,6 +9947,7 @@ GameObject:
   - 136: {fileID: 1744966700}
   - 114: {fileID: 1744966699}
   - 114: {fileID: 1744966698}
+  - 114: {fileID: 1744966704}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -7730,7 +9962,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1744966696}
   m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
-  m_LocalPosition: {x: -7.85271692, y: -.256999999, z: 1.17717099}
+  m_LocalPosition: {x: -6.7579999, y: -.256999999, z: 1.17700005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 101561686}
@@ -7838,6 +10070,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1744966696}
   m_Mesh: {fileID: 4300006, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1744966704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744966696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ecf6204715e6e44b2d6a33955250c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1757683182
 Prefab:
   m_ObjectHideFlags: 0
@@ -7895,7 +10138,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -7989,7 +10232,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1761241746}
   m_Mesh: {fileID: 4300112, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1800780152
+--- !u!114 &1763623951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -7997,15 +10240,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
+  category: 5
+  title: Wait
+  description: Waits a set time before continuing.
   isDisplayed: 1
   numSockets: 1
   willWait: 0
@@ -8017,9 +10258,9 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 0
-  skipActionActual: {fileID: 1800780152}
+  endAction: 2
+  skipAction: 5
+  skipActionActual: {fileID: 423109202}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -8029,19 +10270,12 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 14
-    y: 14
+    y: 650
     width: 300
-    height: 176
+    height: 104
   nodeHeight: 0
-  constantID: 0
   parameterID: -1
-  linkedObject: {fileID: 1551777295}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: PutObjectInFloorHotSpot
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
+  timeToPause: 4
 --- !u!1001 &1805440745
 Prefab:
   m_ObjectHideFlags: 0
@@ -8055,7 +10289,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.44000006
+      value: -1.40999997
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8100,7 +10334,7 @@ Prefab:
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[0]
       value: 
-      objectReference: {fileID: 1245635022}
+      objectReference: {fileID: 1821469392}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: triggerType
       value: 2
@@ -8109,9 +10343,65 @@ Prefab:
       propertyPath: actionListType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: actions.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+      propertyPath: showInEditor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1821469392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 1821469392}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 140
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
 --- !u!1 &1826032185
 GameObject:
   m_ObjectHideFlags: 0
@@ -8235,7 +10525,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -8244,7 +10534,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1844968884}
---- !u!114 &1879870959
+--- !u!114 &1846888434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -8252,13 +10542,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
-  category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
+  category: 2
+  title: Move to point
+  description: Moves a character to a given Marker object. By default, the character
+    will attempt to pathfind their way to the marker, but can optionally just move
+    in a straight line.
   isDisplayed: 1
   numSockets: 1
   willWait: 0
@@ -8270,7 +10562,61 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 0
+  endAction: 1
+  skipAction: 4
+  skipActionActual: {fileID: 1326411962}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 972
+    width: 300
+    height: 176
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  markerParameterID: -1
+  charToMoveID: 0
+  markerID: 0
+  marker: {fileID: 1345242627}
+  isPlayer: 0
+  charToMove: {fileID: 1412198258}
+  speed: 0
+  pathFind: 1
+  doFloat: 0
+--- !u!114 &1866299686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
   skipAction: 1
   skipActionActual: {fileID: 0}
   linkedCutscene: {fileID: 0}
@@ -8284,14 +10630,71 @@ MonoBehaviour:
     x: 14
     y: 14
     width: 300
-    height: 158
+    height: 176
   nodeHeight: 0
   constantID: 0
   parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: SetCaughtMessage
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
+--- !u!114 &1873448604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Move to point
+  description: Moves a character to a given Marker object. By default, the character
+    will attempt to pathfind their way to the marker, but can optionally just move
+    in a straight line.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 4
+  skipActionActual: {fileID: 1326411962}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 972
+    width: 300
+    height: 176
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  markerParameterID: -1
+  charToMoveID: 0
+  markerID: 0
+  marker: {fileID: 1345242627}
   isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
+  charToMove: {fileID: 1412198258}
+  speed: 0
+  pathFind: 1
+  doFloat: 0
 --- !u!1 &1893225464
 GameObject:
   m_ObjectHideFlags: 0
@@ -8480,7 +10883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: m_LocalScale.z
@@ -8580,36 +10983,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1936850489}
   m_Mesh: {fileID: 4300034, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!1 &1953427578
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1953427579}
-  m_Layer: 0
-  m_Name: _Triggers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1953427579
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1953427578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1560030711}
-  - {fileID: 1528266211}
-  m_Father: {fileID: 886710176}
-  m_RootOrder: 4
---- !u!114 &1967449498
+--- !u!114 &1937926221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -8638,8 +11012,8 @@ MonoBehaviour:
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
   endAction: 0
-  skipAction: -1
-  skipActionActual: {fileID: 0}
+  skipAction: 0
+  skipActionActual: {fileID: 1937926221}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -8651,17 +11025,49 @@ MonoBehaviour:
     x: 14
     y: 14
     width: 300
-    height: 194
+    height: 176
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  linkedObject: {fileID: 1744966696}
+  linkedObject: {fileID: 1551777295}
   affectChildren: 0
   messageToSend: 4
-  customMessage: KnockOver
+  customMessage: PutObjectInFloorHotSpot
   sendValue: 0
-  customValue: 2
+  customValue: 0
   ignoreWhenSkipping: 0
+--- !u!1 &1953427578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1953427579}
+  m_Layer: 0
+  m_Name: _Triggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1953427579
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953427578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1560030711}
+  - {fileID: 1528266211}
+  - {fileID: 651113797}
+  - {fileID: 659465703}
+  - {fileID: 1161549827}
+  m_Father: {fileID: 886710176}
+  m_RootOrder: 4
 --- !u!1001 &1987208720
 Prefab:
   m_ObjectHideFlags: 0
@@ -8719,7 +11125,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -8940,59 +11346,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 956005212}
---- !u!114 &2016178030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1744966696}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: KnockOver
-  sendValue: 0
-  customValue: 2
-  ignoreWhenSkipping: 0
 --- !u!1 &2026654294
 GameObject:
   m_ObjectHideFlags: 0
@@ -9115,11 +11468,67 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2042343310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f082ec839c73045bcabc1244bb57d1dc, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Face object
+  description: Makes a Character turn, either instantly or over time. Can turn to
+    face another object, or copy that object's facing direction.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 1
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 3
+  skipActionActual: {fileID: 758063294}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 372
+    width: 300
+    height: 212
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  faceObjectParameterID: -1
+  charToMoveID: 0
+  faceObjectID: 0
+  isInstant: 0
+  charToMove: {fileID: 0}
+  faceObject: {fileID: 251082073}
+  copyRotation: 0
+  facePlayer: 0
+  faceType: 0
+  isPlayer: 1
+  lookUpDown: 0
+  stopLooking: 0
 --- !u!1 &2052175981
 GameObject:
   m_ObjectHideFlags: 0
@@ -9267,7 +11676,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2061880923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.0880003, y: 1.65400004, z: -2.08999991}
+  m_LocalPosition: {x: -7.21999979, y: 1.72000003, z: -2.08999991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1405592675}
@@ -9477,7 +11886,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -9535,7 +11944,7 @@ Prefab:
       objectReference: {fileID: 188007248}
     - target: {fileID: 11446722, guid: afe932519a8386946bcb62db7c60610f, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6583122, guid: afe932519a8386946bcb62db7c60610f, type: 2}
       propertyPath: m_Size.x
@@ -9794,7 +12203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
       propertyPath: showInEditor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
