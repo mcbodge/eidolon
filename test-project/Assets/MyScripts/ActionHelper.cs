@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ActionHelper : MonoBehaviour {
 
+	public GameObject Orso;
+	public Texture bloodyTexture;
 	public GameObject floorHotspot;
 	public static  ActionHelper HelperReference;
 	public GameObject ObjectInHand;
@@ -55,7 +57,6 @@ public class ActionHelper : MonoBehaviour {
 			//attivare hotspot
 			floorHotspot.SetActive (true);
 			Debug.Log ("Activating hotspot - " + floorHotspot.activeSelf.ToString ());
-			orsacchiottoInPosition = false;
 		} else {
 			//disattivare hotspot
 			floorHotspot.SetActive (false);
@@ -73,6 +74,10 @@ public class ActionHelper : MonoBehaviour {
 			ObjectInHand.transform.position = floorHotspot.transform.position + 0.3f * transform.up;
 			orsacchiottoInPosition = true;
 		} else {
+			if (ObjectInHand.name == "Ketchup") {
+				Debug.Log ("changing texture to Ketchup");
+				Orso.GetComponent<Renderer>().material.SetTexture("_MainTex", bloodyTexture);
+			}
 			Debug.Log (" Dropping object " + ohReference.name + " near TeddyBear");
 			ohReference.Drop();
 			ObjectInHand.transform.position = (floorHotspot.transform.position + 0.3f * transform.up)
