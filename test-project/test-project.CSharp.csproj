@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -356,6 +350,7 @@
     <Compile Include="Assets\AdventureCreator\Scripts\Variables\VarPreset.cs" />
     <Compile Include="Assets\MyScripts\ActionHelper.cs" />
     <Compile Include="Assets\MyScripts\ObjectHolder.cs" />
+    <Compile Include="Assets\MyScripts\TextureControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />

@@ -82,7 +82,7 @@ public class ActionHelper : MonoBehaviour {
 		} else {
 			if (ObjectInHand.name == "Ketchup") {
 				Debug.Log ("changing texture to Bear with the bloody one");
-				Orso.GetComponent<Renderer>().material.SetTexture("_MainTex", BloodyTexture);
+                Orso.GetComponent<TextureControl>().ChangeMainTextureToTarget();
 			}
 			Debug.Log ("Dropping object " + objectHolderReference.name + " after TeddyBear");
 			objectHolderReference.Drop();
