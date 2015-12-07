@@ -60,10 +60,8 @@ public class ObjectHolder : MonoBehaviour {
 			actionID = param;
 			ahReference.Dispatcher (actionID, "grab");
 			ahReference.ObjectInHand = this.gameObject;
-			Debug.Log ("Object in hand set to " + ahReference.ObjectInHand.name);
 		} else {
 			ahReference.ObjectInHand = null;
-			Debug.Log ("No object in hand");
 		}
 	}
 

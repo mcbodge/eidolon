@@ -39,14 +39,14 @@ public class ActionHelper : MonoBehaviour {
 		case "grab":
 			//attivare hotspot
 			floorHotspot.SetActive(true);
-			Debug.Log ("Activating hotspot - " + floorHotspot.activeSelf.ToString());
+			Debug.Log ("Activating hotspot - State:" + floorHotspot.activeSelf.ToString());
 			orsacchiottoInPosition = false;
 			break;
 		case "ungrab":
 		case "launch":
 			//disattivare hotspot
 			floorHotspot.SetActive(false);
-			Debug.Log ("Deactivating hotspot" + floorHotspot.activeSelf.ToString());
+			Debug.Log ("Deactivating hotspot - State:" + floorHotspot.activeSelf.ToString());
 			break;
 		}
 	}
@@ -56,11 +56,11 @@ public class ActionHelper : MonoBehaviour {
 		if (sender == "grab" && orsacchiottoInPosition) {
 			//attivare hotspot
 			floorHotspot.SetActive (true);
-			Debug.Log ("Activating hotspot - " + floorHotspot.activeSelf.ToString ());
+			Debug.Log ("Activating hotspot - State:" + floorHotspot.activeSelf.ToString ());
 		} else {
 			//disattivare hotspot
 			floorHotspot.SetActive (false);
-			Debug.Log ("Deactivating hotspot" + floorHotspot.activeSelf.ToString ());
+			Debug.Log ("Deactivating hotspot - State:" + floorHotspot.activeSelf.ToString ());
 		}
 	
 	}
@@ -70,15 +70,15 @@ public class ActionHelper : MonoBehaviour {
 		if (!orsacchiottoInPosition) {
 			floorHotspot.SetActive (false);
 			ohReference.Drop ();
-			Debug.Log (" Dropping object " + ohReference.name + " into floorHotspot");
+			Debug.Log ("Dropping object " + ohReference.name);
 			ObjectInHand.transform.position = floorHotspot.transform.position + 0.3f * transform.up;
 			orsacchiottoInPosition = true;
 		} else {
 			if (ObjectInHand.name == "Ketchup") {
-				Debug.Log ("changing texture to Ketchup");
+				Debug.Log ("changing texture to Bear with the bloody one");
 				Orso.GetComponent<Renderer>().material.SetTexture("_MainTex", bloodyTexture);
 			}
-			Debug.Log (" Dropping object " + ohReference.name + " near TeddyBear");
+			Debug.Log ("Dropping object " + ohReference.name + " after TeddyBear");
 			ohReference.Drop();
 			ObjectInHand.transform.position = (floorHotspot.transform.position + 0.3f * transform.up)
 				+ 0.2f * transform.right;
