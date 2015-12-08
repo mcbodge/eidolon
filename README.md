@@ -1,8 +1,8 @@
 # eidolon
-## How to import scene
+## How to import the scene
 * Blender is required
-* Before loading scene for the first time you should go to Daniele/modelli folder from
-unity file manager and build prefabs, without the option import materials
+* Before loading the for the first time, you should go to Daniele/modelli folder from the
+unity file manager and build prefabs without the "import materials" option
 
-## kanban
-* http://bit.ly/1PJOLI9 (please ask to mcbodge for an edit-mode link)
+## Project Kanban
+* http://bit.ly/1PJOLI9 (please ask mcbodge for an edit-mode link)
