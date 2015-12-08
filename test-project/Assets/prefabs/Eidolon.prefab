@@ -531,7 +531,6 @@ GameObject:
   - 92: {fileID: 9245726}
   - 81: {fileID: 8119116}
   - 114: {fileID: 11445728}
-  - 114: {fileID: 11455022}
   m_Layer: 0
   m_Name: Camera
   m_TagString: FpsCamera
@@ -1690,7 +1689,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173904}
-  m_LocalRotation: {x: -.333641708, y: -.583797812, z: .367608488, w: .64243871}
+  m_LocalRotation: {x: -.333641678, y: -.583797753, z: .367608458, w: .64243865}
   m_LocalPosition: {x: -1.2434206, y: -.0876369625, z: .242181689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2805,7 +2804,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144330}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
@@ -3586,22 +3585,6 @@ MonoBehaviour:
   headBob: 0
   bobbingSpeed: .180000007
   bobbingAmount: .200000003
---- !u!114 &11455022
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 144330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cc433b62dde4f73ba3ce6f0a386147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
-  targetIsPlayer: 1
-  target: {fileID: 0}
-  isDragControlled: 0
-  focalDistance: 10
 --- !u!114 &11484324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3871,6 +3854,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

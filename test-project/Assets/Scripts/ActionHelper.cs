@@ -42,8 +42,6 @@ public class ActionHelper : MonoBehaviour
             case 2:
                 KetchupAction(sender);
                 break;
-            default:
-                break;
         }
     }
 
@@ -54,14 +52,14 @@ public class ActionHelper : MonoBehaviour
             case "grab":
                 // Activate hotspot
                 FloorHotspot.SetActive(true);
-                Debug.Log("Activating hotspot - State:" + FloorHotspot.activeSelf.ToString());
+                Debug.Log(string.Format("Activating hotspot - State: {0}", FloorHotspot.activeSelf));
                 isTeddyBearInPosition = false;
                 break;
             case "ungrab":
             case "launch":
                 // Deactivate hotspot
                 FloorHotspot.SetActive(false);
-                Debug.Log("Deactivating hotspot - State:" + FloorHotspot.activeSelf.ToString());
+                Debug.Log(string.Format("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf));
                 break;
         }
     }
@@ -73,14 +71,14 @@ public class ActionHelper : MonoBehaviour
         {
             // Activate hotspot
             FloorHotspot.SetActive(true);
-            Debug.Log("Activating hotspot - State:" + FloorHotspot.activeSelf.ToString());
+            Debug.Log(string.Format("Activating hotspot - State: {0}", FloorHotspot.activeSelf));
             TeddyBearHotspot.SetActive(false);
         }
         else
         {
             // Deactivate hotspot
             FloorHotspot.SetActive(false);
-            Debug.Log("Deactivating hotspot - State:" + FloorHotspot.activeSelf.ToString());
+            Debug.Log(string.Format("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf));
             TeddyBearHotspot.SetActive(true);
         }
     }
@@ -94,7 +92,7 @@ public class ActionHelper : MonoBehaviour
             //TODO Final position of the teddybear (fixed)
             ObjectInHand.transform.position = FloorHotspot.transform.position + 0.3f * transform.up;
             isTeddyBearInPosition = true;
-            Debug.Log("Dropping object " + objectHolderReference.name + " in T statement");
+            Debug.Log(string.Format("Dropping object {0} in T statement", objectHolderReference.name));
         }
         else if (ObjectInHand.name == "Ketchup")
         {
@@ -105,7 +103,7 @@ public class ActionHelper : MonoBehaviour
             // Disabled by ketchup's grab
             TeddyBearHotspot.SetActive(true);
             KetchupHotspot.SetActive(false);
-            Debug.Log("Dropping object " + objectHolderReference.name + " in K statement");
+            Debug.Log(string.Format("Dropping object {0} in K statement", objectHolderReference.name));
         }
         FloorHotspot.SetActive(false);
     }
