@@ -5,4 +5,4 @@
 unity file manager and build prefabs without the "import materials" option
 
 ## Project Kanban
-* http://bit.ly/1PJOLI9 (please ask to mcbodge for an edit-mode link)
+* http://bit.ly/1PJOLI9 (please ask mcbodge for an edit-mode link)
