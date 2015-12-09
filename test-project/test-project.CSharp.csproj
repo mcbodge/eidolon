@@ -354,6 +354,7 @@
     <Compile Include="Assets\Scripts\PhysicsActions.cs" />
     <Compile Include="Assets\Scripts\PlayerInteractions.cs" />
     <Compile Include="Assets\Scripts\TextureControl.cs" />
+    <Compile Include="Assets\Scripts\WallControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />

@@ -19,7 +19,7 @@ public class PlayerInteractions : MonoBehaviour {
 			(
 				transform.position,
 				finalPosition,
-				Time.deltaTime * 3f
+				Time.deltaTime * 6f
 			);
 			checkAnimationFinish();
 		}
@@ -27,8 +27,7 @@ public class PlayerInteractions : MonoBehaviour {
 
 	public void goToMarker() {
 		Debug.Log ("Starting walk to animation");
-		finalPosition = 
-			transform.position + (transform.forward * 3f);
+		finalPosition = transform.position + (transform.forward * 3f);
 		triggerWalk = true;
 		// this to stop the player completely
 		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
