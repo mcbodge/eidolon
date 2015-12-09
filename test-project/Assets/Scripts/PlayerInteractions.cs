@@ -3,13 +3,13 @@ using System.Collections;
 
 public class PlayerInteractions : MonoBehaviour {
 
-	public GameObject markerWalkTo;
-
 	bool triggerWalk;
+	Vector3 finalPosition;
 
 	// Use this for initialization
 	void Start () {
 		triggerWalk = false;
+
 	}
 	
 	// Update is called once per frame
@@ -18,7 +18,7 @@ public class PlayerInteractions : MonoBehaviour {
 			transform.position = Vector3.Lerp
 			(
 				transform.position,
-				markerWalkTo.transform.position,
+				finalPosition,
 				Time.deltaTime * 3f
 			);
 			checkAnimationFinish();
@@ -27,6 +27,8 @@ public class PlayerInteractions : MonoBehaviour {
 
 	public void goToMarker() {
 		Debug.Log ("Starting walk to animation");
+		finalPosition = 
+			transform.position + (transform.forward * 3f);
 		triggerWalk = true;
 		// this to stop the player completely
 		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
@@ -35,7 +37,7 @@ public class PlayerInteractions : MonoBehaviour {
 
 	public void checkAnimationFinish() {
 		if ( Vector3.Distance ( transform.position,
-		                       markerWalkTo.transform.position ) < 0.3f) {
+		                       finalPosition ) < 0.1f) {
 			triggerWalk = false;
 			Debug.Log ("Marker reached");
 		}
