@@ -532,6 +532,7 @@ GameObject:
   - 81: {fileID: 8119116}
   - 114: {fileID: 11445728}
   - 114: {fileID: 11412226}
+  - 114: {fileID: 11418176}
   m_Layer: 0
   m_Name: Camera
   m_TagString: FpsCamera
@@ -1690,7 +1691,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173904}
-  m_LocalRotation: {x: -.333641708, y: -.583797812, z: .367608488, w: .64243871}
+  m_LocalRotation: {x: -.333641678, y: -.583797753, z: .367608458, w: .64243865}
   m_LocalPosition: {x: -1.2434206, y: -.0876369625, z: .242181689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3577,6 +3578,20 @@ MonoBehaviour:
   target: {fileID: 0}
   isDragControlled: 0
   focalDistance: 10
+--- !u!114 &11418176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72e60470f1fa4fd1825cd67ce482cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constantID: 227818
+  retainInPrefab: 1
+  autoManual: 0
 --- !u!114 &11445728
 MonoBehaviour:
   m_ObjectHideFlags: 1
