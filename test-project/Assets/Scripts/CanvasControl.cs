@@ -5,13 +5,15 @@ using UnityEngine.UI;
 public class CanvasControl : MonoBehaviour
 {
 
+    //TODO improve
+    public Text TestText;
+    private int count;
+
     void Start()
     {
         SetDefaultMessage();
+        count = 0;
     }
-
-    //TODO improve
-    public Text TestText;
 
     public void SetTestText(string newText)
     {
@@ -20,7 +22,8 @@ public class CanvasControl : MonoBehaviour
 
     public void SetCaughtMessage ()
     {
-        TestText.text = "!!!";
+        count++;
+        TestText.text = string.Format("!!! #{0}", count);
     }
 
     public void SetDefaultMessage()
