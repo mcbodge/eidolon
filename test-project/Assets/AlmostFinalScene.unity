@@ -217,6 +217,64 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78b39d5eb1cc84957ba129bde5602150, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &16618604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d93df5227e14ac692429ea860d7d05, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 7
+  title: Check
+  description: Queries whether or not the player is carrying an item. If the player
+    can carry multiple amounts of the item, more options will show.
+  isDisplayed: 0
+  numSockets: 2
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 5
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 21
+  nodeHeight: 0
+  resultActionTrue: 2
+  skipActionTrue: 7
+  skipActionTrueActual: {fileID: 961624175}
+  linkedCutsceneTrue: {fileID: 0}
+  linkedAssetTrue: {fileID: 0}
+  resultActionFail: 2
+  skipActionFail: 7
+  skipActionFailActual: {fileID: 961624175}
+  linkedCutsceneFail: {fileID: 0}
+  linkedAssetFail: {fileID: 0}
+  inputName: Jump
+  parameterID: -1
+  checkType: 0
+  axisCondition: 0
+  axisValue: 0
 --- !u!4 &26876474 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -407,54 +465,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 70234868}
   m_Mesh: {fileID: 4300072, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &91726999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
 --- !u!1001 &95079279
 Prefab:
   m_ObjectHideFlags: 0
@@ -731,107 +741,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &124537652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Change material
-  description: Changes the material on any scene-based mesh object.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 0
-  skipActionActual: {fileID: 124537652}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 140
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  isPlayer: 0
-  obToAffect: {fileID: 0}
-  materialIndex: 0
-  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
---- !u!114 &139593317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 3
-  skipActionActual: {fileID: 1873448604}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 784
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 659465702}
-  affectChildren: 0
-  messageToSend: 0
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &171670436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +931,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 177580893}
   m_Mesh: {fileID: 4300104, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &185484202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 452368440}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1744966696}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: KnockOut
+  sendValue: 0
+  customValue: 2
+  ignoreWhenSkipping: 0
 --- !u!1 &185996709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 602b859721448d0459d1857fe549ab81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &191720409
+--- !u!114 &196802852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1161,14 +1123,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
-  category: 1
-  title: Switch
-  description: Moves the MainCamera to the position, rotation and field of view of
-    a specified GameCamera. Can be instantaneous or transition over time.
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
   isDisplayed: 1
   numSockets: 1
   willWait: 0
@@ -1180,9 +1143,9 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 5
-  skipActionActual: {fileID: 1071434211}
+  endAction: 1
+  skipAction: 1
+  skipActionActual: {fileID: 196802852}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -1191,33 +1154,20 @@ MonoBehaviour:
   isBreakPoint: 0
   nodeRect:
     serializedVersion: 2
-    x: 364
-    y: 614
+    x: 14
+    y: 14
     width: 300
-    height: 176
+    height: 212
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  linkedCamera: {fileID: 1601204441}
-  transitionTime: .5
-  transitionTimeParameterID: -1
-  timeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  moveMethod: 4
-  returnToLast: 0
+  linkedObject: {fileID: 842193068}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Grab
+  sendValue: 1
+  customValue: 1
+  ignoreWhenSkipping: 0
 --- !u!1001 &198137292
 Prefab:
   m_ObjectHideFlags: 0
@@ -1292,59 +1242,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &204050865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: -1
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 188007244}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Grab
-  sendValue: 1
-  customValue: 2
-  ignoreWhenSkipping: 0
 --- !u!1 &205147270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,113 +1402,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &212791744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 2
-  skipActionActual: {fileID: 212791744}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 1366
-    width: 300
-    height: 140
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 205600544}
-  affectChildren: 0
-  messageToSend: 0
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
---- !u!114 &231431729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 2
-  title: Move to point
-  description: Moves a character to a given Marker object. By default, the character
-    will attempt to pathfind their way to the marker, but can optionally just move
-    in a straight line.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 4
-  skipActionActual: {fileID: 1326411962}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 238
-    width: 300
-    height: 194
-  nodeHeight: 0
-  charToMoveParameterID: -1
-  markerParameterID: -1
-  charToMoveID: 0
-  markerID: 0
-  marker: {fileID: 1474258278}
-  isPlayer: 0
-  charToMove: {fileID: 1412198258}
-  speed: 0
-  pathFind: 1
-  doFloat: 0
 --- !u!1 &251082073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,6 +1530,59 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 253159491}
+--- !u!114 &256141400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: SetDefaultMessage
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &279719823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,7 +1639,7 @@ Transform:
   - {fileID: 798983838}
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!114 &325299973
+--- !u!114 &295192923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1804,16 +1647,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
+  category: 5
+  title: Wait
+  description: Waits a set time before continuing.
+  isDisplayed: 0
   numSockets: 1
   willWait: 0
   defaultPauseTime: .100000001
@@ -1824,9 +1665,55 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 1
-  skipActionActual: {fileID: 0}
+  endAction: 2
+  skipAction: 2
+  skipActionActual: {fileID: 2057142121}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 320
+    width: 300
+    height: 21
+  nodeHeight: 0
+  parameterID: -1
+  timeToPause: .5
+--- !u!114 &298137812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 4
+  skipActionActual: {fileID: 1683156023}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -1838,14 +1725,14 @@ MonoBehaviour:
     x: 14
     y: 14
     width: 300
-    height: 176
+    height: 21
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  linkedObject: {fileID: 1551777295}
+  linkedObject: {fileID: 1580588831}
   affectChildren: 0
-  messageToSend: 4
-  customMessage: SetCaughtMessage
+  messageToSend: 1
+  customMessage: 
   sendValue: 0
   customValue: 0
   ignoreWhenSkipping: 0
@@ -1913,165 +1800,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 342624828}
   m_Mesh: {fileID: 4300120, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &347157198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 0
-  skipActionActual: {fileID: 347157198}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 176
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1551777295}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: PutObjectInFloorHotSpot
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
---- !u!114 &349400144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d93df5227e14ac692429ea860d7d05, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 7
-  title: Check
-  description: Queries whether or not the player is carrying an item. If the player
-    can carry multiple amounts of the item, more options will show.
-  isDisplayed: 1
-  numSockets: 2
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 5
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 158
-  nodeHeight: 0
-  resultActionTrue: 2
-  skipActionTrue: 7
-  skipActionTrueActual: {fileID: 374803615}
-  linkedCutsceneTrue: {fileID: 0}
-  linkedAssetTrue: {fileID: 0}
-  resultActionFail: 1
-  skipActionFail: 7
-  skipActionFailActual: {fileID: 791400322}
-  linkedCutsceneFail: {fileID: 0}
-  linkedAssetFail: {fileID: 0}
-  inputName: Jump
-  parameterID: -1
-  checkType: 0
-  axisCondition: 0
-  axisValue: 0
 --- !u!4 &352890827 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 994455009}
---- !u!114 &355599324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 5
-  title: Wait
-  description: Waits a set time before continuing.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 5
-  skipActionActual: {fileID: 423109202}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 650
-    width: 300
-    height: 104
-  nodeHeight: 0
-  parameterID: -1
-  timeToPause: 4
 --- !u!1 &357580656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,165 +1866,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 357580656}
   m_Mesh: {fileID: 4300090, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &358490941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 2
-  skipActionActual: {fileID: 358490941}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 1366
-    width: 300
-    height: 140
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 205600544}
-  affectChildren: 0
-  messageToSend: 0
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
---- !u!114 &373973747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 0
-  skipActionActual: {fileID: 0}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 176
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1551777295}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: SetDefaultMessage
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
---- !u!114 &374803615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 4
-  skipActionActual: {fileID: 1536188927}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 202
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1580588831}
-  affectChildren: 0
-  messageToSend: 1
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1001 &376338726
 Prefab:
   m_ObjectHideFlags: 0
@@ -2670,6 +2243,59 @@ MonoBehaviour:
   obToAffect: {fileID: 0}
   materialIndex: 0
   newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
+--- !u!114 &422545561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 2
+  skipActionActual: {fileID: 1107560600}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 462
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 659465702}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!114 &423109202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3222,6 +2848,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &520958694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 6
+  skipActionActual: {fileID: 2014686794}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 116
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Face
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &521276448 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -3623,7 +3302,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &628240113
+--- !u!114 &633227255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -3631,14 +3310,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
-  category: 5
-  title: Wait
-  description: Waits a set time before continuing.
-  isDisplayed: 1
+  category: 1
+  title: Switch
+  description: Moves the MainCamera to the position, rotation and field of view of
+    a specified GameCamera. Can be instantaneous or transition over time.
+  isDisplayed: 0
   numSockets: 1
   willWait: 0
   defaultPauseTime: .100000001
@@ -3650,8 +3330,8 @@ MonoBehaviour:
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
   endAction: 2
-  skipAction: 2
-  skipActionActual: {fileID: 358490941}
+  skipAction: 7
+  skipActionActual: {fileID: 1031772752}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -3660,13 +3340,33 @@ MonoBehaviour:
   isBreakPoint: 0
   nodeRect:
     serializedVersion: 2
-    x: 364
-    y: 1232
+    x: 14
+    y: 699
     width: 300
-    height: 104
+    height: 21
   nodeHeight: 0
+  constantID: 0
   parameterID: -1
-  timeToPause: .5
+  linkedCamera: {fileID: 400826748}
+  transitionTime: .200000003
+  transitionTimeParameterID: -1
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveMethod: 3
+  returnToLast: 0
 --- !u!1001 &647728019
 Prefab:
   m_ObjectHideFlags: 0
@@ -3729,6 +3429,17 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_PrefabInternal: {fileID: 198137292}
+--- !u!114 &655381302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22f024ce49f84c5ebe9faf421cfb4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &659465702 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
@@ -3772,6 +3483,59 @@ Transform:
   - {fileID: 1111798704}
   m_Father: {fileID: 0}
   m_RootOrder: 10
+--- !u!114 &681927451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: -1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 12
+    y: 224
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 0}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: 
+  sendValue: 1
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1001 &692284497
 Prefab:
   m_ObjectHideFlags: 0
@@ -3838,59 +3602,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 692284497}
---- !u!114 &693012558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 1
-  skipActionActual: {fileID: 1367278819}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 820
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 205600544}
-  affectChildren: 0
-  messageToSend: 1
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &701409006
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,6 +3692,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 886710176}
   m_RootOrder: 1
+--- !u!114 &711673575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: 690c800cca170194785ef111f4a56def, type: 2}
 --- !u!1 &718454247
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,6 +3845,59 @@ MonoBehaviour:
   constantID: 804866
   retainInPrefab: 1
   autoManual: 0
+--- !u!114 &722793090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 1
+  skipActionActual: {fileID: 1989214810}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 218
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &730367988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4323,59 +4135,6 @@ MonoBehaviour:
   sendValue: 0
   customValue: 2
   ignoreWhenSkipping: 0
---- !u!114 &791400322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 4
-  skipActionActual: {fileID: 1132976797}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 202
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1580588831}
-  affectChildren: 0
-  messageToSend: 1
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &798205402
 GameObject:
   m_ObjectHideFlags: 0
@@ -4466,6 +4225,71 @@ Transform:
   - {fileID: 1601204440}
   m_Father: {fileID: 279928774}
   m_RootOrder: 1
+--- !u!114 &800060200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 1
+  title: Switch
+  description: Moves the MainCamera to the position, rotation and field of view of
+    a specified GameCamera. Can be instantaneous or transition over time.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 8
+  skipActionActual: {fileID: 1148065902}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 422
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedCamera: {fileID: 400826748}
+  transitionTime: .200000003
+  transitionTimeParameterID: -1
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveMethod: 3
+  returnToLast: 0
 --- !u!4 &800838032 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
@@ -4543,6 +4367,59 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 171740, guid: afe932519a8386946bcb62db7c60610f, type: 2}
   m_PrefabInternal: {fileID: 2098183296}
+--- !u!114 &835530392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 0
+  skipActionActual: {fileID: 835530392}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: PutObjectInFloorHotSpot
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &842193067
 Transform:
   m_ObjectHideFlags: 0
@@ -5168,22 +5045,22 @@ Prefab:
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[0]
       value: 
-      objectReference: {fileID: 349400144}
+      objectReference: {fileID: 16618604}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[1]
       value: 
-      objectReference: {fileID: 1284797348}
+      objectReference: {fileID: 1989214810}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[2]
       value: 
-      objectReference: {fileID: 358490941}
+      objectReference: {fileID: 2057142121}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[3]
       value: 
-      objectReference: {fileID: 1963830758}
+      objectReference: {fileID: 800060200}
     - target: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: m_LocalScale.x
-      value: .030899439
+      value: 1.51667011
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: triggerType
@@ -5192,7 +5069,7 @@ Prefab:
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[4]
       value: 
-      objectReference: {fileID: 1536188927}
+      objectReference: {fileID: 520958694}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actionListType
       value: 1
@@ -5200,23 +5077,23 @@ Prefab:
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[5]
       value: 
-      objectReference: {fileID: 1071434211}
+      objectReference: {fileID: 722793090}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[6]
       value: 
-      objectReference: {fileID: 191720409}
+      objectReference: {fileID: 2014686794}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[7]
       value: 
-      objectReference: {fileID: 374803615}
+      objectReference: {fileID: 961624175}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[8]
       value: 
-      objectReference: {fileID: 1477941232}
+      objectReference: {fileID: 1148065902}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: actions.Array.data[9]
       value: 
-      objectReference: {fileID: 628240113}
+      objectReference: {fileID: 295192923}
     - target: {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
       propertyPath: isSkippable
       value: 0
@@ -5241,7 +5118,8 @@ Prefab:
       propertyPath: parameters.Array.data[0].intValue
       value: -1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400002, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &926813961
@@ -5326,71 +5204,6 @@ Transform:
   - {fileID: 1256047139}
   m_Father: {fileID: 0}
   m_RootOrder: 13
---- !u!114 &944823352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 1
-  title: Switch
-  description: Moves the MainCamera to the position, rotation and field of view of
-    a specified GameCamera. Can be instantaneous or transition over time.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 5
-  skipActionActual: {fileID: 693012558}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 614
-    width: 300
-    height: 176
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedCamera: {fileID: 1601204441}
-  transitionTime: .5
-  transitionTimeParameterID: -1
-  timeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  moveMethod: 4
-  returnToLast: 0
 --- !u!1001 &956005212
 Prefab:
   m_ObjectHideFlags: 0
@@ -5453,6 +5266,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &961624175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 4
+  skipActionActual: {fileID: 520958694}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 65
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1580588831}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &980262317 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -5585,6 +5451,60 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 997698436}
   m_Mesh: {fileID: 4300136, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1006891369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Move to point
+  description: Moves a character to a given Marker object. By default, the character
+    will attempt to pathfind their way to the marker, but can optionally just move
+    in a straight line.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 4
+  skipActionActual: {fileID: 1326411962}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 972
+    width: 300
+    height: 176
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  markerParameterID: -1
+  charToMoveID: 0
+  markerID: 0
+  marker: {fileID: 1345242627}
+  isPlayer: 0
+  charToMove: {fileID: 1412198258}
+  speed: 0
+  pathFind: 1
+  doFloat: 0
 --- !u!1 &1017062178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5740,6 +5660,103 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1021631521}
   m_Mesh: {fileID: 4300122, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1031772752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 7
+  skipActionActual: {fileID: 1031772752}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 750
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1580588831}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
+--- !u!114 &1044486968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 5
+  title: Wait
+  description: Waits a set time before continuing.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 2
+  skipActionActual: {fileID: 1975936185}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 597
+    width: 300
+    height: 21
+  nodeHeight: 0
+  parameterID: -1
+  timeToPause: .5
 --- !u!1001 &1065828457
 Prefab:
   m_ObjectHideFlags: 0
@@ -5837,59 +5854,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
---- !u!114 &1071434211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 1
-  skipActionActual: {fileID: 1284797348}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 820
-    width: 300
-    height: 158
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 205600544}
-  affectChildren: 0
-  messageToSend: 1
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1001 &1095468208
 Prefab:
   m_ObjectHideFlags: 0
@@ -6265,64 +6229,15 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 455262, guid: 221ef4c02e1cc94489eb69ae9df6586f, type: 2}
   m_PrefabInternal: {fileID: 491588041}
---- !u!114 &1132976797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 6
-  skipActionActual: {fileID: 944823352}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 390
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 205600544}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Face
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!4 &1141562418 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1271096580}
---- !u!114 &1141784974
+--- !u!4 &1146201461 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
+  m_PrefabInternal: {fileID: 616801260}
+--- !u!114 &1148065902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -6331,7 +6246,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
   category: 11
@@ -6339,7 +6254,7 @@ MonoBehaviour:
   description: Sends a given message to a GameObject. Can be either a message commonly-used
     by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
     argument.
-  isDisplayed: 1
+  isDisplayed: 0
   numSockets: 1
   willWait: 0
   defaultPauseTime: .100000001
@@ -6351,6 +6266,63 @@ MonoBehaviour:
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
   endAction: 1
+  skipAction: 8
+  skipActionActual: {fileID: 1148065902}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 473
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1580588831}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
+--- !u!4 &1161549827 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
+  m_PrefabInternal: {fileID: 923085335}
+--- !u!114 &1169501491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
   skipAction: -1
   skipActionActual: {fileID: 0}
   linkedCutscene: {fileID: 0}
@@ -6361,28 +6333,20 @@ MonoBehaviour:
   isBreakPoint: 0
   nodeRect:
     serializedVersion: 2
-    x: 12
-    y: 224
+    x: 14
+    y: 14
     width: 300
     height: 194
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  linkedObject: {fileID: 0}
+  linkedObject: {fileID: 188007244}
   affectChildren: 0
   messageToSend: 4
-  customMessage: 
+  customMessage: Grab
   sendValue: 1
-  customValue: 0
+  customValue: 2
   ignoreWhenSkipping: 0
---- !u!4 &1146201461 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
-  m_PrefabInternal: {fileID: 616801260}
---- !u!4 &1161549827 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
-  m_PrefabInternal: {fileID: 923085335}
 --- !u!1 &1178928559
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,50 +6759,6 @@ Transform:
   - {fileID: 1345242628}
   m_Father: {fileID: 677012777}
   m_RootOrder: 2
---- !u!114 &1198185632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 5
-  title: Wait
-  description: Waits a set time before continuing.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 2
-  skipActionActual: {fileID: 212791744}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 1232
-    width: 300
-    height: 104
-  nodeHeight: 0
-  parameterID: -1
-  timeToPause: .5
 --- !u!4 &1200129287 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
@@ -6849,7 +6769,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 99313020}
   m_Script: {fileID: 11500000, guid: 6a1e6413216104fd580c7ce85907039c, type: 3}
---- !u!114 &1211546311
+--- !u!114 &1202422644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -6857,15 +6777,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Script: {fileID: 11500000, guid: b18e13856996b4c9d84b3a4c680d8a75, type: 3}
   m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
   category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
+  title: Change material
+  description: Changes the material on any scene-based mesh object.
   isDisplayed: 1
   numSockets: 1
   willWait: 0
@@ -6877,9 +6795,9 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 2
-  skipActionActual: {fileID: 1107560600}
+  endAction: 1
+  skipAction: 0
+  skipActionActual: {fileID: 1202422644}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -6889,19 +6807,16 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 14
-    y: 462
+    y: 14
     width: 300
-    height: 158
+    height: 140
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  linkedObject: {fileID: 659465702}
-  affectChildren: 0
-  messageToSend: 1
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
+  isPlayer: 0
+  obToAffect: {fileID: 0}
+  materialIndex: 0
+  newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
 --- !u!1 &1218543882
 GameObject:
   m_ObjectHideFlags: 0
@@ -7010,6 +6925,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263111011}
   m_Mesh: {fileID: 4300098, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1268790212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 1
+  skipAction: 1
+  skipActionActual: {fileID: 0}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 14
+    width: 300
+    height: 176
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1551777295}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: SetCaughtMessage
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1001 &1271096580
 Prefab:
   m_ObjectHideFlags: 0
@@ -7068,59 +7036,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1284797348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 9
-  skipActionActual: {fileID: 628240113}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 1008
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1575038586}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: goToMarker
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &1287621824
 GameObject:
   m_ObjectHideFlags: 0
@@ -7400,6 +7315,71 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304216507}
   m_Mesh: {fileID: 4300068, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1305718630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 1
+  title: Switch
+  description: Moves the MainCamera to the position, rotation and field of view of
+    a specified GameCamera. Can be instantaneous or transition over time.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 5
+  skipActionActual: {fileID: 1459107211}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 289
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedCamera: {fileID: 1601204441}
+  transitionTime: .5
+  transitionTimeParameterID: -1
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveMethod: 4
+  returnToLast: 0
 --- !u!1 &1313679111
 GameObject:
   m_ObjectHideFlags: 0
@@ -7689,59 +7669,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ac8da0983da1047639d0d518a4d05319, type: 2}
   m_PrefabInternal: {fileID: 1517028123}
---- !u!114 &1367278819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 9
-  skipActionActual: {fileID: 1198185632}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 1008
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1575038586}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: goToMarker
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1001 &1396839518
 Prefab:
   m_ObjectHideFlags: 0
@@ -7922,6 +7849,59 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1398303433}
+--- !u!114 &1398521637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 3
+  skipActionActual: {fileID: 1873448604}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 784
+    width: 300
+    height: 158
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 659465702}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!114 &1402511763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8789,6 +8769,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1454644864}
   m_Mesh: {fileID: 4300080, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1459107211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 1
+  skipActionActual: {fileID: 1652904935}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 495
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 1
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &1459493812 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -8803,59 +8836,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1709976899}
   m_Script: {fileID: 11500000, guid: bbbbb3c8d2a7340dab40d45d6033e69e, type: 3}
---- !u!114 &1477941232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 8
-  skipActionActual: {fileID: 1477941232}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 1742
-    width: 300
-    height: 140
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1580588831}
-  affectChildren: 0
-  messageToSend: 0
-  customMessage: 
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &1480546842
 GameObject:
   m_ObjectHideFlags: 0
@@ -9043,59 +9023,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_PrefabInternal: {fileID: 1805440745}
---- !u!114 &1536188927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 2
-  skipAction: 6
-  skipActionActual: {fileID: 191720409}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 364
-    y: 390
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 205600544}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Face
-  sendValue: 0
-  customValue: 0
-  ignoreWhenSkipping: 0
 --- !u!1 &1551777295
 GameObject:
   m_ObjectHideFlags: 0
@@ -9391,6 +9318,43 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 4e4d49fd1ed164d27b03fc4e366bd29a, type: 2}
   m_PrefabInternal: {fileID: 923085335}
+--- !u!114 &1580588832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1580588831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f167ead257ebb54c8165e66db4d73ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 298137812}
+  - {fileID: 1652904935}
+  - {fileID: 1975936185}
+  - {fileID: 633227255}
+  - {fileID: 1683156023}
+  - {fileID: 1459107211}
+  - {fileID: 1305718630}
+  - {fileID: 1031772752}
+  - {fileID: 1044486968}
+  isSkippable: 1
+  triggerTime: 0
+  autosaveAfter: 0
+  actionListType: 0
+  conversation: {fileID: 0}
+  assetFile: {fileID: 0}
+  source: 0
+  unfreezePauseMenus: 1
+  useParameters: 0
+  parameters: []
+  detects: 0
+  obToDetect: {fileID: 0}
+  detectComponent: 
+  showInEditor: 0
+  cancelInteractions: 0
+  keyCodeToCheck: 32
 --- !u!1 &1600353126
 GameObject:
   m_ObjectHideFlags: 0
@@ -9530,6 +9494,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607588183}
   m_Mesh: {fileID: 4300004, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1613519892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9289eb0ca58ef471f9062a5f77161403, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 5
+  title: Wait
+  description: Waits a set time before continuing.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 5
+  skipActionActual: {fileID: 423109202}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 650
+    width: 300
+    height: 104
+  nodeHeight: 0
+  parameterID: -1
+  timeToPause: 4
 --- !u!1 &1620568298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9770,6 +9778,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a39e31ce28cc48b096320990773071b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1652904935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 8
+  skipActionActual: {fileID: 1044486968}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 546
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1575038586}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: goToMarker
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!4 &1675624194 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
@@ -9822,6 +9883,59 @@ MonoBehaviour:
   obToAffect: {fileID: 0}
   materialIndex: 0
   newMaterial: {fileID: 2100000, guid: d365a58bbbcd793489112b785b21110d, type: 2}
+--- !u!114 &1683156023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 6
+  skipActionActual: {fileID: 1305718630}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 65
+    width: 300
+    height: 194
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: Face
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &1686946237
 GameObject:
   m_ObjectHideFlags: 0
@@ -10156,59 +10270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ecf6204715e6e44b2d6a33955250c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1745489090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 1
-  skipActionActual: {fileID: 1745489090}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 212
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 842193068}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: Grab
-  sendValue: 1
-  customValue: 1
-  ignoreWhenSkipping: 0
 --- !u!1001 &1757683182
 Prefab:
   m_ObjectHideFlags: 0
@@ -10570,6 +10631,60 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 1844968884}
+--- !u!114 &1853908387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 2
+  title: Move to point
+  description: Moves a character to a given Marker object. By default, the character
+    will attempt to pathfind their way to the marker, but can optionally just move
+    in a straight line.
+  isDisplayed: 1
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 4
+  skipActionActual: {fileID: 1326411962}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 14
+    y: 238
+    width: 300
+    height: 194
+  nodeHeight: 0
+  charToMoveParameterID: -1
+  markerParameterID: -1
+  charToMoveID: 0
+  markerID: 0
+  marker: {fileID: 1474258278}
+  isPlayer: 0
+  charToMove: {fileID: 1412198258}
+  speed: 0
+  pathFind: 1
+  doFloat: 0
 --- !u!114 &1873448604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10624,59 +10739,6 @@ MonoBehaviour:
   speed: 0
   pathFind: 1
   doFloat: 0
---- !u!114 &1884700109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 11
-  title: Send message
-  description: Sends a given message to a GameObject. Can be either a message commonly-used
-    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
-    argument.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 1
-  skipActionActual: {fileID: 452368440}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 14
-    width: 300
-    height: 194
-  nodeHeight: 0
-  constantID: 0
-  parameterID: -1
-  linkedObject: {fileID: 1744966696}
-  affectChildren: 0
-  messageToSend: 4
-  customMessage: KnockOut
-  sendValue: 0
-  customValue: 2
-  ignoreWhenSkipping: 0
 --- !u!114 &1891071759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10793,60 +10855,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1893225464}
   m_Mesh: {fileID: 4300118, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
---- !u!114 &1893913375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0643024da91f402a9281e781736a4c6, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  id: 0
-  category: 2
-  title: Move to point
-  description: Moves a character to a given Marker object. By default, the character
-    will attempt to pathfind their way to the marker, but can optionally just move
-    in a straight line.
-  isDisplayed: 1
-  numSockets: 1
-  willWait: 0
-  defaultPauseTime: .100000001
-  isRunning: 0
-  lastResult:
-    resultAction: 0
-    skipAction: -10
-    skipActionActual: {fileID: 0}
-    linkedCutscene: {fileID: 0}
-    linkedAsset: {fileID: 0}
-  endAction: 1
-  skipAction: 4
-  skipActionActual: {fileID: 1326411962}
-  linkedCutscene: {fileID: 0}
-  linkedAsset: {fileID: 0}
-  isEnabled: 1
-  isAssetFile: 0
-  isMarked: 0
-  isBreakPoint: 0
-  nodeRect:
-    serializedVersion: 2
-    x: 14
-    y: 972
-    width: 300
-    height: 176
-  nodeHeight: 0
-  charToMoveParameterID: -1
-  markerParameterID: -1
-  charToMoveID: 0
-  markerID: 0
-  marker: {fileID: 1345242627}
-  isPlayer: 0
-  charToMove: {fileID: 1412198258}
-  speed: 0
-  pathFind: 1
-  doFloat: 0
 --- !u!4 &1895009371 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a9d4e17cb5a8745ccad47e11f075de33, type: 2}
@@ -11104,7 +11112,7 @@ Transform:
   - {fileID: 1161549827}
   m_Father: {fileID: 886710176}
   m_RootOrder: 4
---- !u!114 &1963830758
+--- !u!114 &1975936185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -11112,15 +11120,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   id: 0
-  category: 1
-  title: Switch
-  description: Moves the MainCamera to the position, rotation and field of view of
-    a specified GameCamera. Can be instantaneous or transition over time.
-  isDisplayed: 1
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
   numSockets: 1
   willWait: 0
   defaultPauseTime: .100000001
@@ -11132,8 +11141,8 @@ MonoBehaviour:
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
   endAction: 2
-  skipAction: 8
-  skipActionActual: {fileID: 1477941232}
+  skipAction: 3
+  skipActionActual: {fileID: 633227255}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -11142,33 +11151,20 @@ MonoBehaviour:
   isBreakPoint: 0
   nodeRect:
     serializedVersion: 2
-    x: 364
-    y: 1536
+    x: 14
+    y: 648
     width: 300
-    height: 176
+    height: 21
   nodeHeight: 0
   constantID: 0
   parameterID: -1
-  linkedCamera: {fileID: 400826748}
-  transitionTime: .200000003
-  transitionTimeParameterID: -1
-  timeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  moveMethod: 3
-  returnToLast: 0
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1001 &1987208720
 Prefab:
   m_ObjectHideFlags: 0
@@ -11295,6 +11291,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1987439929}
   m_Mesh: {fileID: 4300002, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &1989214810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 9
+  skipActionActual: {fileID: 295192923}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 269
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 1575038586}
+  affectChildren: 0
+  messageToSend: 4
+  customMessage: goToMarker
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &1999865614
 GameObject:
   m_ObjectHideFlags: 0
@@ -11363,6 +11412,71 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ffb1e48456bd24beebad2532e1a248e2, type: 2}
   m_PrefabInternal: {fileID: 956005212}
+--- !u!114 &2014686794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23cea76e14804ca49ce03fec05afd8f, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 1
+  title: Switch
+  description: Moves the MainCamera to the position, rotation and field of view of
+    a specified GameCamera. Can be instantaneous or transition over time.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 2
+  skipAction: 5
+  skipActionActual: {fileID: 722793090}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 167
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedCamera: {fileID: 1601204441}
+  transitionTime: .5
+  transitionTimeParameterID: -1
+  timeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  moveMethod: 4
+  returnToLast: 0
 --- !u!1 &2026654294
 GameObject:
   m_ObjectHideFlags: 0
@@ -11614,6 +11728,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2052484181}
   m_Mesh: {fileID: 4300010, guid: 275cbf49cb645ea4abbda75875e7245b, type: 3}
+--- !u!114 &2057142121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e7520fdcc044e6c96008328a357eb7, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  id: 0
+  category: 11
+  title: Send message
+  description: Sends a given message to a GameObject. Can be either a message commonly-used
+    by Adventure Creator (Interact, TurnOn, etc) or a custom one, with an integer
+    argument.
+  isDisplayed: 0
+  numSockets: 1
+  willWait: 0
+  defaultPauseTime: .100000001
+  isRunning: 0
+  lastResult:
+    resultAction: 0
+    skipAction: -10
+    skipActionActual: {fileID: 0}
+    linkedCutscene: {fileID: 0}
+    linkedAsset: {fileID: 0}
+  endAction: 0
+  skipAction: 2
+  skipActionActual: {fileID: 2057142121}
+  linkedCutscene: {fileID: 0}
+  linkedAsset: {fileID: 0}
+  isEnabled: 1
+  isAssetFile: 0
+  isMarked: 0
+  isBreakPoint: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 364
+    y: 371
+    width: 300
+    height: 21
+  nodeHeight: 0
+  constantID: 0
+  parameterID: -1
+  linkedObject: {fileID: 205600544}
+  affectChildren: 0
+  messageToSend: 0
+  customMessage: 
+  sendValue: 0
+  customValue: 0
+  ignoreWhenSkipping: 0
 --- !u!1 &2061880923
 GameObject:
   m_ObjectHideFlags: 0
