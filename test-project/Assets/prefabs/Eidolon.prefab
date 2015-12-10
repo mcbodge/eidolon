@@ -308,6 +308,7 @@ GameObject:
   - 136: {fileID: 13610746}
   - 114: {fileID: 11490338}
   - 114: {fileID: 11484324}
+  - 114: {fileID: 11407404}
   m_Layer: 0
   m_Name: Eidolon
   m_TagString: Player
@@ -2770,7 +2771,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.8799744, y: 44.4429359, z: 217.405273}
+  m_LocalPosition: {x: 15.6612873, y: .00999999978, z: -2.75528479}
   m_LocalScale: {x: .225245506, y: .225245595, z: .225245595}
   m_Children:
   - {fileID: 456904}
@@ -3524,7 +3525,7 @@ Rigidbody:
   m_GameObject: {fileID: 128358}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 20
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -3562,6 +3563,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11407404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033153b6eb6255b41822d5fb74eca33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11412226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3662,7 +3674,7 @@ MonoBehaviour:
   headLookRightAnim: {fileID: 0}
   headLookUpAnim: {fileID: 0}
   headLookDownAnim: {fileID: 0}
-  upperBodyBone: {fileID: 0}
+  upperBodyBone: {fileID: 455262}
   leftArmBone: {fileID: 0}
   rightArmBone: {fileID: 0}
   neckBone: {fileID: 0}
@@ -3699,7 +3711,7 @@ MonoBehaviour:
   runSpeedScale: 6
   turnSpeed: 7
   acceleration: 6
-  deceleration: 0
+  deceleration: 6
   turnBeforeWalking: 0
   runDistanceThreshold: 1
   antiGlideMode: 0
