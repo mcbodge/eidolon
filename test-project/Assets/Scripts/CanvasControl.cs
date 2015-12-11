@@ -29,13 +29,15 @@ public class CanvasControl : MonoBehaviour
         return canvasControlReference;
     }
 
-	public void SetObjectInHand(string holdedObject) {
+#if UNITY_EDITOR
+    public void SetObjectInHand(string holdedObject) {
 		TopRightMessage.text = string.Format("Holding {0}", holdedObject);
 	}
 
 	public void SetDefaultObjectInHand() {
 		TopRightMessage.text = "No object in hand";
 	}
+#endif
 
     public void SetTopLeftMessage(string newText)
     {
