@@ -13,6 +13,7 @@ public class ActionHelper : MonoBehaviour
     public GameObject FloorHotspot;
     public GameObject ShowerHotspot;
     public GameObject BeerHotspot;
+    public GameObject Character106Hotspot;
 
     private static ActionHelper actionHelperReference;
     private bool isTeddyBearInPosition;
@@ -116,13 +117,13 @@ public class ActionHelper : MonoBehaviour
     {
         ShowerHotspot.SetActive(false);
         BeerHotspot.SetActive(false);
-        // TODO disable cold hotspot
+        Character106Hotspot.SetActive(false);
     }
 
     public void EnableCutsceneHotspots()
     {
         ShowerHotspot.SetActive(true);
         BeerHotspot.SetActive(true);
-        // TODO enable cold hotspot
+        Character106Hotspot.SetActive(true);
     }
 }
