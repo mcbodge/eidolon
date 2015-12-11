@@ -5,16 +5,17 @@ public class TextureControl : MonoBehaviour {
 
     public Texture TargetTexture;
     private Texture defaultTexture;
+    private const string mainTextureName = "_MainTex";
 
     public void Start()
     {
-        defaultTexture = gameObject.GetComponent<Renderer>().material.GetTexture("_MainTex");
+        defaultTexture = gameObject.GetComponent<Renderer>().material.GetTexture(mainTextureName);
     }
 
 
 	public void ChangeMainTexture(Texture inputTexture)
     {
-        gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", inputTexture);
+        gameObject.GetComponent<Renderer>().material.SetTexture(mainTextureName, inputTexture);
     }
 
     public void ChangeMainTextureToTarget()
