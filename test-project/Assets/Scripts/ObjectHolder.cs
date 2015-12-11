@@ -26,7 +26,7 @@ public class ObjectHolder : MonoBehaviour {
                 transform.position,
                 ((player.transform.position + player.transform.up * 1f) // this takes a position below camera
                 + player.transform.forward * 1.5f) + player.transform.right * 0.3f,
-                Time.deltaTime * 5f
+                Time.deltaTime * 6f
             );
 			transform.rotation = player.transform.rotation * Quaternion.AngleAxis(-90f, Vector3.right);
 
