@@ -5,10 +5,14 @@ public class ActionHelper : MonoBehaviour
 {
 
     public GameObject TeddyBear;
+    public GameObject ObjectInHand;
+
+    // Hotspots
     public GameObject TeddyBearHotspot;
     public GameObject KetchupHotspot;
     public GameObject FloorHotspot;
-    public GameObject ObjectInHand;
+    public GameObject ShowerHotspot;
+    public GameObject BeerHotspot;
 
     private static ActionHelper actionHelperReference;
     private bool isTeddyBearInPosition;
@@ -106,5 +110,19 @@ public class ActionHelper : MonoBehaviour
             Debug.Log(string.Format("Dropping object {0} in K statement", objectHolderReference.name));
         }
         FloorHotspot.SetActive(false);
+    }
+
+    public void DisableCutsceneHotspots ()
+    {
+        ShowerHotspot.SetActive(false);
+        BeerHotspot.SetActive(false);
+        // TODO disable cold hotspot
+    }
+
+    public void EnableCutsceneHotspots()
+    {
+        ShowerHotspot.SetActive(true);
+        BeerHotspot.SetActive(true);
+        // TODO enable cold hotspot
     }
 }
