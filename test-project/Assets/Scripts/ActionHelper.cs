@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Action
+{
+    Grab,
+    Ungrab,
+    Launch 
+}
+
 public class ActionHelper : MonoBehaviour
 {
 
@@ -13,6 +20,7 @@ public class ActionHelper : MonoBehaviour
     public GameObject FloorHotspot;
     public GameObject ShowerHotspot;
     public GameObject BeerHotspot;
+    public GameObject Character106Hotspot;
 
     private static ActionHelper actionHelperReference;
     private bool isTeddyBearInPosition;
@@ -36,7 +44,7 @@ public class ActionHelper : MonoBehaviour
         isTeddyBearInPosition = false;
     }
 
-    public void Dispatcher(int param, string sender)
+    public void Dispatcher(int param, Action sender)
     {
         switch (param)
         {
@@ -49,40 +57,40 @@ public class ActionHelper : MonoBehaviour
         }
     }
 
-    private void TeddyBearAction(string sender)
+    private void TeddyBearAction(Action sender)
     {
         switch (sender)
         {
-            case "grab":
+            case Action.Grab:
                 // Activate hotspot
                 FloorHotspot.SetActive(true);
-                Debug.Log(string.Format("Activating hotspot - State: {0}", FloorHotspot.activeSelf));
+                Debug.LogFormat("Activating hotspot - State: {0}", FloorHotspot.activeSelf);
                 isTeddyBearInPosition = false;
                 break;
-            case "ungrab":
-            case "launch":
+            case Action.Ungrab:
+            case Action.Launch:
                 // Deactivate hotspot
                 FloorHotspot.SetActive(false);
-                Debug.Log(string.Format("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf));
+                Debug.LogFormat("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf);
                 break;
         }
     }
 
-    private void KetchupAction(string sender)
+    private void KetchupAction(Action sender)
     {
 
-        if (sender == "grab" && isTeddyBearInPosition)
+        if (sender == Action.Grab && isTeddyBearInPosition)
         {
             // Activate hotspot
             FloorHotspot.SetActive(true);
-            Debug.Log(string.Format("Activating hotspot - State: {0}", FloorHotspot.activeSelf));
+            Debug.LogFormat("Activating hotspot - State: {0}", FloorHotspot.activeSelf);
             TeddyBearHotspot.SetActive(false);
         }
         else
         {
             // Deactivate hotspot
             FloorHotspot.SetActive(false);
-            Debug.Log(string.Format("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf));
+            Debug.LogFormat("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf);
             TeddyBearHotspot.SetActive(true);
         }
     }
@@ -96,7 +104,7 @@ public class ActionHelper : MonoBehaviour
             //TODO Final position of the teddybear (fixed)
             ObjectInHand.transform.position = FloorHotspot.transform.position + 0.3f * transform.up;
             isTeddyBearInPosition = true;
-            Debug.Log(string.Format("Dropping object {0} in T statement", objectHolderReference.name));
+            Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
         }
         else if (ObjectInHand.name == "Ketchup")
         {
@@ -107,7 +115,7 @@ public class ActionHelper : MonoBehaviour
             // Disabled by ketchup's grab
             TeddyBearHotspot.SetActive(true);
             KetchupHotspot.SetActive(false);
-            Debug.Log(string.Format("Dropping object {0} in K statement", objectHolderReference.name));
+            Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
         }
         FloorHotspot.SetActive(false);
     }
@@ -116,13 +124,13 @@ public class ActionHelper : MonoBehaviour
     {
         ShowerHotspot.SetActive(false);
         BeerHotspot.SetActive(false);
-        // TODO disable cold hotspot
+        Character106Hotspot.SetActive(false);
     }
 
     public void EnableCutsceneHotspots()
     {
         ShowerHotspot.SetActive(true);
         BeerHotspot.SetActive(true);
-        // TODO enable cold hotspot
+        Character106Hotspot.SetActive(true);
     }
 }

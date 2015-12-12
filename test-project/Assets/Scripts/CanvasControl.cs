@@ -5,17 +5,16 @@ using UnityEngine.UI;
 public class CanvasControl : MonoBehaviour
 {
 
-	public static CanvasControl CanvasControlRef;
+    public Text TopLeftMessage;
+	public Text TopRightMessage;
 
-    //TODO improve
-    public Text TestText;
-	public Text objectInHand;
     private int count;
+    private static CanvasControl canvasControlReference;
 
-	public CanvasControl () 
+    public CanvasControl () 
 	{
-		if (CanvasControlRef == null) {
-			CanvasControlRef = this;
+		if (canvasControlReference == null) {
+			canvasControlReference = this;
 		}
 	}
 
@@ -25,28 +24,35 @@ public class CanvasControl : MonoBehaviour
         count = 0;
     }
 
-	public void SetObjectInHand(string ObjectHolded) {
-		objectInHand.text = "Holding " + ObjectHolded;
+    public static CanvasControl GetManager()
+    {
+        return canvasControlReference;
+    }
+
+#if UNITY_EDITOR
+    public void SetObjectInHand(string holdedObject) {
+		TopRightMessage.text = string.Format("Holding {0}", holdedObject);
 	}
 
 	public void SetDefaultObjectInHand() {
-		objectInHand.text = "No object in hand";
+		TopRightMessage.text = "No object in hand";
 	}
+#endif
 
-    public void SetTestText(string newText)
+    public void SetTopLeftMessage(string newText)
     {
-        TestText.text = newText;
+        TopLeftMessage.text = newText;
     }
 
     public void SetCaughtMessage ()
     {
         count++;
-        TestText.text = string.Format("!!! #{0}", count);
+        TopLeftMessage.text = string.Format("!!! #{0}", count);
     }
 
     public void SetDefaultMessage()
     {
-        TestText.text = "-";
+        TopLeftMessage.text = "-";
     }
 
 }

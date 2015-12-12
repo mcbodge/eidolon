@@ -1692,7 +1692,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173904}
-  m_LocalRotation: {x: -.333641678, y: -.583797753, z: .367608458, w: .64243865}
+  m_LocalRotation: {x: -.333641708, y: -.583797812, z: .367608488, w: .64243871}
   m_LocalPosition: {x: -1.2434206, y: -.0876369625, z: .242181689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3707,11 +3707,11 @@ MonoBehaviour:
   isTalking: 0
   frameFlipping: 0
   flipCustomAnims: 0
-  walkSpeedScale: 2
-  runSpeedScale: 6
+  walkSpeedScale: 1.79999995
+  runSpeedScale: 5
   turnSpeed: 7
-  acceleration: 6
-  deceleration: 6
+  acceleration: 10
+  deceleration: 30
   turnBeforeWalking: 0
   runDistanceThreshold: 1
   antiGlideMode: 0

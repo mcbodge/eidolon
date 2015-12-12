@@ -3,10 +3,16 @@ using System.Collections;
 
 public class WallControl : MonoBehaviour {
 
-    public GameObject PlayerObj;
+    public GameObject Player;
 
     public void Face()
     {
-        PlayerObj.transform.LookAt(new Vector3(gameObject.transform.position.x, PlayerObj.transform.position.y, gameObject.transform.position.z));
+        Ray ray = new Ray(Player.transform.position, Player.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 4))
+        {
+            Debug.Log(hit.collider.gameObject.name);
+            Player.transform.LookAt(hit.collider.gameObject.transform);
+        }
     }
 }
