@@ -193,7 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />
-    <None Include="Assets\PBS Materials Variety Pack\readme.txt" />
+    <None Include="Assets\Shader\toon.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
