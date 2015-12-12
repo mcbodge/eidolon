@@ -17,6 +17,7 @@ public class ObjectHolder : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
         actionManager = ActionHelper.GetManager();
+        SetHasObjectInHand(false);
     }
 
     void Update()
@@ -64,6 +65,7 @@ public class ObjectHolder : MonoBehaviour
             actionID = param;
             actionManager.Dispatcher(actionID, Action.Grab);
             actionManager.ObjectInHand = this.gameObject;
+            SetHasObjectInHand(true);
         }
         else
         {
@@ -77,6 +79,7 @@ public class ObjectHolder : MonoBehaviour
         CanvasControl.GetManager().SetDefaultObjectInHand();
 #endif
         isHeld = false;
+        SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -92,6 +95,7 @@ public class ObjectHolder : MonoBehaviour
         CanvasControl.GetManager().SetDefaultObjectInHand();
 #endif
         isHeld = false;
+        SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -108,9 +112,15 @@ public class ObjectHolder : MonoBehaviour
         CanvasControl.GetManager().SetDefaultObjectInHand();
 #endif
         isHeld = false;
+        SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void SetHasObjectInHand(bool value)
+    {
+        ActionHelper.GetManager().HasObjectInHand = value;
     }
 
 }

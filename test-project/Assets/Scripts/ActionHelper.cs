@@ -22,6 +22,8 @@ public class ActionHelper : MonoBehaviour
     public GameObject BeerHotspot;
     public GameObject Character106Hotspot;
 
+    public bool HasObjectInHand;
+
     private static ActionHelper actionHelperReference;
     private bool isTeddyBearInPosition;
 

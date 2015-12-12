@@ -193,6 +193,10 @@ ModelImporter:
     100370: muro_042
     100372: muro_043
     100374: muro_044
+    100376: ketchp
+    100378: navmesh
+    100380: pavimento
+    100382: peroni
     400000: Armatura-eidolon
     400002: bed
     400004: bed_001
@@ -381,6 +385,10 @@ ModelImporter:
     400370: muro_042
     400372: muro_043
     400374: muro_044
+    400376: ketchp
+    400378: navmesh
+    400380: pavimento
+    400382: peroni
     2300000: bed
     2300002: bed_001
     2300004: bed_002
@@ -494,6 +502,10 @@ ModelImporter:
     2300220: muro_042
     2300222: muro_043
     2300224: muro_044
+    2300226: ketchp
+    2300228: navmesh
+    2300230: pavimento
+    2300232: peroni
     3300000: bed
     3300002: bed_001
     3300004: bed_002
@@ -607,6 +619,10 @@ ModelImporter:
     3300220: muro_042
     3300222: muro_043
     3300224: muro_044
+    3300226: ketchp
+    3300228: navmesh
+    3300230: pavimento
+    3300232: peroni
     4300000: tv_001
     4300002: Cube_022
     4300004: Circle_007
@@ -721,6 +737,10 @@ ModelImporter:
     4300222: muro_007
     4300224: muro_029
     4300226: muro_028
+    4300228: navmesh
+    4300230: peroni
+    4300232: ketchp
+    4300234: pavimento
     6400000: bed
     6400002: bed_001
     6400004: bed_002
@@ -834,6 +854,10 @@ ModelImporter:
     6400220: muro_042
     6400222: muro_043
     6400224: muro_044
+    6400226: ketchp
+    6400228: navmesh
+    6400230: pavimento
+    6400232: peroni
     7400000: Default Take
     7400002: ArmatureAction
     7400004: fridge
