@@ -28,7 +28,7 @@ public class PlayerInteractions : MonoBehaviour {
 				finalPosition,
 				Time.deltaTime * 6f
 			);
-			checkWalkFinish();
+			CheckWalkFinish();
 		}
 	}
 
@@ -51,31 +51,31 @@ public class PlayerInteractions : MonoBehaviour {
         }
     }
 
-    public void FaceNorth()
+    public void MoveNorth()
     {
         FaceDirection(Direction.North);
-        goToMarker();
+        MoveForward();
     }
 
-    public void FaceEast()
+    public void MoveEast()
     {
         FaceDirection(Direction.East);
-        goToMarker();
+        MoveForward();
     }
 
-    public void FaceSouth()
+    public void MoveSouth()
     {
         FaceDirection(Direction.South);
-        goToMarker();
+        MoveForward();
     }
 
-    public void FaceWest()
+    public void MoveWest()
     {
         FaceDirection(Direction.West);
-        goToMarker();
+        MoveForward();
     }
 
-	public void goToMarker() {
+	private void MoveForward() {
 		Debug.Log ("Starting walk to animation");
 		finalPosition = transform.position + (transform.forward * 3f);
 		triggerWalk = true;
@@ -84,7 +84,7 @@ public class PlayerInteractions : MonoBehaviour {
 		gameObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
 	}
 
-	public void checkWalkFinish() {
+	public void CheckWalkFinish() {
 		if ( Vector3.Distance ( transform.position,
 		                       finalPosition ) < 0.1f) {
 			triggerWalk = false;
