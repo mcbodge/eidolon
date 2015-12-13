@@ -118,7 +118,7 @@ Shader "Toon" {
          ENDCG
       }
  
-      /*Pass {      
+	  Pass {      
          Tags { "LightMode" = "ForwardAdd" } 
             // pass for additional light sources
          Blend SrcAlpha OneMinusSrcAlpha 
@@ -205,7 +205,6 @@ Shader "Toon" {
          }
          ENDCG
       }
-	  */
    } 
    Fallback "Specular"
 }
