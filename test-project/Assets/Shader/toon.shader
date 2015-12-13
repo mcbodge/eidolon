@@ -1,15 +1,15 @@
 Shader "Toon" {
    Properties {
       _Color ("Diffuse Color", Color) = (1,1,1,1) 
-      _UnlitColor ("Unlit Diffuse Color", Color) = (0.5,0.5,0.5,1) 
+      _UnlitColor ("Unlit Diffuse Color", Color) = (0.35,0.35,0.35,1) 
       _DiffuseThreshold ("Threshold for Diffuse Colors", Range(0,1)) 
          = 0.1 
       _OutlineColor ("Outline Color", Color) = (0,0,0,1)
-      _LitOutlineThickness ("Lit Outline Thickness", Range(0,1)) = 0.1
+      _LitOutlineThickness ("Lit Outline Thickness", Range(0,1)) = 0.05
       _UnlitOutlineThickness ("Unlit Outline Thickness", Range(0,1)) 
-         = 0.4
-      _SpecColor ("Specular Color", Color) = (1,1,1,1) 
-      _Shininess ("Shininess", Float) = 10
+         = 0.2
+      _SpecColor ("Specular Color", Color) = (0.35,0.35,0.35,1)
+      _Shininess ("Shininess", Float) = 13
    }
    SubShader {
       Pass {      
@@ -78,7 +78,7 @@ Shader "Toon" {
                float3 vertexToLightSource = 
                   _WorldSpaceLightPos0.xyz - input.posWorld.xyz;
                float distance = length(vertexToLightSource);
-               attenuation = 1.0 / distance; // linear attenuation 
+               //attenuation = 1.0 / distance; // linear attenuation 
                lightDirection = normalize(vertexToLightSource);
             }
   
@@ -101,7 +101,7 @@ Shader "Toon" {
                fragmentColor = _LightColor0.rgb * _OutlineColor.rgb; 
             }
  
-            // highest priority: highlights
+            //highest priority: highlights
             if (dot(normalDirection, lightDirection) > 0.0 
                // light source on the right side?
                && attenuation *  pow(max(0.0, dot(
@@ -118,7 +118,7 @@ Shader "Toon" {
          ENDCG
       }
  
-      Pass {      
+      /*Pass {      
          Tags { "LightMode" = "ForwardAdd" } 
             // pass for additional light sources
          Blend SrcAlpha OneMinusSrcAlpha 
@@ -205,6 +205,7 @@ Shader "Toon" {
          }
          ENDCG
       }
+	  */
    } 
    Fallback "Specular"
 }
