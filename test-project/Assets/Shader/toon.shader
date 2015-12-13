@@ -9,7 +9,7 @@ Shader "Toon" {
       _UnlitOutlineThickness ("Unlit Outline Thickness", Range(0,1)) 
          = 0.2
       _SpecColor ("Specular Color", Color) = (0.35,0.35,0.35,1)
-      _Shininess ("Shininess", Float) = 13
+      _Shininess ("Shininess", Float) = 20
    }
    SubShader {
       Pass {      

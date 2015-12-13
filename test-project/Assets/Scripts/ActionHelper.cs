@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using AC;
 
 public enum Action
 {
@@ -22,7 +23,9 @@ public class ActionHelper : MonoBehaviour
     public GameObject BeerHotspot;
     public GameObject Character106Hotspot;
 
+
     public bool HasObjectInHand;
+    public Cutscene LevelZeroCutscene;
 
     private static ActionHelper actionHelperReference;
     private bool isTeddyBearInPosition;
@@ -113,6 +116,7 @@ public class ActionHelper : MonoBehaviour
             //TODO Final position of ketchup (fixed)
             ObjectInHand.transform.position = (FloorHotspot.transform.position + 0.3f * transform.up) + 0.2f * transform.right;
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
+            Invoke("RunOutroLevelZero", 5f);
             // Re-set the hotspots
             // Disabled by ketchup's grab
             TeddyBearHotspot.SetActive(true);
@@ -134,5 +138,11 @@ public class ActionHelper : MonoBehaviour
         ShowerHotspot.SetActive(true);
         BeerHotspot.SetActive(true);
         Character106Hotspot.SetActive(true);
+    }
+
+    private void RunOutroLevelZero()
+    {
+        KickStarter.stateHandler.gameState = GameState.Normal;
+        LevelZeroCutscene.Interact();
     }
 }
