@@ -47,12 +47,12 @@ public class CanvasControl : MonoBehaviour
     public void SetCaughtMessage ()
     {
         count++;
-        TopLeftMessage.text = string.Format("!!! #{0}", count);
+        TopLeftMessage.text = string.Format("!!!");
     }
 
     public void SetDefaultMessage()
     {
-        TopLeftMessage.text = "-";
+        TopLeftMessage.text = "";
     }
 
 }

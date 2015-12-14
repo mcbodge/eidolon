@@ -357,9 +357,12 @@
     <Compile Include="Assets\Scripts\PlayerInteractions.cs" />
     <Compile Include="Assets\Scripts\TextureControl.cs" />
     <Compile Include="Assets\Shader\ReplaceShaders.cs" />
+    <Compile Include="Assets\Shader\outline.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />
+    <None Include="Assets\Shader\normals.shader" />
+    <None Include="Assets\Shader\outline.shader" />
     <None Include="Assets\Shader\toon.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
