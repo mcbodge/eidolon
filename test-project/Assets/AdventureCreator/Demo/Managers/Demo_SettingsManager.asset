@@ -36,7 +36,7 @@ MonoBehaviour:
   hideLockedCursor: 0
   disableFreeAimWhenDragging: 0
   runConversationsWithKeys: 0
-  clickUpInteractions: 0
+  clickUpInteractions: 1
   inventoryDragDrop: 0
   dragDropThreshold: 0
   inventoryDropLook: 0
