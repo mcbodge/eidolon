@@ -24,15 +24,16 @@ Shader "Hidden/Outline" {
         //float derivate = smoothstep (0., 1., length(ddx(c*c*float4(100.)))+length(ddy(c*c*float4(100.))) );
 
                  
-		float4 derivata = ddx(c) + ddy(c);
+		//TODO MG float4 derivata = ddx(c) + ddy(c);
         
-        float4 result = step(derivata,0.5);
+        //TODO MG float4 result = step(derivata,0.5);
       //  result.rgb = lerp(c.rgb, bw, _bwBlend);
       
         // seleziono gli oggetti da lasciare in Colore
         float4 color = c* step(c, 0.99);
-        if(color.r!=0) return color;
-        return result;
+        //TODO MG if(color.r!=0) 
+			return color;
+        //TODO MG return result;
       }
       ENDCG
     }
