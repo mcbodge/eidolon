@@ -11,7 +11,7 @@ public class ReplaceShaders : MonoBehaviour {
 
 	 	GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
 		foreach(GameObject myObj in allObjects) {
-			if (myObj.GetComponent<Renderer>()) {
+			if (myObj.GetComponent<Renderer>() && myObj.tag != "NoShader") {
 				Material[] allMaterials = myObj.GetComponent<Renderer>().materials;
 				foreach(Material mat in allMaterials)
 					mat.shader = myShader;
