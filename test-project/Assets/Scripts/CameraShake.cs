@@ -12,12 +12,6 @@ public class CameraShake : MonoBehaviour
     public float ShakeDecay;
     public float ShakeIntensity;
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(20, 40, 80, 20), "Shake"))
-            Shake();
-    }
-
     void OnEnable()
     {
         tranformPlaceholder = transform;
@@ -30,20 +24,20 @@ public class CameraShake : MonoBehaviour
 
         if (ShakeIntensity > 0f)
         {
-            tranformPlaceholder.localPosition = originPosition + Random.insideUnitSphere * ShakeIntensity;
-            tranformPlaceholder.localRotation = new Quaternion(
-            originRotation.x + Random.Range(-ShakeIntensity, ShakeIntensity) * .2f,
-            originRotation.y + Random.Range(-ShakeIntensity, ShakeIntensity) * .2f,
-            originRotation.z + Random.Range(-ShakeIntensity, ShakeIntensity) * .2f,
-            originRotation.w + Random.Range(-ShakeIntensity, ShakeIntensity) * .2f);
+            tranformPlaceholder.localPosition = originPosition + Random.insideUnitSphere * ShakeIntensity*2;
+            ////tranformPlaceholder.localRotation = new Quaternion(
+            ////originRotation.x + Random.Range(-ShakeIntensity, ShakeIntensity) * .1f,
+            ////originRotation.y + Random.Range(-ShakeIntensity, ShakeIntensity) * .1f,
+            ////originRotation.z + Random.Range(-ShakeIntensity, ShakeIntensity) * .1f,
+            ////originRotation.w + Random.Range(-ShakeIntensity, ShakeIntensity) * .2f);
             ShakeIntensity -= ShakeDecay;
         }
         else
         {
             Debug.Log("stopped shaking");
             shaking = false;
-            tranformPlaceholder.localPosition = originPosition;
-            tranformPlaceholder.localRotation = originRotation;
+            ////tranformPlaceholder.localPosition = originPosition;
+            ////tranformPlaceholder.localRotation = originRotation;
         }
     }
 
