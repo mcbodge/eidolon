@@ -15,25 +15,26 @@ Shader "Hidden/Outline" {
       uniform float _bwBlend;
       
       float4 frag(v2f_img i) : COLOR {
+
         float4 c = tex2D(_MainTex, i.uv); // l'immagine renderizzata
         
         float lum = c.r*.3 + c.g*.59 + c.b*.11;
         float3 bw = float3( lum, lum, lum );
         
         // fare una lerp?
-        //float derivate = smoothstep (0., 1., length(ddx(c*c*float4(100.)))+length(ddy(c*c*float4(100.))) );
-
+       // float derivate = smoothstep (0., 1. , length(ddx(c*c*float4(100.)))+length(ddy(c*c*float4(100.))) );
+        float4 derivate = ddx(c) + ddy(c);
                  
-		//TODO MG float4 derivata = ddx(c) + ddy(c);
+        float4 derivata = float4(derivate);
+        derivata = length(derivata);
         
-        //TODO MG float4 result = step(derivata,0.5);
+        float4 result = step(derivata,0.0001);
       //  result.rgb = lerp(c.rgb, bw, _bwBlend);
       
         // seleziono gli oggetti da lasciare in Colore
         float4 color = c* step(c, 0.99);
-        //TODO MG if(color.r!=0) 
-			return color;
-        //TODO MG return result;
+        if(color.r!=0) return color;
+        return result;
       }
       ENDCG
     }
