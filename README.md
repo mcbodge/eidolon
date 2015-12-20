@@ -1,17 +1,28 @@
-##### Table of Contents
-[Introduction](#intro)
-[Developers](#devs)
+# Informations
 
-<a name="intro"/>
-## Introduction
+### Github tutorial
+Coming soon
 
-<a name="devs"/>
-## Developers
+### Download build
+You can click on the release button above, or just download one of these zip files.
+* <a href="https://github.com/mcbodge/eidolon/releases/download/prototype/Windows-stable.zip">Windows</a>
+* <a href="https://github.com/mcbodge/eidolon/releases/download/prototype/OSX-stable.zip">OSX</a>
 
-### How to import the scene
-* Blender is required
-* Before loading the for the first time, you should go to Daniele/modelli folder from the
-unity file manager and build prefabs without the "import materials" option
+Once downloaded, extract all the contents whre you want and double click Eidolon.exe (Win) or Eidolon.app (OSX)
+
+# For Developers
+
+### Rules
+Adventure Creator has some bugs related to cameras when using Unity3D for linux. For the best experience we suggest using Unity3D with Windows.
+Shader with Unity3D for Linux and OSX are compiled using OpenGL, the windows version uses DirectX and could give compilation error even if on linux it was clean.
+
+We highly recommend:
+* <b>Test</b> all Shaders or Assets with a windows build of Unity before pushing.
+* Always <b>pull before pushing</b>
+* After importing a model from blender, remove the mark on "Import Materials" because it will import a white material for every component of the model.
+
+### Important Notes
+Until the shader is fixed and working we replaced it with a simple grayscale shader on the camera
 
 ### Project Kanban
 * http://bit.ly/1PJOLI9 (please ask mcbodge for an edit-mode link)
