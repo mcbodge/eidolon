@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class CanvasControl : MonoBehaviour
 {
-
-    public Text TopLeftMessage;
-	public Text TopRightMessage;
     public Image ImageBox;
     public List<Sprite> Images;
 
@@ -24,7 +21,6 @@ public class CanvasControl : MonoBehaviour
 
     void Start()
     {
-        SetDefaultMessage();
         imageShown = 0;
         tutorialEnabled = false;
         ImageBox.enabled = tutorialEnabled;
@@ -41,35 +37,18 @@ public class CanvasControl : MonoBehaviour
 
     }
 
+	/*
+	 * Getter for the static reference
+	 */ 
+
     public static CanvasControl GetManager()
     {
         return canvasControlReference;
     }
 
-#if UNITY_EDITOR
-    public void SetObjectInHand(string holdedObject) {
-		TopRightMessage.text = string.Format("Holding {0}", holdedObject);
-	}
-
-	public void SetDefaultObjectInHand() {
-		TopRightMessage.text = "No object in hand";
-	}
-#endif
-
-    public void SetTopLeftMessage(string newText)
-    {
-        TopLeftMessage.text = newText;
-    }
-
-    public void SetCaughtMessage ()
-    {
-        TopLeftMessage.text = string.Format("!!!");
-    }
-
-    public void SetDefaultMessage()
-    {
-        TopLeftMessage.text = "";
-    }
+	/*
+	 * Function to control the tutorial screen on canvas	
+	 */
 
     public void AddImageToCanvas()
     {

@@ -8,7 +8,7 @@ You can click on the release button above, or just download one of these zip fil
 * <a href="https://github.com/mcbodge/eidolon/releases/download/prototype/Windows-stable.zip">Windows</a>
 * <a href="https://github.com/mcbodge/eidolon/releases/download/prototype/OSX-stable.zip">OSX</a>
 
-Once downloaded, extract all the contents whre you want and double click Eidolon.exe (Win) or Eidolon.app (OSX)
+Once downloaded, extract all the contents where you want and double click Eidolon.exe (Win) or Eidolon.app (OSX)
 
 # For Developers
 
@@ -22,6 +22,9 @@ We highly recommend:
 
 ### Important Notes
 Until the shader is fixed and working, we replaced it with a simple grayscale shader on the camera
+
+### Requirements
+* Unity3d 5.3.x
 
 ### Project Kanban
 * http://bit.ly/1PJOLI9 (please ask mcbodge for an edit-mode link)

@@ -74,9 +74,6 @@ public class ObjectHolder : MonoBehaviour
 
     public void UnGrab()
     {
-#if UNITY_EDITOR
-        CanvasControl.GetManager().SetDefaultObjectInHand();
-#endif
         isHeld = false;
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
@@ -90,9 +87,6 @@ public class ObjectHolder : MonoBehaviour
 
     public void Launch()
     {
-#if UNITY_EDITOR
-        CanvasControl.GetManager().SetDefaultObjectInHand();
-#endif
         isHeld = false;
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
@@ -107,9 +101,6 @@ public class ObjectHolder : MonoBehaviour
 
     public void Drop()
     {
-#if UNITY_EDITOR
-        CanvasControl.GetManager().SetDefaultObjectInHand();
-#endif
         isHeld = false;
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
