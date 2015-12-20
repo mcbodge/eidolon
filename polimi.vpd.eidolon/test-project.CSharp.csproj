@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E504857-761F-193B-37A3-059360B97AEB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Web v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>WebPlayer:6</UnityBuildTarget>
+    <UnityVersion>5.3.1f1</UnityVersion>
+    <RootNamespace></RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_1;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_WEBPLAYER;ENABLE_SUBSTANCE;WEBPLUG;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_1;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_WEBPLAYER;ENABLE_SUBSTANCE;WEBPLUG;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\Action.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionCheckMultiple.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionEnd.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionListAsset.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionParameter.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionTemplate.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\ActionType.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\RuntimeActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\ActionList\SkipList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionAnim.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionBlendShape.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCamera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCameraCrossfade.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCameraShake.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCameraSplit.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCameraTP.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionChangeMaterial.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharAnim.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharFace.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharFaceDirection.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharFollow.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharHold.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharMove.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharPathFind.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharPortrait.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharRename.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCharRender.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCheckActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionCinemaDirector.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionComment.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionContainerCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionContainerOpen.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionContainerSet.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionConversation.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionDialogOption.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionEndGame.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionEvent.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionFade.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionHighlight.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionHotspotEnable.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInputCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInstantiate.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInteraction.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInteractionCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInventoryCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInventoryCheckSelected.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInventoryCrafting.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInventorySelect.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionInventorySet.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionManageProfiles.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionManageSaves.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMenuCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMenuJournal.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMenuSetInputBox.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMenuSlotCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMenuState.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMixerSnapshot.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMoveableCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionMovie.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionNavMesh.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionObjectCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionParallel.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionParamCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionParent.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionPause.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionPlatformCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionPlayMaker.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionPlayerCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionPlayerLock.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionPlayerSwitch.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionQTE.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionRandomCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionRename.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionRunActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSaveCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSaveHandle.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionScene.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSceneCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSendMessage.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSound.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSoundShot.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSpeech.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSpeechStop.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSpeechWait.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSpriteFade.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionStopActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionSystemLock.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionTeleport.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionTimescale.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionTintMap.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionTrackCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionTrackSet.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionTransform.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVarCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVarCopy.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVarPopup.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVarPreset.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVarSequence.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVarSet.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVisible.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVisibleCheck.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Actions\ActionVolume.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Animation\AnimEngine.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Animation\AnimEngine_Legacy.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Animation\AnimEngine_Mecanim.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Animation\AnimEngine_Sprites2DToolkit.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Animation\AnimEngine_SpritesUnity.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Animation\AnimEngine_SpritesUnityComplex.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\BackgroundCamera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\FirstPersonCamera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\FollowTintMap.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\GameCamera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\GameCamera25D.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\GameCamera2D.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\GameCameraAnimated.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\GameCameraThirdPerson.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\MainCamera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\TintMap.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Camera\_Camera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Character\Char.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Character\NPC.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Character\Player.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Controls\PlayerCursor.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Controls\PlayerInput.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Controls\PlayerInteraction.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Controls\PlayerMenus.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Controls\PlayerMovement.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Controls\PlayerQTE.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Game engine\IStateChange.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Game engine\KickStarter.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Game engine\LoadingScreen.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Game engine\SceneChanger.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Game engine\SceneSettings.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Game engine\StateHandler.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\ContainerItem.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\InvActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\InvBin.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\InvInteraction.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\InvItem.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\InvVar.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\Recipe.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Inventory\RuntimeInventory.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\AC_Trigger.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\ArrowPrompt.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Button.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\ButtonDialog.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Container.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Conversation.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Cutscene.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\DialogueOption.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Hotspot.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Interaction.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Logic\Sound.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\ActionListManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\ActionsManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\CursorManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\InventoryManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\ManagerPackage.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\MenuManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\NavigationManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\References.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\SceneManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\SettingsManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\SpeechManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Managers\VariablesManager.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\CursorIcon.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\Menu.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuButton.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuCrafting.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuCycle.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuDialogList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuDrag.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuElement.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuGraphic.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuInput.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuInteraction.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuInventoryBox.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuJournal.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuLabel.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuProfilesList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuSavesList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuSlider.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuTimer.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\MenuToggle.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\UISlot.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\Menu classes\UISlotClick.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\MenuActionList.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\MenuPreview.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Menu\MenuSystem.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\DragBase.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\DragTrack.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\DragTrack_Curved.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\DragTrack_Hinge.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\DragTrack_Straight.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\JointBreaker.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\Moveable_Drag.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Moveable\Moveable_PickUp.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\ClickMarker.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\FollowSortingMap.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\Marker.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavMeshBase.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavMeshSegment.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavigationEngine.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavigationEngine_PolygonCollider.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavigationEngine_UnityNavigation.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavigationEngine_meshCollider.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\NavigationMesh.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\Paths.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\PlayerStart.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\SortingArea.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\SortingMap.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\StaticObstacle.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Navigation\_Collision.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\AlignToCamera.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\BackgroundImage.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\DetectHotspots.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\Highlight.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\Invisible.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\LightSwitch.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\LimitVisibility.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\MenuLink.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\Moveable.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\Parallax2D.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\ParticleSwitch.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\Shapeable.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Object\SpriteFader.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Options\Options.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Options\OptionsData.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\ConstantID.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\ISave.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\LevelStorage.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberCollider.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberContainer.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberConversation.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberHotspot.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberMaterial.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberMoveable.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberNPC.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberName.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberNavMesh2D.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberShapeable.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberSound.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberTransform.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberTrigger.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\RememberVisibility.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\SaveData.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\SaveSystem.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\SelectiveLoad.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Save system\Serializer.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\AutoLipSync.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\Dialog.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\Expression.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\LipSyncTexture.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\PhonemesWindow.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\RuntimeLanguages.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\Speech.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Speech\SpeechLine.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\ACDebug.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\AdvGame.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\AssetLoader.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\CSVReader.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\CustomAssetUtility.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\DrawStraightLine.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\Enums.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\FaceFXIntegration.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\GlobalVariables.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\OuyaIntegration.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\PlayMakerIntegration.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\Resource.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\RogoLipSyncIntegration.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\Tags.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\UltimateFPSIntegration.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Static\tk2DIntegration.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Variables\CustomToken.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Variables\GVar.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Variables\LocalVariables.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Variables\RuntimeVariables.cs" />
+    <Compile Include="Assets\AdventureCreator\Scripts\Variables\VarPreset.cs" />
+    <Compile Include="Assets\Scripts\AC_Trigger_ContinuousWithKeyCheck.cs" />
+    <Compile Include="Assets\Scripts\AC_Trigger_ContinuousWithObjectInHandCheck.cs" />
+    <Compile Include="Assets\Scripts\ActionHelper.cs" />
+    <Compile Include="Assets\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\CanvasControl.cs" />
+    <Compile Include="Assets\Scripts\ObjectHolder.cs" />
+    <Compile Include="Assets\Scripts\PhysicsActions.cs" />
+    <Compile Include="Assets\Scripts\PlayerInteractions.cs" />
+    <Compile Include="Assets\Scripts\TextureControl.cs" />
+    <Compile Include="Assets\Shaders\edgeDetect\PostEffectsBase.cs" />
+    <Compile Include="Assets\Shaders\edgeDetect\myEdgeDetection.cs" />
+    <Compile Include="Assets\Shaders\outline\ReplaceShaders.cs" />
+    <Compile Include="Assets\Shaders\outline\outline.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />
+    <None Include="Assets\Shaders\edgeDetect\EdgeDetectNormals.shader" />
+    <None Include="Assets\Shaders\outline\Normals.shader" />
+    <None Include="Assets\Shaders\outline\outline.shader" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+</Project>
