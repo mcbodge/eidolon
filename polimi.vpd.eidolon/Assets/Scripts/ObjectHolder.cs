@@ -52,7 +52,6 @@ public class ObjectHolder : MonoBehaviour
     public void Grab(int param)
     {
         Debug.Log("Object launching Grab() has param=" + param.ToString());
-        CanvasControl.GetManager().SetObjectInHand(gameObject.name);
         isHeld = true;
         rigidBody.isKinematic = true;
         // disable the child hotspot
