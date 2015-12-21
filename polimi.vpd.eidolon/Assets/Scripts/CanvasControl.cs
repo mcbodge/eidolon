@@ -5,23 +5,17 @@ using UnityEngine.UI;
 
 public class CanvasControl : MonoBehaviour
 {
-    public Image ImageBox;
+	public Canvas canvas;
     public List<Sprite> Images;
 
+	private Image ImageBox;
     private int imageShown;
     private bool tutorialEnabled;
-    private static CanvasControl canvasControlReference;
-
-    public CanvasControl () 
-	{
-		if (canvasControlReference == null) {
-			canvasControlReference = this;
-		}
-	}
 
     void Start()
     {
         imageShown = 0;
+		ImageBox = canvas.GetComponentInChildren<Image> ();
         tutorialEnabled = false;
         ImageBox.enabled = tutorialEnabled;
     }
@@ -35,15 +29,6 @@ public class CanvasControl : MonoBehaviour
             }
         }
 
-    }
-
-	/*
-	 * Getter for the static reference
-	 */ 
-
-    public static CanvasControl GetManager()
-    {
-        return canvasControlReference;
     }
 
 	/*

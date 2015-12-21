@@ -58,7 +58,7 @@ public class ObjectHolder : MonoBehaviour
         // transform.getchild gets the transform of the Hotspot
         // .gameobject gets the gameobject associated to the Hotspot transform
         // that is the hotspot itself
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(false);
         if (param > 0)
         {
             actionID = param;
@@ -78,7 +78,7 @@ public class ObjectHolder : MonoBehaviour
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(true);
         if (actionID > 0)
         {
             actionManager.Dispatcher(actionID, Action.Ungrab);
@@ -91,7 +91,7 @@ public class ObjectHolder : MonoBehaviour
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(true);
         rigidBody.AddForce(-transform.up * 7f, ForceMode.Impulse);
         if (actionID > 0)
         {
@@ -105,7 +105,7 @@ public class ObjectHolder : MonoBehaviour
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(true);
     }
 
     private void SetHasObjectInHand(bool value)
