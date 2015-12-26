@@ -1,5 +1,5 @@
 # Table of Contents
-* [Informations](#informations)
+* [Information](#information)
   * [Tutorial](#tutorial)
   * [Download](#download)
 * [Developers](#developers)
@@ -8,8 +8,8 @@
   * [Requirements](#requirements)
   * [Kanban](#kanban)
 
-<div id='informations'/>
-# Informations
+<div id='information'/>
+# Information
 
 <div id='tutorial'/>
 ### Tutorial

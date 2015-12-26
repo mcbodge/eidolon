@@ -9,28 +9,32 @@ public enum Direction
     West = 4
 }
 
-public class PlayerInteractions : MonoBehaviour {
+public class PlayerInteractions : MonoBehaviour
+{
 
-	bool triggerWalk;
-	Vector3 finalPosition;
+    private bool triggerWalk;
+    private Vector3 finalPosition;
 
-	// Use this for initialization
-	void Start () {
-		triggerWalk = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (triggerWalk) {
-			transform.position = Vector3.Lerp
-			(
-				transform.position,
-				finalPosition,
-				Time.deltaTime * 6f
-			);
-			CheckWalkFinish();
-		}
-	}
+    // Use this for initialization
+    void Start()
+    {
+        triggerWalk = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (triggerWalk)
+        {
+            transform.position = Vector3.Lerp
+            (
+                transform.position,
+                finalPosition,
+                Time.deltaTime * 6f
+            );
+            CheckWalkFinish();
+        }
+    }
 
     void FaceDirection(Direction dir)
     {
@@ -75,22 +79,24 @@ public class PlayerInteractions : MonoBehaviour {
         MoveForward();
     }
 
-	private void MoveForward() {
-		Debug.Log ("Starting walk to animation");
-		finalPosition = transform.position + (transform.forward * 3f);
-		triggerWalk = true;
-		//TODO stop player completely
-		gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-		gameObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
-	}
+    private void MoveForward()
+    {
+        Debug.Log("Starting walk to animation");
+        finalPosition = transform.position + (transform.forward * 3f);
+        triggerWalk = true;
+        //TODO stop player completely
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
 
-	public void CheckWalkFinish() {
-		if ( Vector3.Distance ( transform.position,
-		                       finalPosition ) < 0.1f) {
-			triggerWalk = false;
-			Debug.Log ("Marker reached");
-		}
-	}
+    public void CheckWalkFinish()
+    {
+        if (Vector3.Distance(transform.position, finalPosition) < 0.1f)
+        {
+            triggerWalk = false;
+            Debug.Log("Marker reached");
+        }
+    }
 
 
 

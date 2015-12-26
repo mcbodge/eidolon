@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class CanvasControl : MonoBehaviour
 {
-	public Canvas canvas;
+	public Canvas Canvas;
     public List<Sprite> Images;
 
-	private Image ImageBox;
+	private Image imageBox;
     private int imageShown;
     private bool tutorialEnabled;
 
     void Start()
     {
         imageShown = 0;
-		ImageBox = canvas.GetComponentInChildren<Image> ();
-        tutorialEnabled = false;
-        ImageBox.enabled = tutorialEnabled;
+		imageBox = Canvas.GetComponentInChildren<Image> ();
+        SetTutorialCanvas(false);
     }
 
     void Update()
@@ -34,17 +33,15 @@ public class CanvasControl : MonoBehaviour
 	/*
 	 * Function to control the tutorial screen on canvas	
 	 */
-
     public void AddImageToCanvas()
     {
         if (imageShown < Images.Count)
         {
-            ImageBox.sprite = Images[imageShown];
+            imageBox.sprite = Images[imageShown];
             imageShown++;
         } else
         {
-            ImageBox.enabled = false;
-            tutorialEnabled = false;
+            SetTutorialCanvas(false);
             imageShown = 0;
         }
             
@@ -52,10 +49,13 @@ public class CanvasControl : MonoBehaviour
 
     public void TutorialEnable()
     {
-        ImageBox.enabled = true;
-        tutorialEnabled = true;
+        SetTutorialCanvas(true);
         AddImageToCanvas();
     }
     
+    private void SetTutorialCanvas(bool isEnabed)
+    {
+        imageBox.enabled = tutorialEnabled = isEnabed;
+    }
 
 }
