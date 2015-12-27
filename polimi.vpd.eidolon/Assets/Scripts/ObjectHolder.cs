@@ -74,11 +74,7 @@ public class ObjectHolder : MonoBehaviour
 
     public void UnGrab()
     {
-        isHeld = false;
-        SetHasObjectInHand(false);
-        rigidBody.useGravity = true;
-        rigidBody.isKinematic = false;
-		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(true);
+        Drop();
         if (actionID > 0)
         {
             actionManager.Dispatcher(actionID, Action.Ungrab);
@@ -87,11 +83,7 @@ public class ObjectHolder : MonoBehaviour
 
     public void Launch()
     {
-        isHeld = false;
-        SetHasObjectInHand(false);
-        rigidBody.useGravity = true;
-        rigidBody.isKinematic = false;
-		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(true);
+        Drop();
         rigidBody.AddForce(-transform.up * 7f, ForceMode.Impulse);
         if (actionID > 0)
         {
@@ -105,7 +97,7 @@ public class ObjectHolder : MonoBehaviour
         SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
-		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(true);
+        GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
     }
 
     private void SetHasObjectInHand(bool value)
