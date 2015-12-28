@@ -82,7 +82,7 @@ public class PlayerInteractions : MonoBehaviour
     private void MoveForward()
     {
         Debug.Log("Starting walk to animation");
-        finalPosition = transform.position + (transform.forward * 3f);
+        finalPosition = transform.position + (transform.forward * 2.5f);
         triggerWalk = true;
         //TODO stop player completely
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
