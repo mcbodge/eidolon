@@ -37,7 +37,7 @@ MonoBehaviour:
   isDisplayed: 1
   numSockets: 1
   willWait: 0
-  defaultPauseTime: .100000001
+  defaultPauseTime: 0.1
   isRunning: 0
   lastResult:
     resultAction: 2
@@ -90,7 +90,7 @@ MonoBehaviour:
   isDisplayed: 1
   numSockets: 1
   willWait: 0
-  defaultPauseTime: .100000001
+  defaultPauseTime: 0.1
   isRunning: 0
   lastResult:
     resultAction: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
     width: 300
     height: 201
   nodeHeight: 0
-  constantID: 804866
+  constantID: 139794
   parameterID: -1
   linkedObject: {fileID: 0}
   affectChildren: 0
