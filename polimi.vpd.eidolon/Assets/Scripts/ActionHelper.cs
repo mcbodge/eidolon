@@ -106,15 +106,11 @@ public class ActionHelper : MonoBehaviour
         objectHolderReference.Drop();
         if (ObjectInHand.name == "TeddyBear")
         {
-            //TODO Final position of the teddybear (fixed)
-            ObjectInHand.transform.position = FloorHotspot.transform.position + 0.3f * transform.up;
             isTeddyBearInPosition = true;
             Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
         }
         else if (ObjectInHand.name == "Ketchup")
         {
-            //TODO Final position of ketchup (fixed)
-            ObjectInHand.transform.position = (FloorHotspot.transform.position + 0.3f * transform.up) + 0.2f * transform.right;
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
             Invoke("RunOutroLevelZero", 5f);
             // Re-set the hotspots
