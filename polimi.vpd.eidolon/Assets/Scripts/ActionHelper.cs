@@ -91,7 +91,6 @@ public class ActionHelper : MonoBehaviour
     public void PutObjectInFloorHotSpot()
     {
         ObjectHolder objectHolderReference = ((ObjectHolder)ObjectInHand.GetComponent<ObjectHolder>());
-        objectHolderReference.Drop();
         if (ObjectInHand.name == "TeddyBear")
         {
             isTeddyBearInPosition = true;
@@ -103,9 +102,6 @@ public class ActionHelper : MonoBehaviour
         {
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
             Invoke("RunOutroLevelZero", 5f);
-            // Re-set the hotspots
-            // Disabled by ketchup's grab
-            TeddyBearHotspot.SetActive(true);
             KetchupHotspot.SetActive(false);
             Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
 			ObjectInHand = null;

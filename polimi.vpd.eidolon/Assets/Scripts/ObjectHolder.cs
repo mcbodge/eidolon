@@ -17,7 +17,6 @@ public class ObjectHolder : MonoBehaviour
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
         actionManager = ActionHelper.GetManager();
-        //SetHasObjectInHand(false);
     }
 
     void Update()
@@ -33,7 +32,6 @@ public class ObjectHolder : MonoBehaviour
             );
             transform.rotation = player.transform.rotation * Quaternion.AngleAxis(-90f, Vector3.right);
 
-            // ungrab object if f key is pressed
             if (Input.GetKeyDown("f"))
             {
                 UnGrab();
@@ -53,10 +51,8 @@ public class ObjectHolder : MonoBehaviour
     {
         isHeld = true;
         rigidBody.isKinematic = true;
-        // disable the child hotspot
-        // transform.getchild gets the transform of the Hotspot
-        // .gameobject gets the gameobject associated to the Hotspot transform
-        // that is the hotspot itself
+        // get the hotspot component from the children of the main object
+		// and disable it
 		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(false);
         if (param > 0)
         {
@@ -67,11 +63,6 @@ public class ObjectHolder : MonoBehaviour
 			// else we will not be able to pick up the object anymore
 			// because the trigger will istantly bring it on floor again
 			Invoke ("EnableFloorHS", 1f);
-            //SetHasObjectInHand(true);
-        }
-        else
-        {
-            actionManager.ObjectInHand = null;
         }
     }
 
@@ -97,16 +88,10 @@ public class ObjectHolder : MonoBehaviour
     public void Drop()
     {
         isHeld = false;
-        //SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
     }
-
-   /* private void SetHasObjectInHand(bool value)
-    {
-        ActionHelper.GetManager().HasObjectInHand = value;
-    } */
 
 	private void EnableFloorHS() {
 		actionManager.FloorHotspot.SetActive (true);
