@@ -3,15 +3,28 @@ using System.Collections;
 
 public class ObjectDropTrigger : MonoBehaviour {
 
-	public bool playerHasDropItem;
+	private bool isObjectOnFloorHS;
+	private ActionHelper actionHelperRef;
 
-	// Use this for initialization
-	void Start () {
-		playerHasDropItem = false;
+	public void Start() {
+		isObjectOnFloorHS = false;
+		actionHelperRef = ActionHelper.GetManager ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void OnTriggerEnter(Collider other) {
+		if (other.name.Equals ("ObjectLeftBox") == true &&
+			( name.Equals ("TeddyBear") == true ||
+			  name.Equals("Bottle") ) 
+		) {
+			actionHelperRef.PutObjectInFloorHotSpot ();
+			actionHelperRef.FloorHotspot.SetActive (false);
+		}
 	}
+
+	/* No need of this right now
+	void OnTriggerExit(Collider other) { 
+		if (other.name.Equals ("ObjectLeftBox") == true &&
+			name.Equals ("TeddyBear") == true) {
+		}
+	} */
 }

@@ -18,14 +18,15 @@ public class ActionHelper : MonoBehaviour
     // Hotspots
     public GameObject TeddyBearHotspot;
     public GameObject KetchupHotspot;
-    public GameObject FloorHotspot;
     public GameObject ShowerHotspot;
     public GameObject BeerHotspot;
+	public GameObject FloorHotspot;
     public GameObject Character106Hotspot;
 
 
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
+	public Cutscene ObjectPlacingFeedbackCutscene;
 
     private static ActionHelper actionHelperReference;
     private bool isTeddyBearInPosition;
@@ -45,7 +46,6 @@ public class ActionHelper : MonoBehaviour
 
     public void Start()
     {
-        FloorHotspot.SetActive(false);
         isTeddyBearInPosition = false;
     }
 
@@ -67,16 +67,10 @@ public class ActionHelper : MonoBehaviour
         switch (sender)
         {
             case Action.Grab:
-                // Activate hotspot
-                FloorHotspot.SetActive(true);
-                Debug.LogFormat("Activating hotspot - State: {0}", FloorHotspot.activeSelf);
                 isTeddyBearInPosition = false;
                 break;
             case Action.Ungrab:
             case Action.Launch:
-                // Deactivate hotspot
-                FloorHotspot.SetActive(false);
-                Debug.LogFormat("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf);
                 break;
         }
     }
@@ -86,16 +80,10 @@ public class ActionHelper : MonoBehaviour
 
         if (sender == Action.Grab && isTeddyBearInPosition)
         {
-            // Activate hotspot
-            FloorHotspot.SetActive(true);
-            Debug.LogFormat("Activating hotspot - State: {0}", FloorHotspot.activeSelf);
             TeddyBearHotspot.SetActive(false);
         }
         else
         {
-            // Deactivate hotspot
-            FloorHotspot.SetActive(false);
-            Debug.LogFormat("Deactivating hotspot - State: {0}", FloorHotspot.activeSelf);
             TeddyBearHotspot.SetActive(true);
         }
     }
@@ -107,6 +95,7 @@ public class ActionHelper : MonoBehaviour
         if (ObjectInHand.name == "TeddyBear")
         {
             isTeddyBearInPosition = true;
+			RunPlayerFeedback ();
             Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
         }
         else if (ObjectInHand.name == "Ketchup")
@@ -119,7 +108,6 @@ public class ActionHelper : MonoBehaviour
             KetchupHotspot.SetActive(false);
             Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
         }
-        FloorHotspot.SetActive(false);
     }
 
     public void DisableCutsceneHotspots ()
@@ -141,4 +129,9 @@ public class ActionHelper : MonoBehaviour
         KickStarter.stateHandler.gameState = GameState.Normal;
         LevelZeroCutscene.Interact();
     }
+
+	private void RunPlayerFeedback()
+	{
+		ObjectPlacingFeedbackCutscene.Interact ();
+	}
 }

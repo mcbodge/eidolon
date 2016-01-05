@@ -4,8 +4,9 @@ using System.Collections;
 public class ObjectHolder : MonoBehaviour
 {
 
-    private GameObject player;
-    private Rigidbody rigidBody;
+    public GameObject player;
+    
+	private Rigidbody rigidBody;
     private bool isHeld = false;
     private int actionID;
     private ActionHelper actionManager;
@@ -15,7 +16,6 @@ public class ObjectHolder : MonoBehaviour
     {
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
-        player = GameObject.FindWithTag("Player");
         actionManager = ActionHelper.GetManager();
         SetHasObjectInHand(false);
     }
@@ -64,6 +64,7 @@ public class ObjectHolder : MonoBehaviour
             actionID = param;
             actionManager.Dispatcher(actionID, Action.Grab);
             actionManager.ObjectInHand = this.gameObject;
+			Invoke ("EnableFloorHS", 1f);
             SetHasObjectInHand(true);
         }
         else
@@ -104,5 +105,9 @@ public class ObjectHolder : MonoBehaviour
     {
         ActionHelper.GetManager().HasObjectInHand = value;
     }
+
+	private void EnableFloorHS() {
+		actionManager.FloorHotspot.SetActive (true);
+	}
 
 }
