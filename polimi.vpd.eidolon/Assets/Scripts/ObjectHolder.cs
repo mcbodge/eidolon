@@ -27,8 +27,8 @@ public class ObjectHolder : MonoBehaviour
             transform.position = Vector3.Lerp
             (
                 transform.position,
-                ((player.transform.position + player.transform.up * 1f) // this takes a position below camera
-                + player.transform.forward * 1.5f) + player.transform.right * 0.3f,
+                ((player.transform.position + player.transform.up * 1.5f) // this takes a position below camera
+                + player.transform.forward * 1.8f) + player.transform.right * 0.3f,
                 Time.deltaTime * 6f
             );
             transform.rotation = player.transform.rotation * Quaternion.AngleAxis(-90f, Vector3.right);
