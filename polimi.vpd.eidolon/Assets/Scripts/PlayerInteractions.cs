@@ -30,7 +30,7 @@ public class PlayerInteractions : MonoBehaviour
             (
                 transform.position,
                 finalPosition,
-                Time.deltaTime * 6f
+                Time.deltaTime * 4f
             );
             CheckWalkFinish();
         }
@@ -81,20 +81,17 @@ public class PlayerInteractions : MonoBehaviour
 
     private void MoveForward()
     {
-        Debug.Log("Starting walk to animation");
+        Debug.Log("Start walking through wall");
         finalPosition = transform.position + (transform.forward * 2.5f);
         triggerWalk = true;
-        //TODO stop player completely
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     public void CheckWalkFinish()
     {
-        if (Vector3.Distance(transform.position, finalPosition) < 0.1f)
+        if (Vector3.Distance(transform.position, finalPosition) < 0.25f)
         {
             triggerWalk = false;
-            Debug.Log("Marker reached");
+            Debug.Log("Reached other side");
         }
     }
 
