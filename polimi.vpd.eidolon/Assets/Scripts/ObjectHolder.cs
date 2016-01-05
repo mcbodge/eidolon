@@ -17,7 +17,7 @@ public class ObjectHolder : MonoBehaviour
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
         actionManager = ActionHelper.GetManager();
-        SetHasObjectInHand(false);
+        //SetHasObjectInHand(false);
     }
 
     void Update()
@@ -51,7 +51,6 @@ public class ObjectHolder : MonoBehaviour
 
     public void Grab(int param)
     {
-        Debug.Log("Object launching Grab() has param=" + param.ToString());
         isHeld = true;
         rigidBody.isKinematic = true;
         // disable the child hotspot
@@ -64,8 +63,11 @@ public class ObjectHolder : MonoBehaviour
             actionID = param;
             actionManager.Dispatcher(actionID, Action.Grab);
             actionManager.ObjectInHand = this.gameObject;
+			// here we delay the floor hs activation
+			// else we will not be able to pick up the object anymore
+			// because the trigger will istantly bring it on floor again
 			Invoke ("EnableFloorHS", 1f);
-            SetHasObjectInHand(true);
+            //SetHasObjectInHand(true);
         }
         else
         {
@@ -95,16 +97,16 @@ public class ObjectHolder : MonoBehaviour
     public void Drop()
     {
         isHeld = false;
-        SetHasObjectInHand(false);
+        //SetHasObjectInHand(false);
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
     }
 
-    private void SetHasObjectInHand(bool value)
+   /* private void SetHasObjectInHand(bool value)
     {
         ActionHelper.GetManager().HasObjectInHand = value;
-    }
+    } */
 
 	private void EnableFloorHS() {
 		actionManager.FloorHotspot.SetActive (true);

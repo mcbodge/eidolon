@@ -27,9 +27,9 @@ public class ActionHelper : MonoBehaviour
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
+	public bool isTeddyBearInPosition;
 
     private static ActionHelper actionHelperReference;
-    private bool isTeddyBearInPosition;
 
     public ActionHelper()
     {
@@ -97,6 +97,7 @@ public class ActionHelper : MonoBehaviour
             isTeddyBearInPosition = true;
 			RunPlayerFeedback ();
             Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
+			ObjectInHand = null;
         }
         else if (ObjectInHand.name == "Ketchup")
         {
@@ -107,8 +108,11 @@ public class ActionHelper : MonoBehaviour
             TeddyBearHotspot.SetActive(true);
             KetchupHotspot.SetActive(false);
             Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
+			ObjectInHand = null;
         }
     }
+
+	// Helpers
 
     public void DisableCutsceneHotspots ()
     {
