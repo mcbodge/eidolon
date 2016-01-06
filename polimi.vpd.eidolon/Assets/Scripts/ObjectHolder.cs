@@ -59,6 +59,7 @@ public class ObjectHolder : MonoBehaviour
             actionID = param;
             actionManager.Dispatcher(actionID, Action.Grab);
             actionManager.ObjectInHand = this.gameObject;
+			actionManager.HasObjectInHand = true;
 			// here we delay the floor hs activation
 			// else we will not be able to pick up the object anymore
 			// because the trigger will istantly bring it on floor again
@@ -91,6 +92,7 @@ public class ObjectHolder : MonoBehaviour
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
+		actionManager.HasObjectInHand = false;
     }
 
 	private void EnableFloorHS() {

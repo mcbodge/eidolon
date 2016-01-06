@@ -17,6 +17,7 @@ public class CanvasControl : MonoBehaviour
         imageShown = 0;
 		imageBox = Canvas.GetComponentInChildren<Image> ();
         SetTutorialCanvas(false);
+		TutorialEnable (); // start frome here cause there isn't intro scene
     }
 
     void Update()

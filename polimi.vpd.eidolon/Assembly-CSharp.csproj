@@ -330,6 +330,7 @@
      <Compile Include="Assets\Scripts\ActionHelper.cs" />
      <Compile Include="Assets\Scripts\CameraShake.cs" />
      <Compile Include="Assets\Scripts\CanvasControl.cs" />
+     <Compile Include="Assets\Scripts\ManSight.cs" />
      <Compile Include="Assets\Scripts\ObjectDropTrigger.cs" />
      <Compile Include="Assets\Scripts\ObjectHolder.cs" />
      <Compile Include="Assets\Scripts\PhysicsActions.cs" />
