@@ -23,13 +23,13 @@ public class ActionHelper : MonoBehaviour
 	public GameObject FloorHotspot;
     public GameObject Character106Hotspot;
 
-
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
 	public bool isTeddyBearInPosition;
 
     private static ActionHelper actionHelperReference;
+	private Menu gameOverMenu;
 
     public ActionHelper()
     {
@@ -46,7 +46,8 @@ public class ActionHelper : MonoBehaviour
 
     public void Start()
     {
-        isTeddyBearInPosition = false;
+		isTeddyBearInPosition = false;
+		gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
     }
 
     public void Dispatcher(int param, Action sender)
@@ -66,11 +67,11 @@ public class ActionHelper : MonoBehaviour
     {
         switch (sender)
         {
-            case Action.Grab:
-                isTeddyBearInPosition = false;
+			case Action.Grab:
+				isTeddyBearInPosition = false;
                 break;
-            case Action.Ungrab:
-            case Action.Launch:
+			case Action.Ungrab:
+			case Action.Launch:
                 break;
         }
     }
@@ -123,6 +124,10 @@ public class ActionHelper : MonoBehaviour
         BeerHotspot.SetActive(true);
         Character106Hotspot.SetActive(true);
     }
+
+	public void OpenGameOverMenu() {
+		gameOverMenu.TurnOn ();
+	}
 
     private void RunOutroLevelZero()
     {

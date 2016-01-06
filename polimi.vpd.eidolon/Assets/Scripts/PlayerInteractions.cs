@@ -94,7 +94,4 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Reached other side");
         }
     }
-
-
-
 }
