@@ -14,7 +14,7 @@ public class ObjectInHandDetection : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 #if UNITY_EDITOR
         if (actionManager.HasObjectInHand)
         {
