@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cc1f751990d444ef9e1381090933b8b, type: 3}
-  m_Name: OnGameOverMenuEnable
+  m_Name: OnGameOverMenuDisable
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11424392}
+  - {fileID: 11453948}
   isSkippable: 1
   actionListType: 0
   unfreezePauseMenus: 1
   useParameters: 0
   parameters: []
---- !u!114 &11424392
+--- !u!114 &11453948
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74813bf97090c47b39d9f3d0ec84a80b, type: 3}
-  m_Name: 
+  m_Name: (Clone)
   m_EditorClassIdentifier: 
   id: 0
   category: 9
@@ -44,9 +44,9 @@ MonoBehaviour:
     skipActionActual: {fileID: 0}
     linkedCutscene: {fileID: 0}
     linkedAsset: {fileID: 0}
-  endAction: 0
-  skipAction: 0
-  skipActionActual: {fileID: 11424392}
+  endAction: 1
+  skipAction: 1
+  skipActionActual: {fileID: 11453948}
   linkedCutscene: {fileID: 0}
   linkedAsset: {fileID: 0}
   isEnabled: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
     width: 300
     height: 122
   nodeHeight: 0
-  changeType: 4
+  changeType: 5
   menuToChange: Pause
   menuToChangeParameterID: -1
   elementToChange: 
