@@ -57,7 +57,7 @@ MonoBehaviour:
   giveInvWithUnhandled: 0
   giveInvWithIconID: 0
   clickPrefab: {fileID: 400000, guid: 5afa28bedf2ed4d77b1485bcdd7c48d9, type: 2}
-  walkableClickRange: .5
+  walkableClickRange: 0.5
   navMeshSearchDirection: 1
   doubleClickMovement: 0
   magnitudeAffectsDirect: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   directMovementType: 0
   limitDirectMovement: 0
   directMovementPerspective: 0
-  destinationAccuracy: .800000012
+  destinationAccuracy: 0.8
   experimentalAccuracy: 0
   pathfindUpdateFrequency: 0
   verticalReductionFactor: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
   - inputName: 
     gameState: 0
     actionListAsset: {fileID: 0}
-  freeAimTouchSpeed: .00999999978
+  freeAimTouchSpeed: 0.01
   dragWalkThreshold: 5
   dragRunThreshold: 20
   drawDragLine: 1
@@ -89,7 +89,7 @@ MonoBehaviour:
   doubleTapHotspots: 0
   firstPersonTouchScreen: 1
   forceAspectRatio: 0
-  wantedAspectRatio: 1.33000004
+  wantedAspectRatio: 1.33
   landscapeModeOnly: 0
   cameraPerspective: 2
   movingTurning: 3
@@ -98,7 +98,7 @@ MonoBehaviour:
   hotspotIconDisplay: 0
   hotspotIcon: 0
   hotspotIconTexture: {fileID: 0}
-  hotspotIconSize: .0399999991
+  hotspotIconSize: 0.04
   playerFacesHotspots: 1
   scaleHighlightWithMouseProximity: 0
   highlightProximityFactor: 4
@@ -127,9 +127,9 @@ MonoBehaviour:
   speechAttentuationParameter: speechVolume
   defaultLanguage: 0
   defaultShowSubtitles: 1
-  defaultSfxVolume: .381600708
-  defaultMusicVolume: .199394986
-  defaultSpeechVolume: .972909868
+  defaultSfxVolume: 0.3816007
+  defaultMusicVolume: 0.19939499
+  defaultSpeechVolume: 0.97290987
   showDebugLogs: 0
   showActiveActionLists: 0
   showHierarchyIcons: 1
