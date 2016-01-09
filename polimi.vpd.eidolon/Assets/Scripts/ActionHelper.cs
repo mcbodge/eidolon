@@ -23,6 +23,8 @@ public class ActionHelper : MonoBehaviour
 	public GameObject FloorHotspot;
     public GameObject Character106Hotspot;
 
+    public Room RoomWithPlayer;
+
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;

@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -365,6 +359,7 @@
     <Compile Include="Assets\Scripts\ObjectInHandDetection.cs" />
     <Compile Include="Assets\Scripts\PhysicsActions.cs" />
     <Compile Include="Assets\Scripts\PlayerInteractions.cs" />
+    <Compile Include="Assets\Scripts\RoomControl.cs" />
     <Compile Include="Assets\Scripts\TextureControl.cs" />
     <Compile Include="Assets\Shaders\UnityShaderGrayscale\Scripts\Grayscale.cs" />
     <Compile Include="Assets\Shaders\UnityShaderGrayscale\Scripts\ImageEffectBase.cs" />

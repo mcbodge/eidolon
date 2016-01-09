@@ -7,6 +7,8 @@ public class ObjectInHandDetection : MonoBehaviour {
     private ActionHelper actionManager;
     private Camera currentCamera;
 
+    public Room CurrentRoom;
+
     // Use this for initialization
     void Start () {
         actionManager = ActionHelper.GetManager();
@@ -15,28 +17,10 @@ public class ObjectInHandDetection : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-#if UNITY_EDITOR
-        if (actionManager.HasObjectInHand)
-        {
-            Debug.DrawRay(transform.position, actionManager.ObjectInHand.transform.position - transform.position);
-            if(GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(currentCamera), actionManager.ObjectInHand.GetComponent<Renderer>().bounds)){
-                Debug.Log("Frustum view true");
-                if(Physics.Raycast(transform.position, actionManager.ObjectInHand.transform.position - transform.position, out hit))
-                {
-                    Debug.Log("Raycast hit true");
-                    if(hit.collider.gameObject.name.Equals("Eidolon") || hit.collider.gameObject.name.Equals(actionManager.ObjectInHand.name)){
-                        actionManager.OpenGameOverMenu();
-                    }
-                }
-            }
-        }
-#endif
-
-#if UNITY_STANDALONE
-        // Different compilation model and nested computation for performance purpose
-
         // These conditions must be checked in the given order
         if (
+            // 0. If the player is in the current room
+            actionManager.RoomWithPlayer == CurrentRoom &&
             // 1. The player has an object in his/her hand
             actionManager.HasObjectInHand &&
             // 2. The object is in the frustum of the current camera
@@ -49,6 +33,5 @@ public class ObjectInHandDetection : MonoBehaviour {
         {
             actionManager.OpenGameOverMenu();
         }
-#endif
     }
 }
