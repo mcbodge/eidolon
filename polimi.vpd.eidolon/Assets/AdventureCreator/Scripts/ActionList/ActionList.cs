@@ -623,6 +623,50 @@ namespace AC
 			return null;
 		}
 
-	}
+
+        #region [ Custom methods ]
+
+        /**
+         * <summary>Custom (MG): Runs the Actions from a set point. Refers to a given camera.</summary>
+         * <param name = "i">The index number of actions to start from</param>
+         * <param name = "addToSkipQueue">If True, then the ActionList will be skipped when the user presses the 'EndCutscene' Input button</param>
+         */
+        public void InteractWithActionCamera(_Camera linkedCamera)
+        {
+
+            if (actions.Count > 0)
+            {
+                if (triggerTime > 0f)
+                {
+                    StartCoroutine("PauseUntilStart", true);
+                }
+                else
+                {
+                    isSkipping = false;
+                    StopCoroutine("PauseUntilStart");
+                    StopCoroutine("RunAction");
+                    StopCoroutine("EndCutscene");
+
+                    foreach (ActionCamera action in actions)
+                    {
+                        if (action != null)
+                        {
+                            action.linkedCamera = linkedCamera;
+                            action.isRunning = false;
+                        }
+                    }
+                    ResetSkips();
+                    BeginActionList(0, true);
+                }
+            }
+            else
+            {
+                Kill();
+            }
+        }
+
+        #endregion
+
+    }
 	
 }

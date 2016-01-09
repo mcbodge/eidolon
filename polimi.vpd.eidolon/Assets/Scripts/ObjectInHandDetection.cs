@@ -43,8 +43,8 @@ public class ObjectInHandDetection : MonoBehaviour {
     {
         if (!gameOverStarted)
         {
-            CaughtCutscene.Interact();
-            Invoke("GameOver", 4.9f);
+            CaughtCutscene.InteractWithActionCamera(gameObject.GetComponent<_Camera>());
+            Invoke("FinallyGameOver", 4.9f);
             gameOverStarted = true;
         }
     }
