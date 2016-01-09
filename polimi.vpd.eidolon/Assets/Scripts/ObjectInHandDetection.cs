@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using AC;
 using System.Collections;
 
 public class ObjectInHandDetection : MonoBehaviour {
@@ -6,13 +7,16 @@ public class ObjectInHandDetection : MonoBehaviour {
 	private RaycastHit hit;
     private ActionHelper actionManager;
     private Camera currentCamera;
+    private bool gameOverStarted;
 
     public Room CurrentRoom;
+    public Cutscene CaughtCutscene;
 
     // Use this for initialization
     void Start () {
         actionManager = ActionHelper.GetManager();
         currentCamera = gameObject.GetComponent<Camera>();
+        gameOverStarted = false;
     }
 
 	// Update is called once per frame
@@ -31,7 +35,22 @@ public class ObjectInHandDetection : MonoBehaviour {
             (hit.collider.gameObject.name.Equals("Eidolon") || hit.collider.gameObject.name.Equals(actionManager.ObjectInHand.name))
             )
         {
-            actionManager.OpenGameOverMenu();
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        if (!gameOverStarted)
+        {
+            CaughtCutscene.Interact();
+            Invoke("GameOver", 4.9f);
+            gameOverStarted = true;
+        }
+    }
+
+    private void FinallyGameOver()
+    {
+        actionManager.OpenGameOverMenu();
     }
 }
