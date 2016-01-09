@@ -5126,7 +5126,7 @@ MonoBehaviour:
   RoomCameras: []
   IsPlayerInRoom: 0
   sceneHelper: {fileID: 1551777297}
-  ThisRoom: 2
+  ThisRoom: 3
 --- !u!65 &243477357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17779,7 +17779,7 @@ MonoBehaviour:
   RoomCameras: []
   IsPlayerInRoom: 0
   sceneHelper: {fileID: 1551777297}
-  ThisRoom: 2
+  ThisRoom: 1
 --- !u!65 &860446506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27521,7 +27521,7 @@ MonoBehaviour:
   RoomCameras: []
   IsPlayerInRoom: 0
   sceneHelper: {fileID: 1551777297}
-  ThisRoom: 2
+  ThisRoom: 0
 --- !u!65 &1372540287
 BoxCollider:
   m_ObjectHideFlags: 0
