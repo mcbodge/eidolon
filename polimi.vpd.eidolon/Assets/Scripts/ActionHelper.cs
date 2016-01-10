@@ -31,7 +31,7 @@ public class ActionHelper : MonoBehaviour
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
-	public bool isTeddyBearInPosition;
+	public bool IsTeddyBearInPosition;
 
     private static ActionHelper actionHelperReference;
 	private Menu gameOverMenu;
@@ -51,7 +51,7 @@ public class ActionHelper : MonoBehaviour
 
     public void Start()
     {
-		isTeddyBearInPosition = false;
+		IsTeddyBearInPosition = false;
 		gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
     }
 
@@ -73,7 +73,7 @@ public class ActionHelper : MonoBehaviour
         switch (sender)
         {
 			case Action.Grab:
-				isTeddyBearInPosition = false;
+				IsTeddyBearInPosition = false;
                 break;
 			case Action.Ungrab:
 			case Action.Launch:
@@ -84,7 +84,7 @@ public class ActionHelper : MonoBehaviour
     private void KetchupAction(Action sender)
     {
 
-        if (sender == Action.Grab && isTeddyBearInPosition)
+        if (sender == Action.Grab && IsTeddyBearInPosition)
         {
             TeddyBearHotspot.SetActive(false);
         }
@@ -99,7 +99,7 @@ public class ActionHelper : MonoBehaviour
         ObjectHolder objectHolderReference = ((ObjectHolder)ObjectInHand.GetComponent<ObjectHolder>());
         if (ObjectInHand.name == "TeddyBear")
         {
-            isTeddyBearInPosition = true;
+            IsTeddyBearInPosition = true;
 			RunPlayerFeedback ();
             Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
 			ObjectInHand = null;
