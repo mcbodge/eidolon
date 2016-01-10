@@ -4806,7 +4806,8 @@ MonoBehaviour:
   pauseWhenEnabled: 1
   enabledOnStart: 0
   actionListOnTurnOn: {fileID: 11400000, guid: b696017c09975ee4481c7d43bf383dd4, type: 2}
-  actionListOnTurnOff: {fileID: 0}
+  actionListOnTurnOff: {fileID: 11400000, guid: dcd1966318fdbf64780c47f7b1cc526f,
+    type: 2}
   fitWithinScreen: 1
   backgroundTexture: {fileID: 2800000, guid: 2de7d16b4ac4b402182d4f2ca40e0b2d, type: 3}
   visibleElements:
