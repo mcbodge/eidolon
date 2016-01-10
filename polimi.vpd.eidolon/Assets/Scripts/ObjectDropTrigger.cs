@@ -19,7 +19,7 @@ public class ObjectDropTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (!actionHelperRef.isTeddyBearInPosition) {
+		if (!actionHelperRef.IsTeddyBearInPosition) {
 			
 			CheckBear (other);
 		} else {
