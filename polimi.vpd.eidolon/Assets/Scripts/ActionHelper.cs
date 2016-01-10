@@ -31,6 +31,7 @@ public class ActionHelper : MonoBehaviour
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
+    public bool IsKetchupInPosition;
 
     private static ActionHelper actionHelperReference;
 	private Menu gameOverMenu;
@@ -51,6 +52,7 @@ public class ActionHelper : MonoBehaviour
     public void Start()
     {
         gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
+        IsKetchupInPosition = false;
     }
 
     public void Dispatcher(int param, Action sender)
@@ -89,13 +91,13 @@ public class ActionHelper : MonoBehaviour
                 RunPlayerFeedback();
             }
             Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
-			ObjectInHand = null;
         }
         else if (ObjectInHand.name == "Ketchup")
         {
+            IsKetchupInPosition = true;
+            KetchupHotspot.SetActive(false);
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
             Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
-			ObjectInHand = null;
         }
     }
 

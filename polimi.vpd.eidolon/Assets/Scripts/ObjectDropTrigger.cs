@@ -21,14 +21,20 @@ public class ObjectDropTrigger : MonoBehaviour {
 }
 
 	void OnTriggerEnter(Collider other) {
-        if (other.name.Equals("Ketchup") &&
-            !isKetchupBrokenWithBear)
-        {
-            actionHelperRef.PutObjectInFloorHotSpot();
-            isKetchupBrokenWithBear = true;
-        } else if (isKetchupBrokenWithBear && 
+        if (isKetchupBrokenWithBear && 
                    other.name.Equals("104Peter")) {
             actionHelperRef.RunOutroLevelZero();
         }
 	}
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.name.Equals("Ketchup") &&
+            !actionHelperRef.HasObjectInHand && 
+            !isKetchupBrokenWithBear)
+        {
+            isKetchupBrokenWithBear = true;
+            actionHelperRef.PutObjectInFloorHotSpot();
+        }
+    }
 }
