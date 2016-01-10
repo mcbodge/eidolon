@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AC;
+using System.Collections.Generic;
 
 public enum Action
 {
@@ -22,6 +23,8 @@ public class ActionHelper : MonoBehaviour
     public GameObject BeerHotspot;
 	public GameObject FloorHotspot;
     public GameObject Character106Hotspot;
+
+    public List<GameObject> CutsceneHotspots;
 
     public Room RoomWithPlayer;
 
@@ -115,16 +118,18 @@ public class ActionHelper : MonoBehaviour
 
     public void DisableCutsceneHotspots ()
     {
-        ShowerHotspot.SetActive(false);
-        BeerHotspot.SetActive(false);
-        Character106Hotspot.SetActive(false);
+        foreach(GameObject hotspot in CutsceneHotspots)
+        {
+            hotspot.SetActive(false);
+        }
     }
 
     public void EnableCutsceneHotspots()
     {
-        ShowerHotspot.SetActive(true);
-        BeerHotspot.SetActive(true);
-        Character106Hotspot.SetActive(true);
+        foreach (GameObject hotspot in CutsceneHotspots)
+        {
+            hotspot.SetActive(true);
+        }
     }
 
 	public void OpenGameOverMenu() {
