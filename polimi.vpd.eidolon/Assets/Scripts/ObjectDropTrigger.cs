@@ -13,33 +13,22 @@ public class ObjectDropTrigger : MonoBehaviour {
 	 */
 
 	private ActionHelper actionHelperRef;
+    private bool isKetchupBrokenWithBear;
 
 	public void Start() {
 		actionHelperRef = ActionHelper.GetManager ();
-	}
+        isKetchupBrokenWithBear = false;
+}
 
 	void OnTriggerEnter(Collider other) {
-		if (!actionHelperRef.IsTeddyBearInPosition) {
-			
-			CheckBear (other);
-		} else {
-			CheckBottle (other);
-		}
-	}
-
-	private void CheckBear(Collider other) {
-		if (other.name.Equals ("TeddyBear") == true 
-		) {
-			actionHelperRef.PutObjectInFloorHotSpot ();
-			actionHelperRef.FloorHotspot.SetActive (false);
-		}
-	}
-
-	private void CheckBottle(Collider other) {
-		if (other.name.Equals ("Ketchup") == true 
-		) {
-			actionHelperRef.PutObjectInFloorHotSpot ();
-			actionHelperRef.FloorHotspot.SetActive (false);
-		}
+        if (other.name.Equals("Ketchup") &&
+            !isKetchupBrokenWithBear)
+        {
+            actionHelperRef.PutObjectInFloorHotSpot();
+            isKetchupBrokenWithBear = true;
+        } else if (isKetchupBrokenWithBear && 
+                   other.name.Equals("104Peter")) {
+            actionHelperRef.RunOutroLevelZero();
+        }
 	}
 }

@@ -31,7 +31,6 @@ public class ActionHelper : MonoBehaviour
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
-	public bool IsTeddyBearInPosition;
 
     private static ActionHelper actionHelperReference;
 	private Menu gameOverMenu;
@@ -51,8 +50,7 @@ public class ActionHelper : MonoBehaviour
 
     public void Start()
     {
-		IsTeddyBearInPosition = false;
-		gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
+        gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
     }
 
     public void Dispatcher(int param, Action sender)
@@ -63,7 +61,6 @@ public class ActionHelper : MonoBehaviour
                 TeddyBearAction(sender);
                 break;
             case 2:
-                KetchupAction(sender);
                 break;
         }
     }
@@ -73,24 +70,12 @@ public class ActionHelper : MonoBehaviour
         switch (sender)
         {
 			case Action.Grab:
-				IsTeddyBearInPosition = false;
                 break;
 			case Action.Ungrab:
-			case Action.Launch:
+                PutObjectInFloorHotSpot();
                 break;
-        }
-    }
-
-    private void KetchupAction(Action sender)
-    {
-
-        if (sender == Action.Grab && IsTeddyBearInPosition)
-        {
-            TeddyBearHotspot.SetActive(false);
-        }
-        else
-        {
-            TeddyBearHotspot.SetActive(true);
+            case Action.Launch:
+                break;
         }
     }
 
@@ -99,16 +84,16 @@ public class ActionHelper : MonoBehaviour
         ObjectHolder objectHolderReference = ((ObjectHolder)ObjectInHand.GetComponent<ObjectHolder>());
         if (ObjectInHand.name == "TeddyBear")
         {
-            IsTeddyBearInPosition = true;
-			RunPlayerFeedback ();
+            if (RoomWithPlayer.Equals(Room.Corridor))
+            {
+                RunPlayerFeedback();
+            }
             Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
 			ObjectInHand = null;
         }
         else if (ObjectInHand.name == "Ketchup")
         {
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
-            Invoke("RunOutroLevelZero", 5f);
-            KetchupHotspot.SetActive(false);
             Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
 			ObjectInHand = null;
         }
@@ -136,7 +121,7 @@ public class ActionHelper : MonoBehaviour
 		gameOverMenu.TurnOn ();
 	}
 
-    private void RunOutroLevelZero()
+    public void RunOutroLevelZero()
     {
         KickStarter.stateHandler.gameState = GameState.Normal;
         LevelZeroCutscene.Interact();
