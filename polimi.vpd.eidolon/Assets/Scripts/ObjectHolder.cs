@@ -27,7 +27,7 @@ public class ObjectHolder : MonoBehaviour
             (
                 transform.position,
                 ((player.transform.position + player.transform.up * 1.5f) // this takes a position below camera
-                + player.transform.forward * 1.8f) + player.transform.right * 0.3f,
+                + player.transform.forward * 1.2f) + player.transform.right * 0.3f,
                 Time.deltaTime * 6f
             );
             transform.rotation = player.transform.rotation * Quaternion.AngleAxis(-90f, Vector3.right);
@@ -50,6 +50,7 @@ public class ObjectHolder : MonoBehaviour
     public void Grab(int param)
     {
         isHeld = true;
+        GetComponent<Collider>().enabled = false;
         rigidBody.isKinematic = true;
         // get the hotspot component from the children of the main object
 		// and disable it
@@ -89,6 +90,7 @@ public class ObjectHolder : MonoBehaviour
     public void Drop()
     {
         isHeld = false;
+        GetComponent<Collider>().enabled = true;
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
         GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
