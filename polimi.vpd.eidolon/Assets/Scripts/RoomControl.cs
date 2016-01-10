@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RoomControl : MonoBehaviour {
+public class RoomControl : MonoBehaviour
+{
 
     public List<Camera> RoomCameras;
 
@@ -12,18 +13,19 @@ public class RoomControl : MonoBehaviour {
 
     public Room ThisRoom;
 
-	void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name.Equals("Eidolon"))
+        if (other.gameObject.name.Equals("Eidolon"))
         {
             sceneHelper.RoomWithPlayer = ThisRoom;
         }
     }
 }
 
-public enum Room{
-    Room104,
-    Room105,
-    Room106,
-    Corridor
+public enum Room
+{
+    Room104 = 104,
+    Room105 = 105,
+    Room106 = 106,
+    Corridor = 0
 }
