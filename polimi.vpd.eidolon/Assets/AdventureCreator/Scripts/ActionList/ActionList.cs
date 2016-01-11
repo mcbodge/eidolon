@@ -647,11 +647,11 @@ namespace AC
                     StopCoroutine("RunAction");
                     StopCoroutine("EndCutscene");
 
-                    foreach (ActionCamera action in actions)
+                    foreach (Action action in actions)
                     {
-                        if (action != null)
+                        if (action != null && action.GetType().Name.Equals("ActionCamera"))
                         {
-                            action.linkedCamera = linkedCamera;
+                            ((ActionCamera)action).linkedCamera = linkedCamera;
                             action.isRunning = false;
                         }
                     }
