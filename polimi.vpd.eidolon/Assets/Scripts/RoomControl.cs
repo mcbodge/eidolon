@@ -22,7 +22,7 @@ public class RoomControl : MonoBehaviour
     }
 }
 
-public enum Room
+public enum Room : int
 {
     Room104 = 104,
     Room105 = 105,
