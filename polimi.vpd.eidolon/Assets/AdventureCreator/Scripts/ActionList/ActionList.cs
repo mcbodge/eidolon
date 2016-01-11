@@ -652,8 +652,8 @@ namespace AC
                         if (action != null && action.GetType().Name.Equals("ActionCamera"))
                         {
                             ((ActionCamera)action).linkedCamera = linkedCamera;
-                            action.isRunning = false;
                         }
+                        action.isRunning = false;
                     }
                     ResetSkips();
                     BeginActionList(0, true);
