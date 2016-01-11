@@ -23,7 +23,7 @@ public class ObjectInHandDetection : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
 #if UNITY_EDITOR
@@ -78,7 +78,7 @@ public class ObjectInHandDetection : MonoBehaviour
         }
     }
 
-    private void FinallyGameOver()
+    private void FinallyGaonomeOver()
     {
         actionManager.OpenGameOverMenu();
     }
