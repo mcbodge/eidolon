@@ -21,7 +21,6 @@ public class ActionHelper : MonoBehaviour
     public GameObject KetchupHotspot;
     public GameObject ShowerHotspot;
     public GameObject BeerHotspot;
-	public GameObject FloorHotspot;
     public GameObject Character106Hotspot;
 
     public List<GameObject> CutsceneHotspots;
