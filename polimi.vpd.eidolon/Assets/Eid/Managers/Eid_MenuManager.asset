@@ -1246,7 +1246,7 @@ MonoBehaviour:
   rectTransformID: 0
   uiTransitionType: 0
   uiPositionType: 0
-  isEditing: 0
+  isEditing: 1
   isLocked: 0
   id: 14
   title: GameOver
