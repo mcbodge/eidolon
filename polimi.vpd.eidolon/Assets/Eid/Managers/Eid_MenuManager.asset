@@ -70,8 +70,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 9.517272
+    y: 34.54531
     width: 22.8
     height: 63.5
   relativePosition: {x: 1.5, y: 13.5}
@@ -248,8 +248,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 15.487728
+    y: 43.941998
     width: 205.2
     height: 203.2
   relativePosition: {x: 3, y: 10}
@@ -308,8 +308,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 15.487728
+    y: 13.1826
     width: 122.99999
     height: 26
   relativePosition: {x: 3, y: 3}
@@ -421,8 +421,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 474.957
+    y: 290.01718
     width: 22.8
     height: 101.6
   relativePosition: {x: 92, y: 66}
@@ -486,8 +486,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 567.8639
+    y: 230.81384
     width: 58
     height: 26
   relativePosition: {x: 89.5, y: 90.2}
@@ -774,8 +774,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 538.6776
+    y: 111.56855
     width: 87
     height: 26
   relativePosition: {x: 84.9, y: 43.6}
@@ -1063,8 +1063,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 97.18499
+    y: 42.862503
     width: 214.31998
     height: 31.75
   relativePosition: {x: 27.5, y: 15}
@@ -1400,8 +1400,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 9.517272
+    y: 163.77036
     width: 22.8
     height: 63.5
   relativePosition: {x: 1.5, y: 64}
@@ -1775,8 +1775,8 @@ MonoBehaviour:
   uiHideStyle: 1
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 38.069088
+    y: 163.77036
     width: 570
     height: 63.5
   relativePosition: {x: 6, y: 64}
@@ -1929,8 +1929,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 40.640995
+    y: 80.01
     width: 306.65997
     height: 127
   relativePosition: {x: 11.5, y: 28}
@@ -2038,8 +2038,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 5.6543994
+    y: 248.60251
     width: 342
     height: 31.75
   relativePosition: {x: 1.6, y: 87}
@@ -2103,8 +2103,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 19.101532
+    y: 263.65198
     width: 103.99999
     height: 26
   relativePosition: {x: 3.7, y: 60}
@@ -2158,8 +2158,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 602.76056
+    y: 34.54531
     width: 22.8
     height: 63.5
   relativePosition: {x: 95, y: 13.5}
@@ -2278,8 +2278,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 57.820854
+    y: 290.01718
     width: 410.4
     height: 101.6
   relativePosition: {x: 11.2, y: 66}
@@ -2423,8 +2423,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 371.70547
+    y: 13.1826
     width: 74
     height: 26
   relativePosition: {x: 72, y: 3}
@@ -2478,8 +2478,8 @@ MonoBehaviour:
   uiHideStyle: 1
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 38.069088
+    y: 33.265854
     width: 570
     height: 63.5
   relativePosition: {x: 6, y: 13}
@@ -2601,8 +2601,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 371.70547
+    y: 166.54018
     width: 68.99999
     height: 26
   relativePosition: {x: 72, y: 37.9}
@@ -2967,8 +2967,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 311.69876
+    y: 42.862503
     width: 34.199997
     height: 31.75
   relativePosition: {x: 88.2, y: 15}
@@ -3032,8 +3032,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 6.344848
+    y: 138.18124
     width: 622.43994
     height: 18.282148
   relativePosition: {x: 1, y: 54}
@@ -3343,8 +3343,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 437.2702
+    y: 404.2664
     width: 58
     height: 26
   relativePosition: {x: 84.7, y: 92}
@@ -3466,8 +3466,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 1105.7999
+    y: 7.2026315
     width: 28.5
     height: 69.85
   relativePosition: {x: 97, y: 9}
@@ -3781,8 +3781,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 6.0077996
+    y: 174.30751
     width: 34.199997
     height: 31.75
   relativePosition: {x: 1.7, y: 61}
@@ -4163,8 +4163,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 20.650305
+    y: 290.01718
     width: 22.8
     height: 101.6
   relativePosition: {x: 4, y: 66}
@@ -4228,8 +4228,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 6.0077996
+    y: 80.01
     width: 34.199997
     height: 31.75
   relativePosition: {x: 1.7, y: 28}
@@ -4413,8 +4413,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 5.6543994
+    y: 211.455
     width: 342
     height: 31.75
   relativePosition: {x: 1.6, y: 74}
@@ -4806,8 +4806,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 371.70547
+    y: 43.941998
     width: 102.6
     height: 101.6
   relativePosition: {x: 72, y: 10}
@@ -4857,8 +4857,8 @@ MonoBehaviour:
   uiHideStyle: 0
   relativeRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 602.76056
+    y: 163.77036
     width: 22.8
     height: 63.5
   relativePosition: {x: 95, y: 64}
