@@ -18,6 +18,7 @@ public class RoomControl : MonoBehaviour
         if (other.gameObject.name.Equals("Eidolon"))
         {
             sceneHelper.RoomWithPlayer = ThisRoom;
+            Debug.Log(ThisRoom);
         }
     }
 }
