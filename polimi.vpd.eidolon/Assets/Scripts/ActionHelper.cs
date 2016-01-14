@@ -53,6 +53,8 @@ public class ActionHelper : MonoBehaviour
     {
         gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
         IsKetchupInPosition = false;
+        ObjectInHand = null;
+        HasObjectInHand = false;
     }
 
     public void Dispatcher(int param, Action sender)
