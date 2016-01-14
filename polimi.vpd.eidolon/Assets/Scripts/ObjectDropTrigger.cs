@@ -3,25 +3,19 @@ using System.Collections;
 
 public class ObjectDropTrigger : MonoBehaviour {
 
-	/* This class is assigned to a hotspot, and it will check for
-	 * objects colliding with it. We first check for the bear colliding with the floor
-	 * Once it is in position we switch checked object to ketchup.
-	 * In case we place first ketchup, it will not be recognized due to the
-	 * if clause, which will execute CheckBear(). If we place the bear after the ketchup
-	 * the method will execute from now on CheckBottle(), but it will not trigger because
-	 * Ketchup is already inside the box, and the method will trigger only on enter.
-	 */
 
 	private ActionHelper actionHelperRef;
-    private bool isKetchupBrokenWithBear;
+    private bool isKetchupReady;
+    private bool isRcCarReady;
 
 	public void Start() {
 		actionHelperRef = ActionHelper.GetManager ();
-        isKetchupBrokenWithBear = false;
+        isKetchupReady = false;
+        isRcCarReady = false;
 }
 
 	void OnTriggerEnter(Collider other) {
-        if (isKetchupBrokenWithBear && 
+        if (isKetchupReady && isRcCarReady &&
                    other.name.Equals("104Peter")) {
             actionHelperRef.RunOutroLevelZero();
         }
@@ -29,12 +23,38 @@ public class ObjectDropTrigger : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
+        // If player drops ketchup we check if the player
+        // isn't grabbing anything else: this means that he has dropped it
         if (other.name.Equals("Ketchup") &&
             !actionHelperRef.HasObjectInHand && 
-            !isKetchupBrokenWithBear)
+            !isKetchupReady)
         {
-            isKetchupBrokenWithBear = true;
+            isKetchupReady = true;
+            CheckHotspotIsFull();
             actionHelperRef.PutObjectInFloorHotSpot();
+        }
+        // if player drops car 
+        if (other.name.Equals("RCcar") &&
+            !actionHelperRef.HasObjectInHand &&
+            !isRcCarReady)
+        {
+            isRcCarReady = true;
+            CheckHotspotIsFull();
+            actionHelperRef.PutObjectInFloorHotSpot();
+        }
+    }
+
+    private void CheckHotspotIsFull()
+    {
+        if (isRcCarReady && isKetchupReady)
+        {
+            // this means the Theatre on the floor is ready
+            // so say last phrase
+            actionHelperRef.RunLastPlayerFeedback();
+        } else
+        {
+            // the Theatre on floor is not finished
+            actionHelperRef.RunMiddlePlayerFeedback();
         }
     }
 }

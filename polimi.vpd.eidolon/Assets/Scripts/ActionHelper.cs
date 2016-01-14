@@ -19,6 +19,7 @@ public class ActionHelper : MonoBehaviour
     // Hotspots
     public GameObject TeddyBearHotspot;
     public GameObject KetchupHotspot;
+    public GameObject RcCarHotspot;
     public GameObject ShowerHotspot;
     public GameObject BeerHotspot;
     public GameObject Character106Hotspot;
@@ -30,8 +31,8 @@ public class ActionHelper : MonoBehaviour
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
+    public Cutscene ObjectPlacingMiddleFeedbackCutscene;
     public Cutscene ObjectPlacingLastFeedbackCutscene;
-    public bool IsKetchupInPosition;
 
     private static ActionHelper actionHelperReference;
 	private Menu gameOverMenu;
@@ -39,6 +40,21 @@ public class ActionHelper : MonoBehaviour
     public ActionHelper()
     {
         actionHelperReference = this;
+    }
+
+    public void RunPlayerFeedback()
+    {
+        ObjectPlacingFeedbackCutscene.Interact();
+    }
+
+    public void RunMiddlePlayerFeedback()
+    {
+        ObjectPlacingMiddleFeedbackCutscene.Interact();
+    }
+
+    public void RunLastPlayerFeedback()
+    {
+        ObjectPlacingLastFeedbackCutscene.Interact();
     }
 
     public static ActionHelper GetManager()
@@ -49,24 +65,30 @@ public class ActionHelper : MonoBehaviour
     public void Start()
     {
         gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
-        IsKetchupInPosition = false;
         ObjectInHand = null;
         HasObjectInHand = false;
     }
 
+    /*
+        1 Dool (bear)
+        2 Ketchup
+        3 RC Car
+    */
     public void Dispatcher(int param, Action sender)
     {
         switch (param)
         {
             case 1:
-                TeddyBearAction(sender);
+                ObjectAction(sender);
                 break;
             case 2:
+                break;
+            case 3:
                 break;
         }
     }
 
-    private void TeddyBearAction(Action sender)
+    private void ObjectAction(Action sender)
     {
         switch (sender)
         {
@@ -82,22 +104,24 @@ public class ActionHelper : MonoBehaviour
 
     public void PutObjectInFloorHotSpot()
     {
-        ObjectHolder objectHolderReference = ((ObjectHolder)ObjectInHand.GetComponent<ObjectHolder>());
         if (ObjectInHand.name == "TeddyBear")
         {
             if (RoomWithPlayer.Equals(Room.Corridor))
             {
                 RunPlayerFeedback();
             }
-            Debug.LogFormat("Dropping object {0} in T statement", objectHolderReference.name);
+            Debug.LogFormat("Dropping object {0} in T statement", ObjectInHand.name);
         }
         else if (ObjectInHand.name == "Ketchup")
         {
-            RunLastPlayerFeedback();
-            IsKetchupInPosition = true;
             KetchupHotspot.SetActive(false);
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
-            Debug.LogFormat("Dropping object {0} in K statement", objectHolderReference.name);
+            Debug.LogFormat("Dropping object {0} in K statement", ObjectInHand.name);
+        }
+        else if (ObjectInHand.name == "RCcar")
+        {
+            RcCarHotspot.SetActive(false);
+            Debug.LogFormat("Dropping object {0} in K statement", ObjectInHand.name);
         }
     }
 
@@ -127,15 +151,5 @@ public class ActionHelper : MonoBehaviour
     {
         KickStarter.stateHandler.gameState = GameState.Normal;
         LevelZeroCutscene.Interact();
-    }
-
-	private void RunPlayerFeedback()
-	{
-		ObjectPlacingFeedbackCutscene.Interact ();
-	}
-
-    private void RunLastPlayerFeedback()
-    {
-        ObjectPlacingLastFeedbackCutscene.Interact();
     }
 }
