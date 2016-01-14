@@ -17,9 +17,11 @@ Coming soon
 
 <div id='download'/>
 ### Download
+Latest version: <a href="https://github.com/mcbodge/eidolon/releases/tag/v0.3.6-alpha"><b>0.3.6</b></a>
+
 You can click on the release button above, or just download one of these zip files.
-* <a href="https://github.com/mcbodge/eidolon/releases/download/prototype/Windows-stable.zip">Windows</a>
-* <a href="https://github.com/mcbodge/eidolon/releases/download/prototype/OSX-stable.zip">OSX</a>
+* <a href="https://github.com/mcbodge/eidolon/releases/download/v0.3.6-alpha/Windows-stable.7z">Windows</a>
+* <a href="https://github.com/mcbodge/eidolon/releases/download/v0.3.6-alpha/OSX-stable.7z">OSX</a>
 
 Once downloaded, extract all the contents where you want and double click Eidolon.exe (Win) or Eidolon.app (OSX)
 
