@@ -86,6 +86,5 @@ public class ObjectInHandDetection : MonoBehaviour
     public void SetCurrentRoom(Room room)
     {
         CurrentRoom = room;
-        Debug.Log(room);
     }
 }

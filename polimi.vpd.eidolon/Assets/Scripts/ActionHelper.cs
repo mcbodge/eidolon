@@ -38,10 +38,7 @@ public class ActionHelper : MonoBehaviour
 
     public ActionHelper()
     {
-        if (actionHelperReference == null)
-        {
-            actionHelperReference = this;
-        }
+        actionHelperReference = this;
     }
 
     public static ActionHelper GetManager()
