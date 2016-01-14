@@ -30,6 +30,7 @@ public class ActionHelper : MonoBehaviour
     public bool HasObjectInHand;
     public Cutscene LevelZeroCutscene;
 	public Cutscene ObjectPlacingFeedbackCutscene;
+    public Cutscene ObjectPlacingLastFeedbackCutscene;
     public bool IsKetchupInPosition;
 
     private static ActionHelper actionHelperReference;
@@ -93,6 +94,7 @@ public class ActionHelper : MonoBehaviour
         }
         else if (ObjectInHand.name == "Ketchup")
         {
+            RunLastPlayerFeedback();
             IsKetchupInPosition = true;
             KetchupHotspot.SetActive(false);
             TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
@@ -132,4 +134,9 @@ public class ActionHelper : MonoBehaviour
 	{
 		ObjectPlacingFeedbackCutscene.Interact ();
 	}
+
+    private void RunLastPlayerFeedback()
+    {
+        ObjectPlacingLastFeedbackCutscene.Interact();
+    }
 }
