@@ -25,9 +25,10 @@ public class BlurControl : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Equals("Eidolon"))
+        GameObject source = other.gameObject;
+        if (source.name.Equals("Eidolon"))
         {
-            //multiplyingFactor = Vector3.Distance(source.transform.position, targetPosition);
+            multiplyingFactor = 10f / Vector3.Distance(source.transform.position, targetPosition);
             MainCamera.GetComponent<BlurOptimized>().enabled = true;
         }
     }
@@ -37,8 +38,7 @@ public class BlurControl : MonoBehaviour
         GameObject source = other.gameObject;
         if (source.name.Equals("Eidolon"))
         {
-            var distance = Vector3.Distance(source.transform.position, targetPosition);
-            //MainCamera.GetComponent<BlurOptimized>().blurSize = true;
+            MainCamera.GetComponent<BlurOptimized>().blurSize = 10 - multiplyingFactor * Vector3.Distance(source.transform.position, targetPosition);
         }
     }
 
