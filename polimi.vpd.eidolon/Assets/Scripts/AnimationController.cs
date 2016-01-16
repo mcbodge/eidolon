@@ -25,6 +25,11 @@ public class AnimationController : MonoBehaviour {
         animator.SetInteger("Anim", 3);
     }
 
+    public void StandStill()
+    {
+        animator.SetInteger("Anim", 4);
+    }
+
     public void StopAnimation()
     {
         animator.SetInteger("Anim", 0);

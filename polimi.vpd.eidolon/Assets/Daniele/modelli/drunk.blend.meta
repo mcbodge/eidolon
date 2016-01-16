@@ -502,6 +502,7 @@ ModelImporter:
     7400006: Stand_up
     7400008: take-beer-from_fridge
     7400010: walk
+    7400012: stand
     9500000: //RootNode
     13700000: drunk-highpoly
   materials:
@@ -2375,6 +2376,316 @@ ModelImporter:
       - path: ribs_shape_002
         weight: 1
       - path: seat
+        weight: 1
+      - path: shoulder_shape_L_000
+        weight: 1
+      - path: shoulder_shape_L_001
+        weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
+      - path: shoulder_shape_R_000
+        weight: 1
+      - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
+        weight: 1
+      - path: spine_shape_000
+        weight: 1
+      - path: spine_shape_001
+        weight: 1
+      - path: spine_shape_002
+        weight: 1
+      - path: toe_shape_000
+        weight: 1
+      - path: toe_shape_001
+        weight: 1
+      - path: toe_shape_002
+        weight: 1
+      - path: upper_arm_FK_shape_L_000
+        weight: 1
+      - path: upper_arm_FK_shape_L_001
+        weight: 1
+      - path: upper_arm_FK_shape_L_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: stand
+      takeName: stand
+      firstFrame: 0
+      lastFrame: 71
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: drunk-highpoly
+        weight: 1
+      - path: drunk-rig
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/pole_target_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_back_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_back_L/roll_front_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_back_L/roll_front_L/foot_IK_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_main_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/pole_target_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_back_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_back_R/roll_front_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_back_R/roll_front_R/foot_IK_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_main_R
+        weight: 1
+      - path: drunk-rig/hips_main
+        weight: 1
+      - path: drunk-rig/hips_main/hips
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/neck
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/neck/head
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/finger_index_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/finger_index_01_L/finger_index_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/finger_index_01_L/finger_index_02_L/finger_index_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L/thumb_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L/thumb_02_L/thumb_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/finger_middle_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/finger_middle_01_L/finger_middle_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/finger_middle_01_L/finger_middle_02_L/finger_middle_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/finger_ring_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/finger_ring_01_L/finger_ring_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/finger_ring_01_L/finger_ring_02_L/finger_ring_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/finger_pinky_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/finger_pinky_01_L/finger_pinky_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/finger_pinky_01_L/finger_pinky_02_L/finger_pinky_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/finger_index_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/finger_index_01_R/finger_index_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/finger_index_01_R/finger_index_02_R/finger_index_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/thumb_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/thumb_01_R/thumb_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/thumb_01_R/thumb_02_R/thumb_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R/finger_middle_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R/finger_middle_01_R/finger_middle_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R/finger_middle_01_R/finger_middle_02_R/finger_middle_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R/finger_ring_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R/finger_ring_01_R/finger_ring_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R/finger_ring_01_R/finger_ring_02_R/finger_ring_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R/finger_pinky_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R/finger_pinky_01_R/finger_pinky_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R/finger_pinky_01_R/finger_pinky_02_R/finger_pinky_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L/shin_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L/shin_L/foot_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L/shin_L/foot_L/toe_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R/shin_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R/shin_R/foot_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R/shin_R/foot_R/toe_R
+        weight: 1
+      - path: finger_FK_shape_000
+        weight: 1
+      - path: finger_FK_shape_001
+        weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
+      - path: finger_main_shape_000
+        weight: 1
+      - path: finger_main_shape_001
+        weight: 1
+      - path: finger_main_shape_002
+        weight: 1
+      - path: finger_main_shape_R_000
+        weight: 1
+      - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
+        weight: 1
+      - path: foot_IK_shape_L_000
+        weight: 1
+      - path: foot_IK_shape_L_001
+        weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
+      - path: foot_IK_shape_R_000
+        weight: 1
+      - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
+        weight: 1
+      - path: foot_roll_shape_000
+        weight: 1
+      - path: foot_roll_shape_001
+        weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
+      - path: forearm_FK_shape_L_000
+        weight: 1
+      - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
+        weight: 1
+      - path: hand_shape_L_000
+        weight: 1
+      - path: hand_shape_L_001
+        weight: 1
+      - path: hand_shape_L_002
+        weight: 1
+      - path: hand_shape_R_000
+        weight: 1
+      - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
+        weight: 1
+      - path: head_shape_000
+        weight: 1
+      - path: head_shape_001
+        weight: 1
+      - path: head_shape_002
+        weight: 1
+      - path: hips_shape_000
+        weight: 1
+      - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
+        weight: 1
+      - path: neck_shape_000
+        weight: 1
+      - path: neck_shape_001
+        weight: 1
+      - path: neck_shape_002
+        weight: 1
+      - path: palm_shape_L_000
+        weight: 1
+      - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
+        weight: 1
+      - path: palm_shape_R_000
+        weight: 1
+      - path: palm_shape_R_001
+        weight: 1
+      - path: palm_shape_R_002
+        weight: 1
+      - path: pole_shape_L_000
+        weight: 1
+      - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
+        weight: 1
+      - path: pole_shape_R_000
+        weight: 1
+      - path: pole_shape_R_001
+        weight: 1
+      - path: pole_shape_R_002
+        weight: 1
+      - path: ribs_shape_000
+        weight: 1
+      - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
         weight: 1
       - path: shoulder_shape_L_000
         weight: 1
