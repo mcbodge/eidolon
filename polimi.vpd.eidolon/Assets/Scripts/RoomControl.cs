@@ -28,5 +28,12 @@ public enum Room : int
     Room104 = 104,
     Room105 = 105,
     Room106 = 106,
-    Corridor = 0
+    Corridor = 0,
+    LVL1_MaryRoom = 201,
+    LVL1_ParentsRoom = 202,
+    LVL1_RelaxRoom = 203,
+    LVL1_WalkInCloset = 204,
+    LVL1_Studio = 205,
+    LVL1_Kitchen = 206,
+    LVL1_DiningRoom = 207
 }
