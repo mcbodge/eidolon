@@ -16,7 +16,7 @@ public class ObjectDropTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
         if (isKetchupReady && isRcCarReady &&
-                   other.name.Equals("104Peter")) {
+                   other.name.Equals("Peter")) {
             actionHelperRef.RunOutroLevelZero();
         }
 	}
