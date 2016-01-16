@@ -10,23 +10,18 @@ public class AnimationController : MonoBehaviour {
         animator = GetComponent<Animator>();
 	}
 
-    public void StartColdAnimation()
+    public void StartWalk()
     {
-        animator.SetInteger("AnimControl", 1);
+        animator.SetInteger("Anim", 1);
     }
 
-    public void StartShowerAnimation()
+    public void PickUpDress ()
     {
-        animator.SetInteger("AnimControl", 2);
-    }
-
-    public void StartBeerAnimation()
-    {
-        animator.SetInteger("AnimControl", 3);
+        animator.SetInteger("Anim", 2);
     }
 
     public void StopAnimation()
     {
-        animator.SetInteger("AnimControl", 0);
+        animator.SetInteger("Anim", 0);
     }
 }

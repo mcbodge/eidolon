@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fe004c86bc6b2414fbfedad2cfcc30f0
-timeCreated: 1452098044
+guid: 1775fa5da0ee8354dac3d5d11047d353
+timeCreated: 1452964007
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -10,335 +10,423 @@ ModelImporter:
     100004: drunk-rig
     100006: finger_FK_shape_000
     100008: finger_FK_shape_001
-    100010: finger_index_01_L
-    100012: finger_index_01_R
-    100014: finger_index_02_L
-    100016: finger_index_02_R
-    100018: finger_index_03_L
-    100020: finger_index_03_R
-    100022: finger_main_shape_000
-    100024: finger_main_shape_001
-    100026: finger_main_shape_R_000
-    100028: finger_main_shape_R_001
-    100030: finger_middle_01_L
-    100032: finger_middle_01_R
-    100034: finger_middle_02_L
-    100036: finger_middle_02_R
-    100038: finger_middle_03_L
-    100040: finger_middle_03_R
-    100042: finger_pinky_01_L
-    100044: finger_pinky_01_R
-    100046: finger_pinky_02_L
-    100048: finger_pinky_02_R
-    100050: finger_pinky_03_L
-    100052: finger_pinky_03_R
-    100054: finger_ring_01_L
-    100056: finger_ring_01_R
-    100058: finger_ring_02_L
-    100060: finger_ring_02_R
-    100062: finger_ring_03_L
-    100064: finger_ring_03_R
-    100066: food
-    100068: foot_IK_L
-    100070: foot_IK_main_L
-    100072: foot_IK_main_R
-    100074: foot_IK_R
-    100076: foot_IK_shape_L_000
-    100078: foot_IK_shape_L_001
-    100080: foot_IK_shape_R_000
-    100082: foot_IK_shape_R_001
-    100084: foot_L
-    100086: foot_R
-    100088: foot_roll_shape_000
-    100090: foot_roll_shape_001
-    100092: forearm_FK_shape_L_000
-    100094: forearm_FK_shape_L_001
-    100096: forearm_L
-    100098: forearm_R
-    100100: hand_L
-    100102: hand_R
-    100104: hand_shape_L_000
-    100106: hand_shape_L_001
-    100108: hand_shape_R_000
-    100110: hand_shape_R_001
-    100112: head
-    100114: head_shape_000
-    100116: head_shape_001
-    100118: hips
-    100120: hips_main
-    100122: hips_shape_000
-    100124: hips_shape_001
-    100126: neck
-    100128: neck_shape_000
-    100130: neck_shape_001
-    100132: palm_01_L
-    100134: palm_01_R
-    100136: palm_02_L
-    100138: palm_02_R
-    100140: palm_03_L
-    100142: palm_03_R
-    100144: palm_04_L
-    100146: palm_04_R
-    100148: palm_shape_L_000
-    100150: palm_shape_L_001
-    100152: palm_shape_R_000
-    100154: palm_shape_R_001
-    100156: pole_shape_L_000
-    100158: pole_shape_L_001
-    100160: pole_shape_R_000
-    100162: pole_shape_R_001
-    100164: pole_target_L
-    100166: pole_target_R
-    100168: ribs
-    100170: ribs_shape_000
-    100172: ribs_shape_001
-    100174: roll_back_L
-    100176: roll_back_R
-    100178: roll_front_L
-    100180: roll_front_R
-    100182: roll_main_L
-    100184: roll_main_R
-    100186: seat
-    100188: shin_L
-    100190: shin_R
-    100192: shoulder_L
-    100194: shoulder_R
-    100196: shoulder_shape_L_000
-    100198: shoulder_shape_L_001
-    100200: shoulder_shape_R_000
-    100202: shoulder_shape_R_001
-    100204: spine
-    100206: spine_shape_000
-    100208: spine_shape_001
-    100210: thigh_L
-    100212: thigh_R
-    100214: thumb_01_L
-    100216: thumb_01_R
-    100218: thumb_02_L
-    100220: thumb_02_R
-    100222: thumb_03_L
-    100224: thumb_03_R
-    100226: toe_L
-    100228: toe_R
-    100230: toe_shape_000
-    100232: toe_shape_001
-    100234: upper_arm_FK_shape_L_000
-    100236: upper_arm_FK_shape_L_001
-    100238: upper_arm_L
-    100240: upper_arm_R
+    100010: finger_FK_shape_002
+    100012: finger_index_01_L
+    100014: finger_index_01_R
+    100016: finger_index_02_L
+    100018: finger_index_02_R
+    100020: finger_index_03_L
+    100022: finger_index_03_R
+    100024: finger_main_shape_000
+    100026: finger_main_shape_001
+    100028: finger_main_shape_002
+    100030: finger_main_shape_R_000
+    100032: finger_main_shape_R_001
+    100034: finger_main_shape_R_002
+    100036: finger_middle_01_L
+    100038: finger_middle_01_R
+    100040: finger_middle_02_L
+    100042: finger_middle_02_R
+    100044: finger_middle_03_L
+    100046: finger_middle_03_R
+    100048: finger_pinky_01_L
+    100050: finger_pinky_01_R
+    100052: finger_pinky_02_L
+    100054: finger_pinky_02_R
+    100056: finger_pinky_03_L
+    100058: finger_pinky_03_R
+    100060: finger_ring_01_L
+    100062: finger_ring_01_R
+    100064: finger_ring_02_L
+    100066: finger_ring_02_R
+    100068: finger_ring_03_L
+    100070: finger_ring_03_R
+    100072: food
+    100074: foot_IK_L
+    100076: foot_IK_main_L
+    100078: foot_IK_main_R
+    100080: foot_IK_R
+    100082: foot_IK_shape_L_000
+    100084: foot_IK_shape_L_001
+    100086: foot_IK_shape_L_002
+    100088: foot_IK_shape_R_000
+    100090: foot_IK_shape_R_001
+    100092: foot_IK_shape_R_002
+    100094: foot_L
+    100096: foot_R
+    100098: foot_roll_shape_000
+    100100: foot_roll_shape_001
+    100102: foot_roll_shape_002
+    100104: forearm_FK_shape_L_000
+    100106: forearm_FK_shape_L_001
+    100108: forearm_FK_shape_L_002
+    100110: forearm_L
+    100112: forearm_R
+    100114: hand_L
+    100116: hand_R
+    100118: hand_shape_L_000
+    100120: hand_shape_L_001
+    100122: hand_shape_L_002
+    100124: hand_shape_R_000
+    100126: hand_shape_R_001
+    100128: hand_shape_R_002
+    100130: head
+    100132: head_shape_000
+    100134: head_shape_001
+    100136: head_shape_002
+    100138: hips
+    100140: hips_main
+    100142: hips_shape_000
+    100144: hips_shape_001
+    100146: hips_shape_002
+    100148: neck
+    100150: neck_shape_000
+    100152: neck_shape_001
+    100154: neck_shape_002
+    100156: palm_01_L
+    100158: palm_01_R
+    100160: palm_02_L
+    100162: palm_02_R
+    100164: palm_03_L
+    100166: palm_03_R
+    100168: palm_04_L
+    100170: palm_04_R
+    100172: palm_shape_L_000
+    100174: palm_shape_L_001
+    100176: palm_shape_L_002
+    100178: palm_shape_R_000
+    100180: palm_shape_R_001
+    100182: palm_shape_R_002
+    100184: pole_shape_L_000
+    100186: pole_shape_L_001
+    100188: pole_shape_L_002
+    100190: pole_shape_R_000
+    100192: pole_shape_R_001
+    100194: pole_shape_R_002
+    100196: pole_target_L
+    100198: pole_target_R
+    100200: ribs
+    100202: ribs_shape_000
+    100204: ribs_shape_001
+    100206: ribs_shape_002
+    100208: roll_back_L
+    100210: roll_back_R
+    100212: roll_front_L
+    100214: roll_front_R
+    100216: roll_main_L
+    100218: roll_main_R
+    100220: seat
+    100222: shin_L
+    100224: shin_R
+    100226: shoulder_L
+    100228: shoulder_R
+    100230: shoulder_shape_L_000
+    100232: shoulder_shape_L_001
+    100234: shoulder_shape_L_002
+    100236: shoulder_shape_R_000
+    100238: shoulder_shape_R_001
+    100240: shoulder_shape_R_002
+    100242: spine
+    100244: spine_shape_000
+    100246: spine_shape_001
+    100248: spine_shape_002
+    100250: thigh_L
+    100252: thigh_R
+    100254: thumb_01_L
+    100256: thumb_01_R
+    100258: thumb_02_L
+    100260: thumb_02_R
+    100262: thumb_03_L
+    100264: thumb_03_R
+    100266: toe_L
+    100268: toe_R
+    100270: toe_shape_000
+    100272: toe_shape_001
+    100274: toe_shape_002
+    100276: upper_arm_FK_shape_L_000
+    100278: upper_arm_FK_shape_L_001
+    100280: upper_arm_FK_shape_L_002
+    100282: upper_arm_L
+    100284: upper_arm_R
     400000: //RootNode
     400002: drunk-highpoly
     400004: drunk-rig
     400006: finger_FK_shape_000
     400008: finger_FK_shape_001
-    400010: finger_index_01_L
-    400012: finger_index_01_R
-    400014: finger_index_02_L
-    400016: finger_index_02_R
-    400018: finger_index_03_L
-    400020: finger_index_03_R
-    400022: finger_main_shape_000
-    400024: finger_main_shape_001
-    400026: finger_main_shape_R_000
-    400028: finger_main_shape_R_001
-    400030: finger_middle_01_L
-    400032: finger_middle_01_R
-    400034: finger_middle_02_L
-    400036: finger_middle_02_R
-    400038: finger_middle_03_L
-    400040: finger_middle_03_R
-    400042: finger_pinky_01_L
-    400044: finger_pinky_01_R
-    400046: finger_pinky_02_L
-    400048: finger_pinky_02_R
-    400050: finger_pinky_03_L
-    400052: finger_pinky_03_R
-    400054: finger_ring_01_L
-    400056: finger_ring_01_R
-    400058: finger_ring_02_L
-    400060: finger_ring_02_R
-    400062: finger_ring_03_L
-    400064: finger_ring_03_R
-    400066: food
-    400068: foot_IK_L
-    400070: foot_IK_main_L
-    400072: foot_IK_main_R
-    400074: foot_IK_R
-    400076: foot_IK_shape_L_000
-    400078: foot_IK_shape_L_001
-    400080: foot_IK_shape_R_000
-    400082: foot_IK_shape_R_001
-    400084: foot_L
-    400086: foot_R
-    400088: foot_roll_shape_000
-    400090: foot_roll_shape_001
-    400092: forearm_FK_shape_L_000
-    400094: forearm_FK_shape_L_001
-    400096: forearm_L
-    400098: forearm_R
-    400100: hand_L
-    400102: hand_R
-    400104: hand_shape_L_000
-    400106: hand_shape_L_001
-    400108: hand_shape_R_000
-    400110: hand_shape_R_001
-    400112: head
-    400114: head_shape_000
-    400116: head_shape_001
-    400118: hips
-    400120: hips_main
-    400122: hips_shape_000
-    400124: hips_shape_001
-    400126: neck
-    400128: neck_shape_000
-    400130: neck_shape_001
-    400132: palm_01_L
-    400134: palm_01_R
-    400136: palm_02_L
-    400138: palm_02_R
-    400140: palm_03_L
-    400142: palm_03_R
-    400144: palm_04_L
-    400146: palm_04_R
-    400148: palm_shape_L_000
-    400150: palm_shape_L_001
-    400152: palm_shape_R_000
-    400154: palm_shape_R_001
-    400156: pole_shape_L_000
-    400158: pole_shape_L_001
-    400160: pole_shape_R_000
-    400162: pole_shape_R_001
-    400164: pole_target_L
-    400166: pole_target_R
-    400168: ribs
-    400170: ribs_shape_000
-    400172: ribs_shape_001
-    400174: roll_back_L
-    400176: roll_back_R
-    400178: roll_front_L
-    400180: roll_front_R
-    400182: roll_main_L
-    400184: roll_main_R
-    400186: seat
-    400188: shin_L
-    400190: shin_R
-    400192: shoulder_L
-    400194: shoulder_R
-    400196: shoulder_shape_L_000
-    400198: shoulder_shape_L_001
-    400200: shoulder_shape_R_000
-    400202: shoulder_shape_R_001
-    400204: spine
-    400206: spine_shape_000
-    400208: spine_shape_001
-    400210: thigh_L
-    400212: thigh_R
-    400214: thumb_01_L
-    400216: thumb_01_R
-    400218: thumb_02_L
-    400220: thumb_02_R
-    400222: thumb_03_L
-    400224: thumb_03_R
-    400226: toe_L
-    400228: toe_R
-    400230: toe_shape_000
-    400232: toe_shape_001
-    400234: upper_arm_FK_shape_L_000
-    400236: upper_arm_FK_shape_L_001
-    400238: upper_arm_L
-    400240: upper_arm_R
+    400010: finger_FK_shape_002
+    400012: finger_index_01_L
+    400014: finger_index_01_R
+    400016: finger_index_02_L
+    400018: finger_index_02_R
+    400020: finger_index_03_L
+    400022: finger_index_03_R
+    400024: finger_main_shape_000
+    400026: finger_main_shape_001
+    400028: finger_main_shape_002
+    400030: finger_main_shape_R_000
+    400032: finger_main_shape_R_001
+    400034: finger_main_shape_R_002
+    400036: finger_middle_01_L
+    400038: finger_middle_01_R
+    400040: finger_middle_02_L
+    400042: finger_middle_02_R
+    400044: finger_middle_03_L
+    400046: finger_middle_03_R
+    400048: finger_pinky_01_L
+    400050: finger_pinky_01_R
+    400052: finger_pinky_02_L
+    400054: finger_pinky_02_R
+    400056: finger_pinky_03_L
+    400058: finger_pinky_03_R
+    400060: finger_ring_01_L
+    400062: finger_ring_01_R
+    400064: finger_ring_02_L
+    400066: finger_ring_02_R
+    400068: finger_ring_03_L
+    400070: finger_ring_03_R
+    400072: food
+    400074: foot_IK_L
+    400076: foot_IK_main_L
+    400078: foot_IK_main_R
+    400080: foot_IK_R
+    400082: foot_IK_shape_L_000
+    400084: foot_IK_shape_L_001
+    400086: foot_IK_shape_L_002
+    400088: foot_IK_shape_R_000
+    400090: foot_IK_shape_R_001
+    400092: foot_IK_shape_R_002
+    400094: foot_L
+    400096: foot_R
+    400098: foot_roll_shape_000
+    400100: foot_roll_shape_001
+    400102: foot_roll_shape_002
+    400104: forearm_FK_shape_L_000
+    400106: forearm_FK_shape_L_001
+    400108: forearm_FK_shape_L_002
+    400110: forearm_L
+    400112: forearm_R
+    400114: hand_L
+    400116: hand_R
+    400118: hand_shape_L_000
+    400120: hand_shape_L_001
+    400122: hand_shape_L_002
+    400124: hand_shape_R_000
+    400126: hand_shape_R_001
+    400128: hand_shape_R_002
+    400130: head
+    400132: head_shape_000
+    400134: head_shape_001
+    400136: head_shape_002
+    400138: hips
+    400140: hips_main
+    400142: hips_shape_000
+    400144: hips_shape_001
+    400146: hips_shape_002
+    400148: neck
+    400150: neck_shape_000
+    400152: neck_shape_001
+    400154: neck_shape_002
+    400156: palm_01_L
+    400158: palm_01_R
+    400160: palm_02_L
+    400162: palm_02_R
+    400164: palm_03_L
+    400166: palm_03_R
+    400168: palm_04_L
+    400170: palm_04_R
+    400172: palm_shape_L_000
+    400174: palm_shape_L_001
+    400176: palm_shape_L_002
+    400178: palm_shape_R_000
+    400180: palm_shape_R_001
+    400182: palm_shape_R_002
+    400184: pole_shape_L_000
+    400186: pole_shape_L_001
+    400188: pole_shape_L_002
+    400190: pole_shape_R_000
+    400192: pole_shape_R_001
+    400194: pole_shape_R_002
+    400196: pole_target_L
+    400198: pole_target_R
+    400200: ribs
+    400202: ribs_shape_000
+    400204: ribs_shape_001
+    400206: ribs_shape_002
+    400208: roll_back_L
+    400210: roll_back_R
+    400212: roll_front_L
+    400214: roll_front_R
+    400216: roll_main_L
+    400218: roll_main_R
+    400220: seat
+    400222: shin_L
+    400224: shin_R
+    400226: shoulder_L
+    400228: shoulder_R
+    400230: shoulder_shape_L_000
+    400232: shoulder_shape_L_001
+    400234: shoulder_shape_L_002
+    400236: shoulder_shape_R_000
+    400238: shoulder_shape_R_001
+    400240: shoulder_shape_R_002
+    400242: spine
+    400244: spine_shape_000
+    400246: spine_shape_001
+    400248: spine_shape_002
+    400250: thigh_L
+    400252: thigh_R
+    400254: thumb_01_L
+    400256: thumb_01_R
+    400258: thumb_02_L
+    400260: thumb_02_R
+    400262: thumb_03_L
+    400264: thumb_03_R
+    400266: toe_L
+    400268: toe_R
+    400270: toe_shape_000
+    400272: toe_shape_001
+    400274: toe_shape_002
+    400276: upper_arm_FK_shape_L_000
+    400278: upper_arm_FK_shape_L_001
+    400280: upper_arm_FK_shape_L_002
+    400282: upper_arm_L
+    400284: upper_arm_R
     2300000: finger_FK_shape_000
     2300002: finger_FK_shape_001
-    2300004: finger_main_shape_000
-    2300006: finger_main_shape_001
-    2300008: finger_main_shape_R_000
-    2300010: finger_main_shape_R_001
-    2300012: food
-    2300014: foot_IK_shape_L_000
-    2300016: foot_IK_shape_L_001
-    2300018: foot_IK_shape_R_000
-    2300020: foot_IK_shape_R_001
-    2300022: foot_roll_shape_000
-    2300024: foot_roll_shape_001
-    2300026: forearm_FK_shape_L_000
-    2300028: forearm_FK_shape_L_001
-    2300030: hand_shape_L_000
-    2300032: hand_shape_L_001
-    2300034: hand_shape_R_000
-    2300036: hand_shape_R_001
-    2300038: head_shape_000
-    2300040: head_shape_001
-    2300042: hips_shape_000
-    2300044: hips_shape_001
-    2300046: neck_shape_000
-    2300048: neck_shape_001
-    2300050: palm_shape_L_000
-    2300052: palm_shape_L_001
-    2300054: palm_shape_R_000
-    2300056: palm_shape_R_001
-    2300058: pole_shape_L_000
-    2300060: pole_shape_L_001
-    2300062: pole_shape_R_000
-    2300064: pole_shape_R_001
-    2300066: ribs_shape_000
-    2300068: ribs_shape_001
-    2300070: seat
-    2300072: shoulder_shape_L_000
-    2300074: shoulder_shape_L_001
-    2300076: shoulder_shape_R_000
-    2300078: shoulder_shape_R_001
-    2300080: spine_shape_000
-    2300082: spine_shape_001
-    2300084: toe_shape_000
-    2300086: toe_shape_001
-    2300088: upper_arm_FK_shape_L_000
-    2300090: upper_arm_FK_shape_L_001
+    2300004: finger_FK_shape_002
+    2300006: finger_main_shape_000
+    2300008: finger_main_shape_001
+    2300010: finger_main_shape_002
+    2300012: finger_main_shape_R_000
+    2300014: finger_main_shape_R_001
+    2300016: finger_main_shape_R_002
+    2300018: food
+    2300020: foot_IK_shape_L_000
+    2300022: foot_IK_shape_L_001
+    2300024: foot_IK_shape_L_002
+    2300026: foot_IK_shape_R_000
+    2300028: foot_IK_shape_R_001
+    2300030: foot_IK_shape_R_002
+    2300032: foot_roll_shape_000
+    2300034: foot_roll_shape_001
+    2300036: foot_roll_shape_002
+    2300038: forearm_FK_shape_L_000
+    2300040: forearm_FK_shape_L_001
+    2300042: forearm_FK_shape_L_002
+    2300044: hand_shape_L_000
+    2300046: hand_shape_L_001
+    2300048: hand_shape_L_002
+    2300050: hand_shape_R_000
+    2300052: hand_shape_R_001
+    2300054: hand_shape_R_002
+    2300056: head_shape_000
+    2300058: head_shape_001
+    2300060: head_shape_002
+    2300062: hips_shape_000
+    2300064: hips_shape_001
+    2300066: hips_shape_002
+    2300068: neck_shape_000
+    2300070: neck_shape_001
+    2300072: neck_shape_002
+    2300074: palm_shape_L_000
+    2300076: palm_shape_L_001
+    2300078: palm_shape_L_002
+    2300080: palm_shape_R_000
+    2300082: palm_shape_R_001
+    2300084: palm_shape_R_002
+    2300086: pole_shape_L_000
+    2300088: pole_shape_L_001
+    2300090: pole_shape_L_002
+    2300092: pole_shape_R_000
+    2300094: pole_shape_R_001
+    2300096: pole_shape_R_002
+    2300098: ribs_shape_000
+    2300100: ribs_shape_001
+    2300102: ribs_shape_002
+    2300104: seat
+    2300106: shoulder_shape_L_000
+    2300108: shoulder_shape_L_001
+    2300110: shoulder_shape_L_002
+    2300112: shoulder_shape_R_000
+    2300114: shoulder_shape_R_001
+    2300116: shoulder_shape_R_002
+    2300118: spine_shape_000
+    2300120: spine_shape_001
+    2300122: spine_shape_002
+    2300124: toe_shape_000
+    2300126: toe_shape_001
+    2300128: toe_shape_002
+    2300130: upper_arm_FK_shape_L_000
+    2300132: upper_arm_FK_shape_L_001
+    2300134: upper_arm_FK_shape_L_002
     3300000: finger_FK_shape_000
     3300002: finger_FK_shape_001
-    3300004: finger_main_shape_000
-    3300006: finger_main_shape_001
-    3300008: finger_main_shape_R_000
-    3300010: finger_main_shape_R_001
-    3300012: food
-    3300014: foot_IK_shape_L_000
-    3300016: foot_IK_shape_L_001
-    3300018: foot_IK_shape_R_000
-    3300020: foot_IK_shape_R_001
-    3300022: foot_roll_shape_000
-    3300024: foot_roll_shape_001
-    3300026: forearm_FK_shape_L_000
-    3300028: forearm_FK_shape_L_001
-    3300030: hand_shape_L_000
-    3300032: hand_shape_L_001
-    3300034: hand_shape_R_000
-    3300036: hand_shape_R_001
-    3300038: head_shape_000
-    3300040: head_shape_001
-    3300042: hips_shape_000
-    3300044: hips_shape_001
-    3300046: neck_shape_000
-    3300048: neck_shape_001
-    3300050: palm_shape_L_000
-    3300052: palm_shape_L_001
-    3300054: palm_shape_R_000
-    3300056: palm_shape_R_001
-    3300058: pole_shape_L_000
-    3300060: pole_shape_L_001
-    3300062: pole_shape_R_000
-    3300064: pole_shape_R_001
-    3300066: ribs_shape_000
-    3300068: ribs_shape_001
-    3300070: seat
-    3300072: shoulder_shape_L_000
-    3300074: shoulder_shape_L_001
-    3300076: shoulder_shape_R_000
-    3300078: shoulder_shape_R_001
-    3300080: spine_shape_000
-    3300082: spine_shape_001
-    3300084: toe_shape_000
-    3300086: toe_shape_001
-    3300088: upper_arm_FK_shape_L_000
-    3300090: upper_arm_FK_shape_L_001
+    3300004: finger_FK_shape_002
+    3300006: finger_main_shape_000
+    3300008: finger_main_shape_001
+    3300010: finger_main_shape_002
+    3300012: finger_main_shape_R_000
+    3300014: finger_main_shape_R_001
+    3300016: finger_main_shape_R_002
+    3300018: food
+    3300020: foot_IK_shape_L_000
+    3300022: foot_IK_shape_L_001
+    3300024: foot_IK_shape_L_002
+    3300026: foot_IK_shape_R_000
+    3300028: foot_IK_shape_R_001
+    3300030: foot_IK_shape_R_002
+    3300032: foot_roll_shape_000
+    3300034: foot_roll_shape_001
+    3300036: foot_roll_shape_002
+    3300038: forearm_FK_shape_L_000
+    3300040: forearm_FK_shape_L_001
+    3300042: forearm_FK_shape_L_002
+    3300044: hand_shape_L_000
+    3300046: hand_shape_L_001
+    3300048: hand_shape_L_002
+    3300050: hand_shape_R_000
+    3300052: hand_shape_R_001
+    3300054: hand_shape_R_002
+    3300056: head_shape_000
+    3300058: head_shape_001
+    3300060: head_shape_002
+    3300062: hips_shape_000
+    3300064: hips_shape_001
+    3300066: hips_shape_002
+    3300068: neck_shape_000
+    3300070: neck_shape_001
+    3300072: neck_shape_002
+    3300074: palm_shape_L_000
+    3300076: palm_shape_L_001
+    3300078: palm_shape_L_002
+    3300080: palm_shape_R_000
+    3300082: palm_shape_R_001
+    3300084: palm_shape_R_002
+    3300086: pole_shape_L_000
+    3300088: pole_shape_L_001
+    3300090: pole_shape_L_002
+    3300092: pole_shape_R_000
+    3300094: pole_shape_R_001
+    3300096: pole_shape_R_002
+    3300098: ribs_shape_000
+    3300100: ribs_shape_001
+    3300102: ribs_shape_002
+    3300104: seat
+    3300106: shoulder_shape_L_000
+    3300108: shoulder_shape_L_001
+    3300110: shoulder_shape_L_002
+    3300112: shoulder_shape_R_000
+    3300114: shoulder_shape_R_001
+    3300116: shoulder_shape_R_002
+    3300118: spine_shape_000
+    3300120: spine_shape_001
+    3300122: spine_shape_002
+    3300124: toe_shape_000
+    3300126: toe_shape_001
+    3300128: toe_shape_002
+    3300130: upper_arm_FK_shape_L_000
+    3300132: upper_arm_FK_shape_L_001
+    3300134: upper_arm_FK_shape_L_002
     4300000: drunk-highpoly
     4300002: finger_FK_shape_000
     4300004: finger_FK_shape_001
@@ -386,15 +474,38 @@ ModelImporter:
     4300088: toe_shape_001
     4300090: upper_arm_FK_shape_L_000
     4300092: upper_arm_FK_shape_L_001
+    4300094: foot_IK_shape_L_002
+    4300096: foot_roll_shape_002
+    4300098: pole_shape_L_002
+    4300100: foot_IK_shape_R_002
+    4300102: pole_shape_R_002
+    4300104: hips_shape_002
+    4300106: spine_shape_002
+    4300108: ribs_shape_002
+    4300110: neck_shape_002
+    4300112: head_shape_002
+    4300114: shoulder_shape_L_002
+    4300116: upper_arm_FK_shape_L_002
+    4300118: forearm_FK_shape_L_002
+    4300120: hand_shape_L_002
+    4300122: finger_main_shape_002
+    4300124: finger_FK_shape_002
+    4300126: palm_shape_L_002
+    4300128: shoulder_shape_R_002
+    4300130: hand_shape_R_002
+    4300132: finger_main_shape_R_002
+    4300134: palm_shape_R_002
+    4300136: toe_shape_002
     7400000: Default Take
-    7400002: CHECK-shower
-    7400004: DRINK-beer
-    7400006: TAKE-coat
-    7400008: TAKE-other-beer
+    7400002: DRINK-beer
+    7400004: Idle
+    7400006: Stand_up
+    7400008: take-beer-from_fridge
+    7400010: walk
     9500000: //RootNode
     13700000: drunk-highpoly
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -593,13 +704,19 @@ ModelImporter:
         weight: 1
       - path: finger_FK_shape_001
         weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
       - path: finger_main_shape_000
         weight: 1
       - path: finger_main_shape_001
         weight: 1
+      - path: finger_main_shape_002
+        weight: 1
       - path: finger_main_shape_R_000
         weight: 1
       - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
         weight: 1
       - path: food
         weight: 1
@@ -607,57 +724,85 @@ ModelImporter:
         weight: 1
       - path: foot_IK_shape_L_001
         weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
       - path: foot_IK_shape_R_000
         weight: 1
       - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
         weight: 1
       - path: foot_roll_shape_000
         weight: 1
       - path: foot_roll_shape_001
         weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
       - path: forearm_FK_shape_L_000
         weight: 1
       - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
         weight: 1
       - path: hand_shape_L_000
         weight: 1
       - path: hand_shape_L_001
         weight: 1
+      - path: hand_shape_L_002
+        weight: 1
       - path: hand_shape_R_000
         weight: 1
       - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
         weight: 1
       - path: head_shape_000
         weight: 1
       - path: head_shape_001
         weight: 1
+      - path: head_shape_002
+        weight: 1
       - path: hips_shape_000
         weight: 1
       - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
         weight: 1
       - path: neck_shape_000
         weight: 1
       - path: neck_shape_001
         weight: 1
+      - path: neck_shape_002
+        weight: 1
       - path: palm_shape_L_000
         weight: 1
       - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
         weight: 1
       - path: palm_shape_R_000
         weight: 1
       - path: palm_shape_R_001
         weight: 1
+      - path: palm_shape_R_002
+        weight: 1
       - path: pole_shape_L_000
         weight: 1
       - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
         weight: 1
       - path: pole_shape_R_000
         weight: 1
       - path: pole_shape_R_001
         weight: 1
+      - path: pole_shape_R_002
+        weight: 1
       - path: ribs_shape_000
         weight: 1
       - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
         weight: 1
       - path: seat
         weight: 1
@@ -665,30 +810,40 @@ ModelImporter:
         weight: 1
       - path: shoulder_shape_L_001
         weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
       - path: shoulder_shape_R_000
         weight: 1
       - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
         weight: 1
       - path: spine_shape_000
         weight: 1
       - path: spine_shape_001
         weight: 1
+      - path: spine_shape_002
+        weight: 1
       - path: toe_shape_000
         weight: 1
       - path: toe_shape_001
+        weight: 1
+      - path: toe_shape_002
         weight: 1
       - path: upper_arm_FK_shape_L_000
         weight: 1
       - path: upper_arm_FK_shape_L_001
         weight: 1
+      - path: upper_arm_FK_shape_L_002
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: CHECK-shower
-      takeName: CHECK-shower
+      name: DRINK-beer
+      takeName: DRINK-beer
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 211
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -863,13 +1018,19 @@ ModelImporter:
         weight: 1
       - path: finger_FK_shape_001
         weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
       - path: finger_main_shape_000
         weight: 1
       - path: finger_main_shape_001
         weight: 1
+      - path: finger_main_shape_002
+        weight: 1
       - path: finger_main_shape_R_000
         weight: 1
       - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
         weight: 1
       - path: food
         weight: 1
@@ -877,57 +1038,85 @@ ModelImporter:
         weight: 1
       - path: foot_IK_shape_L_001
         weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
       - path: foot_IK_shape_R_000
         weight: 1
       - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
         weight: 1
       - path: foot_roll_shape_000
         weight: 1
       - path: foot_roll_shape_001
         weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
       - path: forearm_FK_shape_L_000
         weight: 1
       - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
         weight: 1
       - path: hand_shape_L_000
         weight: 1
       - path: hand_shape_L_001
         weight: 1
+      - path: hand_shape_L_002
+        weight: 1
       - path: hand_shape_R_000
         weight: 1
       - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
         weight: 1
       - path: head_shape_000
         weight: 1
       - path: head_shape_001
         weight: 1
+      - path: head_shape_002
+        weight: 1
       - path: hips_shape_000
         weight: 1
       - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
         weight: 1
       - path: neck_shape_000
         weight: 1
       - path: neck_shape_001
         weight: 1
+      - path: neck_shape_002
+        weight: 1
       - path: palm_shape_L_000
         weight: 1
       - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
         weight: 1
       - path: palm_shape_R_000
         weight: 1
       - path: palm_shape_R_001
         weight: 1
+      - path: palm_shape_R_002
+        weight: 1
       - path: pole_shape_L_000
         weight: 1
       - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
         weight: 1
       - path: pole_shape_R_000
         weight: 1
       - path: pole_shape_R_001
         weight: 1
+      - path: pole_shape_R_002
+        weight: 1
       - path: ribs_shape_000
         weight: 1
       - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
         weight: 1
       - path: seat
         weight: 1
@@ -935,30 +1124,40 @@ ModelImporter:
         weight: 1
       - path: shoulder_shape_L_001
         weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
       - path: shoulder_shape_R_000
         weight: 1
       - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
         weight: 1
       - path: spine_shape_000
         weight: 1
       - path: spine_shape_001
         weight: 1
+      - path: spine_shape_002
+        weight: 1
       - path: toe_shape_000
         weight: 1
       - path: toe_shape_001
+        weight: 1
+      - path: toe_shape_002
         weight: 1
       - path: upper_arm_FK_shape_L_000
         weight: 1
       - path: upper_arm_FK_shape_L_001
         weight: 1
+      - path: upper_arm_FK_shape_L_002
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: DRINK-beer
-      takeName: DRINK-beer
+      name: Idle
+      takeName: Idle
       firstFrame: 0
-      lastFrame: 211
+      lastFrame: 181
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1133,13 +1332,19 @@ ModelImporter:
         weight: 1
       - path: finger_FK_shape_001
         weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
       - path: finger_main_shape_000
         weight: 1
       - path: finger_main_shape_001
         weight: 1
+      - path: finger_main_shape_002
+        weight: 1
       - path: finger_main_shape_R_000
         weight: 1
       - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
         weight: 1
       - path: food
         weight: 1
@@ -1147,57 +1352,85 @@ ModelImporter:
         weight: 1
       - path: foot_IK_shape_L_001
         weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
       - path: foot_IK_shape_R_000
         weight: 1
       - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
         weight: 1
       - path: foot_roll_shape_000
         weight: 1
       - path: foot_roll_shape_001
         weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
       - path: forearm_FK_shape_L_000
         weight: 1
       - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
         weight: 1
       - path: hand_shape_L_000
         weight: 1
       - path: hand_shape_L_001
         weight: 1
+      - path: hand_shape_L_002
+        weight: 1
       - path: hand_shape_R_000
         weight: 1
       - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
         weight: 1
       - path: head_shape_000
         weight: 1
       - path: head_shape_001
         weight: 1
+      - path: head_shape_002
+        weight: 1
       - path: hips_shape_000
         weight: 1
       - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
         weight: 1
       - path: neck_shape_000
         weight: 1
       - path: neck_shape_001
         weight: 1
+      - path: neck_shape_002
+        weight: 1
       - path: palm_shape_L_000
         weight: 1
       - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
         weight: 1
       - path: palm_shape_R_000
         weight: 1
       - path: palm_shape_R_001
         weight: 1
+      - path: palm_shape_R_002
+        weight: 1
       - path: pole_shape_L_000
         weight: 1
       - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
         weight: 1
       - path: pole_shape_R_000
         weight: 1
       - path: pole_shape_R_001
         weight: 1
+      - path: pole_shape_R_002
+        weight: 1
       - path: ribs_shape_000
         weight: 1
       - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
         weight: 1
       - path: seat
         weight: 1
@@ -1205,30 +1438,40 @@ ModelImporter:
         weight: 1
       - path: shoulder_shape_L_001
         weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
       - path: shoulder_shape_R_000
         weight: 1
       - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
         weight: 1
       - path: spine_shape_000
         weight: 1
       - path: spine_shape_001
         weight: 1
+      - path: spine_shape_002
+        weight: 1
       - path: toe_shape_000
         weight: 1
       - path: toe_shape_001
+        weight: 1
+      - path: toe_shape_002
         weight: 1
       - path: upper_arm_FK_shape_L_000
         weight: 1
       - path: upper_arm_FK_shape_L_001
         weight: 1
+      - path: upper_arm_FK_shape_L_002
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: TAKE-coat
-      takeName: TAKE-coat
+      name: Stand_up
+      takeName: Stand_up
       firstFrame: 0
-      lastFrame: 639
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1403,13 +1646,19 @@ ModelImporter:
         weight: 1
       - path: finger_FK_shape_001
         weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
       - path: finger_main_shape_000
         weight: 1
       - path: finger_main_shape_001
         weight: 1
+      - path: finger_main_shape_002
+        weight: 1
       - path: finger_main_shape_R_000
         weight: 1
       - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
         weight: 1
       - path: food
         weight: 1
@@ -1417,57 +1666,85 @@ ModelImporter:
         weight: 1
       - path: foot_IK_shape_L_001
         weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
       - path: foot_IK_shape_R_000
         weight: 1
       - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
         weight: 1
       - path: foot_roll_shape_000
         weight: 1
       - path: foot_roll_shape_001
         weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
       - path: forearm_FK_shape_L_000
         weight: 1
       - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
         weight: 1
       - path: hand_shape_L_000
         weight: 1
       - path: hand_shape_L_001
         weight: 1
+      - path: hand_shape_L_002
+        weight: 1
       - path: hand_shape_R_000
         weight: 1
       - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
         weight: 1
       - path: head_shape_000
         weight: 1
       - path: head_shape_001
         weight: 1
+      - path: head_shape_002
+        weight: 1
       - path: hips_shape_000
         weight: 1
       - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
         weight: 1
       - path: neck_shape_000
         weight: 1
       - path: neck_shape_001
         weight: 1
+      - path: neck_shape_002
+        weight: 1
       - path: palm_shape_L_000
         weight: 1
       - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
         weight: 1
       - path: palm_shape_R_000
         weight: 1
       - path: palm_shape_R_001
         weight: 1
+      - path: palm_shape_R_002
+        weight: 1
       - path: pole_shape_L_000
         weight: 1
       - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
         weight: 1
       - path: pole_shape_R_000
         weight: 1
       - path: pole_shape_R_001
         weight: 1
+      - path: pole_shape_R_002
+        weight: 1
       - path: ribs_shape_000
         weight: 1
       - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
         weight: 1
       - path: seat
         weight: 1
@@ -1475,30 +1752,40 @@ ModelImporter:
         weight: 1
       - path: shoulder_shape_L_001
         weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
       - path: shoulder_shape_R_000
         weight: 1
       - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
         weight: 1
       - path: spine_shape_000
         weight: 1
       - path: spine_shape_001
         weight: 1
+      - path: spine_shape_002
+        weight: 1
       - path: toe_shape_000
         weight: 1
       - path: toe_shape_001
+        weight: 1
+      - path: toe_shape_002
         weight: 1
       - path: upper_arm_FK_shape_L_000
         weight: 1
       - path: upper_arm_FK_shape_L_001
         weight: 1
+      - path: upper_arm_FK_shape_L_002
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: TAKE-other-beer
-      takeName: TAKE-other-beer
+      name: take-beer-from_fridge
+      takeName: take-beer-from_fridge
       firstFrame: 0
-      lastFrame: 291
+      lastFrame: 149
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1673,13 +1960,19 @@ ModelImporter:
         weight: 1
       - path: finger_FK_shape_001
         weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
       - path: finger_main_shape_000
         weight: 1
       - path: finger_main_shape_001
         weight: 1
+      - path: finger_main_shape_002
+        weight: 1
       - path: finger_main_shape_R_000
         weight: 1
       - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
         weight: 1
       - path: food
         weight: 1
@@ -1687,57 +1980,85 @@ ModelImporter:
         weight: 1
       - path: foot_IK_shape_L_001
         weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
       - path: foot_IK_shape_R_000
         weight: 1
       - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
         weight: 1
       - path: foot_roll_shape_000
         weight: 1
       - path: foot_roll_shape_001
         weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
       - path: forearm_FK_shape_L_000
         weight: 1
       - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
         weight: 1
       - path: hand_shape_L_000
         weight: 1
       - path: hand_shape_L_001
         weight: 1
+      - path: hand_shape_L_002
+        weight: 1
       - path: hand_shape_R_000
         weight: 1
       - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
         weight: 1
       - path: head_shape_000
         weight: 1
       - path: head_shape_001
         weight: 1
+      - path: head_shape_002
+        weight: 1
       - path: hips_shape_000
         weight: 1
       - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
         weight: 1
       - path: neck_shape_000
         weight: 1
       - path: neck_shape_001
         weight: 1
+      - path: neck_shape_002
+        weight: 1
       - path: palm_shape_L_000
         weight: 1
       - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
         weight: 1
       - path: palm_shape_R_000
         weight: 1
       - path: palm_shape_R_001
         weight: 1
+      - path: palm_shape_R_002
+        weight: 1
       - path: pole_shape_L_000
         weight: 1
       - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
         weight: 1
       - path: pole_shape_R_000
         weight: 1
       - path: pole_shape_R_001
         weight: 1
+      - path: pole_shape_R_002
+        weight: 1
       - path: ribs_shape_000
         weight: 1
       - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
         weight: 1
       - path: seat
         weight: 1
@@ -1745,21 +2066,345 @@ ModelImporter:
         weight: 1
       - path: shoulder_shape_L_001
         weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
       - path: shoulder_shape_R_000
         weight: 1
       - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
         weight: 1
       - path: spine_shape_000
         weight: 1
       - path: spine_shape_001
         weight: 1
+      - path: spine_shape_002
+        weight: 1
       - path: toe_shape_000
         weight: 1
       - path: toe_shape_001
         weight: 1
+      - path: toe_shape_002
+        weight: 1
       - path: upper_arm_FK_shape_L_000
         weight: 1
       - path: upper_arm_FK_shape_L_001
+        weight: 1
+      - path: upper_arm_FK_shape_L_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: drunk-highpoly
+        weight: 1
+      - path: drunk-rig
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/pole_target_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_back_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_back_L/roll_front_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_back_L/roll_front_L/foot_IK_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_L/roll_main_L
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/pole_target_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_back_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_back_R/roll_front_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_back_R/roll_front_R/foot_IK_R
+        weight: 1
+      - path: drunk-rig/foot_IK_main_R/roll_main_R
+        weight: 1
+      - path: drunk-rig/hips_main
+        weight: 1
+      - path: drunk-rig/hips_main/hips
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/neck
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/neck/head
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/finger_index_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/finger_index_01_L/finger_index_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/finger_index_01_L/finger_index_02_L/finger_index_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L/thumb_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L/thumb_02_L/thumb_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/finger_middle_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/finger_middle_01_L/finger_middle_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/finger_middle_01_L/finger_middle_02_L/finger_middle_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/finger_ring_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/finger_ring_01_L/finger_ring_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/finger_ring_01_L/finger_ring_02_L/finger_ring_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/finger_pinky_01_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/finger_pinky_01_L/finger_pinky_02_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/finger_pinky_01_L/finger_pinky_02_L/finger_pinky_03_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/finger_index_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/finger_index_01_R/finger_index_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/finger_index_01_R/finger_index_02_R/finger_index_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/thumb_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/thumb_01_R/thumb_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_01_R/thumb_01_R/thumb_02_R/thumb_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R/finger_middle_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R/finger_middle_01_R/finger_middle_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_02_R/finger_middle_01_R/finger_middle_02_R/finger_middle_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R/finger_ring_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R/finger_ring_01_R/finger_ring_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_03_R/finger_ring_01_R/finger_ring_02_R/finger_ring_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R/finger_pinky_01_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R/finger_pinky_01_R/finger_pinky_02_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/spine/ribs/shoulder_R/upper_arm_R/forearm_R/hand_R/palm_04_R/finger_pinky_01_R/finger_pinky_02_R/finger_pinky_03_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L/shin_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L/shin_L/foot_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_L/shin_L/foot_L/toe_L
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R/shin_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R/shin_R/foot_R
+        weight: 1
+      - path: drunk-rig/hips_main/hips/thigh_R/shin_R/foot_R/toe_R
+        weight: 1
+      - path: finger_FK_shape_000
+        weight: 1
+      - path: finger_FK_shape_001
+        weight: 1
+      - path: finger_FK_shape_002
+        weight: 1
+      - path: finger_main_shape_000
+        weight: 1
+      - path: finger_main_shape_001
+        weight: 1
+      - path: finger_main_shape_002
+        weight: 1
+      - path: finger_main_shape_R_000
+        weight: 1
+      - path: finger_main_shape_R_001
+        weight: 1
+      - path: finger_main_shape_R_002
+        weight: 1
+      - path: food
+        weight: 1
+      - path: foot_IK_shape_L_000
+        weight: 1
+      - path: foot_IK_shape_L_001
+        weight: 1
+      - path: foot_IK_shape_L_002
+        weight: 1
+      - path: foot_IK_shape_R_000
+        weight: 1
+      - path: foot_IK_shape_R_001
+        weight: 1
+      - path: foot_IK_shape_R_002
+        weight: 1
+      - path: foot_roll_shape_000
+        weight: 1
+      - path: foot_roll_shape_001
+        weight: 1
+      - path: foot_roll_shape_002
+        weight: 1
+      - path: forearm_FK_shape_L_000
+        weight: 1
+      - path: forearm_FK_shape_L_001
+        weight: 1
+      - path: forearm_FK_shape_L_002
+        weight: 1
+      - path: hand_shape_L_000
+        weight: 1
+      - path: hand_shape_L_001
+        weight: 1
+      - path: hand_shape_L_002
+        weight: 1
+      - path: hand_shape_R_000
+        weight: 1
+      - path: hand_shape_R_001
+        weight: 1
+      - path: hand_shape_R_002
+        weight: 1
+      - path: head_shape_000
+        weight: 1
+      - path: head_shape_001
+        weight: 1
+      - path: head_shape_002
+        weight: 1
+      - path: hips_shape_000
+        weight: 1
+      - path: hips_shape_001
+        weight: 1
+      - path: hips_shape_002
+        weight: 1
+      - path: neck_shape_000
+        weight: 1
+      - path: neck_shape_001
+        weight: 1
+      - path: neck_shape_002
+        weight: 1
+      - path: palm_shape_L_000
+        weight: 1
+      - path: palm_shape_L_001
+        weight: 1
+      - path: palm_shape_L_002
+        weight: 1
+      - path: palm_shape_R_000
+        weight: 1
+      - path: palm_shape_R_001
+        weight: 1
+      - path: palm_shape_R_002
+        weight: 1
+      - path: pole_shape_L_000
+        weight: 1
+      - path: pole_shape_L_001
+        weight: 1
+      - path: pole_shape_L_002
+        weight: 1
+      - path: pole_shape_R_000
+        weight: 1
+      - path: pole_shape_R_001
+        weight: 1
+      - path: pole_shape_R_002
+        weight: 1
+      - path: ribs_shape_000
+        weight: 1
+      - path: ribs_shape_001
+        weight: 1
+      - path: ribs_shape_002
+        weight: 1
+      - path: seat
+        weight: 1
+      - path: shoulder_shape_L_000
+        weight: 1
+      - path: shoulder_shape_L_001
+        weight: 1
+      - path: shoulder_shape_L_002
+        weight: 1
+      - path: shoulder_shape_R_000
+        weight: 1
+      - path: shoulder_shape_R_001
+        weight: 1
+      - path: shoulder_shape_R_002
+        weight: 1
+      - path: spine_shape_000
+        weight: 1
+      - path: spine_shape_001
+        weight: 1
+      - path: spine_shape_002
+        weight: 1
+      - path: toe_shape_000
+        weight: 1
+      - path: toe_shape_001
+        weight: 1
+      - path: toe_shape_002
+        weight: 1
+      - path: upper_arm_FK_shape_L_000
+        weight: 1
+      - path: upper_arm_FK_shape_L_001
+        weight: 1
+      - path: upper_arm_FK_shape_L_002
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1785,7 +2430,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
