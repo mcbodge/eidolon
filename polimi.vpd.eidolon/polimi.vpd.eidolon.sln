@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "polimi.vpd.eidolon.CSharp.Plugins", "polimi.vpd.eidolon.CSharp.Plugins.csproj", "{CC1A4895-EA0F-8E3D-1BA7-8BEE399169A7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "polimi.vpd.eidolon.CSharp", "polimi.vpd.eidolon.CSharp.csproj", "{BEBA568B-626F-2E4F-689B-9781CE61EE44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "polimi.vpd.eidolon.CSharp.Editor", "polimi.vpd.eidolon.CSharp.Editor.csproj", "{F46DCF52-B6A4-A2BD-2B2F-7C17A954A5CA}"
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC1A4895-EA0F-8E3D-1BA7-8BEE399169A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1A4895-EA0F-8E3D-1BA7-8BEE399169A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1A4895-EA0F-8E3D-1BA7-8BEE399169A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1A4895-EA0F-8E3D-1BA7-8BEE399169A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEBA568B-626F-2E4F-689B-9781CE61EE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEBA568B-626F-2E4F-689B-9781CE61EE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBA568B-626F-2E4F-689B-9781CE61EE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
