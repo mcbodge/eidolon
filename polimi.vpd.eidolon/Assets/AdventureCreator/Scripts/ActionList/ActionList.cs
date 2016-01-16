@@ -649,9 +649,11 @@ namespace AC
 
                     foreach (Action action in actions)
                     {
-                        if (action != null && action.GetType().Name.Equals("ActionCamera"))
+                        var actionCamera = action as ActionCamera;
+
+                        if (actionCamera != null)
                         {
-                            ((ActionCamera)action).linkedCamera = linkedCamera;
+                            actionCamera.linkedCamera = linkedCamera;
                         }
                         action.isRunning = false;
                     }
