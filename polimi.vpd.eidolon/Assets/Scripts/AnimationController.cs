@@ -20,6 +20,11 @@ public class AnimationController : MonoBehaviour {
         animator.SetInteger("Anim", 2);
     }
 
+    public void PickUpBeer()
+    {
+        animator.SetInteger("Anim", 3);
+    }
+
     public void StopAnimation()
     {
         animator.SetInteger("Anim", 0);
