@@ -52,4 +52,9 @@ public class ActionHelper : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+
+    public void LoadSecondScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SecondScene");
+    }
 }
