@@ -222,7 +222,7 @@ namespace AC
             return false;
         }
 
-
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (showInEditor)
@@ -237,7 +237,7 @@ namespace AC
             DrawGizmos();
         }
 
-#if UNITY_EDITOR
+
         private void DrawGizmos()
         {
             if (GetComponent<PolygonCollider2D>())
