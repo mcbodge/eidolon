@@ -238,7 +238,7 @@ namespace AC
             DrawGizmos();
         }
 
-
+#if UNITY_EDITOR
         private void DrawGizmos()
         {
             if (GetComponent<PolygonCollider2D>())
@@ -250,7 +250,7 @@ namespace AC
                 AdvGame.DrawCubeCollider(transform, new Color(1f, 0.3f, 0f, 0.8f));
             }
         }
-
+#endif
     }
 
 }
