@@ -35,7 +35,7 @@
       sampler2D _BumpMap;
 
       void surf (Input IN, inout SurfaceOutput o) {
-          o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb/4.;
+          o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb/5.;
           //o.Albedo *= IN.customColor;
           o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
       }

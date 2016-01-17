@@ -8,7 +8,6 @@
       Tags { "RenderType" = "Opaque" }
       CGPROGRAM
       #pragma surface surf Diffuse vertex:vert
-
       struct Input {
           float2 uv_MainTex;
           float2 uv_BumpMap;
@@ -40,11 +39,10 @@
       // based on color map, normal map, and normals direction
       void surf (Input IN, inout SurfaceOutput o) {
           o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-          o.Albedo = floor(o.Albedo*4.);
+          o.Albedo = floor(o.Albedo*5.);
           o.Albedo *= IN.customColor;
           o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
-          o.Albedo = normalize(o.Albedo+o.Normal);
-         
+          o.Albedo = normalize(o.Albedo+o.Normal)*12.;
       }
 
       ENDCG
