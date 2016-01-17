@@ -12,8 +12,6 @@ public class ActionHelperLevel0 : ActionHelper
     public GameObject TeddyBearHotspot;
     public GameObject KetchupHotspot;
     public GameObject RcCarHotspot;
-    public GameObject ShowerHotspot;
-    public GameObject BeerHotspot;
     public GameObject Character106Hotspot;
 
     public List<GameObject> CutsceneHotspots;
@@ -78,7 +76,7 @@ public class ActionHelperLevel0 : ActionHelper
 
     public void PutObjectInFloorHotSpot()
     {
-        if (ObjectInHand.name == "TeddyBear")
+        if (ObjectInHand.name == "doll")
         {
             if (RoomWithPlayer.Equals(Room.Corridor))
             {
