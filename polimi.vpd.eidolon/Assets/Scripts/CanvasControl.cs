@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CanvasControl : MonoBehaviour
 {
-	public Canvas Canvas;
     public List<Sprite> Images;
 
 	private Image imageBox;
@@ -15,7 +14,7 @@ public class CanvasControl : MonoBehaviour
     void Start()
     {
         imageShown = 0;
-		imageBox = Canvas.GetComponentInChildren<Image> ();
+		imageBox = gameObject.GetComponentInChildren<Image> ();
         SetTutorialCanvas(false);
 		TutorialEnable (); // start frome here cause there isn't intro scene
     }
