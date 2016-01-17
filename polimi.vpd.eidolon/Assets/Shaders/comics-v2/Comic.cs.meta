@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 13985ca0d30154caea57c33aa7b4749b
+timeCreated: 1453065341
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Normals: {fileID: 4800000, guid: 1a8b9204282ba4a07be0eb295adc58e3, type: 3}
+  - Colored_objects: {instanceID: 0}
+  - Outline: {fileID: 4800000, guid: 7aea2b0f6b5ff47cfb92fa5c8e364e82, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
