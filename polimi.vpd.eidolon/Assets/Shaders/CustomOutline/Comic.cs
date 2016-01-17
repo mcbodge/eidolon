@@ -39,7 +39,7 @@ public class Comic : MonoBehaviour
                     if (myObj.tag != "Color")
                     {
                         foreach (Material mat in allMaterials)
-                            if (mat.name != "gioia")
+                            if (mat.name != "gioia" && mat.name =! "Particle")
                                 mat.shader = Standard; // a material executes all the passes in the shader
                     }
                     else if (myObj.tag == "Color")
@@ -63,7 +63,7 @@ public class Comic : MonoBehaviour
                     if (myObj.tag != "Color")
                     {
                         foreach (Material mat in allMaterials)
-                            if (mat.name != "gioia")
+                            if (mat.name != "gioia" && mat.name =! "Particle")
                                 mat.shader = Normals; // a material executes all the passes in the shader
                     }
                     else if (myObj.tag == "Color")
