@@ -35,3 +35,5 @@ Thumbs.db
 # Adventure creator #
 # ================= #
 *.csproj
+polimi.vpd.eidolon/Assets/AdventureCreator/Demo/UI/InGameUI.prefab
+polimi.vpd.eidolon/Assets/AdventureCreator/Demo/UI/PauseUI.prefab
