@@ -4,12 +4,12 @@ using System.Collections;
 public class ObjectDropTrigger : MonoBehaviour {
 
 
-	private ActionHelper actionHelperRef;
+	private ActionHelperLevel0 actionHelperRef;
     private bool isKetchupReady;
     private bool isRcCarReady;
 
 	public void Start() {
-		actionHelperRef = ActionHelper.GetManager ();
+		actionHelperRef = ActionHelper.GetManager () as ActionHelperLevel0;
         isKetchupReady = false;
         isRcCarReady = false;
 }
