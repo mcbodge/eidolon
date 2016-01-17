@@ -44,7 +44,7 @@
           o.Albedo *= IN.customColor;
           o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
           o.Albedo = normalize(o.Albedo+o.Normal);
-         
+          o.Albedo = float3(1.);
       }
 
       ENDCG
