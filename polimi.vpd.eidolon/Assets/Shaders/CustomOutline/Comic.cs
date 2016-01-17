@@ -36,13 +36,13 @@ public class Comic : MonoBehaviour
                 if (myObj.GetComponent<Renderer>())
                 {
                     Material[] allMaterials = myObj.GetComponent<Renderer>().sharedMaterials;
-                    if (myObj.tag != "Color")
+                    if (myObj.tag != "Color" && myObj.tag != "MainCamera" && myObj.tag != "FpsCamera")
                     {
                         foreach (Material mat in allMaterials)
                             if (mat.name != "gioia" && mat.name != "Particle")
                                 mat.shader = Standard; // a material executes all the passes in the shader
                     }
-                    else if (myObj.tag == "Color")
+                    else
                     {
                         foreach (Material mat in allMaterials)
                             mat.shader = Colored_objects;
@@ -60,13 +60,13 @@ public class Comic : MonoBehaviour
                 if (myObj.GetComponent<Renderer>())
                 {
                     Material[] allMaterials = myObj.GetComponent<Renderer>().sharedMaterials;
-                    if (myObj.tag != "Color")
+                    if (myObj.tag != "Color" && myObj.tag != "MainCamera" && myObj.tag != "FpsCamera")
                     {
                         foreach (Material mat in allMaterials)
                             if (mat.name != "gioia" && mat.name != "Particle")
                                 mat.shader = Normals; // a material executes all the passes in the shader
                     }
-                    else if (myObj.tag == "Color")
+                    else
                     {
                         foreach (Material mat in allMaterials)
                             mat.shader = Colored_objects;

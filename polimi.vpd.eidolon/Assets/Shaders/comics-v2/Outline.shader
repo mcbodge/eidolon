@@ -117,7 +117,9 @@
     float4 final = result;
 
     // b&w + color
-    final = float4(length(final)) + 3.*color;
+	float lengthOfFinal = length(final);
+
+    final = float4(lengthOfFinal, lengthOfFinal, lengthOfFinal, lengthOfFinal) + 3.*color;
     return final;
 	}
 
