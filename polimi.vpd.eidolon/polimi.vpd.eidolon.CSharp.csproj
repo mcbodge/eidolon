@@ -377,12 +377,16 @@
     <Compile Include="Assets\Scripts\PlayerInteractions.cs" />
     <Compile Include="Assets\Scripts\RoomControl.cs" />
     <Compile Include="Assets\Scripts\TextureControl.cs" />
+    <Compile Include="Assets\Shaders\CustomOutline\Comic.cs" />
     <Compile Include="Assets\Shaders\UnityShaderGrayscale\Scripts\Grayscale.cs" />
     <Compile Include="Assets\Shaders\UnityShaderGrayscale\Scripts\ImageEffectBase.cs" />
     <Compile Include="Assets\Shaders\UnityShaderGrayscale\Scripts\ImageEffects.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AdventureCreator\Graphics\Fonts\SIL Open Font License.txt" />
+    <None Include="Assets\Shaders\CustomOutline\Colored_objects.shader" />
+    <None Include="Assets\Shaders\CustomOutline\Normals.shader" />
+    <None Include="Assets\Shaders\CustomOutline\Outline.shader" />
     <None Include="Assets\Shaders\UnityShaderGrayscale\Shaders\GrayscaleEffect.shader" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
