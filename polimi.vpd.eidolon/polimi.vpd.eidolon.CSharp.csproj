@@ -364,6 +364,8 @@
     <Compile Include="Assets\Scripts\AC_Trigger_ContinuousWithKeyCheck.cs" />
     <Compile Include="Assets\Scripts\AC_Trigger_ContinuousWithObjectInHandCheck.cs" />
     <Compile Include="Assets\Scripts\ActionHelper.cs" />
+    <Compile Include="Assets\Scripts\ActionHelperLevel0.cs" />
+    <Compile Include="Assets\Scripts\ActionHelperLevel1.cs" />
     <Compile Include="Assets\Scripts\AnimationController.cs" />
     <Compile Include="Assets\Scripts\BlurControl.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />

@@ -5,6 +5,8 @@ public class PhysicsActions : MonoBehaviour {
 
     public Transform Source;
 
+    public GameObject ReferredObject;
+
     public void KnockOut()
     {
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
@@ -13,5 +15,10 @@ public class PhysicsActions : MonoBehaviour {
 
         // the impulse force goes from the player to te object
         gameObjectRigidBody.AddForce(transform.position - Source.position, ForceMode.Impulse);
+    }
+
+    public void SetActive()
+    {
+        ReferredObject.SetActive(true);
     }
 }

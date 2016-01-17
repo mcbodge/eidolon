@@ -148,6 +148,7 @@ ModelImporter:
     100280: upper_arm_FK_shape_L_002
     100282: upper_arm_L
     100284: upper_arm_R
+    100286: beer
     400000: //RootNode
     400002: drunk-highpoly
     400004: drunk-rig
@@ -291,6 +292,7 @@ ModelImporter:
     400280: upper_arm_FK_shape_L_002
     400282: upper_arm_L
     400284: upper_arm_R
+    400286: beer
     2300000: finger_FK_shape_000
     2300002: finger_FK_shape_001
     2300004: finger_FK_shape_002
@@ -496,6 +498,7 @@ ModelImporter:
     4300132: finger_main_shape_R_002
     4300134: palm_shape_R_002
     4300136: toe_shape_002
+    4300138: beer
     7400000: Default Take
     7400002: DRINK-beer
     7400004: Idle
@@ -505,6 +508,7 @@ ModelImporter:
     7400012: stand
     9500000: //RootNode
     13700000: drunk-highpoly
+    13700002: beer
   materials:
     importMaterials: 1
     materialName: 0
