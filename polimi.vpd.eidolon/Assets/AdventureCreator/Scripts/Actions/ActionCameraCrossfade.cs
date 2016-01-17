@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCameraCrossfade.cs"
  * 
@@ -29,6 +29,7 @@ namespace AC
 		public int constantID = 0;
 		public _Camera linkedCamera;
 		public float transitionTime;
+		public bool returnToLast;
 
 		
 		public ActionCameraCrossfade ()
@@ -36,13 +37,18 @@ namespace AC
 			this.isDisplayed = true;
 			category = ActionCategory.Camera;
 			title = "Crossfade";
-			description = "Crossfades the camera from it's current GameCamera to a new one, over a specified time.";
+			description = "Crossfades the camera from its current GameCamera to a new one, over a specified time.";
 		}
 
 
 		override public void AssignValues (List<ActionParameter> parameters)
 		{
 			linkedCamera = AssignFile <_Camera> (parameters, parameterID, constantID, linkedCamera);
+
+			if (returnToLast)
+			{
+				linkedCamera = KickStarter.mainCamera.GetLastGameplayCamera ();
+			}
 		}
 
 		
@@ -111,18 +117,22 @@ namespace AC
 		
 		override public void ShowGUI (List<ActionParameter> parameters)
 		{
-			parameterID = Action.ChooseParameterGUI ("New camera:", parameters, parameterID, ParameterType.GameObject);
-			if (parameterID >= 0)
+			returnToLast = EditorGUILayout.Toggle ("Return to last gameplay?", returnToLast);
+			if (!returnToLast)
 			{
-				constantID = 0;
-				linkedCamera = null;
-			}
-			else
-			{
-				linkedCamera = (_Camera) EditorGUILayout.ObjectField ("New camera:", linkedCamera, typeof(_Camera), true);
-				
-				constantID = FieldToID <_Camera> (linkedCamera, constantID);
-				linkedCamera = IDToField <_Camera> (linkedCamera, constantID, true);
+				parameterID = Action.ChooseParameterGUI ("New camera:", parameters, parameterID, ParameterType.GameObject);
+				if (parameterID >= 0)
+				{
+					constantID = 0;
+					linkedCamera = null;
+				}
+				else
+				{
+					linkedCamera = (_Camera) EditorGUILayout.ObjectField ("New camera:", linkedCamera, typeof(_Camera), true);
+					
+					constantID = FieldToID <_Camera> (linkedCamera, constantID);
+					linkedCamera = IDToField <_Camera> (linkedCamera, constantID, true);
+				}
 			}
 
 			transitionTime = EditorGUILayout.FloatField ("Transition time (s):", transitionTime);
@@ -130,7 +140,17 @@ namespace AC
 
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <ConstantID> (linkedCamera);
+			}
+			AssignConstantID <_Camera> (linkedCamera, constantID, parameterID);
+		}
+
 		
 		override public string SetLabel ()
 		{

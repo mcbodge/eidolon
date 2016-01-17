@@ -1,7 +1,7 @@
 ﻿	/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"AnimEngine.cs"
  * 
@@ -79,7 +79,7 @@ namespace AC
 			return false;
 		}
 
-		public virtual void ActionSpeechGUI (ActionSpeech action)
+		public virtual void ActionSpeechGUI (ActionSpeech action, Char speaker)
 		{
 			#if UNITY_EDITOR
 			#endif

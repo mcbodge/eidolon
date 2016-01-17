@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"PlayerMenus.cs"
  * 
@@ -49,7 +49,8 @@ namespace AC
 		private string lastElementIdentifier;
 		private MenuInput selectedInputBox;
 		private string selectedInputBoxMenuName;
-		private Vector2 activeInventoryBoxCentre = Vector2.zero;
+		private MenuInventoryBox activeInventoryBox;
+		private Menu activeInventoryBoxMenu;
 		private InvItem oldHoverItem;
 		private int doResizeMenus = 0;
 		
@@ -67,7 +68,7 @@ namespace AC
 		#endif
 
 		
-		private void Start ()
+		public void OnStart ()
 		{
 			RebuildMenus ();
 		}
@@ -110,6 +111,9 @@ namespace AC
 					{
 						newMenu.LoadUnityUI ();
 					}
+
+					newMenu.Recalculate ();
+
 					newMenu.Initalise ();
 					menus.Add (newMenu);
 				}
@@ -145,13 +149,7 @@ namespace AC
 				}
 				else if (AreAnyMenusUI ())
 				{
-					GameObject eventSystemObject = new GameObject ();
-					eventSystemObject.name = "EventSystem";
-					_eventSystem = eventSystemObject.AddComponent <UnityEngine.EventSystems.EventSystem>();
-					eventSystemObject.AddComponent <StandaloneInputModule>();
-					#if !UNITY_5_3
-					eventSystemObject.AddComponent <TouchInputModule>();
-					#endif
+					_eventSystem = UnityVersionHandler.CreateEventSystem ();
 				}
 
 				if (_eventSystem != null)
@@ -178,8 +176,11 @@ namespace AC
 			return false;
 		}
 		
-		
-		private void OnLevelWasLoaded ()
+
+		/**
+		 * Initialises the menu system after a scene change. This is called manually by SaveSystem so that the order is correct.
+		 */
+		public void _OnLevelWasLoaded ()
 		{
 			if (KickStarter.settingsManager != null && KickStarter.settingsManager.IsInLoadingScene ())
 			{
@@ -333,7 +334,6 @@ namespace AC
 		private void DrawMenu (AC.Menu menu, int languageNumber)
 		{
 			Color tempColor = GUI.color;
-			
 			bool isACMenu = !menu.IsUnityUI ();
 			
 			if (menu.IsEnabled ())
@@ -540,10 +540,11 @@ namespace AC
 					{
 						if (!menu.IsFadingOut ())
 						{
-							if (mouseOverInventory)
+							if (mouseOverMenu && KickStarter.runtimeInventory.hoverItem != null)
 							{
-								screenPosition = new Vector2 (activeInventoryBoxCentre.x, Screen.height + 1f - activeInventoryBoxCentre.y);
-								menu.SetCentre (screenPosition);
+								int slot = activeInventoryBox.GetItemSlot (KickStarter.runtimeInventory.hoverItem.id);
+								screenPosition = activeInventoryBoxMenu.GetSlotCentre (activeInventoryBox, slot);
+								menu.SetCentre (new Vector2 (screenPosition.x, Screen.height - screenPosition.y));
 							}
 							else if (KickStarter.playerInteraction.GetActiveHotspot ())
 							{
@@ -630,9 +631,12 @@ namespace AC
 			{
 				if (!menu.IsFadingOut ())
 				{
-					if (mouseOverInventory)
+					if (mouseOverInventory && KickStarter.runtimeInventory.hoverItem != null)
 					{
-						Vector2 screenPosition = new Vector2 (activeInventoryBoxCentre.x / Screen.width, activeInventoryBoxCentre.y / Screen.height);
+						int slot = activeInventoryBox.GetItemSlot (KickStarter.runtimeInventory.hoverItem.id);
+						Vector2 activeInventoryItemCentre = activeInventoryBoxMenu.GetSlotCentre (activeInventoryBox, slot);
+
+						Vector2 screenPosition = new Vector2 (activeInventoryItemCentre.x / Screen.width, activeInventoryItemCentre.y / Screen.height);
 						menu.SetCentre (new Vector2 (screenPosition.x + (menu.manualPosition.x / 100f) - 0.5f,
 						                             screenPosition.y + (menu.manualPosition.y / 100f) - 0.5f));
 					}
@@ -1087,7 +1091,8 @@ namespace AC
 											{
 												KickStarter.runtimeInventory.MatchInteractions ();
 												KickStarter.playerInteraction.RestoreInventoryInteraction ();
-												activeInventoryBoxCentre = menu.GetSlotCentre (inventoryBox, i);
+												activeInventoryBox = inventoryBox;
+												activeInventoryBoxMenu = menu;
 
 												if (interactionMenuIsOn)
 												{
@@ -1162,7 +1167,6 @@ namespace AC
 								{
 									hotspotLabel = KickStarter.playerInteraction.GetLabel (languageNumber);
 								}
-
 								if (KickStarter.cursorManager.addHotspotPrefix && interactionMenuIsOn && KickStarter.settingsManager.SelectInteractionMethod () == SelectInteractions.ClickingMenu)
 								{
 									MenuInteraction interaction = (MenuInteraction) element;
@@ -1379,7 +1383,7 @@ namespace AC
 					{
 						Menu oldMenu = dupMenus[i];
 						dupMenus.RemoveAt (i);
-						if (oldMenu.menuSource != MenuSource.AdventureCreator && oldMenu.canvas && oldMenu.canvas.gameObject.activeInHierarchy)
+						if (oldMenu.menuSource != MenuSource.AdventureCreator && oldMenu.canvas && oldMenu.canvas.gameObject != null)
 						{
 							DestroyImmediate (oldMenu.canvas.gameObject);
 						}
@@ -1530,6 +1534,7 @@ namespace AC
 					{
 						dupMenu.LoadUnityUI ();
 					}
+					dupMenu.Recalculate ();
 					dupMenu.title += " (Duplicate)";
 					dupMenu.SetSpeech (speech);
 					dupMenu.TurnOn (true);
@@ -1593,7 +1598,6 @@ namespace AC
 		public void SetInteractionMenus (bool turnOn)
 		{
 			interactionMenuIsOn = turnOn;
-
 			foreach (AC.Menu _menu in menus)
 			{
 				if (_menu.appearType == AppearType.OnInteraction)
@@ -1910,11 +1914,11 @@ namespace AC
 		 * <param name ="excludingMenu">If assigned, this Menu will be excluded from the check</param>
 		 * <returns>True if any Menus that pause the game are currently turned on</returns>
 		 */
-		public bool ArePauseMenusOn (Menu excludingMenu)
+		public bool ArePauseMenusOn (Menu excludingMenu = null)
 		{
 			foreach (AC.Menu menu in menus)
 			{
-				if (menu.IsEnabled () && menu.IsBlocking () && menu != excludingMenu)
+				if (menu.IsEnabled () && menu.IsBlocking () && (excludingMenu == null || menu != excludingMenu))
 				{
 					return true;
 				}
@@ -2080,7 +2084,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a MainData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a MainData class with its own variables that need saving.</summary>
 		 * <param name = "mainData">The original MainData class</param>
 		 * <returns>The updated MainData class</returns>
 		 */
@@ -2096,7 +2100,7 @@ namespace AC
 		
 		
 		/**
-		 * <summary>Updates it's own variables from a MainData class.</summary>
+		 * <summary>Updates its own variables from a MainData class.</summary>
 		 * <param name = "mainData">The MainData class to load from</param>
 		 */
 		public void LoadMainData (MainData mainData)

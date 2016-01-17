@@ -13,7 +13,6 @@ namespace AC
 	{
 
 		private AC.Action actionToAffect = null;
-		
 		private ActionsManager actionsManager;
 
 
@@ -148,10 +147,19 @@ namespace AC
 
 						if (_target.useParameters)
 						{
+							if (Application.isPlaying)
+							{
+								_target.actions[i].AssignValues (_target.parameters);
+							}
+
 							_target.actions[i].ShowGUI (_target.parameters);
 						}
 						else
 						{
+							if (Application.isPlaying)
+							{
+								_target.actions[i].AssignValues (null);
+							}
 							_target.actions[i].ShowGUI (null);
 						}
 					}
@@ -320,7 +328,7 @@ namespace AC
 			
 			menu.ShowAsContext ();
 		}
-		
+
 
 		private void Callback (object obj)
 		{
@@ -536,6 +544,7 @@ namespace AC
 			}
 		}
 
+
 		[OnOpenAssetAttribute(1)]
 		public static bool OnOpenAsset (int instanceID, int line)
 		{
@@ -547,6 +556,7 @@ namespace AC
 			}
 			return false;
 		}
+
 	}
 
 }

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"NavigationManager.cs"
  * 
@@ -25,8 +25,11 @@ namespace AC
 		/** The NavigationEngine ScriptableObject that performs the scene's pathfinding algorithms. */
 		[HideInInspector] public NavigationEngine navigationEngine = null;
 		
-		
-		private void Awake ()
+
+		/**
+		 * Initialises the Navigation Engine.  This is public so we have control over when it is called in relation to other Awake functions.
+		 */
+		public void OnAwake ()
 		{
 			navigationEngine = null;
 			ResetEngine ();
@@ -38,14 +41,26 @@ namespace AC
 		 */
 		public void ResetEngine ()
 		{
-			if (GetComponent <SceneSettings>())
+			string className = "";
+			if (KickStarter.sceneSettings.navigationMethod == AC_NavigationMethod.Custom)
 			{
-				string className = "NavigationEngine_" + GetComponent <SceneSettings>().navigationMethod.ToString ();
+				className = KickStarter.sceneSettings.customNavigationClass;
+			}
+			else
+			{
+				className = "NavigationEngine_" + KickStarter.sceneSettings.navigationMethod.ToString ();
+			}
 
-				if (navigationEngine == null || !navigationEngine.ToString ().Contains (className))
+			if (className == "" && Application.isPlaying)
+			{
+				ACDebug.LogWarning ("Could not initialise navigation - a custom script must be assigned if the Pathfinding method is set to Custom.");
+			}
+			else if (navigationEngine == null || !navigationEngine.ToString ().Contains (className))
+			{
+				navigationEngine = (NavigationEngine) ScriptableObject.CreateInstance (className);
+				if (navigationEngine != null)
 				{
-					navigationEngine = (NavigationEngine) ScriptableObject.CreateInstance (className);
-					navigationEngine.Awake ();
+					navigationEngine.OnReset (KickStarter.sceneSettings.navMesh);
 				}
 			}
 		}

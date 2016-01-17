@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"CursorIcon.cs"
  * 
@@ -484,7 +484,6 @@ namespace AC
 			{
 				uniqueIdentifier = texture.name + frameInRow.ToString () + currentRow.ToString ();
 			}
-
 			return new Rect (frameWidth * (frameInRow-1), frameHeight * (numRows - currentRow), frameWidth, frameHeight);
 		}
 

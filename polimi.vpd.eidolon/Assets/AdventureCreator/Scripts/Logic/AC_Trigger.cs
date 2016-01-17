@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Trigger.cs"
  * 
@@ -219,7 +219,9 @@ namespace AC
 			
 			return false;
 		}
-		
+
+
+		#if UNITY_EDITOR
 		
 		private void OnDrawGizmos ()
 		{
@@ -247,6 +249,8 @@ namespace AC
 				AdvGame.DrawCubeCollider (transform, new Color (1f, 0.3f, 0f, 0.8f));
 			}
 		}
+
+		#endif
 
 	}
 	

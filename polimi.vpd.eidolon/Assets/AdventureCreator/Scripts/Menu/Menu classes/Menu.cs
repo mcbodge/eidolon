@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Menu.cs"
  * 
@@ -267,7 +267,7 @@ namespace AC
 				elements.Add (newElement);
 			}
 
-			Recalculate ();
+			//Recalculate ();
 		}
 
 
@@ -404,6 +404,11 @@ namespace AC
 			if (transitionType == MenuTransition.Zoom)
 			{
 				zoomAmount = 0f;
+			}
+
+			foreach (MenuElement _element in elements)
+			{
+				_element.Initialise (this);
 			}
 
 			SetAnimState ();
@@ -1040,6 +1045,7 @@ namespace AC
 			visibleElements.Clear ();
 			foreach (MenuElement element in elements)
 			{
+				element.RecalculateSize (menuSource);
 				if (element.isVisible)
 				{
 					visibleElements.Add (element);
@@ -1180,7 +1186,7 @@ namespace AC
 				
 				if (element.positionType == AC_PositionType2.RelativeToMenuSize && sizeType == AC_SizeType.Automatic)
 				{
-					ACDebug.LogError ("Menu " + title + " cannot display because it's size is Automatic, while it's Element " + element.title + "'s Position is set to Relative");
+					ACDebug.LogError ("Menu " + title + " cannot display because its size is Automatic, while its Element " + element.title + "'s Position is set to Relative");
 					return;
 				}
 				
@@ -1337,7 +1343,7 @@ namespace AC
 
 		/*
 		 * <summary>Turns the Menu on.</summary>
-		 * <param name = "doFade">If True, the Menu will play it's transition animation; otherwise, it will turn on instantly.</param>
+		 * <param name = "doFade">If True, the Menu will play its transition animation; otherwise, it will turn on instantly.</param>
 		 * <returns>True if the Menu was turned on. False if the Menu was already on.</returns>
 		 */
 		public bool TurnOn (bool doFade = true)
@@ -1420,7 +1426,7 @@ namespace AC
 
 		/*
 		 * <summary>Turns the Menu off.</summary>
-		 * <param name = "doFade">If True, the Menu will play it's transition animation; otherwise, it will turn off instantly.</param>
+		 * <param name = "doFade">If True, the Menu will play its transition animation; otherwise, it will turn off instantly.</param>
 		 * <returns>True if the Menu was turned off. False if the Menu was already off.</returns>
 		 */
 		public bool TurnOff (bool doFade = true)

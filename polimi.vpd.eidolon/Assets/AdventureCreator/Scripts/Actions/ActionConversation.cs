@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionConversation.cs"
  * 
@@ -135,7 +135,7 @@ namespace AC
 			{
 				if (isAssetFile && overrideOptions && constantID != 0)
 				{
-					EditorGUILayout.HelpBox ("Cannot find linked Conversation - please open it's scene file.", MessageType.Warning);
+					EditorGUILayout.HelpBox ("Cannot find linked Conversation - please open its scene file.", MessageType.Warning);
 				}
 				else
 				{
@@ -153,6 +153,16 @@ namespace AC
 				return ("'" + conversation.options[i].label + "':");
 			}
 			return "Option " + i.ToString () + ":";
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberConversation> (conversation);
+			}
+			AssignConstantID <Conversation> (conversation, constantID, parameterID);
 		}
 
 		

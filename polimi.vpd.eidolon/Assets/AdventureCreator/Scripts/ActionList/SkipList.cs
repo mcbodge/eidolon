@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"SkipList.cs"
  * 
@@ -54,7 +54,7 @@ namespace AC
 
 		/**
 		 * <summary>A Constructor that assigns the variables explicitly.</summary>
-		 * <param name = "_actionList">The ActionList this references. If it is a RuntimeActionList, it's assetSource will be assigned to actionListAsset.</param>
+		 * <param name = "_actionList">The ActionList this references. If it is a RuntimeActionList, its assetSource will be assigned to actionListAsset.</param>
 		 * <param name = "_startIndex">The index number of the Action to skip from</param>
 		 */
 		public SkipList (ActionList _actionList, int _startIndex)

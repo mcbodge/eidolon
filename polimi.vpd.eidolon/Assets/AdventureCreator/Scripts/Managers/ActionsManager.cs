@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionsManager.cs"
  * 
@@ -49,6 +49,8 @@ namespace AC
 		public ActionListEditorScrollWheel actionListEditorScrollWheel = ActionListEditorScrollWheel.PansWindow;
 		/** If True, then panning is inverted in the ActionList Editor window (useful for Macbooks) */
 		public bool invertPanning = false;
+		/** The speed factor for panning/zooming */
+		public float panSpeed = 1f;
 		/** The index number of the default Action */
 		public int defaultClass;
 		/** A List of all Action classes found */
@@ -60,6 +62,7 @@ namespace AC
 
 		private ActionType selectedClass = null;
 		private List<ActionListAsset> searchedAssets = new List<ActionListAsset>();
+		private bool[] toggles = new bool[18];
 
 		#endif
 
@@ -88,6 +91,7 @@ namespace AC
 			displayActionsInInspector = EditorGUILayout.ToggleLeft ("List Actions in Inspector window?", displayActionsInInspector);
 			displayActionsInEditor = (DisplayActionsInEditor) EditorGUILayout.EnumPopup ("Actions in Editor are:", displayActionsInEditor);
 			actionListEditorScrollWheel = (ActionListEditorScrollWheel) EditorGUILayout.EnumPopup ("Using scroll-wheel:", actionListEditorScrollWheel);
+			panSpeed = EditorGUILayout.FloatField ((actionListEditorScrollWheel == ActionListEditorScrollWheel.PansWindow) ? "Panning speed:" : "Zoom speed:", panSpeed);
 			invertPanning = EditorGUILayout.ToggleLeft ("Invert panning in ActionList Editor?", invertPanning);
 			allowMultipleActionListWindows = EditorGUILayout.ToggleLeft ("Allow multiple ActionList Editor windows?", allowMultipleActionListWindows);
 			EditorGUILayout.EndVertical ();
@@ -127,74 +131,95 @@ namespace AC
 			if (AllActions.Count > 0)
 			{
 				GUILayout.Space (10);
-				
-				foreach (ActionType subclass in AllActions)
+
+				EditorGUILayout.BeginVertical ("Button");
+				EditorGUILayout.LabelField ("Action categories", EditorStyles.boldLabel);
+				ActionCategory[] categories = (ActionCategory[]) System.Enum.GetValues (typeof(ActionCategory));
+				for (int i=0; i<categories.Length; i++)
 				{
-					int enabledIndex = -1;
-					if (EnabledActions.Contains (subclass))
+					toggles[i] = GUILayout.Toggle (toggles[i], categories[i].ToString (), "Button");
+					if (toggles[i])
 					{
-						enabledIndex = EnabledActions.IndexOf (subclass);
-					}
-
-					if (selectedClass != null && subclass.category == selectedClass.category && subclass.title == selectedClass.title)
-					{
-						EditorGUILayout.BeginVertical ("Button");
-						SpeechLine.ShowField ("Name:", subclass.GetFullTitle (), false);
-						SpeechLine.ShowField ("Filename:", subclass.fileName, false);
-						SpeechLine.ShowField ("Description:", subclass.description, true);
-						subclass.isEnabled = true; // This is being set OnEnable anyway, because Action Types are now refreshed/generated automatically, so can't disable
-						//subclass.isEnabled = EditorGUILayout.Toggle ("Is enabled?", subclass.isEnabled);
-
-						EditorGUILayout.BeginHorizontal ();
-						if (enabledIndex >= 0)
+						int j=-1;
+						foreach (ActionType subclass in AllActions)
 						{
-							if (enabledIndex == defaultClass)
+							if (subclass.category == categories[i])
 							{
-								EditorGUILayout.LabelField ("DEFAULT", EditorStyles.boldLabel, GUILayout.Width (140f));
-							}
-							else if (subclass.isEnabled)
-							{
-								if (GUILayout.Button ("Make default?", GUILayout.Width (140f)))
+								j++;
+								int enabledIndex = -1;
+								if (EnabledActions.Contains (subclass))
 								{
-									if (EnabledActions.Contains (subclass))
+									enabledIndex = EnabledActions.IndexOf (subclass);
+								}
+
+								if (selectedClass != null && subclass.category == selectedClass.category && subclass.title == selectedClass.title)
+								{
+									EditorGUILayout.BeginVertical ("Button");
+									SpeechLine.ShowField ("Name:", subclass.GetFullTitle (), false);
+									SpeechLine.ShowField ("Filename:", subclass.fileName, false);
+									SpeechLine.ShowField ("Description:", subclass.description, true);
+									subclass.isEnabled = true;
+									EditorGUILayout.BeginHorizontal ();
+									if (enabledIndex >= 0)
 									{
-										defaultClass = EnabledActions.IndexOf (subclass);
+										if (enabledIndex == defaultClass)
+										{
+											EditorGUILayout.LabelField ("DEFAULT", EditorStyles.boldLabel, GUILayout.Width (140f));
+										}
+										else if (subclass.isEnabled)
+										{
+											if (GUILayout.Button ("Make default?", GUILayout.Width (140f)))
+											{
+												if (EnabledActions.Contains (subclass))
+												{
+													defaultClass = EnabledActions.IndexOf (subclass);
+												}
+											}
+										}
 									}
+									subclass.color = EditorGUILayout.ColorField ("Node colour:", subclass.color);
+									
+									EditorGUILayout.EndHorizontal ();
+									EditorGUILayout.BeginHorizontal ();
+									
+									if (GUILayout.Button ("Search local instances"))
+									{
+										SearchForInstances (true, subclass);
+									}
+									if (GUILayout.Button ("Search all instances"))
+									{
+										if (UnityVersionHandler.SaveSceneIfUserWants ())
+										{
+											SearchForInstances (false, subclass);
+										}
+									}
+									
+									EditorGUILayout.EndHorizontal ();
+									EditorGUILayout.EndVertical ();
+								}
+								else
+								{
+									EditorGUILayout.BeginHorizontal ();
+									if (GUILayout.Button (j.ToString () + ": " + subclass.GetFullTitle (), EditorStyles.label, GUILayout.Width (200f)))
+									{
+										selectedClass = subclass;
+									}
+									if (enabledIndex >= 0 && enabledIndex == defaultClass)
+									{
+										EditorGUILayout.LabelField ("DEFAULT", EditorStyles.boldLabel, GUILayout.Width (60f));
+									}
+									EditorGUILayout.EndHorizontal ();
+									GUILayout.Box ("", GUILayout.ExpandWidth (true), GUILayout.Height(1));
 								}
 							}
 						}
-						subclass.color = EditorGUILayout.ColorField ("Node colour:", subclass.color);
-
-						EditorGUILayout.EndHorizontal ();
-						EditorGUILayout.BeginHorizontal ();
-
-						if (GUILayout.Button ("Search local instances"))
+						if (j < 0)
 						{
-							SearchForInstances (true, subclass);
+							EditorGUILayout.HelpBox ("There are no Actions of this category type present!", MessageType.Info);
 						}
-						if (GUILayout.Button ("Search all instances"))
-						{
-							SearchForInstances (false, subclass);
-						}
-
-						EditorGUILayout.EndHorizontal ();
-						EditorGUILayout.EndVertical ();
-					}
-					else
-					{
-						EditorGUILayout.BeginHorizontal ();
-						if (GUILayout.Button (subclass.GetFullTitle (), EditorStyles.label, GUILayout.Width (200f)))
-						{
-							selectedClass = subclass;
-						}
-						if (enabledIndex >= 0 && enabledIndex == defaultClass)
-						{
-							EditorGUILayout.LabelField ("DEFAULT", EditorStyles.boldLabel, GUILayout.Width (60f));
-						}
-						EditorGUILayout.EndHorizontal ();
-						GUILayout.Box ("", GUILayout.ExpandWidth (true), GUILayout.Height(1));
 					}
 				}
+				EditorGUILayout.EndVertical ();
 
 				if (defaultClass > EnabledActions.Count - 1)
 				{
@@ -330,10 +355,7 @@ namespace AC
 			if (sceneFile != "")
 			{
 				sceneLabel = "(Scene: " + sceneFile + ") ";
-				if (EditorApplication.currentScene != sceneFile)
-				{
-					EditorApplication.OpenScene (sceneFile);
-				}
+				UnityVersionHandler.OpenScene (sceneFile);
 			}
 
 			// Speech lines and journal entries
@@ -486,7 +508,7 @@ namespace AC
 		/**
 		 * <summary>Gets the index number of an Action within EnabledActions.</summary>
 		 * <param name = "_category">The category of the Action to search for</param>
-		 * <param name = "subCategoryIndex">The index number of the Action in a list of all Actions that share it's category</param>
+		 * <param name = "subCategoryIndex">The index number of the Action in a list of all Actions that share its category</param>
 		 * <returns>The index number of the Action within EnabledActions</returns>
 		 */
 		public int GetActionTypeIndex (ActionCategory _category, int subCategoryIndex)
@@ -544,9 +566,9 @@ namespace AC
 		
 
 		/**
-		 * <summary>Gets the index of an Action within a list of all Actions that share it's category.</summary>
+		 * <summary>Gets the index of an Action within a list of all Actions that share its category.</summary>
 		 * <param name = "_action">The Action to get the index of</param>
-		 * <returns>The index of the Action within a list of all Actions that share it's category</returns>
+		 * <returns>The index of the Action within a list of all Actions that share its category</returns>
 		 */
 		public int GetActionSubCategory (Action _action)
 		{

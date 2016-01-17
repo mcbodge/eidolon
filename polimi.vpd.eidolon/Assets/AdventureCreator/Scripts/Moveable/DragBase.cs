@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"DragBase.cs"
  * 
@@ -57,7 +57,7 @@ namespace AC
 		public float slideSoundThreshold = 0.03f;
 		/** The factor by which the movement sound's pitch is adjusted in relation to speed */
 		public float slidePitchFactor = 1f;
-		/** If True, then the collision sound will only play when the object collides with it's lower boundary collider */
+		/** If True, then the collision sound will only play when the object collides with its lower boundary collider */
 		public bool onlyPlayLowerCollisionSound = false;
 
 		/** If True, then the Physics system will ignore collisions between this object and the bounday colliders of any DragTrack that this is not locked ti */
@@ -164,7 +164,12 @@ namespace AC
 		 * Called every frame by StateHandler.
 		 */
 		public virtual void UpdateMovement ()
-		{}
+		{
+			if (Camera.main)
+			{
+				cameraTransform = Camera.main.transform;
+			}
+		}
 
 
 		private void OnCollisionEnter (Collision collision)

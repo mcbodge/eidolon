@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Dialog.cs"
  * 
@@ -30,7 +30,7 @@ namespace AC
 		private AudioSource defaultAudioSource;
 
 
-		private void Awake ()
+		public void OnAwake ()
 		{
 			if (KickStarter.speechManager.textScrollSpeed == 0f)
 			{
@@ -310,11 +310,17 @@ namespace AC
 				}
 				filename += speakerName + lineNumber;
 
-				textFile = Resources.Load (filename) as TextAsset;
-
-				if (textFile == null)
+				if (KickStarter.speechManager.autoNameSpeechFiles)
 				{
-					ACDebug.LogWarning ("Lipsync file '" + filename + ".txt' not found - be sure to place it in the folder shown in the Speech Manager.");
+					textFile = Resources.Load (filename) as TextAsset;
+					if (textFile == null)
+					{
+						ACDebug.LogWarning ("Lipsync file '" + filename + ".txt' not found - be sure to place it in the folder shown in the Speech Manager.");
+					}
+				}
+				else
+				{
+					textFile = KickStarter.speechManager.GetLineCustomLipsyncFile (lineNumber, Options.GetLanguage ());
 				}
 			}
 			

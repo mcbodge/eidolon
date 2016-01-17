@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"_Camera.cs"
  * 
@@ -35,6 +35,7 @@ namespace AC
 		public float focalDistance = 10f;
 
 		protected Vector2 inputMovement;
+		protected bool doFixedUpdate = false;
 
 
 		protected virtual void Awake ()
@@ -56,6 +57,32 @@ namespace AC
 
 
 		/**
+		 * <summary>Checks if the camera is for 2D games.  This is necessary for working out if the MainCamera needs to change its projection matrix.</summary>
+		 * <returns>True if the camera is for 2D games</returns>
+		 */
+		public virtual bool Is2D ()
+		{
+			return false;
+		}
+
+
+		/**
+		 * Updates the camera.
+		 * This is called every frame by StateHandler.
+		 */
+		public virtual void _Update ()
+		{}
+
+
+		/**
+		 * Updates the camera if it follows a Rigidbody.
+		 * This is called every fixed interval by StateHandler.
+		 */
+		public virtual void _FixedUpdate ()
+		{}
+
+
+		/**
 		 * Auto-assigns "_camera" as the Unity Camera component on the same object as this script
 		 */
 		public void SetCameraComponent ()
@@ -70,11 +97,20 @@ namespace AC
 		/**
 		 * Auto-assigns "target" as the Player prefab Transform if targetIsPlayer = True.
 		 */
-		public void ResetTarget ()
+		public virtual void ResetTarget ()
 		{
 			if (targetIsPlayer && KickStarter.player)
 			{
 				target = KickStarter.player.transform;
+			}
+
+			if (target != null && target.GetComponent <Rigidbody>())
+			{
+				doFixedUpdate = true;
+			}
+			else
+			{
+				doFixedUpdate = false;
 			}
 		}
 
@@ -103,7 +139,7 @@ namespace AC
 		
 
 		/**
-		 * Moves the camera instantly to it's destination.
+		 * Moves the camera instantly to its destination.
 		 */
 		public virtual void MoveCameraInstant ()
 		{ }
@@ -150,6 +186,16 @@ namespace AC
 				_camera.rect = new Rect (0f, 0f, 1f, 1f);
 				_camera.enabled = false;
 			}
+		}
+
+
+		/**
+		 * <summary>Gets the actual horizontal and vertical panning offsets.</summary>
+		 * <returns>The actual horizontal and vertical panning offsets</returns>
+		 */
+		public virtual Vector2 GetPerspectiveOffset ()
+		{
+			return Vector2.zero;
 		}
 
 	}

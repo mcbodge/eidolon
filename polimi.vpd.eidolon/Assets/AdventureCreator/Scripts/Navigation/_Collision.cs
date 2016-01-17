@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"_Collision.cs"
  * 
@@ -59,7 +59,9 @@ namespace AC
 			}
 			gameObject.layer = LayerMask.NameToLayer (KickStarter.settingsManager.deactivatedLayer);
 		}
-		
+
+
+		#if UNITY_EDITOR
 		
 		private void OnDrawGizmos ()
 		{
@@ -80,6 +82,8 @@ namespace AC
 		{
 			AdvGame.DrawCubeCollider (transform, new Color (0f, 1f, 1f, 0.8f));
 		}
+
+		#endif
 		
 	}
 

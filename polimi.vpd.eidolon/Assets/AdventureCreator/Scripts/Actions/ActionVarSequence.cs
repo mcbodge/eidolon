@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionVarSequence.cs"
  * 
@@ -225,8 +225,8 @@ namespace AC
 			}
 			return -1;
 		}
-		
-		
+
+
 		override public string SetLabel ()
 		{
 			if (location == VariableLocation.Local && !isAssetFile)

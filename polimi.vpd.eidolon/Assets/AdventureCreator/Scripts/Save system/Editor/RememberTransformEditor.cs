@@ -19,6 +19,7 @@ namespace AC
 			_target.saveScenePresence = EditorGUILayout.Toggle ("Save scene presence?", _target.saveScenePresence);
 			if (_target.saveScenePresence)
 			{
+				_target.retainInPrefab = true;
 				EditorGUILayout.HelpBox ("This prefab must be placed in a 'Resources' asset folder", MessageType.Info);
 			}
 			EditorGUILayout.EndVertical ();

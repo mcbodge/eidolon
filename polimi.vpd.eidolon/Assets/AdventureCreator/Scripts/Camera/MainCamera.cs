@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MainCamera.cs"
  * 
@@ -118,7 +118,7 @@ namespace AC
 		private AudioListener _audioListener;
 		
 		
-		private void Awake ()
+		public void OnAwake ()
 		{
 			gameObject.tag = Tags.mainCamera;
 			
@@ -176,7 +176,7 @@ namespace AC
 		}
 		
 		
-		private void Start ()
+		public void OnStart ()
 		{
 			if (lookAtTransform)
 			{
@@ -185,17 +185,20 @@ namespace AC
 				LookAtCentre ();
 			}
 			
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetCameraEnabled (true);
-			}
-
 			AssignFadeTexture ();
 			if (KickStarter.sceneChanger != null)
 			{
 				SetFadeTexture (KickStarter.sceneChanger.GetAndResetTransitionTexture ());
 			}
-			StartCoroutine ("ShowScene");
+
+			if (KickStarter.playerMenus.ArePauseMenusOn ())
+			{
+				hideSceneWhileLoading = false;
+			}
+			else
+			{
+				StartCoroutine ("ShowScene");
+			}
 		}
 		
 		
@@ -213,8 +216,7 @@ namespace AC
 		{
 			if (hideSceneWhileLoading)
 			{
-				//	ACDebug.Log ("Pause the game");
-				//	StartCoroutine ("PauseWhenLoaded");
+				//StartCoroutine ("PauseWhenLoaded"); //
 			}
 			else
 			{
@@ -457,10 +459,9 @@ namespace AC
 					transform.position = attachedCamera.transform.position;
 					focalDistance = attachedCamera.focalDistance;
 					
-					if (attachedCamera is GameCamera2D)
+					if (attachedCamera.Is2D ())
 					{
-						GameCamera2D cam2D = (GameCamera2D) attachedCamera;
-						perspectiveOffset = cam2D.GetPerspectiveOffset ();
+						perspectiveOffset = attachedCamera.GetPerspectiveOffset ();
 						if (!_camera.orthographic)
 						{
 							_camera.projectionMatrix = AdvGame.SetVanishingPoint (_camera, perspectiveOffset);
@@ -486,12 +487,10 @@ namespace AC
 					// Move from one GameCamera to another
 					if (Time.time < startTime + changeTime)
 					{
-						if (attachedCamera is GameCamera2D)
+						if (attachedCamera.Is2D ())
 						{
-							GameCamera2D cam2D = (GameCamera2D) attachedCamera;
-							
-							perspectiveOffset.x = AdvGame.Lerp (startPerspectiveOffset.x, cam2D.GetPerspectiveOffset ().x, AdvGame.Interpolate (startTime, changeTime, moveMethod, timeCurve));
-							perspectiveOffset.y = AdvGame.Lerp (startPerspectiveOffset.y, cam2D.GetPerspectiveOffset ().y, AdvGame.Interpolate (startTime, changeTime, moveMethod, timeCurve));
+							perspectiveOffset.x = AdvGame.Lerp (startPerspectiveOffset.x, attachedCamera.GetPerspectiveOffset ().x, AdvGame.Interpolate (startTime, changeTime, moveMethod, timeCurve));
+							perspectiveOffset.y = AdvGame.Lerp (startPerspectiveOffset.y, attachedCamera.GetPerspectiveOffset ().y, AdvGame.Interpolate (startTime, changeTime, moveMethod, timeCurve));
 							
 							_camera.ResetProjectionMatrix ();
 						}
@@ -515,7 +514,7 @@ namespace AC
 						_camera.fieldOfView = AdvGame.Lerp (startFOV, attachedCamera._camera.fieldOfView, AdvGame.Interpolate (startTime, changeTime, moveMethod, timeCurve));
 						_camera.orthographicSize = AdvGame.Lerp (startOrtho, attachedCamera._camera.orthographicSize, AdvGame.Interpolate (startTime, changeTime, moveMethod, timeCurve));
 						
-						if (attachedCamera is GameCamera2D && !_camera.orthographic)
+						if (attachedCamera.Is2D () && !_camera.orthographic)
 						{
 							_camera.projectionMatrix = AdvGame.SetVanishingPoint (_camera, perspectiveOffset);
 						}
@@ -833,13 +832,7 @@ namespace AC
 					_camera.transparencySortMode = TransparencySortMode.Perspective;
 				}
 			}
-			
-			// UFPS
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration._Update (KickStarter.stateHandler.gameState);
-			}
-			
+
 			KickStarter.stateHandler.LimitHotspotsToCamera (attachedCamera);
 			
 			if (transitionTime > 0f)

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCheckActionList.cs"
  * 
@@ -111,6 +111,15 @@ namespace AC
 			else if (listSource == ListSource.AssetFile)
 			{
 				actionListAsset = (ActionListAsset) EditorGUILayout.ObjectField ("ActionList asset:", actionListAsset, typeof (ActionListAsset), true);
+			}
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (listSource == ListSource.InScene)
+			{
+				AssignConstantID <ActionList> (actionList, constantID, parameterID);
 			}
 		}
 

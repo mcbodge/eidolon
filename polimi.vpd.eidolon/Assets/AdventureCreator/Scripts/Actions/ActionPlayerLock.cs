@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionPlayerLock.cs"
  * 
@@ -32,6 +32,7 @@ namespace AC
 		
 		public PlayerMoveLock doRunLock = PlayerMoveLock.NoChange;
 		public LockType freeAimLock = LockType.NoChange;
+		public LockType cursorState = LockType.NoChange;
 		public LockType doGravityLock = LockType.NoChange;
 		public LockType doHotspotHeadTurnLock = LockType.NoChange;
 		public Paths movePath;
@@ -107,9 +108,13 @@ namespace AC
 					}
 				}
 
-				if (IsUltimateFPS ())
+				if (cursorState == LockType.Disabled)
 				{
-					return 0f;
+					KickStarter.playerInput.cursorIsLocked = false;
+				}
+				else if (cursorState == LockType.Enabled)
+				{
+					KickStarter.playerInput.cursorIsLocked = true;
 				}
 
 				if (doRunLock != PlayerMoveLock.NoChange)
@@ -177,12 +182,10 @@ namespace AC
 				freeAimLock = (LockType) EditorGUILayout.EnumPopup ("Free-aiming:", freeAimLock);
 			}
 
-			if (!IsUltimateFPS ())
-			{
-				doRunLock = (PlayerMoveLock) EditorGUILayout.EnumPopup ("Walk / run:", doRunLock);
-				doGravityLock = (LockType) EditorGUILayout.EnumPopup ("Affected by gravity?", doGravityLock);
-				movePath = (Paths) EditorGUILayout.ObjectField ("Move path:", movePath, typeof (Paths), true);
-			}
+			cursorState = (LockType) EditorGUILayout.EnumPopup ("Cursor lock:", cursorState);
+			doRunLock = (PlayerMoveLock) EditorGUILayout.EnumPopup ("Walk / run:", doRunLock);
+			doGravityLock = (LockType) EditorGUILayout.EnumPopup ("Affected by gravity?", doGravityLock);
+			movePath = (Paths) EditorGUILayout.ObjectField ("Move path:", movePath, typeof (Paths), true);
 
 			if (AllowHeadTurning ())
 			{
@@ -210,7 +213,7 @@ namespace AC
 			if (AdvGame.GetReferences ().settingsManager)
 			{
 				SettingsManager settingsManager = AdvGame.GetReferences ().settingsManager;
-				if (settingsManager.movementMethod == MovementMethod.PointAndClick || settingsManager.movementMethod == MovementMethod.Drag || settingsManager.movementMethod == MovementMethod.UltimateFPS || settingsManager.movementMethod == MovementMethod.StraightToCursor)
+				if (settingsManager.movementMethod == MovementMethod.PointAndClick || settingsManager.movementMethod == MovementMethod.Drag || settingsManager.movementMethod == MovementMethod.StraightToCursor)
 				{
 					return true;
 				}
@@ -228,15 +231,6 @@ namespace AC
 			return false;
 		}
 
-
-		private bool IsUltimateFPS ()
-		{
-			if (AdvGame.GetReferences ().settingsManager && AdvGame.GetReferences ().settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				return true;
-			}
-			return false;
-		}
 	}
 
 }

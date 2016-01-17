@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionComment.cs"
  * 
@@ -40,7 +40,7 @@ namespace AC
 		{
 			if (outputToDebugger && commentText.Length > 0)
 			{
-				ACDebug.Log (commentText);
+				ACDebug.Log (AdvGame.ConvertTokens (commentText));
 			}
 			return 0f;
 		}

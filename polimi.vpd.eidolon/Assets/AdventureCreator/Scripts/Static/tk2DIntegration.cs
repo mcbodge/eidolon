@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"tk2DIntegration.cs"
  * 
@@ -73,7 +73,7 @@ namespace AC
 		public static bool Is2DtkSprite (GameObject spriteObject)
 		{
 			#if tk2DIsPresent
-			if (sprite != null && sprite.GetComponent <tk2dSpriteAnimator>())
+			if (spriteObject != null && spriteObject.GetComponent <tk2dSpriteAnimator>())
 			{
 				return true;
 			}

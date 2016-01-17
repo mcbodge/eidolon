@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"GameCamera2D.cs"
  * 
@@ -20,6 +20,7 @@ namespace AC
 	 * The standard 2D camera. It can be scrolled horizontally and vertically without altering perspective (causing a "Ken Burns effect" if the camera uses Perspective projection.
 	 * Based on the work by Eric Haines (Eric5h5) at http://wiki.unity3d.com/index.php?title=OffsetVanishingPoint
 	 */
+	[RequireComponent (typeof (Camera))]
 	public class GameCamera2D : _Camera
 	{
 
@@ -74,11 +75,13 @@ namespace AC
 		}
 
 
-		/**
-		 * Updates the camera's projection matrix.
-		 * This is called every frame by StateHandler.
-		 */
-		public void _Update ()
+		public override bool Is2D ()
+		{
+			return true;
+		}
+
+
+		public override void _Update ()
 		{
 			MoveCamera ();
 		}
@@ -230,7 +233,7 @@ namespace AC
 
 
 		/**
-		 * Snaps the camera to it's offset values and recalculates the camera's projection matrix.
+		 * Snaps the camera to its offset values and recalculates the camera's projection matrix.
 		 */
 		public void SnapToOffset ()
 		{
@@ -328,11 +331,7 @@ namespace AC
 		}
 
 
-		/**
-		 * <summary>Gets the actual horizontal and vertical panning offsets.</summary>
-		 * <returns>The actual horizontal and vertical panning offsets</returns>
-		 */
-		public Vector2 GetPerspectiveOffset ()
+		public override Vector2 GetPerspectiveOffset ()
 		{
 			return perspectiveOffset;
 		}

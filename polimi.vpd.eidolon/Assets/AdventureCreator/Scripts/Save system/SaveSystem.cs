@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"SaveSystem.cs"
  * 
@@ -36,16 +36,30 @@ namespace AC
 		public List<SaveFile> foundImportFiles = new List<SaveFile>();
 
 		#if !UNITY_WEBPLAYER && !UNITY_WINRT && !UNITY_WII
-		private string saveDirectory = Application.persistentDataPath;
+		private string saveDirectory;
 		#endif
-		
+
+		private float gameplayInvokeTime = 0.01f;
 		private SaveData saveData;
 		private SelectiveLoad activeSelectiveLoad = new SelectiveLoad ();
 
 		
-		private void Start ()
+		public void OnStart ()
 		{
+			#if !UNITY_WEBPLAYER && !UNITY_WINRT && !UNITY_WII
+			saveDirectory = Application.persistentDataPath;
+			#endif
 			GatherSaveFiles ();
+		}
+
+
+		/**
+		 * <summary>Sets the delay after loading a saved game before gameplay is resumed. This is useful in games with custom systems, e.g. weapons, where we want to prevent firing being possible immediately after loading.</summary>
+		 * <param name = "The new delay time, in seconds</param>
+		 */
+		public void SetGameplayReturnTime (float _gameplayInvokeTime)
+		{
+			gameplayInvokeTime = _gameplayInvokeTime;
 		}
 
 
@@ -270,15 +284,11 @@ namespace AC
 			{
 				int divider = allData.IndexOf ("||");
 				string mainData = allData.Substring (0, divider);
-				SaveData tempSaveData = new SaveData ();
 
-				if (SaveSystem.GetSaveMethod () == SaveMethod.XML)
+				SaveData tempSaveData = (SaveData) Serializer.DeserializeObject <SaveData> (mainData);
+				if (tempSaveData == null)
 				{
-					tempSaveData = (SaveData) Serializer.DeserializeObjectXML <SaveData> (mainData);
-				}
-				else
-				{
-					tempSaveData = Serializer.DeserializeObjectBinary <SaveData> (mainData);
+					tempSaveData = new SaveData ();
 				}
 
 				string varData = tempSaveData.mainData.runtimeVariablesData;
@@ -326,7 +336,6 @@ namespace AC
 			Destroy (screenshotTex);
 			
 			KickStarter.stateHandler.PostScreenshotBackup ();
-
 			GatherSaveFiles ();
 		}
 
@@ -336,6 +345,10 @@ namespace AC
 			if (GetSaveMethod () == SaveMethod.XML)
 			{
 				return ".savx";
+			}
+			else if (GetSaveMethod () == SaveMethod.Json)
+			{
+				return ".savj";
 			}
 			return ".save";
 		}
@@ -535,19 +548,10 @@ namespace AC
 
 			if (allData.ToString () != "")
 			{
-				string mainData;
-
 				int divider = allData.IndexOf ("||");
-				mainData = allData.Substring (0, divider);
+				string mainData = allData.Substring (0, divider);
 
-				if (SaveSystem.GetSaveMethod () == SaveMethod.XML)
-				{
-					saveData = (SaveData) Serializer.DeserializeObjectXML <SaveData> (mainData);
-				}
-				else
-				{
-					saveData = Serializer.DeserializeObjectBinary <SaveData> (mainData);
-				}
+				saveData = (SaveData) Serializer.DeserializeObject <SaveData> (mainData);
 				
 				// Stop any current-running ActionLists, dialogs and interactions
 				KillActionLists ();
@@ -566,25 +570,14 @@ namespace AC
 
 			if (allData.ToString () != "")
 			{
-				string mainData;
-				string roomData;
-				
 				int divider = allData.IndexOf ("||");
-				mainData = allData.Substring (0, divider);
-				roomData = allData.Substring (divider + 2);
+				string mainData = allData.Substring (0, divider);
+				string roomData = allData.Substring (divider + 2);
 
 				if (activeSelectiveLoad.loadSceneObjects)
 				{
-					if (SaveSystem.GetSaveMethod () == SaveMethod.XML)
-					{
-						saveData = (SaveData) Serializer.DeserializeObjectXML <SaveData> (mainData);
-						KickStarter.levelStorage.allLevelData = (List<SingleLevelData>) Serializer.DeserializeObjectXML <List<SingleLevelData>> (roomData);
-					}
-					else
-					{
-						saveData = Serializer.DeserializeObjectBinary <SaveData> (mainData);
-						KickStarter.levelStorage.allLevelData = Serializer.DeserializeRoom (roomData);
-					}
+					saveData = (SaveData) Serializer.DeserializeObject <SaveData> (mainData);
+					KickStarter.levelStorage.allLevelData = Serializer.DeserializeAllRoomData (roomData);
 				}
 
 				// Stop any current-running ActionLists, dialogs and interactions
@@ -603,7 +596,7 @@ namespace AC
 				int newScene = GetPlayerScene (saveData.mainData.currentPlayerID, saveData.playerData);
 				
 				// Load correct scene
-				if (newScene != Application.loadedLevel && activeSelectiveLoad.loadScene)
+				if (KickStarter.settingsManager.reloadSceneWhenLoading || (newScene != UnityVersionHandler.GetCurrentSceneNumber () && activeSelectiveLoad.loadScene))
 				{
 					loadingGame = LoadingGame.InNewScene;
 					KickStarter.sceneChanger.ChangeScene (new SceneInfo ("", newScene), false);
@@ -673,7 +666,7 @@ namespace AC
 				}
 			}
 
-			return Application.loadedLevel;
+			return UnityVersionHandler.GetCurrentSceneNumber ();
 		}
 
 
@@ -698,10 +691,10 @@ namespace AC
 				}
 			}
 			
-			return Application.loadedLevelName;
+			return UnityVersionHandler.GetCurrentSceneName ();
 		}
-		
-		
+
+
 		private void OnLevelWasLoaded ()
 		{
 			if (KickStarter.settingsManager.IsInLoadingScene ())
@@ -709,6 +702,12 @@ namespace AC
 				return;
 			}
 
+			if (KickStarter.sceneSettings == null)
+			{
+				return;
+			}
+
+			ResetSceneObjects ();
 			if (loadingGame == LoadingGame.InNewScene || loadingGame == LoadingGame.InSameScene)
 			{
 				if (KickStarter.dialog)
@@ -725,10 +724,10 @@ namespace AC
 				KickStarter.levelStorage.ReturnCurrentLevelData (true);
 				CustomLoadHook ();
 
-				if (loadingGame == LoadingGame.InSameScene)
+				/*if (loadingGame == LoadingGame.InSameScene)
 				{
 					loadingGame = LoadingGame.No;
-				}
+				}*/
 			}
 
 			if (KickStarter.runtimeInventory)
@@ -752,7 +751,7 @@ namespace AC
 				KickStarter.stateHandler.gameState = GameState.Cutscene;
 				KickStarter.mainCamera.FadeIn (0.5f);
 
-				Invoke ("ReturnToGameplay", 0.01f);
+				Invoke ("ReturnToGameplay", gameplayInvokeTime);
 			}
 			else
 			{
@@ -934,19 +933,9 @@ namespace AC
 				saveData.mainData = KickStarter.runtimeVariables.SaveMainData (saveData.mainData);
 				saveData.mainData = KickStarter.playerMenus.SaveMainData (saveData.mainData);
 
-				string mainData = "";
-				string levelData = "";
-				
-				if (SaveSystem.GetSaveMethod () == SaveMethod.XML)
-				{
-					mainData = Serializer.SerializeObjectXML <SaveData> (saveData);
-					levelData = Serializer.SerializeObjectXML <List<SingleLevelData>> (KickStarter.levelStorage.allLevelData);
-				}
-				else
-				{
-					mainData = Serializer.SerializeObjectBinary (saveData);
-					levelData = Serializer.SerializeObjectBinary (KickStarter.levelStorage.allLevelData);
-				}
+				string mainData = Serializer.SerializeObject <SaveData> (saveData, true);
+				string levelData = Serializer.SerializeAllRoomData (KickStarter.levelStorage.allLevelData);
+
 				string allData = mainData + "||" + levelData;
 		
 				Serializer.CreateSaveFile (GetSaveFileName (saveID), allData);
@@ -1048,8 +1037,8 @@ namespace AC
 		{
 			PlayerData playerData = new PlayerData ();
 
-			playerData.currentScene = Application.loadedLevel;
-			playerData.currentSceneName = Application.loadedLevelName;
+			playerData.currentScene = UnityVersionHandler.GetCurrentSceneNumber ();
+			playerData.currentSceneName = UnityVersionHandler.GetCurrentSceneName ();
 
 			playerData.previousScene = KickStarter.sceneChanger.previousSceneInfo.number;
 			playerData.previousSceneName = KickStarter.sceneChanger.previousSceneInfo.name;
@@ -1058,15 +1047,6 @@ namespace AC
 
 			KickStarter.runtimeInventory.RemoveRecipes ();
 			playerData.inventoryData = CreateInventoryData (KickStarter.runtimeInventory.localItems);
-
-			if (player == null)
-			{
-				playerData.playerPortraitGraphic = "";
-				playerData.playerID = KickStarter.settingsManager.GetEmptyPlayerID ();
-				return playerData;
-			}
-
-			playerData = player.SavePlayerData (playerData);
 
 			// Camera
 			MainCamera mainCamera = KickStarter.mainCamera;
@@ -1116,6 +1096,15 @@ namespace AC
 					playerData.splitCameraID = 0;
 				}
 			}
+
+			if (player == null)
+			{
+				playerData.playerPortraitGraphic = "";
+				playerData.playerID = KickStarter.settingsManager.GetEmptyPlayerID ();
+				return playerData;
+			}
+			
+			playerData = player.SavePlayerData (playerData);
 
 			return playerData;
 		}
@@ -1471,7 +1460,7 @@ namespace AC
 				KickStarter.stateHandler.gameState = GameState.Cutscene;
 				KickStarter.mainCamera.FadeIn (0.5f);
 
-				Invoke ("ReturnToGameplay", 0.01f);
+				Invoke ("ReturnToGameplay", gameplayInvokeTime);
 			}
 			else
 			{
@@ -1542,7 +1531,7 @@ namespace AC
 					}
 				}
 			}
-			return Application.loadedLevel;
+			return UnityVersionHandler.GetCurrentSceneNumber ();
 		}
 
 
@@ -1567,7 +1556,7 @@ namespace AC
 				}
 			}
 			
-			return Application.loadedLevelName;
+			return UnityVersionHandler.GetCurrentSceneName ();
 		}
 
 
@@ -1610,7 +1599,7 @@ namespace AC
 				}
 			}
 			AssetLoader.UnloadAssets ();
-			return Application.loadedLevel;
+			return UnityVersionHandler.GetCurrentSceneNumber ();
 		}
 
 
@@ -1677,6 +1666,7 @@ namespace AC
 
 		private void ReturnToGameplay ()
 		{
+			loadingGame = LoadingGame.No;
 			KickStarter.playerInput.ReturnToGameplayAfterLoad ();
 
 			if (KickStarter.sceneSettings)
@@ -1970,7 +1960,7 @@ namespace AC
 
 		/**
 		 * <summary>Deletes a player profile.</summary>
-		 * <param name = "profileIndex">The index in the MenuProfilesList element that represents the profile to delete. If it is set to it's default, -2, the active profile will be deleted</param>
+		 * <param name = "profileIndex">The index in the MenuProfilesList element that represents the profile to delete. If it is set to its default, -2, the active profile will be deleted</param>
 		 * <param name = "includeActive">If True, then the MenuProfilesList element that the profile was selected from also displays the active profile</param>
 		 */
 		public void DeleteProfile (int profileIndex = -2, bool includeActive = true)
@@ -2073,6 +2063,19 @@ namespace AC
 				}
 			}
 			return numFound;
+		}
+
+
+		private void ResetSceneObjects ()
+		{
+			AC.Char[] characters = FindObjectsOfType (typeof (AC.Char)) as AC.Char[];
+			foreach (AC.Char character in characters)
+			{
+				character._OnLevelWasLoaded ();
+			}
+
+			KickStarter.playerMenus._OnLevelWasLoaded ();
+			KickStarter.runtimeInventory._OnLevelWasLoaded ();
 		}
 
 	}

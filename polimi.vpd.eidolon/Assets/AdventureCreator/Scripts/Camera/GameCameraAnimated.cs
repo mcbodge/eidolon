@@ -7,7 +7,7 @@ namespace AC
 
 	/**
 	 * A camera that plays an animation when it is made active.
-	 * The animation will either play normally, or alternatively, set match it's normalised time with the target's position along a Paths object -
+	 * The animation will either play normally, or alternatively, set match its normalised time with the target's position along a Paths object -
 	 * allowing for fancy camera movement as the Player moves around a scene.
 	 */
 	public class GameCameraAnimated : _Camera
@@ -62,9 +62,21 @@ namespace AC
 		}
 		
 		
-		private void Update ()
+		public override void _Update ()
 		{
-			MoveCamera ();
+			if (!doFixedUpdate)
+			{
+				MoveCamera ();
+			}
+		}
+
+
+		public override void _FixedUpdate ()
+		{
+			if (doFixedUpdate)
+			{
+				MoveCamera ();
+			}
 		}
 
 

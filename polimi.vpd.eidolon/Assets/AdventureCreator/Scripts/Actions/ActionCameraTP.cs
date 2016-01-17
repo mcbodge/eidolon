@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCameraTP.cs"
  * 
@@ -48,7 +48,7 @@ namespace AC
 			this.isDisplayed = true;
 			category = ActionCategory.Camera;
 			title = "Rotate third-person";
-			description = "Rotates a Game Camera Third-person to face a certain direction, either fixed or relative to it's target.";
+			description = "Rotates a Game Camera Third-person to face a certain direction, either fixed or relative to its target.";
 		}
 		
 		
@@ -179,6 +179,16 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <ConstantID> (linkedCamera);
+			}
+			AssignConstantID <GameCameraThirdPerson> (linkedCamera, constantID, parameterID);
 		}
 		
 		

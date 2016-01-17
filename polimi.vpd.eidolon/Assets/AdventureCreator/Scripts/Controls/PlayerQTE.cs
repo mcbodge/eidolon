@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"PlayerQTE.cs"
  * 
@@ -42,7 +42,7 @@ namespace AC
 		private bool canMash;
 
 
-		private void Awake ()
+		public void OnAwake ()
 		{
 			SkipQTE ();
 		}
@@ -162,7 +162,6 @@ namespace AC
 			{
 				return 0f;
 			}
-
 			return (1f - (Time.time - startTime) / (endTime - startTime));
 		}
 
@@ -205,6 +204,19 @@ namespace AC
 
 
 		/**
+		 * <summary>Checks if a QTE sequence is currently active.</summary>
+		 * <returns>True if a QTE sequence is currently active.</returns>
+		 */
+		public bool QTEIsActive ()
+		{
+			if (endTime > 0f)
+			{
+				return true;
+			}
+			return false;
+		}
+
+		/**
 		 * Updates the current QTE. This is called every frame by StateHandler.
 		 */
 		public void UpdateQTE ()
@@ -227,7 +239,7 @@ namespace AC
 					Win ();
 					return;
 				}
-				else if (wrongKeyFails && Input.anyKey)
+				else if (wrongKeyFails && KickStarter.playerInput.InputAnyKey () && KickStarter.playerInput.GetMouseState () == MouseState.Normal)
 				{
 					Lose ();
 					return;

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionRename.cs"
  * 
@@ -81,6 +81,17 @@ namespace AC
 			newName = EditorGUILayout.TextField ("New label:", newName);
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberHotspot> (hotspot);
+			}
+
+			AssignConstantID <Hotspot> (hotspot, constantID, parameterID);
 		}
 		
 		

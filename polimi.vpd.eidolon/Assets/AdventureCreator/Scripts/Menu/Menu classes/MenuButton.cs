@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuButton.cs"
  * 
@@ -168,6 +168,15 @@ namespace AC
 		}
 
 
+		public override void Initialise (AC.Menu _menu)
+		{
+			if (buttonClickType == AC_ButtonClickType.OffsetElementSlot || buttonClickType == AC_ButtonClickType.OffsetJournal)
+			{
+				elementToShift = _menu.GetElementWithName (inventoryBoxTitle);
+			}
+		}
+
+
 		/**
 		 * <summary>Initialises the linked Unity UI GameObject.</summary>
 		 * <param name = "_menu">The element's parent Menu</param>
@@ -182,7 +191,7 @@ namespace AC
 					uiText = uiButton.GetComponentInChildren <Text>();
 				}
 				uiButton.onClick.AddListener (() => {
-					ProcessClick (_menu, 0, KickStarter.playerInput.GetMouseState ());
+					ProcessClickUI (_menu, 0, KickStarter.playerInput.GetMouseState ());
 				});
 			}
 		}
@@ -279,6 +288,8 @@ namespace AC
 				inventoryBoxTitle = EditorGUILayout.TextField ("Journal to affect:", inventoryBoxTitle);
 				shiftInventory = (AC_ShiftInventory) EditorGUILayout.EnumPopup ("Offset type:", shiftInventory);
 				loopJournal = EditorGUILayout.Toggle ("Cycle pages?", loopJournal);
+				shiftAmount = EditorGUILayout.IntField ("Offset amount:", shiftAmount);
+				onlyShowWhenEffective = EditorGUILayout.Toggle ("Only show when effective?", onlyShowWhenEffective);
 			}
 			else if (buttonClickType == AC_ButtonClickType.RunActionList)
 			{
@@ -313,12 +324,18 @@ namespace AC
 			{
 				EditorGUILayout.BeginVertical ("Button");
 				EditorGUILayout.BeginHorizontal ();
+				bool hasValid = false;
 				parameterID = Action.ChooseParameterGUI ("", actionList.parameters, parameterID, ParameterType.Integer);
 				if (parameterID >= 0)
 				{
 					parameterValue = EditorGUILayout.IntField (parameterValue);
+					hasValid = true;
 				}
 				EditorGUILayout.EndHorizontal ();
+				if (!hasValid)
+				{
+					EditorGUILayout.HelpBox ("Only Integer parameters can be passed to a MenuButton's ActionList", MessageType.Info);
+				}
 				EditorGUILayout.EndVertical ();
 			}
 		}
@@ -346,25 +363,6 @@ namespace AC
 		 */
 		public override void PreDisplay (int _slot, int languageNumber, bool isActive)
 		{
-			if (buttonClickType == AC_ButtonClickType.OffsetElementSlot && onlyShowWhenEffective && inventoryBoxTitle != "" && Application.isPlaying)
-			{
-				if (elementToShift == null)
-				{
-					foreach (AC.Menu _menu in PlayerMenus.GetMenus ())
-					{
-						if (_menu != null && _menu.elements.Contains (this))
-						{
-							elementToShift = PlayerMenus.GetElementWithName (_menu.title, inventoryBoxTitle);
-							break;
-						}
-					}
-				}
-				if (elementToShift != null)
-				{
-					isVisible = elementToShift.CanBeShifted (shiftInventory);
-				}
-			}
-
 			fullText = TranslateLabel (label, languageNumber);
 
 			if (uiButton != null)
@@ -388,17 +386,6 @@ namespace AC
 		 */
 		public override void Display (GUIStyle _style, int _slot, float zoom, bool isActive)
 		{
-			if (buttonClickType == AC_ButtonClickType.OffsetElementSlot && onlyShowWhenEffective && inventoryBoxTitle != "" && Application.isPlaying)
-			{
-				if (elementToShift != null)
-				{
-					if (!elementToShift.CanBeShifted (shiftInventory))
-					{
-						return;
-					}
-				}
-			}
-
 			base.Display (_style, _slot, zoom, isActive);
 
 			_style.wordWrap = true;
@@ -471,6 +458,17 @@ namespace AC
 		 */
 		public override void RecalculateSize (MenuSource source)
 		{
+			if (buttonClickType == AC_ButtonClickType.OffsetElementSlot || buttonClickType == AC_ButtonClickType.OffsetJournal)
+			{
+				if (onlyShowWhenEffective && Application.isPlaying && elementToShift != null)
+				{
+					if (buttonClickType == AC_ButtonClickType.OffsetElementSlot || !loopJournal)
+					{
+						isVisible = elementToShift.CanBeShifted (shiftInventory);
+					}
+				}
+			}
+
 			clickAlpha = 0f;
 			base.RecalculateSize (source);
 		}
@@ -512,14 +510,11 @@ namespace AC
 			}
 			else if (buttonClickType == AC_ButtonClickType.OffsetElementSlot)
 			{
-				if (elementToShift == null)
-				{
-					elementToShift = PlayerMenus.GetElementWithName (_menu.title, inventoryBoxTitle);
-				}
 				if (elementToShift != null)
 				{
 					elementToShift.Shift (shiftInventory, shiftAmount);
 					elementToShift.RecalculateSize (_menu.menuSource);
+					_menu.Recalculate ();
 				}
 				else
 				{
@@ -532,8 +527,9 @@ namespace AC
 				
 				if (journalToShift != null)
 				{
-					journalToShift.Shift (shiftInventory, loopJournal);
+					journalToShift.Shift (shiftInventory, loopJournal, shiftAmount);
 					journalToShift.RecalculateSize (_menu.menuSource);
+					_menu.Recalculate ();
 				}
 				else
 				{

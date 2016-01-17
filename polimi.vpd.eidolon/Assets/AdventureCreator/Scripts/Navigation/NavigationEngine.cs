@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"NavigationEngine.cs"
  * 
@@ -15,6 +15,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace AC
 {
@@ -28,10 +31,14 @@ namespace AC
 	public class NavigationEngine : ScriptableObject
 	{
 
+		protected Vector2[] vertexData;
+		
+
 		/**
-		 * Called when the scene begins or is reset.
+		 * <summary>Called when the scene begins or is reset.</summary>
+		 * <param name = "navMesh">The NavigationMesh that is active in the scene.</param>
 		 */
-		public virtual void Awake ()
+		public virtual void OnReset (NavigationMesh navMesh)
 		{ }
 
 
@@ -61,6 +68,14 @@ namespace AC
 
 
 		/**
+		 * <summary>Enables the NavMesh so that it can be used in pathfinding.</summary>
+		 * <param name = "navMeshOb">The NavigationMesh gameobject to enable</param>
+		 */
+		public virtual void TurnOn (NavigationMesh navMesh)
+		{}
+
+
+		/**
 		 * <summary>Sets the visibility state of any relevant prefabs.
 		 * This is called when the "NavMesh" visibility buttons in SceneManager are clicked on.</summary>
 		 * <param name = "visibility">True if the prefabs should be made visible. Otherwise, they should be made invisible.</param>
@@ -70,15 +85,11 @@ namespace AC
 
 
 		/**
-		 * <summary>Adds holes in a PolygonCollider2D to account for stationary characters, so they can be evaded during pathfinding calculations (Polygon Collider-based navigation only).
-		 * <param name = "navPoly">The original PolygonCollider2D to modify</param>
-		 * <param name = "charToExclude">The character to ignore when creating holes. Typically this is the Player character, or any character already moving.</param>
-		 * <returns>True if changes were made to the base PolygonCollider2D.</returns>
+		 * Integrates all PolygonCollider2D objects in the polygonColliderHoles List into the base PolygonCollider2D shape.
+		 * This is called automatically by AddHole() and RemoveHole() once the List has been amended
 		 */
-		public virtual bool AddCharHoles (PolygonCollider2D navPoly, Char charToExclude)
-		{
-			return false;
-		}
+		public virtual void ResetHoles (NavigationMesh navMesh)
+		{}
 
 
 		/**
@@ -89,6 +100,31 @@ namespace AC
 			#if UNITY_EDITOR
 			#endif
 		}
+
+
+		#if UNITY_EDITOR
+
+		/**
+		 * Provides a space for any custom Editor GUI code that should be displayed in the NavigationMesh inspector.
+		 */
+		public virtual NavigationMesh NavigationMeshGUI (NavigationMesh _target)
+		{
+			_target.disableRenderer = EditorGUILayout.ToggleLeft ("Disable mesh renderer?", _target.disableRenderer);
+			#if UNITY_5
+			_target.ignoreCollisions = EditorGUILayout.ToggleLeft ("Ignore collisions?", _target.ignoreCollisions);
+			#endif
+			return _target;
+		}
+
+
+		/**
+		 * <summary>Draws gizmos in the Scene/Game window.</summary>
+		 * <param name = "navMeshOb">The NavigationMesh gameobject to draw gizmos for</param>
+		 */
+		public virtual void DrawGizmos (GameObject navMeshOb)
+		{}
+
+		#endif
 
 	}
 

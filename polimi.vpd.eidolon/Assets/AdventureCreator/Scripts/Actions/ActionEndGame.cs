@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionEndGame.cs"
  * 
@@ -69,18 +69,17 @@ namespace AC
 
 					KickStarter.saveSystem.ClearAllData ();
 					KickStarter.levelStorage.ClearAllLevelData ();
-					KickStarter.runtimeInventory.Start ();
-					KickStarter.runtimeVariables.Awake ();
-					KickStarter.runtimeVariables.Start ();
+					KickStarter.runtimeInventory.OnStart ();
+					KickStarter.runtimeVariables.OnStart ();
 
 					KickStarter.stateHandler.CanGlobalOnStart ();
-					KickStarter.sceneChanger.ChangeScene (new SceneInfo (chooseSceneBy, sceneName, sceneNumber), false);
+					KickStarter.sceneChanger.ChangeScene (new SceneInfo (chooseSceneBy, sceneName, sceneNumber), false, true);
 				}
 				else if (endGameType == AC_EndGameType.ResetScene)
 				{
-					sceneNumber = Application.loadedLevel;
+					sceneNumber = UnityVersionHandler.GetCurrentSceneNumber ();
 					KickStarter.levelStorage.ClearCurrentLevelData ();
-					KickStarter.sceneChanger.ChangeScene (new SceneInfo ("", sceneNumber), false);
+					KickStarter.sceneChanger.ChangeScene (new SceneInfo ("", sceneNumber), false, true);
 				}
 			}
 

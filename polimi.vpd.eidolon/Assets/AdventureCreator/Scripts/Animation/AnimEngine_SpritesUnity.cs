@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"AnimEngine_SpritesUnity.cs"
  * 
@@ -321,11 +321,11 @@ namespace AC
 		}
 		
 		
-		public override void ActionSpeechGUI (ActionSpeech action)
+		public override void ActionSpeechGUI (ActionSpeech action, Char speaker)
 		{
 			#if UNITY_EDITOR
 			
-			if (action.speaker.talkingAnimation == TalkingAnimation.CustomFace)
+			if (speaker != null && speaker.talkingAnimation == TalkingAnimation.CustomFace)
 			{
 				action.play2DHeadAnim = EditorGUILayout.BeginToggleGroup ("Custom head animation?", action.play2DHeadAnim);
 				action.headClip2D = EditorGUILayout.TextField ("Head animation:", action.headClip2D);
@@ -349,13 +349,13 @@ namespace AC
 		
 		public override void ActionSpeechRun (ActionSpeech action)
 		{
-			if (action.speaker.talkingAnimation == TalkingAnimation.CustomFace && action.speaker.GetAnimator ())
+			if (action.Speaker.talkingAnimation == TalkingAnimation.CustomFace && action.Speaker.GetAnimator ())
 			{
 				if (action.play2DHeadAnim && action.headClip2D != "")
 				{
 					try
 					{
-						action.speaker.GetAnimator ().Play (action.headClip2D, action.headLayer);
+						action.Speaker.GetAnimator ().Play (action.headClip2D, action.headLayer);
 					}
 					catch {}
 				}
@@ -364,7 +364,7 @@ namespace AC
 				{
 					try
 					{
-						action.speaker.GetAnimator ().Play (action.mouthClip2D, action.mouthLayer);
+						action.Speaker.GetAnimator ().Play (action.mouthClip2D, action.mouthLayer);
 					}
 					catch {}
 				}
@@ -515,6 +515,13 @@ namespace AC
 				action.direction = (CharDirection) EditorGUILayout.EnumPopup ("New direction:", action.direction);
 			}
 
+			EditorGUILayout.Space ();
+			action.renderLock_sortingMap = (RenderLock) EditorGUILayout.EnumPopup ("Sorting Map:", action.renderLock_sortingMap);
+			if (action.renderLock_sortingMap == RenderLock.Set)
+			{
+				action.sortingMap = (SortingMap) EditorGUILayout.ObjectField ("New Sorting Map:", action.sortingMap, typeof (SortingMap), true);
+			}
+
 			if (GUI.changed)
 			{
 				EditorUtility.SetDirty (action);
@@ -543,6 +550,17 @@ namespace AC
 			else if (action.renderLock_direction == RenderLock.Release)
 			{
 				action._char.lockDirection = false;
+			}
+
+			if (action.renderLock_sortingMap != RenderLock.NoChange && action._char.GetComponentInChildren <FollowSortingMap>())
+			{
+				FollowSortingMap[] followSortingMaps = action._char.GetComponentsInChildren <FollowSortingMap>();
+				SortingMap sortingMap = (action.renderLock_sortingMap == RenderLock.Set) ? action.sortingMap : KickStarter.sceneSettings.sortingMap;
+
+				foreach (FollowSortingMap followSortingMap in followSortingMaps)
+				{
+					followSortingMap.SetSortingMap (sortingMap);
+				}
 			}
 
 			return 0f;

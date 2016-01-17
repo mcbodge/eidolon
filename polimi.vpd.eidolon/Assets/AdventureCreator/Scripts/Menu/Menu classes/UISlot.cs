@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"UISlot.cs"
  * 
@@ -136,7 +136,7 @@ namespace AC
 				}
 				else if (sprite == null || sprite == emptySprite || texture != _texture)
 				{
-					sprite = UnityEngine.Sprite.Create (_texture, new Rect (0f, 0f, _texture.width, _texture.height), new Vector2 (0.5f, 0.5f));
+					sprite = UnityEngine.Sprite.Create (_texture, new Rect (0f, 0f, _texture.width, _texture.height), new Vector2 (0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect);
 				}
 
 				if (_texture != null)

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionSound.cs"
  * 
@@ -188,6 +188,16 @@ namespace AC
 			}
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberSound> (soundObject);
+			}
+			AssignConstantID <Sound> (soundObject, constantID, parameterID);
 		}
 		
 		

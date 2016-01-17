@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ConstantID.cs"
  * 
@@ -54,7 +54,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Deserialises a string of data, and restores the GameObject to it's previous state.  Overridden by subclasses.</summary>
+		 * <summary>Deserialises a string of data, and restores the GameObject to its previous state.  Overridden by subclasses.</summary>
 		 * <param name = "stringData">The data, serialised as a string</param>
 		 */
 		public virtual void LoadData (string stringData)
@@ -88,16 +88,26 @@ namespace AC
 
 		/**
 		 * <summary>Sets a new Constant ID number.</summary>
-		 * <param name = "forcePrefab">Sets "retainInPrefab" to True</param>
+		 * <param name = "forcePrefab">If True, sets "retainInPrefab" to True. Otherwise, it will be determined by whether or not the component is part of an asset file.</param>
 		 */
-		public int AssignInitialValue (bool forcePrefab)
+		public int AssignInitialValue (bool forcePrefab = false)
 		{
 			if (forcePrefab)
 			{
 				retainInPrefab = true;
 				SetNewID_Prefab ();
 			}
-			else if (gameObject.activeInHierarchy)
+			else if (PrefabUtility.GetPrefabParent (gameObject) == null && PrefabUtility.GetPrefabObject (gameObject) != null)
+			{
+				retainInPrefab = true;
+				SetNewID_Prefab ();
+			}
+			else
+			{
+				retainInPrefab = false;
+				SetNewID ();
+			}
+			/*else if (gameObject.activeInHierarchy)
 			{
 				retainInPrefab = false;
 				SetNewID ();
@@ -106,7 +116,7 @@ namespace AC
 			{
 				retainInPrefab = true;
 				SetNewID_Prefab ();
-			}
+			}*/
 			return constantID;
 		}
 
@@ -145,7 +155,7 @@ namespace AC
 			ConstantID[] idScripts = GetComponents <ConstantID>();
 			foreach (ConstantID idScript in idScripts)
 			{
-				if (idScript != this)
+				if (idScript != this && idScript.constantID != 0)
 				{
 					constantID = idScript.constantID;
 					EditorUtility.SetDirty (this);
@@ -285,7 +295,7 @@ namespace AC
 	
 
 	/**
-	 * The base class of saved data.  Each Remember subclass uses it's own RememberData subclass to store its data.
+	 * The base class of saved data.  Each Remember subclass uses its own RememberData subclass to store its data.
 	 */
 	[System.Serializable]
 	public class RememberData

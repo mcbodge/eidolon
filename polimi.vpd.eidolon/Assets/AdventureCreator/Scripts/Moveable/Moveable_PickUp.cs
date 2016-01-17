@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Moveable_PickUp.cs"
  * 
@@ -57,6 +57,8 @@ namespace AC
 		 */
 		public override void UpdateMovement ()
 		{
+			base.UpdateMovement ();
+
 			if (moveSound && moveSoundClip && !inRotationMode)
 			{
 				if (numCollisions > 0)
@@ -236,7 +238,6 @@ namespace AC
 			if (inRotationMode)
 			{
 				Vector3 newRot = Vector3.Cross (force, cameraTransform.forward);
-				//newRot *= Mathf.Sqrt ((grabPoint.position - transform.position).magnitude) * 0.6f * rotationFactor;
 				newRot /= Mathf.Sqrt ((grabPoint.position - transform.position).magnitude) * 2.4f * rotationFactor;
 				_rigidbody.AddTorque (newRot);
 			}
@@ -244,6 +245,7 @@ namespace AC
 			{
 				mousePos.z = originalDistanceToCamera - (throwCharge * pullbackDistance);
 				Vector3 worldPos = Camera.main.ScreenToWorldPoint (mousePos);
+				
 				fixedJoint.transform.position = worldPos;
 				fixedJoint.connectedBody = _rigidbody;
 			}

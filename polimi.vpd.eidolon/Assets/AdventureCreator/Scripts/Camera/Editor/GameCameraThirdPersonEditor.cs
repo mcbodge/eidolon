@@ -9,7 +9,7 @@ namespace AC
 	public class GameCameraThirdPersonEditor : Editor
 	{
 		
-		public override void OnInspectorGUI()
+		public override void OnInspectorGUI ()
 		{
 			GameCameraThirdPerson _target = (GameCameraThirdPerson) target;
 
@@ -76,7 +76,8 @@ namespace AC
 					_target.maxSpin = EditorGUILayout.FloatField ("Maximum angle:", _target.maxSpin);
 				}
 			}
-			else
+
+			if (_target.spinLock != RotationLock.Free)
 			{
 				_target.alwaysBehind = EditorGUILayout.Toggle ("Always behind target?", _target.alwaysBehind);
 				if (_target.alwaysBehind)
@@ -110,6 +111,7 @@ namespace AC
 				if (_target.pitchLock == RotationLock.Limited)
 				{
 					_target.maxPitch = EditorGUILayout.FloatField ("Maximum angle:", _target.maxPitch);
+					_target.minPitch = EditorGUILayout.FloatField ("Minimum angle:", _target.minPitch);
 				}
 			}
 			else

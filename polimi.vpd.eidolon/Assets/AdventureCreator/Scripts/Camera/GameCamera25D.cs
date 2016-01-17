@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"GameCamera25D.cs"
  * 
@@ -27,7 +27,7 @@ namespace AC
 
 		/** The BackgroundImage to display underneath all scene objects. */
 		public BackgroundImage backgroundImage;
-		/** If True, then the MainCamera will copy it's position when the Inspector is viewed */
+		/** If True, then the MainCamera will copy its position when the Inspector is viewed */
 		public bool isActiveEditor = false;
 
 

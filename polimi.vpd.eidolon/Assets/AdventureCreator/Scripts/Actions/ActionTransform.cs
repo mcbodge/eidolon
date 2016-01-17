@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionTransform.cs"
  * 
@@ -198,11 +198,11 @@ namespace AC
 			else
 			{
 				linkedProp = (Moveable) EditorGUILayout.ObjectField ("Moveable object:", linkedProp, typeof (Moveable), true);
-				
+
 				constantID = FieldToID <Moveable> (linkedProp, constantID);
 				linkedProp = IDToField <Moveable> (linkedProp, constantID, false);
 			}
-			
+
 			EditorGUILayout.BeginHorizontal ();
 			transformType = (TransformType) EditorGUILayout.EnumPopup (transformType);
 			if (transformType != TransformType.CopyMarker)
@@ -222,11 +222,10 @@ namespace AC
 				else
 				{
 					marker = (Marker) EditorGUILayout.ObjectField ("Marker:", marker, typeof (Marker), true);
-					
+
 					markerID = FieldToID <Marker> (marker, markerID);
 					marker = IDToField <Marker> (marker, markerID, false);
 				}
-				
 			}
 			else
 			{
@@ -250,8 +249,19 @@ namespace AC
 			
 			AfterRunningOption ();
 		}
-		
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo = false)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberMoveable> (linkedProp);
+			}
+			AssignConstantID <Moveable> (linkedProp, constantID, parameterID);
+			AssignConstantID <Marker> (marker, markerID, markerParameterID);
+		}
+
+
 		override public string SetLabel ()
 		{
 			string labelAdd = "";

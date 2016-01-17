@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Hotspot.cs"
  * 
@@ -170,7 +170,7 @@ namespace AC
 
 				if (Application.isPlaying)
 				{
-					ACDebug.Log ("Hotspot '" + gameObject.name + "' has been temporarily upgraded - please view it's Inspector when the game ends and save the scene.");
+					ACDebug.Log ("Hotspot '" + gameObject.name + "' has been temporarily upgraded - please view its Inspector when the game ends and save the scene.");
 				}
 				else
 				{
@@ -229,7 +229,6 @@ namespace AC
 							iconRenderer.sprite = iconSprite;
 						}
 					}
-
 					iconRenderer.transform.position = GetIconPosition ();
 					iconRenderer.transform.LookAt (iconRenderer.transform.position + KickStarter.mainCamera.transform.rotation * Vector3.forward, KickStarter.mainCamera.transform.rotation * Vector3.up);
 				}
@@ -262,9 +261,16 @@ namespace AC
 					GUI.color = tempColor;
 				}
 			}
+
+			if (inWorldSpace && iconRenderer != null)
+			{
+				Color tempColor = iconRenderer.color;
+				tempColor.a = iconAlpha;
+				iconRenderer.color = tempColor;
+			}
 		}
-
-
+		
+		
 		/**
 		 * Recalculates the alpha value of the Hotspot's icon.
 		 */
@@ -449,7 +455,7 @@ namespace AC
 
 		/**
 		 * <summary>Checks if the Hotspot is enabled or not.</summary>
-		 * <returns>True if the Hotspot is enabled. If the Hotspot is not active only because it's limitToCamera is not active, then True will be returned also.</returns.
+		 * <returns>True if the Hotspot is enabled. If the Hotspot is not active only because its limitToCamera is not active, then True will be returned also.</returns.
 		 */
 		public bool IsOn ()
 		{
@@ -510,7 +516,9 @@ namespace AC
 			}
 		}
 		
-		
+
+		#if UNITY_EDITOR
+
 		private void OnDrawGizmos ()
 		{
 			if (showInEditor)
@@ -524,8 +532,8 @@ namespace AC
 		{
 			DrawGizmos ();
 		}
-		
-		
+
+
 		private void DrawGizmos ()
 		{
 			if (this.GetComponent <AC.Char>() == null && drawGizmos)
@@ -534,13 +542,15 @@ namespace AC
 				{
 					AdvGame.DrawPolygonCollider (transform, GetComponent <PolygonCollider2D>(), new Color (1f, 1f, 0f, 0.6f));
 				}
-				else if (GetComponent <BoxCollider2D>() != null || GetComponent <BoxCollider>() != null)
+				else
 				{
 					AdvGame.DrawCubeCollider (transform, new Color (1f, 1f, 0f, 0.6f));
 				}
 			}
 		}
-		
+
+		#endif
+
 
 		/**
 		 * <summary>Gets the position of the Hotspot's icon, in Screen Space.</summary>
@@ -554,15 +564,20 @@ namespace AC
 		
 
 		/**
-		 * <summary>Gets the position of the Hotspot's icon, in World Space.</summary>
-		 * <returns>The position of the Hotspot's icon, in World Space.</returns>
+		 * <summary>Gets the position of the Hotspot's icon</summary>
+		 * <param = "inLocalSpace">If True, the position returned will be relative to the centre of the Hotspot's transform, rather than the scene's origin</param>
+		 * <returns>The position of the Hotspot's icon</returns>
 		 */
-		public Vector3 GetIconPosition ()
+		public Vector3 GetIconPosition (bool inLocalSpace = false)
 		{
 			Vector3 worldPoint = transform.position;
 
 			if (centrePoint != null)
 			{
+				if (inLocalSpace)
+				{
+					return (centrePoint.position - transform.position);
+				}
 				return centrePoint.position;
 			}
 			
@@ -584,14 +599,14 @@ namespace AC
 				if (_collider2D is BoxCollider2D)
 				{
 					BoxCollider2D boxCollider = (BoxCollider2D) _collider2D;
-					#if UNITY_5
-					worldPoint += new Vector3 (boxCollider.offset.x, boxCollider.offset.y * transform.localScale.y, 0f);
-					#else
-					worldPoint += new Vector3 (boxCollider.center.x, boxCollider.center.y * transform.localScale.y, 0f);
-					#endif
+					worldPoint += UnityVersionHandler.Get2DHotspotOffset (boxCollider, transform);
 				}
 			}
-			
+
+			if (inLocalSpace)
+			{
+				return worldPoint - transform.position;
+			}
 			return worldPoint;
 		}
 		
@@ -677,7 +692,7 @@ namespace AC
 					return i;
 				}
 			}
-			else if (i == useButtons.Count - 1 + numInvInteractions)
+			else if (i >= useButtons.Count - 1 + numInvInteractions)
 			{
 				return FindFirstEnabledInteraction ();
 			}

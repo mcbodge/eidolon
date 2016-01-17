@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"Action.cs"
  * 
@@ -122,7 +122,7 @@ namespace AC
 		#if UNITY_EDITOR
 
 		/**
-		 * <summary>Shows the Action's GUI when it's parent ActionList / ActionListAsset uses parameters.</summary>
+		 * <summary>Shows the Action's GUI when its parent ActionList / ActionListAsset uses parameters.</summary>
 		 * <param name = "parameters">A List of parameters available in the parent ActionList / ActionListAsset</param>
 		 */
 		public virtual void ShowGUI (List<ActionParameter> parameters)
@@ -221,6 +221,15 @@ namespace AC
 
 			skipActionActual = actions [skipAction];
 		}
+
+
+		/**
+		 * <summary>Called when an ActionList has been converted from a scene-based object to an asset file.
+		 * Within it, AssignConstantID should be called for each of the Action's Constant ID numbers, which will assign a new number if one does not already exist, based on the referenced scene object.</summary>
+		 * <param name = "saveScriptsToo">If True, then the Action shall attempt to add the appropriate 'Remember' script to reference GameObjects as well.</param>
+		 */
+		public virtual void AssignConstantIDs (bool saveScriptsToo = false)
+		{ }
 
 
 		/**
@@ -365,6 +374,125 @@ namespace AC
 			}
 			return _constantID;
 		}
+
+
+		public void AddSaveScript <T> (Behaviour field) where T : ConstantID
+		{
+			if (field != null)
+			{
+				if (field.gameObject.GetComponent <T>() == null)
+				{
+					bool removedID = false;
+
+					T newComponent = field.gameObject.AddComponent <T>();
+					newComponent.AssignInitialValue ();
+
+					if (PrefabUtility.GetPrefabParent (field.gameObject) == null && PrefabUtility.GetPrefabObject (field.gameObject) != null)
+					{
+						newComponent.retainInPrefab = true;
+					}
+
+					foreach (ConstantID constantIDScript in field.gameObject.GetComponents <ConstantID>())
+					{
+						if (!(constantIDScript is Remember) && !(constantIDScript is RememberTransform) && constantIDScript != newComponent)
+						{
+							DestroyImmediate (constantIDScript, true);
+							removedID = true;
+						}
+					}
+
+					if (removedID)
+					{
+						ACDebug.Log ("Replaced " + field.gameObject.name + "'s 'ConstantID' component with '" + newComponent.GetType ().ToString () + "'");
+					}
+					else if (!(newComponent is ConstantID))
+					{
+						ACDebug.Log ("Added '" + newComponent.GetType ().ToString () + "' component to " + field.gameObject.name);
+					}
+
+					EditorUtility.SetDirty (this);
+				}
+			}
+		}
+
+
+		public void AddSaveScript <T> (GameObject _gameObject) where T : ConstantID
+		{
+			if (_gameObject != null)
+			{
+				if (_gameObject.GetComponent <T>() == null)
+				{
+					bool removedID = false;
+					
+					T newComponent = _gameObject.AddComponent <T>();
+					newComponent.AssignInitialValue ();
+
+					if (PrefabUtility.GetPrefabParent (_gameObject) == null && PrefabUtility.GetPrefabObject (_gameObject) != null)
+					{
+						newComponent.retainInPrefab = true;
+					}
+					
+					foreach (ConstantID constantIDScript in _gameObject.GetComponents <ConstantID>())
+					{
+						if (!(constantIDScript is Remember) && !(constantIDScript is RememberTransform) && constantIDScript != newComponent)
+						{
+							DestroyImmediate (constantIDScript, true);
+							removedID = true;
+						}
+					}
+					
+					if (removedID)
+					{
+						ACDebug.Log ("Replaced " + _gameObject.name + "'s 'ConstantID' component with '" + newComponent.GetType ().ToString () + "'");
+					}
+					else
+					{
+						ACDebug.Log ("Added '" + newComponent.GetType ().ToString () + "' component to " + _gameObject.name);
+					}
+					
+					EditorUtility.SetDirty (this);
+				}
+			}
+		}
+
+
+		public void AssignConstantID <T> (T field, int _constantID, int _parameterID) where T : Behaviour
+		{
+			if (_parameterID >= 0)
+			{
+				_constantID = 0;
+			}
+			else
+			{
+				_constantID = FieldToID <T> (field, _constantID);
+			}
+		}
+
+
+		public void AssignConstantID (Transform field, int _constantID, int _parameterID)
+		{
+			if (_parameterID >= 0)
+			{
+				_constantID = 0;
+			}
+			else
+			{
+				_constantID = FieldToID (field, _constantID);
+			}
+		}
+
+
+		public void AssignConstantID (GameObject field, int _constantID, int _parameterID)
+		{
+			if (_parameterID >= 0)
+			{
+				_constantID = 0;
+			}
+			else
+			{
+				_constantID = FieldToID (field, _constantID);
+			}
+		}
 		
 		
 		public T IDToField <T> (T field, int _constantID, bool moreInfo) where T : Behaviour
@@ -375,7 +503,9 @@ namespace AC
 				if (_constantID != 0)
 				{
 					newField = Serializer.returnComponent <T> (_constantID);
-					if (newField != null && !Application.isPlaying)
+					if (field != null && field.GetComponent <ConstantID>() != null && field.GetComponent <ConstantID>().constantID == _constantID)
+					{}
+					else if (newField != null && !Application.isPlaying)
 					{
 						field = newField;
 					}
@@ -441,7 +571,9 @@ namespace AC
 				if (_constantID != 0)
 				{
 					ConstantID newID = Serializer.returnComponent <ConstantID> (_constantID);
-					if (newID != null && !Application.isPlaying)
+					if (field != null && field.GetComponent <ConstantID>() != null && field.GetComponent <ConstantID>().constantID == _constantID)
+					{}
+					else if (newID != null && !Application.isPlaying)
 					{
 						field = newID.transform;
 					}
@@ -507,7 +639,9 @@ namespace AC
 				if (_constantID != 0)
 				{
 					ConstantID newID = Serializer.returnComponent <ConstantID> (_constantID);
-					if (newID != null && !Application.isPlaying)
+					if (field != null && field.GetComponent <ConstantID>() != null && field.GetComponent <ConstantID>().constantID == _constantID)
+					{}
+					else if (newID != null && !Application.isPlaying)
 					{
 						field = newID.gameObject;
 					}
@@ -720,7 +854,6 @@ namespace AC
 				{
 					file = idObject.gameObject;
 				}
-
 			}
 			
 			return file;
@@ -756,9 +889,13 @@ namespace AC
 			}
 			else if (_constantID != 0)
 			{
-				file = Serializer.returnComponent <T> (_constantID);
-			}
+				T newField = Serializer.returnComponent <T> (_constantID);
+				if (newField != null)
+				{
+					file = newField;
+				}
 
+			}
 			return file;
 		}
 
@@ -887,12 +1024,9 @@ namespace AC
 		}
 
 
-		public virtual void AfterCopy (List<Action> copyList)
+		public virtual void PrepareToPaste (int offset)
 		{
-			if (endAction == ResultAction.Skip && skipActionActual == null && copyList.Count > skipAction)
-			{
-				skipActionActual = copyList[skipAction];
-			}
+			skipAction += offset;
 		}
 
 

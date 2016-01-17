@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuCrafting.cs"
  * 
@@ -101,7 +101,7 @@ namespace AC
 				{
 					int j=i;
 					uiSlot.uiButton.onClick.AddListener (() => {
-						ProcessClick (_menu, j, MouseState.SingleClick);
+						ProcessClickUI (_menu, j, MouseState.SingleClick);
 					});
 				}
 				i++;

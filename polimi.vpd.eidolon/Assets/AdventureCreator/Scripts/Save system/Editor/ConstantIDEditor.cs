@@ -27,7 +27,7 @@ namespace AC
 
 			_target.retainInPrefab = EditorGUILayout.Toggle ("Retain in prefab?", _target.retainInPrefab);
 
-			if (!_target.gameObject.activeInHierarchy)
+			if (PrefabUtility.GetPrefabType (_target.gameObject) == PrefabType.Prefab)
 			{
 				// Prefab
 				if (!_target.retainInPrefab && _target.constantID != 0)

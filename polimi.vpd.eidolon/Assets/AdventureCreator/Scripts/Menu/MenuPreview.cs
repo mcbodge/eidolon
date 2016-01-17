@@ -80,7 +80,7 @@ namespace AC
 				{
 					menuManager = AdvGame.GetReferences ().menuManager;
 
-					if (menuManager && menuManager.drawInEditor)
+					if (menuManager && menuManager.drawInEditor && AdvGame.GetReferences ().viewingMenuManager)
 					{
 						if (menuManager.GetSelectedMenu () != null)
 						{

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionParamCheck.cs"
  * 
@@ -57,7 +57,7 @@ namespace AC
 		
 		override public void AssignValues (List<ActionParameter> parameters)
 		{
-			_parameter = GetParameterWithID (parameters,parameterID);
+			_parameter = GetParameterWithID (parameters, parameterID);
 			compareObject = AssignFile (compareObjectConstantID, compareObject);
 		}
 		
@@ -347,6 +347,12 @@ namespace AC
 			}
 
 			EditorGUILayout.EndHorizontal ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID (compareObject, compareObjectConstantID, 0);
 		}
 		
 		

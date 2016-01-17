@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionSoundShot.cs"
  * 
@@ -119,6 +119,12 @@ namespace AC
 			willWait = EditorGUILayout.Toggle ("Wait until finish?", willWait);
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID (origin, constantID, parameterID);
 		}
 		
 		

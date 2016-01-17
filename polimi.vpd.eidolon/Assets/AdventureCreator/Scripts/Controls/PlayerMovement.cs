@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"PlayerMovement.cs"
  * 
@@ -27,7 +27,7 @@ namespace AC
 		private FirstPersonCamera firstPersonCamera;
 
 
-		private void Start ()
+		public void OnStart ()
 		{
 			AssignFPCamera ();
 		}
@@ -41,20 +41,32 @@ namespace AC
 		{
 			if (firstPersonCamera != null)
 			{
-				firstPersonCamera._Update ();
+				firstPersonCamera._UpdateFPCamera ();
 			}
 		}
 
 
 		/**
-		 * Assigns the first-person camera as the FirstPersonCamera component placed as a child component on the Player preab.
+		 * A<summary>ssigns the first-person camera as the FirstPersonCamera component placed as a child component on the Player preab.</summary>
+		 * <returns>The Transform of the FirstPersonCamera component, if one is present on the Player.</returns>
 		 */
-		public void AssignFPCamera ()
+		public Transform AssignFPCamera ()
 		{
 			if (KickStarter.player)
 			{
 				firstPersonCamera = KickStarter.player.GetComponentInChildren<FirstPersonCamera>();
+
+				if (firstPersonCamera == null && KickStarter.settingsManager.movementMethod == MovementMethod.FirstPerson && KickStarter.player.FirstPersonCamera == null)
+				{
+					ACDebug.LogWarning ("Could not find a FirstPersonCamera script on the Player - one is necessary for first-person movement.");
+				}
+
+				if (firstPersonCamera != null)
+				{
+					return firstPersonCamera.transform;
+				}
 			}
+			return null;
 		}
 
 
@@ -66,12 +78,6 @@ namespace AC
 		{
 			if (KickStarter.settingsManager && KickStarter.player && KickStarter.playerInput && KickStarter.playerInteraction)
 			{
-				if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-				{
-					UFPSControlPlayer (KickStarter.playerInput.GetMoveKeys ());
-					return;
-				}
-
 				if (!KickStarter.playerInput.IsMouseOnScreen () || KickStarter.playerInput.activeArrows != null)
 				{
 					return;
@@ -570,20 +576,6 @@ namespace AC
 		}
 
 
-		private void UFPSControlPlayer (Vector2 moveKeys)
-		{
-			if (moveKeys != Vector2.zero)
-			{
-				KickStarter.player.isRunning = KickStarter.playerInput.IsPlayerControlledRunning ();
-				KickStarter.player.charState = CharState.Move;
-			}
-			else if (KickStarter.player.charState == CharState.Move)
-			{
-				KickStarter.player.charState = CharState.Decelerate;
-			}
-		}
-		
-		
 		private void DirectControlPlayerPath (Vector2 moveKeys)
 		{
 			if (moveKeys != Vector2.zero)
@@ -752,17 +744,18 @@ namespace AC
 			{
 				return false;
 			}
-			
+
+			if (Vector3.Distance (hitPoint, KickStarter.player.transform.position) < KickStarter.settingsManager.GetDestinationThreshold ())
+			{
+				return true;
+			}
+
 			if (!run)
 			{
 				ShowClick (hitPoint);
 			}
 
-			if (Vector3.Distance (hitPoint, KickStarter.player.transform.position) < KickStarter.player.runDistanceThreshold)
-			{
-				run = false;
-			}
-			else if (KickStarter.playerInput.runLock == PlayerMoveLock.AlwaysRun)
+			if (KickStarter.playerInput.runLock == PlayerMoveLock.AlwaysRun)
 			{
 				run = true;
 			}
@@ -770,10 +763,13 @@ namespace AC
 			{
 				run = false;
 			}
+			else if (Vector3.Distance (hitPoint, KickStarter.player.transform.position) < KickStarter.player.runDistanceThreshold)
+			{
+				run = false;
+			}
 
 			Vector3[] pointArray = KickStarter.navigationManager.navigationEngine.GetPointsArray (KickStarter.player.transform.position, hitPoint, KickStarter.player);
 			KickStarter.player.MoveAlongPoints (pointArray, run);
-
 			return true;
 		}
 
@@ -841,10 +837,6 @@ namespace AC
 				firstPersonCamera.IncreasePitch (-freeAim.y);
 				Quaternion rot = Quaternion.AngleAxis (rotationX, Vector3.up);
 				KickStarter.player.SetRotation (rot);
-			}
-			else
-			{
-				ACDebug.LogWarning ("Could not find first person camera");
 			}
 		}
 

@@ -44,7 +44,7 @@ namespace AC
 			ActionListEditorWindow window = CreateWindow ();
 			window.Repaint ();
 			window.Show ();
-			AdvGame.SetWindowTitle (window, "ActionList Editor");
+			UnityVersionHandler.SetWindowTitle (window, "ActionList Editor");
 			window.windowData = new ActionListEditorWindowData ();
 		}
 
@@ -96,7 +96,7 @@ namespace AC
 			scrollPosition = Vector2.zero;
 			zoom = 1f;
 			showProperties = false;
-			AdvGame.SetWindowTitle (this, "ActionList Editor");
+			UnityVersionHandler.SetWindowTitle (this, "ActionList Editor");
 			windowData = _data;
 			Repaint ();
 			Show ();
@@ -142,17 +142,18 @@ namespace AC
 
 			ActionListEditorScrollWheel scrollWheel = ActionListEditorScrollWheel.PansWindow;
 			bool invertPanning = false;
-
+			float speedFactor = 1f;
 			if (AdvGame.GetReferences () && AdvGame.GetReferences ().actionsManager)
 			{
 				scrollWheel = AdvGame.GetReferences ().actionsManager.actionListEditorScrollWheel;
 				invertPanning = AdvGame.GetReferences ().actionsManager.invertPanning;
+				speedFactor = AdvGame.GetReferences ().actionsManager.panSpeed;
 			}
 			
 			if (scrollWheel == ActionListEditorScrollWheel.ZoomsWindow && Event.current.type == EventType.ScrollWheel)
 			{
 				Vector2 screenCoordsMousePos = Event.current.mousePosition;
-				Vector2 delta = Event.current.delta;
+				Vector2 delta = Event.current.delta * speedFactor;
 				float zoomDelta = -delta.y / 80.0f;
 				float oldZoom = zoom;
 				zoom += zoomDelta;
@@ -164,7 +165,7 @@ namespace AC
 
 			if ((scrollWheel == ActionListEditorScrollWheel.PansWindow && Event.current.type == EventType.ScrollWheel) || (Event.current.type == EventType.MouseDrag && Event.current.button == 2))
 			{
-				Vector2 delta = Event.current.delta;
+				Vector2 delta = Event.current.delta * speedFactor;
 
 				if (invertPanning)
 				{
@@ -175,7 +176,7 @@ namespace AC
 					scrollPosition -= delta;
 				}
 				
-				Event.current.Use();
+				Event.current.Use ();
 			}
 		}
 		
@@ -1740,6 +1741,7 @@ namespace AC
 					return;
 				}
 
+				int offset = actionList.Count;
 				UnmarkAll (isAsset);
 
 				Action currentLastAction = actionList [actionList.Count-1];
@@ -1748,33 +1750,36 @@ namespace AC
 					currentLastAction.endAction = ResultAction.Stop;
 				}
 				
-				List<Action> pasteList = AdvGame.copiedActions;
-				Vector2 firstPosition = new Vector2 (pasteList[0].nodeRect.x, pasteList[0].nodeRect.y);
-				foreach (Action pasteAction in pasteList)
+				Vector2 firstPosition = new Vector2 (AdvGame.copiedActions[0].nodeRect.x, AdvGame.copiedActions[0].nodeRect.y);
+				foreach (Action actionToCopy in AdvGame.copiedActions)
 				{
-					if (pasteAction == null)
+					if (actionToCopy == null)
 					{
 						ACDebug.LogWarning ("Error when pasting Action - cannot find original. Did you change scene before pasting? If you need to transfer Actions between scenes, copy them to an ActionList asset first.");
 						continue;
 					}
-					
-					if (pasteList.IndexOf (pasteAction) == 0)
+
+					AC.Action duplicatedAction = Object.Instantiate (actionToCopy) as AC.Action;
+					duplicatedAction.PrepareToPaste (offset);
+
+					if (AdvGame.copiedActions.IndexOf (actionToCopy) == 0)
 					{
-						pasteAction.nodeRect.x = menuPosition.x;
-						pasteAction.nodeRect.y = menuPosition.y;
+						duplicatedAction.nodeRect.x = menuPosition.x;
+						duplicatedAction.nodeRect.y = menuPosition.y;
 					}
 					else
 					{
-						pasteAction.nodeRect.x = menuPosition.x + (pasteAction.nodeRect.x - firstPosition.x);
-						pasteAction.nodeRect.y = menuPosition.y + (pasteAction.nodeRect.y - firstPosition.y);
+						duplicatedAction.nodeRect.x = menuPosition.x + (actionToCopy.nodeRect.x - firstPosition.x);
+						duplicatedAction.nodeRect.y = menuPosition.y + (actionToCopy.nodeRect.y - firstPosition.y);
 					}
 					if (isAsset)
 					{
-						pasteAction.hideFlags = HideFlags.HideInHierarchy;
-						AssetDatabase.AddObjectToAsset (pasteAction, windowData.targetAsset);
+						duplicatedAction.hideFlags = HideFlags.HideInHierarchy;
+						AssetDatabase.AddObjectToAsset (duplicatedAction, windowData.targetAsset);
 					}
-					pasteAction.isMarked = true;
-					actionList.Add (pasteAction);
+
+					duplicatedAction.isMarked = true;
+					actionList.Add (duplicatedAction);
 				}
 				if (isAsset)
 				{
@@ -1829,12 +1834,7 @@ namespace AC
 						copyList.Add (copyAction);
 					}
 				}
-				
-				foreach (Action copyAction in copyList)
-				{
-					copyAction.AfterCopy (copyList);
-				}
-				
+
 				AdvGame.copiedActions = copyList;
 
 				if (objString == "Cut selected")

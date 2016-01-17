@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"SceneHandler.cs"
  * 
@@ -50,17 +50,33 @@ namespace AC
 		private Parallax2D[] parallax2Ds;
 		private Hotspot[] hotspots;
 		private Highlight[] highlights;
-		private GameCamera2D[] gameCamera2Ds;
+		private _Camera[] cameras;
 		private Sound[] sounds;
 		private LimitVisibility[] limitVisibilitys;
 		private Char[] characters;
 
 
-		private void Awake ()
+		public void OnAwake ()
 		{
 			Time.timeScale = 1f;
 			DontDestroyOnLoad (this);
 			GetReferences ();
+
+			InitPersistentEngine ();
+		}
+
+
+		private void InitPersistentEngine ()
+		{
+			KickStarter.runtimeLanguages.OnAwake ();
+			KickStarter.sceneChanger.OnAwake ();
+			KickStarter.levelStorage.OnAwake ();
+			
+			KickStarter.playerMenus.OnStart ();
+			KickStarter.options.OnStart ();
+			KickStarter.runtimeVariables.OnStart ();
+			KickStarter.runtimeInventory.OnStart ();
+			KickStarter.saveSystem.OnStart ();
 		}
 
 
@@ -70,7 +86,10 @@ namespace AC
 		 */
 		public void RegisterWithGameEngine ()
 		{
-			hasGameEngine = true;
+			if (!hasGameEngine)
+			{
+				hasGameEngine = true;
+			}
 		}
 
 
@@ -86,7 +105,6 @@ namespace AC
 
 		private void OnLevelWasLoaded ()
 		{
-			hasGameEngine = false;
 			GetReferences ();
 		}
 
@@ -140,12 +158,13 @@ namespace AC
 		 */
 		public void GatherObjects (bool afterDelete = false)
 		{
+
 			dragBases = FindObjectsOfType (typeof (DragBase)) as DragBase[];
 			hotspots = FindObjectsOfType (typeof (Hotspot)) as Hotspot[];
 			arrowPrompts = FindObjectsOfType (typeof (ArrowPrompt)) as ArrowPrompt[];
 			parallax2Ds = FindObjectsOfType (typeof (Parallax2D)) as Parallax2D[];
 			highlights = FindObjectsOfType (typeof (Highlight)) as Highlight[];
-			gameCamera2Ds = FindObjectsOfType (typeof (GameCamera2D)) as GameCamera2D[];
+			cameras = FindObjectsOfType (typeof (_Camera)) as _Camera[];
 			sounds = FindObjectsOfType (typeof (Sound)) as Sound[];
 			limitVisibilitys = FindObjectsOfType (typeof (LimitVisibility)) as LimitVisibility[];
 			characters = FindObjectsOfType (typeof (Char)) as Char[];
@@ -153,6 +172,11 @@ namespace AC
 			if (!afterDelete)
 			{
 				IgnoreNavMeshCollisions ();
+			}
+
+			if (KickStarter.sceneSettings != null)
+			{
+				KickStarter.sceneSettings.UpdateAllSortingMaps ();
 			}
 		}
 
@@ -206,7 +230,6 @@ namespace AC
 			{
 				lastNonPausedState = gameState;
 			}
-
 			if (!inputIsOff)
 			{
 				KickStarter.playerInput.UpdateInput ();
@@ -296,14 +319,6 @@ namespace AC
 				KickStarter.playerInteraction.UpdateInventory ();
 			}
 
-			if (!cameraIsOff)
-			{
-				foreach (GameCamera2D gameCamera2D in gameCamera2Ds)
-				{
-					gameCamera2D._Update ();
-				}
-			}
-
 			foreach (LimitVisibility limitVisibility in limitVisibilitys)
 			{
 				limitVisibility._Update ();
@@ -316,19 +331,23 @@ namespace AC
 
 			foreach (Char character in characters)
 			{
-				if (!playerIsOff || !(character is Player))
+				if (character != null && (!playerIsOff || !(character is Player)))
 				{
 					character._Update ();
 				}
 			}
 
+			if (!cameraIsOff)
+			{
+				foreach (_Camera _camera in cameras)
+				{
+					_camera._Update ();
+				}
+			}
+
 			if (HasGameStateChanged ())
 			{
-				if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-				{
-					UltimateFPSIntegration._Update (gameState);
-				}
-				else if (KickStarter.settingsManager.movementMethod == MovementMethod.FirstPerson)
+				if (KickStarter.settingsManager.movementMethod == MovementMethod.FirstPerson)
 				{
 					if (gameState == GameState.Normal || (gameState == GameState.DialogOptions && KickStarter.settingsManager.useFPCamDuringConversations))
 					{
@@ -371,7 +390,10 @@ namespace AC
 
 			foreach (Char character in characters)
 			{
-				character._LateUpdate ();
+				if (!playerIsOff || !(character is Player))
+				{
+					character._LateUpdate ();
+				}
 			}
 
 			if (!cameraIsOff)
@@ -398,8 +420,6 @@ namespace AC
 				return;
 			}
 
-			KickStarter.dialog._FixedUpdate ();
-
 			foreach (Char character in characters)
 			{
 				if (!playerIsOff || !(character is Player))
@@ -407,6 +427,16 @@ namespace AC
 					character._FixedUpdate ();
 				}
 			}
+
+			if (!cameraIsOff)
+			{
+				foreach (_Camera _camera in cameras)
+				{
+					_camera._FixedUpdate ();
+				}
+			}
+
+			KickStarter.dialog._FixedUpdate ();
 		}
 
 
@@ -516,7 +546,7 @@ namespace AC
 		
 
 		/**
-		 * Restores the gameState to it's former state after un-pausing the game.
+		 * Restores the gameState to its former state after un-pausing the game.
 		 */
 		public void RestoreLastNonPausedState ()
 		{
@@ -608,6 +638,12 @@ namespace AC
 		public void SetACState (bool state)
 		{
 			isACDisabled = !state;
+		}
+
+
+		public bool IsACEnabled ()
+		{
+			return !isACDisabled;
 		}
 
 
@@ -739,7 +775,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a MainData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a MainData class with its own variables that need saving.</summary>
 		 * <param name = "mainData">The original MainData class</param>
 		 * <returns>The updated MainData class</returns>
 		 */
@@ -759,7 +795,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates it's own variables from a MainData class.</summary>
+		 * <summary>Updates its own variables from a MainData class.</summary>
 		 * <param name = "mainData">The MainData class to load from</param>
 		 */
 		public void LoadMainData (MainData mainData)

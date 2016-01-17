@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionMoveableCheck.cs"
  * 
@@ -41,7 +41,7 @@ namespace AC
 			this.isDisplayed = true;
 			category = ActionCategory.Moveable;
 			title = "Check track position";
-			description = "Queries how far a Draggable object is along it's track.";
+			description = "Queries how far a Draggable object is along its track.";
 		}
 
 
@@ -129,15 +129,16 @@ namespace AC
 				checkPosition = EditorGUILayout.Slider ("Position:", checkPosition, 0f, 1f);
 			}
 
-
-			/*EditorGUILayout.BeginHorizontal ();
-			checkPosition = EditorGUILayout.Slider (checkPosition, 0f, 1f);
-			EditorGUILayout.EndHorizontal ();*/
-
 			if (condition == IntCondition.EqualTo || condition == IntCondition.NotEqualTo)
 			{
 				errorMargin = EditorGUILayout.Slider ("Error margin:", errorMargin, 0f, 1f);
 			}
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID <Moveable_Drag> (dragObject, dragConstantID, dragParameterID);
 		}
 
 

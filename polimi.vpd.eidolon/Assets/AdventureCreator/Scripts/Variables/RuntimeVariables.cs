@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"RuntimeVariables.cs"
  * 
@@ -34,18 +34,9 @@ namespace AC
 		 * Downloads variables from the Global Manager to the scene.
 		 * This is public because it is also called when the game is restarted.
 		 */
-		public void Awake ()
+		public void OnStart ()
 		{
 			TransferFromManager ();
-		}
-
-		
-		/**
-		 * Syncs any linked variables with their linked counterparts.
-		 * This is public because it is also called when the game is restarted.
-		 */
-		public void Start ()
-		{
 			AssignLinkedVariabes ();
 			LinkAllValues ();
 		}
@@ -244,7 +235,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a MainData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a MainData class with its own variables that need saving.</summary>
 		 * <param name = "mainData">The original MainData class</param>
 		 * <returns>The updated MainData class</returns>
 		 */

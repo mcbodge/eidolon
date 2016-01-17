@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"AnimEngine_Legacy.cs"
  * 
@@ -511,11 +511,11 @@ namespace AC
 		}
 
 
-		public override void ActionSpeechGUI (ActionSpeech action)
+		public override void ActionSpeechGUI (ActionSpeech action, Char speaker)
 		{
 			#if UNITY_EDITOR
 
-			if (action.speaker.talkingAnimation == TalkingAnimation.CustomFace)
+			if (speaker != null && speaker.talkingAnimation == TalkingAnimation.CustomFace)
 			{
 				action.headClip = (AnimationClip) EditorGUILayout.ObjectField ("Head animation:", action.headClip, typeof (AnimationClip), true);
 				action.mouthClip = (AnimationClip) EditorGUILayout.ObjectField ("Mouth animation:", action.mouthClip, typeof (AnimationClip), true);
@@ -535,18 +535,18 @@ namespace AC
 
 		public override void ActionSpeechRun (ActionSpeech action)
 		{
-			if (action.speaker.talkingAnimation == TalkingAnimation.CustomFace && (action.headClip || action.mouthClip))
+			if (action.Speaker != null && action.Speaker.talkingAnimation == TalkingAnimation.CustomFace && (action.headClip || action.mouthClip))
 			{
-				AdvGame.CleanUnusedClips (action.speaker.GetComponent <Animation>());	
+				AdvGame.CleanUnusedClips (action.Speaker.GetComponent <Animation>());	
 				
 				if (action.headClip)
 				{
-					AdvGame.PlayAnimClip (action.speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Head), action.headClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.speaker.neckBone, false);
+					AdvGame.PlayAnimClip (action.Speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Head), action.headClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.Speaker.neckBone, false);
 				}
 				
 				if (action.mouthClip)
 				{
-					AdvGame.PlayAnimClip (action.speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Mouth), action.mouthClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.speaker.neckBone, false);
+					AdvGame.PlayAnimClip (action.Speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Mouth), action.mouthClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.Speaker.neckBone, false);
 				}
 			}
 		}
@@ -554,18 +554,18 @@ namespace AC
 
 		public override void ActionSpeechSkip (ActionSpeech action)
 		{
-			if (action.speaker.talkingAnimation == TalkingAnimation.CustomFace && (action.headClip || action.mouthClip))
+			if (action.Speaker && action.Speaker.talkingAnimation == TalkingAnimation.CustomFace && (action.headClip || action.mouthClip))
 			{
-				AdvGame.CleanUnusedClips (action.speaker.GetComponent <Animation>());	
+				AdvGame.CleanUnusedClips (action.Speaker.GetComponent <Animation>());	
 				
 				if (action.headClip)
 				{
-					AdvGame.PlayAnimClipFrame (action.speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Head), action.headClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.speaker.neckBone, 1f);
+					AdvGame.PlayAnimClipFrame (action.Speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Head), action.headClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.Speaker.neckBone, 1f);
 				}
 				
 				if (action.mouthClip)
 				{
-					AdvGame.PlayAnimClipFrame (action.speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Mouth), action.mouthClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.speaker.neckBone, 1f);
+					AdvGame.PlayAnimClipFrame (action.Speaker.GetComponent <Animation>(), AdvGame.GetAnimLayerInt (AnimLayer.Mouth), action.mouthClip, AnimationBlendMode.Additive, WrapMode.Once, 0f, action.Speaker.neckBone, 1f);
 				}
 			}
 		}
@@ -806,13 +806,13 @@ namespace AC
 			{
 				action._char.lockScale = true;
 
+				float _scale = (float) action.scale / 100f;
 				if (action._char.spriteChild != null)
 				{
-					action._char.spriteScale = (float) action.scale / 100f;
+					action._char.spriteScale = _scale;
 				}
 				else
 				{
-					float _scale = (float) action.scale;
 					action._char.transform.localScale = new Vector3 (_scale, _scale, _scale);
 				}
 			}

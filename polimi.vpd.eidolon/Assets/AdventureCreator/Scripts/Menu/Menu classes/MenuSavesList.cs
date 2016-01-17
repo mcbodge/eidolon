@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuSavesList.cs"
  * 
@@ -63,7 +63,7 @@ namespace AC
 		public string newSaveText = "New save";
 		/** If True, a slot that represents a "new save" space can be displayed if appropriate */
 		public bool showNewSaveOption = true;
-		/** If True, then the save file will be loaded/saved once it's slot is clicked on */
+		/** If True, then the save file will be loaded/saved once its slot is clicked on */
 		public bool autoHandle = true;
 
 		private string[] labels = null;
@@ -163,7 +163,7 @@ namespace AC
 				{
 					int j=i;
 					uiSlot.uiButton.onClick.AddListener (() => {
-						ProcessClick (_menu, j, KickStarter.playerInput.GetMouseState ());
+						ProcessClickUI (_menu, j, KickStarter.playerInput.GetMouseState ());
 					});
 				}
 				i++;

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"VariablesManager.cs"
  * 
@@ -35,7 +35,7 @@ namespace AC
 		/** A List of preset values that the variables can be bulk-assigned to */
 		public List<VarPreset> varPresets = new List<VarPreset>();
 		/** If True, then the Variables Manager GUI will show the live values of each variable, rather than their default values */
-		public bool updateRuntime = false;
+		public bool updateRuntime = true;
 
 		
 		#if UNITY_EDITOR
@@ -59,6 +59,13 @@ namespace AC
 		 */
 		public void ShowGUI ()
 		{
+			string sceneName = MultiSceneChecker.EditActiveScene ();
+			if (sceneName != "")
+			{
+				EditorGUILayout.LabelField ("Editing scene: '" + sceneName + "'", EditorStyles.boldLabel);
+				EditorGUILayout.Space ();
+			}
+
 			if (icon == null)
 			{
 				icon = (Texture2D) AssetDatabase.LoadAssetAtPath ("Assets/AdventureCreator/Graphics/Textures/inspector-use.png", typeof (Texture2D));

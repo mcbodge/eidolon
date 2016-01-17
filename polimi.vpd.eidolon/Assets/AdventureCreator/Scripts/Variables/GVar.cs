@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"GVar.cs"
  * 
@@ -22,17 +22,17 @@ namespace AC
 	public class GVar
 	{
 
-		/** It's editor name. */
+		/** Its editor name. */
 		public string label;
-		/** It's internal ID number. */
+		/** Its internal ID number. */
 		public int id;
-		/** It's variable type. */
+		/** Its variable type. */
 		public VariableType type;
-		/** It's value, if an integer, popup or boolean. If a boolean, 0 = False, and 1 = True. */
+		/** Its value, if an integer, popup or boolean. If a boolean, 0 = False, and 1 = True. */
 		public int val;
-		/** It's value, if a float. */
+		/** Its value, if a float. */
 		public float floatVal;
-		/** It's value, if a string. */
+		/** Its value, if a string. */
 		public string textVal;
 		/** An array of labels, if a popup. */
 		public string[] popUps;
@@ -55,7 +55,7 @@ namespace AC
 		
 		/**
 		 * The main Constructor.
-		 * An array of ID numbers is required, to ensure it's own ID is unique.
+		 * An array of ID numbers is required, to ensure its own ID is unique.
 		 */
 		public GVar (int[] idArray)
 		{
@@ -106,7 +106,7 @@ namespace AC
 		
 		
 		/**
-		 * Sets its value to that of it's linked PlayMaker variable (if appropriate).
+		 * Sets its value to that of its linked PlayMaker variable (if appropriate).
 		 */
 		public void Download ()
 		{
@@ -146,7 +146,7 @@ namespace AC
 		
 		
 		/**
-		 * Sets the value of it's linked Options Data or PlayMaker variable to its value (if appropriate).
+		 * Sets the value of its linked Options Data or PlayMaker variable to its value (if appropriate).
 		 */
 		public void Upload ()
 		{
@@ -189,7 +189,7 @@ namespace AC
 		
 
 		/**
-		 * Backs up it's value.
+		 * Backs up its value.
 		 * Necessary when skipping ActionLists that involve checking variable values.
 		 */
 		public void BackupValue ()
@@ -200,7 +200,7 @@ namespace AC
 		
 		
 		/**
-		 * Restores it's value from backup. 
+		 * Restores its value from backup. 
 		 * Necessary when skipping ActionLists that involve checking variable values.
 		 */
 		public void RestoreBackupValue ()
@@ -211,7 +211,7 @@ namespace AC
 		
 		
 		/**
-		 * Sets the value if it's type is String.
+		 * Sets the value if its type is String.
 		 */
 		public void SetStringValue (string newValue)
 		{
@@ -220,7 +220,7 @@ namespace AC
 		
 		
 		/**
-		 * <summary>Sets the value if it's type is Float.</summary>
+		 * <summary>Sets the value if its type is Float.</summary>
 		 * <param name = "newValue">The new float value</param>
 		 * <param name = "setVarMethod">How the new value affects the old (replaces, increases by, or randomises)</param>
 		 */
@@ -242,7 +242,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Sets the value if it's type is Integer, Boolean or PopUp.</summary>
+		 * <summary>Sets the value if its type is Integer, Boolean or PopUp.</summary>
 		 * <param name = "newValue">The new integer value</param>
 		 * <param name = "setVarMethod">How the new value affects the old (replaces, increases by, or randomises)</param>
 		 */

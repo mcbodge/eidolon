@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"RememberContainer.cs"
  * 
@@ -55,7 +55,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Deserialises a string of data, and restores the GameObject to it's previous state.</summary>
+		 * <summary>Deserialises a string of data, and restores the GameObject to its previous state.</summary>
 		 * <param name = "stringData">The data, serialised as a string</param>
 		 */
 		public override void LoadData (string stringData)

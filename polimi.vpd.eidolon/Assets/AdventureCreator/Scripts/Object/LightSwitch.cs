@@ -1,12 +1,12 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"LightSwitch.cs"
  * 
  *	This can be used, via the Object: Send Message Action,
- *	to turn it's attached light component on and off.
+ *	to turn its attached light component on and off.
  * 
  */
 

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"SceneSettings.cs"
  * 
@@ -35,6 +35,8 @@ namespace AC
 		public PlayerStart defaultPlayerStart;
 		/** The scene's navigation method (meshCollider, UnityNavigation, PolygonCollider) */
 		public AC_NavigationMethod navigationMethod = AC_NavigationMethod.meshCollider;
+		/** The class name of the NavigationEngine ScriptableObject that is used to handle pathfinding, if navigationMethod = AC_NavigationMethod.Custom */
+		public string customNavigationClass;
 		/** The scene's active NavigationMesh, if navigationMethod != AC_NavigationMethod.UnityNavigation */
 		public NavigationMesh navMesh;
 		/** The scene's default SortingMap prefab */
@@ -43,6 +45,9 @@ namespace AC
 		public Sound defaultSound;
 		/** The scene's default LightMap prefab */
 		public TintMap tintMap;
+
+		/** If this is assigned, and the currently-loaded Manager assets do not match those defined within, then a Warning message will appear in the Console */
+		public ManagerPackage requiredManagerPackage;
 
 		/** If True, then the global verticalReductionFactor in SettingsManager will be overridden with a scene-specific value */
 		public bool overrideVerticalReductionFactor = false;
@@ -55,8 +60,10 @@ namespace AC
 		private IStateChange[] stateChangeHooks;
 		
 
-		private void Awake ()
+		public void OnAwake ()
 		{
+			KickStarter.navigationManager.OnAwake ();
+
 			// Turn off all NavMesh objects
 			NavigationMesh[] navMeshes = FindObjectsOfType (typeof (NavigationMesh)) as NavigationMesh[];
 			foreach (NavigationMesh _navMesh in navMeshes)
@@ -67,8 +74,7 @@ namespace AC
 				}
 			}
 			
-			// Turn on default NavMesh if using MeshCollider method
-			if (navMesh && (navMesh.GetComponent <Collider>() || navMesh.GetComponent <Collider2D>()))
+			if (navMesh)
 			{
 				navMesh.TurnOn ();
 			}
@@ -77,40 +83,44 @@ namespace AC
 		}
 		
 		
-		private void Start ()
+		public void OnStart ()
 		{
 			if (KickStarter.settingsManager.IsInLoadingScene ())
 			{
 				return;
 			}
 
-			if (KickStarter.saveSystem)
+			if (KickStarter.saveSystem.loadingGame == LoadingGame.No)
 			{
-				if (KickStarter.saveSystem.loadingGame == LoadingGame.No)
-				{
-					KickStarter.levelStorage.ReturnCurrentLevelData (false);
-					FindPlayerStart ();
-				}
-				else if (KickStarter.saveSystem.loadingGame == LoadingGame.JustSwitchingPlayer)
-				{
-					KickStarter.levelStorage.ReturnCurrentLevelData (false);
-				}
-				else
-				{
-					KickStarter.saveSystem.loadingGame = LoadingGame.No;
-				}
+				KickStarter.levelStorage.ReturnCurrentLevelData (false);
+				FindPlayerStart ();
 			}
+			else if (KickStarter.saveSystem.loadingGame == LoadingGame.JustSwitchingPlayer)
+			{
+				KickStarter.levelStorage.ReturnCurrentLevelData (false);
+			}
+			else
+			{
+			//	KickStarter.saveSystem.loadingGame = LoadingGame.No;
+			}
+
+			CheckRequiredManagerPackage ();
+			PlayStartCutscene ();
 		}
 		
 
 		/**
-		 * Resets any references made to the Player prefab by the SortingMap.
+		 * Links all SortingMaps with their associated FollowSortingMaps.
 		 */
-		public void ResetPlayerReference ()
+		public void UpdateAllSortingMaps ()
 		{
-			if (sortingMap)
+			SortingMap[] sortingMaps = FindObjectsOfType (typeof (SortingMap)) as SortingMap[];
+			foreach (SortingMap _sortingMap in sortingMaps)
 			{
-				sortingMap.GetAllFollowers ();
+				if (_sortingMap != null)
+				{
+					_sortingMap.GetAllFollowers ();
+				}
 			}
 		}
 		
@@ -122,9 +132,17 @@ namespace AC
 			{
 				playerStart.SetPlayerStart ();
 			}
+		}
+
+
+		private void PlayStartCutscene ()
+		{
+			if (KickStarter.saveSystem.loadingGame != LoadingGame.No)
+			{
+				return;
+			}
 
 			bool playedGlobal = KickStarter.stateHandler.PlayGlobalOnStart ();
-
 			if (cutsceneOnStart != null)
 			{
 				if (!playedGlobal)
@@ -338,7 +356,7 @@ namespace AC
 		 */
 		public void OnStateChange ()
 		{
-			if (stateChangeHooks.Length > 0)
+			if (stateChangeHooks != null && stateChangeHooks.Length > 0)
 			{
 				GameState gameState = KickStarter.stateHandler.gameState;
 				foreach (IStateChange stateChangeHook in stateChangeHooks)
@@ -354,6 +372,41 @@ namespace AC
 			IStateChange[] ret = new IStateChange [list.Count];
 			list.CopyTo (ret, 0);
 			return ret;
+		}
+
+
+		private void CheckRequiredManagerPackage ()
+		{
+			if (requiredManagerPackage == null)
+			{
+				return;
+			}
+
+			if ((requiredManagerPackage.sceneManager != null && requiredManagerPackage.sceneManager != KickStarter.sceneManager) ||
+			    (requiredManagerPackage.settingsManager != null && requiredManagerPackage.settingsManager != KickStarter.settingsManager) ||
+			    (requiredManagerPackage.actionsManager != null && requiredManagerPackage.actionsManager != KickStarter.actionsManager) ||
+			    (requiredManagerPackage.variablesManager != null && requiredManagerPackage.variablesManager != KickStarter.variablesManager) ||
+			    (requiredManagerPackage.inventoryManager != null && requiredManagerPackage.inventoryManager != KickStarter.inventoryManager) ||
+			    (requiredManagerPackage.speechManager != null && requiredManagerPackage.speechManager != KickStarter.speechManager) ||
+			    (requiredManagerPackage.cursorManager != null && requiredManagerPackage.cursorManager != KickStarter.cursorManager) ||
+			    (requiredManagerPackage.menuManager != null && requiredManagerPackage.menuManager != KickStarter.menuManager))
+			{
+				if (requiredManagerPackage.settingsManager != null)
+				{
+					if (requiredManagerPackage.settingsManager.name == "Demo_SettingsManager" && UnityVersionHandler.GetCurrentSceneName () == "Basement")
+					{
+						ACDebug.LogWarning ("The demo scene's required Manager asset files are not all loaded - please stop the game, and choose 'Adventure Creator -> Getting started -> Load 3D Demo managers from the top toolbar, and re-load the scene.");
+						return;
+					}
+					else if (requiredManagerPackage.settingsManager.name == "Demo2D_SettingsManager" && UnityVersionHandler.GetCurrentSceneName () == "Park")
+					{
+						ACDebug.LogWarning ("The 2D demo scene's required Manager asset files are not all loaded - please stop the game, and choose 'Adventure Creator -> Getting started -> Load 2D Demo managers from the top toolbar, and re-load the scene.");
+						return;
+					}
+				}
+
+				ACDebug.LogWarning ("This scene's required Manager asset files are not all loaded - please find the asset file '" + requiredManagerPackage.name + "' and click 'Assign managers' in its Inspector.");
+			}
 		}
 
 	}

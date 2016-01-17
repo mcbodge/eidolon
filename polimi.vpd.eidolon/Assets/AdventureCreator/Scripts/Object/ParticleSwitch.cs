@@ -1,12 +1,12 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ParticleSwitch.cs"
  * 
  *	This can be used, via the Object: Send Message Action,
- *	to turn it's attached particle systems on and off.
+ *	to turn its attached particle systems on and off.
  * 
  */
 
@@ -52,7 +52,7 @@ namespace AC
 
 
 		/**
-		 * Causes the ParticleSystem component on the GameObject to emit it's maximum number of particles in one go.
+		 * Causes the ParticleSystem component on the GameObject to emit its maximum number of particles in one go.
 		 */
 		public void Interact ()
 		{

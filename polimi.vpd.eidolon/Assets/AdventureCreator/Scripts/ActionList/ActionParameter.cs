@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionParameter.cs"
  * 
@@ -40,7 +40,7 @@ namespace AC
 
 		/**
 		 * <summary>A Constructor that generates a unique ID number.</summary>
-		 * <param name = "idArray">An array of previously-used ID numbers, to ensure it's own ID is unique.</param>
+		 * <param name = "idArray">An array of previously-used ID numbers, to ensure its own ID is unique.</param>
 		 */
 		public ActionParameter (int[] idArray)
 		{
@@ -78,6 +78,22 @@ namespace AC
 			parameterType = ParameterType.GameObject;
 			
 			label = "Parameter " + (ID + 1).ToString ();
+		}
+
+
+		/**
+		 * <summary>A Constructor that duplicates another ActionParameter.</summary>
+		 */
+		public ActionParameter (ActionParameter _actionParameter)
+		{
+			label = _actionParameter.label;
+			ID = _actionParameter.ID;
+			parameterType = _actionParameter.parameterType;
+
+			intValue = -1;
+			floatValue = 0f;
+			stringValue = "";
+			gameObject = null;
 		}
 
 
@@ -138,7 +154,7 @@ namespace AC
 		 */
 		public void SetValue (string _value)
 		{
-			stringValue = _value;
+			stringValue = AdvGame.ConvertTokens (_value);
 			floatValue = 0f;
 			intValue = -1;
 			gameObject = null;

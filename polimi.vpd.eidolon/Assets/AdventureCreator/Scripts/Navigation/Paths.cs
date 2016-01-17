@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Paths.cs"
  * 
@@ -89,16 +89,42 @@ namespace AC
 				pathType = AC_PathType.ForwardOnly;
 				affectY = false;
 				nodePause = 0;
+
+				List<Vector3> newNodes = new List<Vector3>();
 				
-				nodes.Clear ();
-				nodes.Add (this.transform.position);
+				newNodes.Clear ();
+				newNodes.Add (this.transform.position);
 
 				nodeCommands.Clear ();
-				
-				foreach (Vector3 point in pointData)
+
+				for (int i=0; i<pointData.Length; i++)
 				{
-					nodes.Add (point);
+					if (i==0)
+					{
+						// If first point, ignore if same as position
+						if (KickStarter.settingsManager.IsUnity2D ())
+						{
+							Vector2 testPoint = new Vector2 (transform.position.x, transform.position.y);
+							Vector2 testPoint2 = new Vector2 (pointData[0].x, pointData[0].y);
+							if ((testPoint - testPoint2).magnitude < 0.001f)
+							{
+								continue;
+							}
+						}
+						else
+						{
+							Vector3 testPoint = new Vector3 (transform.position.x, pointData[0].y, transform.position.z);
+							if ((testPoint - pointData[0]).magnitude < 0.001f)
+							{
+								continue;
+							}
+						}
+
+					}
+					newNodes.Add (pointData[i]);
 				}
+
+				nodes = newNodes;
 			}
 		}
 		
@@ -113,7 +139,7 @@ namespace AC
 		public int GetNextNode (int currentNode, int prevNode, bool playerControlled)
 		{
 			int numNodes = nodes.Count;
-			
+
 			if (numNodes == 1)
 			{
 				return -1;
@@ -124,7 +150,7 @@ namespace AC
 				{
 					return 1;
 				}
-				else if (currentNode == numNodes - 1)
+				else if (currentNode >= numNodes - 1)
 				{
 					return -1;
 				}

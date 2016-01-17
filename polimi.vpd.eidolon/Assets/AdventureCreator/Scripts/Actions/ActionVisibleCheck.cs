@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionVisibleCheck.cs"
  * 
@@ -89,7 +89,13 @@ namespace AC
 
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID (obToAffect, constantID, parameterID);
+		}
+
 		
 		override public string SetLabel ()
 		{

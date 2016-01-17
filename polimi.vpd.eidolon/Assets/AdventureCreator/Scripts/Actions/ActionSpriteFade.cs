@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionSpriteFade.cs"
  * 
@@ -108,7 +108,17 @@ namespace AC
 
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberVisibility> (spriteFader);
+			}
+			AssignConstantID <SpriteFader> (spriteFader, constantID, parameterID);
+		}
+
 		
 		override public string SetLabel ()
 		{

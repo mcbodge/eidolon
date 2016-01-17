@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionTintMap.cs"
  * 
@@ -197,6 +197,12 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID <TintMap> (newTintMap, newTintMapConstantID, newTintMapParameterID);
 		}
 
 

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionSendMessage.cs"
  * 
@@ -66,23 +66,21 @@ namespace AC
 		
 		public override void ShowGUI ()
 		{
-			var serializedObject = new UnityEditor.SerializedObject(this);
+			var serializedObject = new UnityEditor.SerializedObject (this);
 
 			SerializedProperty eventProperty = serializedObject.FindProperty ("unityEvent");
-			
-			EditorGUIUtility.LookLikeControls ();
-			EditorGUILayout.PropertyField (eventProperty);
+			EditorGUILayout.PropertyField (eventProperty, true);
 
 			ignoreWhenSkipping = EditorGUILayout.Toggle ("Ignore when skipping?", ignoreWhenSkipping);
 
 			if (ignoreWhenSkipping)
 			{
 				SerializedProperty skipEventProperty = serializedObject.FindProperty ("skipEvent");
-				
-				EditorGUIUtility.LookLikeControls ();
-				EditorGUILayout.PropertyField (skipEventProperty);
+				EditorGUILayout.PropertyField (skipEventProperty, true);
 			}
-			
+
+			serializedObject.ApplyModifiedProperties ();
+
 			AfterRunningOption ();
 		}
 

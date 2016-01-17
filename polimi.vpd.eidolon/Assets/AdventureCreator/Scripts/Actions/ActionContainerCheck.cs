@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionContainerCheck.cs"
  * 
@@ -225,6 +225,12 @@ namespace AC
 					invNumber = -1;
 				}
 			}
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID <Container> (container, constantID, parameterID);
 		}
 
 		

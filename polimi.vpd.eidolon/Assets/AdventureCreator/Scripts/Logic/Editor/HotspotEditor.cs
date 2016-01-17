@@ -484,10 +484,7 @@ namespace AC
 				{
 					EditorGUILayout.HelpBox ("You must assign a 'Walk-to marker' above for this option to work.", MessageType.Warning);
 				}
-				if (KickStarter.settingsManager == null || KickStarter.settingsManager.movementMethod != MovementMethod.UltimateFPS)
-				{
-					button.isBlocking = EditorGUILayout.Toggle ("Cutscene while moving?", button.isBlocking);
-				}
+				button.isBlocking = EditorGUILayout.Toggle ("Cutscene while moving?", button.isBlocking);
 				button.faceAfter = EditorGUILayout.Toggle ("Face after moving?", button.faceAfter);
 				
 				if (button.playerAction == PlayerAction.WalkTo)

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharHold.cs"
  * 
@@ -163,7 +163,35 @@ namespace AC
 			
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				if (!isPlayer && _char != null && _char.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (_char);
+				}
+
+				AddSaveScript <RememberTransform> (objectToHold);
+				if (objectToHold != null && objectToHold.GetComponent <RememberTransform>())
+				{
+					objectToHold.GetComponent <RememberTransform>().saveParent = true;
+					if (objectToHold.transform.parent)
+					{
+						AddSaveScript <ConstantID> (objectToHold.transform.parent.gameObject);
+					}
+				}
+			}
+
+			if (!isPlayer)
+			{
+				AssignConstantID <Char> (_char, _charID, 0);
+			}
+			AssignConstantID (objectToHold, objectToHoldID, objectToHoldParameterID);
+		}
+
 		
 		public override string SetLabel ()
 		{

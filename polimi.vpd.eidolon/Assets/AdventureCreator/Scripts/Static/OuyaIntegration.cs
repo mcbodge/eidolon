@@ -1,180 +1,213 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"OuyaIntegration.cs"
  * 
- *	This script contains static functions for playing
- *	AC games on the OUYA platform
+ *	This script serves as a bridge between Adventure Creator and the OUYA platform.
+ *	To use it, add it to a GameObject in your scene, and make sure that 'Assume inputs are defined?' is UNCHECKED in the Settings Manager.
  *
- *	All credit for this script goes to Tim Graupmann.
+ *	You must then add the 'OUYAISPresent' preprocessor to your game.  This can be done from 'Edit -> Project Settings -> Player', and entering 'OUYAIsPresent' into the Scripting Define Symbols text box for your game's build platform.
+ *
+ *	This bridge script provides a robust integration for controlling AC using an OUYA controller.
+ *	If you wish to build upon it for more custom gameplay, duplicate the script and make such changes to the copy.
+ *	You can then add your new script to the scene instead.
  * 
  */
 
 using UnityEngine;
-#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
+using AC;
+#if OUYAIsPresent
 using tv.ouya.console.api;
 #endif
 
-
-public static class OuyaIntegration
+namespace AC
 {
-	
-	public static bool IsDefinePresent ()
+
+	/**
+	 * This script serves as a bridge between Adventure Creator and the OUYA platform.
+	 * To use it, add it to a GameObject in your scene, and make sure that 'Assume inputs are defined?' is UNCHECKED in the Settings Manager.
+	 *
+	 * You must then add the 'OUYAISPresent' preprocessor to your game. This can be done from 'Edit -> Project Settings -> Player', and entering 'OUYAIsPresent' into the Scripting Define Symbols text box for your game's build platform.
+	 *
+	 * This bridge script provides a robust integration for controlling AC using an OUYA controller.
+	 * If you wish to build upon it for more custom gameplay, duplicate the script and make such changes to the copy.
+	 * You can then add your new script to the scene instead.
+	 */
+	public class OuyaIntegration : MonoBehaviour
 	{
+
 		#if OUYAIsPresent
-		return true;
-		#else
-		return false;
+		private Vector2 currentMousePosition;
+
+		public Vector2 screenScale = new Vector2 (1f, 1f);
+		public float mouseMoveSpeed = 0.4f;
+		public Vector2 mouseDeadZone = new Vector2 (0.26f, 0.2f);
+		public bool invertMouseY = true;
 		#endif
-	}
-	
-	
-	public static Vector3 mousePosition
-	{
-		get
+
+
+		private void Start ()
 		{
-			#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-			float halfWidth = Screen.width * 0.5f;
-			float halfHeight = Screen.height * 0.5f;
-			float x = halfWidth + halfWidth * OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_X);
-			float y = halfHeight - halfHeight * OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_Y);
-			return new Vector3(x, y, 0);
+			#if OUYAIsPresent && UNITY_ANDROID && !UNITY_EDITOR
+
+			if (KickStarter.playerInput)
+			{
+				KickStarter.playerInput.InputMousePositionDelegate = MousePosition;
+				KickStarter.playerInput.InputGetAxisDelegate = GetAxis;
+				KickStarter.playerInput.InputGetButtonDelegate = GetButton;
+				KickStarter.playerInput.InputGetButtonDownDelegate = GetButtonDown;
+				KickStarter.playerInput.InputGetMouseButtonDelegate = GetMouseButton;
+				KickStarter.playerInput.InputGetMouseButtonDownDelegate = GetMouseButtonDown;
+
+				currentMousePosition = new Vector2 (Screen.width * 0.5f, Screen.height * 0.5f);
+				KickStarter.settingsManager.assumeInputsDefined = false;
+			}
+
+			#elif OUYAIsPresent
+
+			ACDebug.Log ("OUYA integration is ready to go, but will only take effect in Android builds of your game - not in the Editor.");
+
 			#else
-			return Input.mousePosition;
+
+			ACDebug.LogWarning ("'OUYAIsPresent' must be listed in your Unity Player Setting's 'Scripting define symbols' for AC's OUYA integration to work.");
+
 			#endif
 		}
-	}
-	
-	
-	public static float GetAxis (string axisName)
-	{
-		#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-		switch (axisName)
+
+
+		#if OUYAIsPresent && UNITY_ANDROID && !UNITY_EDITOR
+
+		private Vector2 MousePosition ()
 		{
-		case "Horizontal":
-			return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_X);
-		case "Vertical":
-			return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_Y);
-		case "CursorHorizontal":
-			return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_RS_X);
-		case "CursorVertical":
-			return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_RS_Y);
-		default:
-			ACDebug.LogError(string.Format("Unknown Axis: {0}", axisName));
-			break;
+			Vector2 mouseDelta = new Vector2 (OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_X),
+											  OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_Y) * ((invertMouseY) ? -1f : 1f));
+			
+			if (Mathf.Abs (mouseDelta.x) < mouseDeadZone.x)
+			{
+				mouseDelta.x = 0f;
+			}
+			if (Mathf.Abs (mouseDelta.y) < mouseDeadZone.y)
+			{
+				mouseDelta.y = 0f;
+			}
+			mouseDelta *= Time.deltaTime * mouseMoveSpeed;
+
+			Vector3 newTargetPosition = currentMousePosition;
+			newTargetPosition = new Vector2 (Mathf.Clamp (newTargetPosition.x + (Screen.width * screenScale.x * mouseDelta.x), 0, Screen.width),
+			                                 Mathf.Clamp (newTargetPosition.y + (Screen.height * screenScale.y * mouseDelta.y),0f,Screen.height));
+
+			currentMousePosition = newTargetPosition;
+			return currentMousePosition;
 		}
-		return 0f;
-		#else
-		return Input.GetAxis (axisName);
-		#endif
-	}
-	
-	
-	public static float GetAxisRaw (string axisName)
-	{
-		#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-		return GetAxis (axisName);
-		#else
-		return Input.GetAxisRaw (axisName);
-		#endif
-	}
-	
-	
-	public static bool GetButton (string buttonName)
-	{
-		#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-		switch (buttonName)
+		
+		
+		private float GetAxis (string axisName)
 		{
-		case "InteractionA":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_O);
-		case "InteractionB":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_A);
-		case "ToggleCursor":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_R1);
-		case "EndCutscene":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_Y);
-		case "Jump":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_U);
-		case "Run":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_L1);
-		case "FlashHotspots":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_R3);
-		case "Menu":
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_MENU);
-		default:
-			ACDebug.LogError(string.Format("Unknown Button: {0}", buttonName));
-			return false;
+			switch (axisName)
+			{
+			case "Horizontal":
+				return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_X);
+			case "Vertical":
+				return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_LS_Y);
+			case "CursorHorizontal":
+				return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_RS_X);
+			case "CursorVertical":
+				return OuyaSDK.OuyaInput.GetAxis(0, OuyaController.AXIS_RS_Y);
+			default:
+				ACDebug.LogError (string.Format("Unknown Axis: {0}", axisName));
+				break;
+			}
+			return 0f;
 		}
-		#else
-		return Input.GetButton (buttonName);
-		#endif
-	}
-	
-	
-	public static bool GetButtonDown (string buttonName)
-	{
-		#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-		switch (buttonName)
+		
+
+		private bool GetButton (string buttonName)
 		{
-		case "InteractionA":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_O);
-		case "InteractionB":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_A);
-		case "ToggleCursor":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_R1);
-		case "EndCutscene":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_Y);
-		case "Jump":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_U);
-		case "Run":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_L1);
-		case "FlashHotspots":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_R3);
-		case "Menu":
-			return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_MENU);
-		default:
-			ACDebug.LogError(string.Format ("Unknown Button: {0}", buttonName));
-			return false;
+			switch (buttonName)
+			{
+			case "InteractionA":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_O);
+			case "InteractionB":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_A);
+			case "ToggleCursor":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_R1);
+			case "EndCutscene":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_Y);
+			case "Jump":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_U);
+			case "Run":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_L1);
+			case "FlashHotspots":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_R3);
+			case "Menu":
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_MENU);
+			default:
+				ACDebug.LogError (string.Format("Unknown Button: {0}", buttonName));
+				return false;
+			}
 		}
-		#else
-		return Input.GetButtonDown (buttonName);
-		#endif
-	}
-	
-	
-	public static bool GetMouseButton (int button)
-	{
-		#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-		switch (button)
+		
+		
+		private bool GetButtonDown (string buttonName)
 		{
-		case 0:
-			return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_O);
-		default:
-			ACDebug.LogError(string.Format ("Unknown Button: {0}", button));
-			return false;
+			switch (buttonName)
+			{
+			case "InteractionA":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_O);
+			case "InteractionB":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_A);
+			case "ToggleCursor":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_R1);
+			case "EndCutscene":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_Y);
+			case "Jump":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_U);
+			case "Run":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_L1);
+			case "FlashHotspots":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_R3);
+			case "Menu":
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_MENU);
+			default:
+				ACDebug.LogError (string.Format ("Unknown Button: {0}", buttonName));
+				return false;
+			}
 		}
-		#else
-		return Input.GetMouseButton (button);
-		#endif
-	}
-	
-	
-	public static bool GetMouseButtonDown (int button)
-	{
-		#if UNITY_ANDROID && !UNITY_EDITOR && OUYAIsPresent
-		switch (button)
+		
+		
+		private bool GetMouseButton (int button)
 		{
-		case 0:
-			return OuyaSDK.OuyaInput.GetButtonDown(0, OuyaController.BUTTON_O);
-		default:
-			ACDebug.LogError(string.Format("Unknown Button: {0}", button));
-			return false;
+			switch (button)
+			{
+			case 0:
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_O);
+			case 1:
+				return OuyaSDK.OuyaInput.GetButton (0, OuyaController.BUTTON_A);
+			default:
+				ACDebug.LogError (string.Format ("Unknown Button: {0}", button));
+				return false;
+			}
 		}
-		#else
-		return Input.GetMouseButtonDown (button);
+		
+		
+		private bool GetMouseButtonDown (int button)
+		{
+			switch (button)
+			{
+			case 0:
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_O);
+			case 1:
+				return OuyaSDK.OuyaInput.GetButtonDown (0, OuyaController.BUTTON_A);
+			default:
+				ACDebug.LogError (string.Format("Unknown Button: {0}", button));
+				return false;
+			}
+		}
+
 		#endif
+
 	}
-	
+
 }

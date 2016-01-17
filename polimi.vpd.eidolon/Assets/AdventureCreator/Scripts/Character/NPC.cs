@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"NPC.cs"
  * 
@@ -32,6 +32,7 @@ namespace AC
 		private float followFrequency = 0f;
 		private float followDistance = 0f;
 		private float followDistanceMax = 0f;
+		private bool followFaceWhenIdle = false;
 
 		private LayerMask LayerOn;
 		private LayerMask LayerOff;
@@ -43,34 +44,6 @@ namespace AC
 			LayerOff = LayerMask.NameToLayer (KickStarter.settingsManager.deactivatedLayer);
 
 			_Awake ();
-		}
-
-
-		/**
-		 * The NPC's "FixedUpdate" function, called by StateHandler.
-		 */
-		public override void _FixedUpdate ()
-		{
-			if (activePath && followTarget)
-			{
-				FollowCheckDistance ();
-				FollowCheckDistanceMax ();
-			}
-
-			if (activePath && !pausePath)
-			{
-				if (IsTurningBeforeWalking ())
-				{
-					charState = CharState.Idle;
-				}
-				else 
-				{
-					charState = CharState.Move;
-					CheckIfStuck ();
-				}
-			}
-
-			base._FixedUpdate ();
 		}
 
 
@@ -88,6 +61,32 @@ namespace AC
 				else
 				{
 					StayAwayFromPlayer ();
+				}
+			}
+
+			if (activePath && followTarget)
+			{
+				FollowCheckDistance ();
+				FollowCheckDistanceMax ();
+			}
+
+			if (activePath && !pausePath)
+			{
+				if (IsTurningBeforeWalking ())
+				{
+					if (charState == CharState.Move)
+					{
+						charState = CharState.Decelerate;
+					}
+					else if (charState == CharState.Custom)
+					{
+						charState = CharState.Idle;
+					}
+				}
+				else 
+				{
+					charState = CharState.Move;
+					CheckIfStuck ();
 				}
 			}
 
@@ -240,6 +239,12 @@ namespace AC
 			if (dist < followDistance)
 			{
 				EndPath ();
+
+				if (followFaceWhenIdle)
+				{
+					Vector3 _lookDirection = followTarget.transform.position - transform.position;
+					SetLookDirection (_lookDirection, false);
+				}
 			}
 
 			return (dist);
@@ -283,8 +288,9 @@ namespace AC
 		 * <param name = "_followFrequency">The frequency with which to follow the target</param>
 		 * <param name = "_followDistance">The minimum distance to keep from the target</param>
 		 * <param name = "_followDistanceMax">The maximum distance to keep from the target</param>
+		 * <param name = "_faceWhenIdle">If True, the NPC will face the target when idle</param>
 		 */
-		public void FollowAssign (Char _followTarget, bool _followTargetIsPlayer, float _followFrequency, float _followDistance, float _followDistanceMax)
+		public void FollowAssign (Char _followTarget, bool _followTargetIsPlayer, float _followFrequency, float _followDistance, float _followDistanceMax, bool _faceWhenIdle)
 		{
 			if (_followTargetIsPlayer)
 			{
@@ -302,6 +308,7 @@ namespace AC
 			followFrequency = _followFrequency;
 			followDistance = _followDistance;
 			followDistanceMax = _followDistanceMax;
+			followFaceWhenIdle = _faceWhenIdle;
 
 			FollowUpdate ();
 		}
@@ -320,7 +327,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a NPCData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a NPCData class with its own variables that need saving.</summary>
 		 * <param name = "npcData">The original NPCData class</param>
 		 * <returns>The updated NPCData class</returns>
 		 */
@@ -435,7 +442,8 @@ namespace AC
 						npcData.followTargetIsPlayer = followTargetIsPlayer;
 						npcData.followFrequency = followFrequency;
 						npcData.followDistance = followDistance;
-						npcData.followDistanceMax= followDistanceMax;
+						npcData.followDistanceMax = followDistanceMax;
+						npcData.followFaceWhenIdle = followFaceWhenIdle;
 					}
 					else
 					{
@@ -449,6 +457,7 @@ namespace AC
 					npcData.followFrequency = followFrequency;
 					npcData.followDistance = followDistance;
 					npcData.followDistanceMax = followDistanceMax;
+					followFaceWhenIdle = false;
 				}
 			}
 			else
@@ -460,19 +469,53 @@ namespace AC
 				npcData.followDistanceMax = 0f;
 			}
 			
-			if (headFacing == HeadFacing.Manual)
+			if (headFacing == HeadFacing.Manual && headTurnTarget != null)
 			{
 				npcData.isHeadTurning = true;
-				npcData.headTargetX = headTurnTarget.x;
-				npcData.headTargetY = headTurnTarget.y;
-				npcData.headTargetZ = headTurnTarget.z;
+				npcData.headTargetID = Serializer.GetConstantID (headTurnTarget);
+				if (npcData.headTargetID == 0)
+				{
+					ACDebug.LogWarning ("The NPC " + gameObject.name + "'s head-turning target Transform, " + headTurnTarget + ", was not saved because it has no Constant ID");
+				}
+				npcData.headTargetX = headTurnTargetOffset.x;
+				npcData.headTargetY = headTurnTargetOffset.y;
+				npcData.headTargetZ = headTurnTargetOffset.z;
 			}
 			else
 			{
 				npcData.isHeadTurning = false;
+				npcData.headTargetID = 0;
 				npcData.headTargetX = 0f;
 				npcData.headTargetY = 0f;
 				npcData.headTargetZ = 0f;
+			}
+
+			if (GetComponentInChildren <FollowSortingMap>() != null)
+			{
+				FollowSortingMap followSortingMap = GetComponentInChildren <FollowSortingMap>();
+				npcData.followSortingMap = followSortingMap.followSortingMap;
+				if (!npcData.followSortingMap && followSortingMap.GetSortingMap () != null)
+				{
+					if (followSortingMap.GetSortingMap ().GetComponent <ConstantID>() != null)
+					{
+						npcData.customSortingMapID = followSortingMap.GetSortingMap ().GetComponent <ConstantID>().constantID;
+					}
+					else
+					{
+						ACDebug.LogWarning ("The NPC " + gameObject.name + "'s SortingMap, " + followSortingMap.GetSortingMap ().name + ", was not saved because it has no Constant ID");
+						npcData.customSortingMapID = 0;
+					}
+					npcData.customSortingMapID = followSortingMap.GetSortingMap ().GetComponent <ConstantID>().constantID;
+				}
+				else
+				{
+					npcData.customSortingMapID = 0;
+				}
+			}
+			else
+			{
+				npcData.followSortingMap = false;
+				npcData.customSortingMapID = 0;
 			}
 
 			return npcData;
@@ -480,7 +523,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates it's own variables from a NPCData class.</summary>
+		 * <summary>Updates its own variables from a NPCData class.</summary>
 		 * <param name = "data">The NPCData class to load from</param>
 		 */
 		public void LoadData (NPCData data)
@@ -564,7 +607,7 @@ namespace AC
 				}
 			}
 			
-			FollowAssign (charToFollow, data.followTargetIsPlayer, data.followFrequency, data.followDistance, data.followDistanceMax);
+			FollowAssign (charToFollow, data.followTargetIsPlayer, data.followFrequency, data.followDistance, data.followDistanceMax, data.followFaceWhenIdle);
 			Halt ();
 			
 			if (data.pathData != null && data.pathData != "" && GetComponent <Paths>())
@@ -605,11 +648,34 @@ namespace AC
 			// Head target
 			if (data.isHeadTurning)
 			{
-				SetHeadTurnTarget (new Vector3 (data.headTargetX, data.headTargetY, data.headTargetZ), true);
+				ConstantID _headTargetID = Serializer.returnComponent <ConstantID> (data.headTargetID);
+				if (_headTargetID != null)
+				{
+					SetHeadTurnTarget (_headTargetID.transform, new Vector3 (data.headTargetX, data.headTargetY, data.headTargetZ), true);
+				}
+				else
+				{
+					ClearHeadTurnTarget (true);
+				}
 			}
 			else
 			{
 				ClearHeadTurnTarget (true);
+			}
+
+			if (GetComponentsInChildren <FollowSortingMap>() != null)
+			{
+				FollowSortingMap[] followSortingMaps = GetComponentsInChildren <FollowSortingMap>();
+				SortingMap customSortingMap = Serializer.returnComponent <SortingMap> (data.customSortingMapID);
+
+				foreach (FollowSortingMap followSortingMap in followSortingMaps)
+				{
+					followSortingMap.followSortingMap = data.followSortingMap;
+					if (!data.followSortingMap)
+					{
+						followSortingMap.SetSortingMap (customSortingMap);
+					}
+				}
 			}
 		}
 		

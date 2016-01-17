@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"SaveData.cs"
  * 
@@ -96,7 +96,7 @@ namespace AC
 
 	/**
 	 * A data container for saving the state of a Player.
-	 * Each Player in a game has it's own instance of this class stored in SaveData by SaveSystem.
+	 * Each Player in a game has its own instance of this class stored in SaveData by SaveSystem.
 	 */
 	[System.Serializable]
 	public struct PlayerData
@@ -186,11 +186,11 @@ namespace AC
 		public bool playerLockDirection;
 		/** The direction that a sprite-based Player is currently facing */
 		public string playerSpriteDirection;
-		/** True if a sprite-based Player has it's scale locked */
+		/** True if a sprite-based Player has its scale locked */
 		public bool playerLockScale;
 		/** The scale of a sprite-based Player */
 		public float playerSpriteScale;
-		/** True if a sprite-based Player has it's sorting locked */
+		/** True if a sprite-based Player has its sorting locked */
 		public bool playerLockSorting;
 		/** The sorting order of a sprite-based Player */
 		public int playerSortingOrder;
@@ -204,11 +204,13 @@ namespace AC
 		public bool playerLockHotspotHeadTurning;
 		/** True if the Player's head is facing a particular object */
 		public bool isHeadTurning;
-		/** The Player's head target's X position */
+		/** The ConstantID number of the head target Transform */
+		public int headTargetID;
+		/** The Player's head target's X position (offset) */
 		public float headTargetX;
-		/** The Player's head target's Y position */
+		/** The Player's head target's Y position (offset) */
 		public float headTargetY;
-		/** The Player's head target's Z position */
+		/** The Player's head target's Z position (offset) */
 		public float headTargetZ;
 
 		/** The Constant ID number of the active _Camera */
@@ -243,6 +245,11 @@ namespace AC
 		public float splitAmountMain;
 		/** During split-screen, the proportion of the screen that the non-gameplay camera take up */
 		public float splitAmountOther;
+
+		/** True if the NPC has a FollowSortingMap component that follows the scene's default SortingMap */
+		public bool followSortingMap;
+		/** The ConstantID number of the SortingMap that the NPC's FollowSortingMap follows, if not the scene's default */
+		public int customSortingMapID;
 
 
 		/**

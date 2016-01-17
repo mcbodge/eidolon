@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"SpeechManager.cs"
  * 
@@ -56,9 +56,11 @@ namespace AC
 
 		/** If True, then speech audio files will play when characters speak */
 		public bool searchAudioFiles = true;
+		/** If True, then the audio files associated with speech text will be named automatically according to their ID number */
+		public bool autoNameSpeechFiles = true;
 		/** If True, then speech text will always display if no relevant audio file is found - even if Subtitles are off in the Options menu */
 		public bool forceSubtitles = true;
-		/** If True, then each translation will have it's own set of speech audio files */
+		/** If True, then each translation will have its own set of speech audio files */
 		public bool translateAudio = true;
 		/** If True, then the text stored in the speech buffer (in MenuLabel) will not be cleared when no speech text is active */
 		public bool keepTextInBuffer = false;
@@ -99,7 +101,7 @@ namespace AC
 
 		/** An array of all scene names in the Build settings */
 		public string[] sceneFiles;
-		/** The current SpeechLine selected to reveal it's properties */
+		/** The current SpeechLine selected to reveal its properties */
 		public SpeechLine activeLine = null;
 		
 		private List<string> sceneNames = new List<string>();
@@ -132,7 +134,7 @@ namespace AC
 			
 			EditorGUILayout.LabelField ("Subtitles", EditorStyles.boldLabel);
 			
-			separateLines = EditorGUILayout.ToggleLeft ("Treat carriage returns at separate speech lines?", separateLines);
+			separateLines = EditorGUILayout.ToggleLeft ("Treat carriage returns as separate speech lines?", separateLines);
 			if (separateLines)
 			{
 				separateLinePause = EditorGUILayout.Slider ("Split line delay (s):", separateLinePause, 0.1f, 1f);
@@ -180,6 +182,7 @@ namespace AC
 
 			forceSubtitles = EditorGUILayout.ToggleLeft ("Force subtitles to display when no speech audio is found?", forceSubtitles);
 			searchAudioFiles = EditorGUILayout.ToggleLeft ("Auto-play speech audio files?", searchAudioFiles);
+			autoNameSpeechFiles = EditorGUILayout.ToggleLeft ("Auto-name speech audio files?", autoNameSpeechFiles);
 			translateAudio = EditorGUILayout.ToggleLeft ("Speech audio can be translated?", translateAudio);
 			usePlayerRealName = EditorGUILayout.ToggleLeft ("Use Player prefab name in filenames?", usePlayerRealName);
 			placeAudioInSubfolders = EditorGUILayout.ToggleLeft ("Place audio files in speaker subfolders?", placeAudioInSubfolders);
@@ -230,8 +233,7 @@ namespace AC
 			EditorGUILayout.Space ();
 			
 			GUILayout.Label ("Game text", EditorStyles.boldLabel);
-			GUILayout.Label ("Speech audio files must be placed in: /Resources/Speech");
-			
+
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("Gather text", EditorStyles.miniButtonLeft))
 			{
@@ -339,9 +341,12 @@ namespace AC
 			{
 				if (line.textType == typeFilter && line.Matches (textFilter, filterSpeechLine))
 				{
+					string scenePlusExtension = (line.scene != "") ? (line.scene + ".unity") : "";
+					
 					if ((line.scene == "" && sceneFilter == 0)
 					    || sceneFilter == 1
-					    || (line.scene != "" && sceneFilter > 1 && line.scene.EndsWith (selectedScene)))
+					    || (line.scene != "" && sceneFilter > 1 && line.scene.EndsWith (selectedScene))
+					    || (line.scene != "" && sceneFilter > 1 && scenePlusExtension.EndsWith (selectedScene)))
 					{
 						line.ShowGUI ();
 					}
@@ -465,6 +470,15 @@ namespace AC
 			foreach (SpeechLine line in lines)
 			{
 				line.translationText.RemoveAt (i-1);
+
+				if (line.customTranslationAudioClips != null && line.customTranslationAudioClips.Count > (i-1))
+				{
+					line.customTranslationAudioClips.RemoveAt (i-1);
+				}
+				if (line.customTranslationLipsyncFiles != null && line.customTranslationLipsyncFiles.Count > (i-1))
+				{
+					line.customTranslationLipsyncFiles.RemoveAt (i-1);
+				}
 			}
 			
 		}
@@ -480,6 +494,8 @@ namespace AC
 			foreach (SpeechLine line in lines)
 			{
 				line.translationText.Clear ();
+				line.customTranslationAudioClips.Clear ();
+				line.customTranslationLipsyncFiles.Clear ();
 			}
 			
 			languages.Add ("Original");	
@@ -488,9 +504,9 @@ namespace AC
 		
 		private void PopulateList ()
 		{
-			string originalScene = EditorApplication.currentScene;
+			string originalScene = UnityVersionHandler.GetCurrentSceneName ();
 			
-			if (EditorApplication.SaveCurrentSceneIfUserWantsTo ())
+			if (UnityVersionHandler.SaveSceneIfUserWants ())
 			{
 				Undo.RecordObject (this, "Update speech list");
 				
@@ -529,11 +545,8 @@ namespace AC
 				
 				RestoreTranslations ();
 				checkedAssets.Clear ();
-				
-				if (EditorApplication.currentScene != originalScene)
-				{
-					EditorApplication.OpenScene (originalScene);
-				}
+
+				UnityVersionHandler.OpenScene (originalScene);
 			}
 		}
 		
@@ -541,7 +554,7 @@ namespace AC
 		private string RemoveLineBreaks (string text)
 		{
 			if (text.Length == 0) return " ";
-			return (text.Replace ("\n", "[break]"));
+			return (text.Replace ("\r\n", "[break]").Replace ("\n", "[break]").Replace ("\r", "[break]"));
 		}
 		
 		
@@ -557,7 +570,6 @@ namespace AC
 			{
 				ExtractDialogOption (dialogOption, onlySeekNew);
 			}
-			
 		}
 		
 		
@@ -567,6 +579,7 @@ namespace AC
 			{
 				ProcessActionListAsset (hotspot.useButton.assetFile, onlySeekNew);
 				ProcessActionListAsset (hotspot.lookButton.assetFile, onlySeekNew);
+				ProcessActionListAsset (hotspot.unhandledInvButton.assetFile, onlySeekNew);
 				
 				foreach (Button _button in hotspot.useButtons)
 				{
@@ -588,7 +601,7 @@ namespace AC
 			if (onlySeekNew && hotspot.lineID == -1)
 			{
 				// Assign a new ID on creation
-				SpeechLine newLine = new SpeechLine (GetIDArray(), EditorApplication.currentScene, hotspotName, languages.Count - 1, AC_TextType.Hotspot);
+				SpeechLine newLine = new SpeechLine (GetIDArray(), UnityVersionHandler.GetCurrentSceneName (), hotspotName, languages.Count - 1, AC_TextType.Hotspot);
 				
 				hotspot.lineID = newLine.lineID;
 				lines.Add (newLine);
@@ -597,7 +610,7 @@ namespace AC
 			else if (!onlySeekNew && hotspot.lineID > -1)
 			{
 				// Already has an ID, so don't replace
-				SpeechLine existingLine = new SpeechLine (hotspot.lineID, EditorApplication.currentScene, hotspotName, languages.Count - 1, AC_TextType.Hotspot);
+				SpeechLine existingLine = new SpeechLine (hotspot.lineID, UnityVersionHandler.GetCurrentSceneName (), hotspotName, languages.Count - 1, AC_TextType.Hotspot);
 				
 				int lineID = SmartAddLine (existingLine);
 				if (lineID >= 0) hotspot.lineID = lineID;
@@ -613,7 +626,7 @@ namespace AC
 			{
 				// Assign a new ID on creation
 				SpeechLine newLine;
-				newLine = new SpeechLine (GetIDArray(), EditorApplication.currentScene, dialogOption.label, languages.Count - 1, AC_TextType.DialogueOption);
+				newLine = new SpeechLine (GetIDArray(), UnityVersionHandler.GetCurrentSceneName (), dialogOption.label, languages.Count - 1, AC_TextType.DialogueOption);
 				dialogOption.lineID = newLine.lineID;
 				lines.Add (newLine);
 			}
@@ -621,7 +634,7 @@ namespace AC
 			else if (!onlySeekNew && dialogOption.lineID > 0)
 			{
 				// Already has an ID, so don't replace
-				SpeechLine existingLine = new SpeechLine (dialogOption.lineID, EditorApplication.currentScene, dialogOption.label, languages.Count - 1, AC_TextType.DialogueOption);
+				SpeechLine existingLine = new SpeechLine (dialogOption.lineID, UnityVersionHandler.GetCurrentSceneName (), dialogOption.label, languages.Count - 1, AC_TextType.DialogueOption);
 				
 				int lineID = SmartAddLine (existingLine);
 				if (lineID >= 0) dialogOption.lineID = lineID;
@@ -641,7 +654,7 @@ namespace AC
 					_label = invItem.altLabel;
 				}
 				
-				newLine = new SpeechLine (GetIDArray(), EditorApplication.currentScene, _label, languages.Count - 1, AC_TextType.InventoryItem);
+				newLine = new SpeechLine (GetIDArray(), UnityVersionHandler.GetCurrentSceneName (), _label, languages.Count - 1, AC_TextType.InventoryItem);
 				invItem.lineID = newLine.lineID;
 				lines.Add (newLine);
 			}
@@ -655,7 +668,7 @@ namespace AC
 					_label = invItem.altLabel;
 				}
 				
-				SpeechLine existingLine = new SpeechLine (invItem.lineID, EditorApplication.currentScene, _label, languages.Count - 1, AC_TextType.InventoryItem);
+				SpeechLine existingLine = new SpeechLine (invItem.lineID, UnityVersionHandler.GetCurrentSceneName (), _label, languages.Count - 1, AC_TextType.InventoryItem);
 				
 				int lineID = SmartAddLine (existingLine);
 				if (lineID >= 0) invItem.lineID = lineID;
@@ -789,16 +802,22 @@ namespace AC
 		{
 			string speaker = "";
 			bool isPlayer = action.isPlayer;
-			
-			if (action.isPlayer)
+			if (!isPlayer && action.speaker != null && action.speaker is Player)
 			{
-				if (KickStarter.settingsManager && KickStarter.settingsManager.player)
+				isPlayer = true;
+			}
+			
+			if (isPlayer)
+			{
+				speaker = "Player";
+
+				if (action.isPlayer && KickStarter.settingsManager != null && KickStarter.settingsManager.player)
 				{
 					speaker = KickStarter.settingsManager.player.name;
 				}
-				else
+				else if (action.speaker != null)
 				{
-					speaker = "Player";
+					speaker = action.speaker.name;
 				}
 			}
 			else
@@ -820,41 +839,84 @@ namespace AC
 
 			if (speaker != "" && action.messageText != "")
 			{
-				if (onlySeekNew && action.lineID == -1)
+				if (separateLines)
 				{
-					// Assign a new ID on creation
-					string _scene = "";
-					SpeechLine newLine;
-					if (isInScene)
+					string[] messages = action.GetSpeechArray ();
+					if (messages != null && messages.Length > 0)
 					{
-						_scene = EditorApplication.currentScene;
+						action.lineID = ProcessSpeechLine (onlySeekNew, isInScene, action.lineID, speaker, messages[0], isPlayer);
+
+						if (messages.Length > 1)
+						{
+							if (action.multiLineIDs == null || action.multiLineIDs.Length != (messages.Length - 1))
+							{
+								List<int> lineIDs = new List<int>();
+								for (int i=1; i<messages.Length; i++)
+								{
+									if (action.multiLineIDs != null && action.multiLineIDs.Length > (i-1))
+									{
+										lineIDs.Add (action.multiLineIDs[i-1]);
+									}
+									else
+									{
+										lineIDs.Add (-1);
+									}
+								}
+								action.multiLineIDs = lineIDs.ToArray ();
+							}
+
+							for (int i=1; i<messages.Length; i++)
+							{
+								action.multiLineIDs [i-1] = ProcessSpeechLine (onlySeekNew, isInScene, action.multiLineIDs [i-1], speaker, messages[i], isPlayer);
+							}
+						}
 					}
-					newLine = new SpeechLine (GetIDArray(), _scene, speaker, action.messageText, languages.Count - 1, AC_TextType.Speech, isPlayer);
-					
-					action.lineID = newLine.lineID;
-					lines.Add (newLine);
 				}
-				
-				else if (!onlySeekNew && action.lineID > -1)
+				else
 				{
-					// Already has an ID, so don't replace
-					string _scene = "";
-					SpeechLine existingLine;
-					if (isInScene)
-					{
-						_scene = EditorApplication.currentScene;
-					}
-					existingLine = new SpeechLine (action.lineID, _scene, speaker, action.messageText, languages.Count - 1, AC_TextType.Speech, isPlayer);
-					
-					int lineID = SmartAddLine (existingLine);
-					if (lineID >= 0) action.lineID = lineID;
+					action.lineID = ProcessSpeechLine (onlySeekNew, isInScene, action.lineID, speaker, action.messageText, isPlayer);
 				}
 			}
 			else
 			{
 				// Remove from SpeechManager
 				action.lineID = -1;
+				action.multiLineIDs = null;
 			}
+		}
+
+
+		private int ProcessSpeechLine (bool onlySeekNew, bool isInScene, int lineID, string speaker, string messageText, bool isPlayer)
+		{
+			if (onlySeekNew && lineID == -1)
+			{
+				// Assign a new ID on creation
+				string _scene = "";
+				SpeechLine newLine;
+				if (isInScene)
+				{
+					_scene = UnityVersionHandler.GetCurrentSceneName ();
+				}
+				newLine = new SpeechLine (GetIDArray(), _scene, speaker, messageText, languages.Count - 1, AC_TextType.Speech, isPlayer);
+				
+				lineID = newLine.lineID;
+				lines.Add (newLine);
+			}
+			else if (!onlySeekNew && lineID > -1)
+			{
+				// Already has an ID, so don't replace
+				string _scene = "";
+				SpeechLine existingLine;
+				if (isInScene)
+				{
+					_scene = UnityVersionHandler.GetCurrentSceneName ();
+				}
+				existingLine = new SpeechLine (lineID, _scene, speaker, messageText, languages.Count - 1, AC_TextType.Speech, isPlayer);
+				
+				int _lineID = SmartAddLine (existingLine);
+				if (_lineID >= 0) lineID = _lineID;
+			}
+			return lineID;
 		}
 
 
@@ -865,7 +927,7 @@ namespace AC
 				string _scene = "";
 				if (isInScene)
 				{
-					_scene = EditorApplication.currentScene;
+					_scene = UnityVersionHandler.GetCurrentSceneName ();
 				}
 
 				if (onlySeekNew && action.lineID == -1)
@@ -968,7 +1030,7 @@ namespace AC
 					SpeechLine newLine;
 					if (isInScene)
 					{
-						newLine = new SpeechLine (GetIDArray(), EditorApplication.currentScene, action.journalText, languages.Count - 1, AC_TextType.JournalEntry);
+						newLine = new SpeechLine (GetIDArray(), UnityVersionHandler.GetCurrentSceneName (), action.journalText, languages.Count - 1, AC_TextType.JournalEntry);
 					}
 					else
 					{
@@ -984,7 +1046,7 @@ namespace AC
 					SpeechLine existingLine;
 					if (isInScene)
 					{
-						existingLine = new SpeechLine (action.lineID, EditorApplication.currentScene, action.journalText, languages.Count - 1, AC_TextType.JournalEntry);
+						existingLine = new SpeechLine (action.lineID, UnityVersionHandler.GetCurrentSceneName (), action.journalText, languages.Count - 1, AC_TextType.JournalEntry);
 					}
 					else
 					{
@@ -1191,11 +1253,8 @@ namespace AC
 		
 		private void GetLinesInScene (string sceneFile, bool onlySeekNew)
 		{
-			if (EditorApplication.currentScene != sceneFile)
-			{
-				EditorApplication.OpenScene (sceneFile);
-			}
-			
+			UnityVersionHandler.OpenScene (sceneFile);
+
 			// Speech lines and journal entries
 			ActionList[] actionLists = GameObject.FindObjectsOfType (typeof (ActionList)) as ActionList[];
 			foreach (ActionList list in actionLists)
@@ -1228,7 +1287,7 @@ namespace AC
 			}
 			
 			// Save the scene
-			EditorApplication.SaveScene ();
+			UnityVersionHandler.SaveScene ();
 			EditorUtility.SetDirty (this);
 		}
 		
@@ -1593,17 +1652,20 @@ namespace AC
 			script += "<h2>Created: " + DateTime.UtcNow.ToString("HH:mm dd MMMM, yyyy") + "</h2>\n";
 
 			// By scene
-			foreach (string scene in sceneFiles)
+			foreach (string sceneFile in sceneFiles)
 			{
 				bool foundLinesInScene = false;
 				
 				foreach (SpeechLine line in lines)
 				{
-					if (line.scene == scene && line.textType == AC_TextType.Speech)
+					int slashPoint = sceneFile.LastIndexOf ("/") + 1;
+					string sceneName = sceneFile.Substring (slashPoint);
+					
+					if (line.textType == AC_TextType.Speech && (line.scene == sceneFile || sceneName == (line.scene + ".unity")))
 					{
 						if (!foundLinesInScene)
 						{
-							script += "<hr/>\n<h3><b>Scene:</b> " + scene + "</h3>\n";
+							script += "<hr/>\n<h3><b>Scene:</b> " + sceneName + "</h3>\n";
 							foundLinesInScene = true;
 						}
 						
@@ -1611,6 +1673,7 @@ namespace AC
 					}
 				}
 			}
+
 			
 			// No scene
 			bool foundLinesInInventory = false;
@@ -1642,9 +1705,9 @@ namespace AC
 		{
 			if (EditorUtility.DisplayDialog ("Reset all translation lines?", "This will completely reset the IDs of every text line in your game, removing any supplied translations and invalidating speech audio filenames. Continue?", "OK", "Cancel"))
 			{
-				string originalScene = EditorApplication.currentScene;
+				string originalScene = UnityVersionHandler.GetCurrentSceneName ();
 				
-				if (EditorApplication.SaveCurrentSceneIfUserWantsTo ())
+				if (UnityVersionHandler.SaveSceneIfUserWants ())
 				{
 					lines.Clear ();
 					checkedAssets.Clear ();
@@ -1664,11 +1727,17 @@ namespace AC
 					ClearLinesFromMenus ();
 					
 					checkedAssets.Clear ();
-					
-					if (EditorApplication.currentScene != originalScene)
+
+					if (originalScene == "")
 					{
-						EditorApplication.OpenScene (originalScene);
+						UnityVersionHandler.NewScene ();
 					}
+					else
+					{
+						UnityVersionHandler.OpenScene (originalScene);
+					}
+
+					ACDebug.Log ("Process complete.");
 				}
 			}
 		}
@@ -1676,10 +1745,7 @@ namespace AC
 		
 		private void ClearLinesInScene (string sceneFile)
 		{
-			if (EditorApplication.currentScene != sceneFile)
-			{
-				EditorApplication.OpenScene (sceneFile);
-			}
+			UnityVersionHandler.OpenScene (sceneFile);
 			
 			// Speech lines and journal entries
 			ActionList[] actionLists = GameObject.FindObjectsOfType (typeof (ActionList)) as ActionList[];
@@ -1732,7 +1798,7 @@ namespace AC
 			}
 			
 			// Save the scene
-			EditorApplication.SaveScene ();
+			UnityVersionHandler.SaveScene ();
 			EditorUtility.SetDirty (this);
 		}
 		
@@ -2164,6 +2230,64 @@ namespace AC
 				}
 			}
 			return "";
+		}
+
+
+		/**
+		 * <summary>Gets the custom AudioClip of a SpeechLine.</summary>
+		 * <param name = "_lineID">The translation ID number generated by SpeechManager's PopulateList() function</param>
+		 * <param name = "_language">The ID number of the language</param>
+		 * <returns>The custom AudioClip of the speech line</summary>
+		 */
+		public AudioClip GetLineCustomAudioClip (int _lineID, int _language = 0)
+		{
+			foreach (SpeechLine line in lines)
+			{
+				if (line.lineID == _lineID)
+				{
+					if (translateAudio && _language > 0)
+					{
+						if (line.customTranslationAudioClips != null && line.customTranslationAudioClips.Count > (_language-1))
+						{
+							return line.customTranslationAudioClips [_language-1];
+						}
+					}
+					else
+					{
+						return line.customAudioClip;
+					}
+				}
+			}
+			return null;
+		}
+
+
+		/**
+		 * <summary>Gets the custom TextAsset of a SpeechLine's lipsync.</summary>
+		 * <param name = "_lineID">The translation ID number generated by SpeechManager's PopulateList() function</param>
+		 * <param name = "_language">The ID number of the language</param>
+		 * <returns>The custom AudioClip of the speech line</summary>
+		 */
+		public TextAsset GetLineCustomLipsyncFile (int _lineID, int _language = 0)
+		{
+			foreach (SpeechLine line in lines)
+			{
+				if (line.lineID == _lineID)
+				{
+					if (translateAudio && _language > 0)
+					{
+						if (line.customTranslationLipsyncFiles != null && line.customTranslationLipsyncFiles.Count > (_language-1))
+						{
+							return line.customTranslationLipsyncFiles [_language-1];
+						}
+					}
+					else
+					{
+						return line.customLipsyncFile;
+					}
+				}
+			}
+			return null;
 		}
 
 

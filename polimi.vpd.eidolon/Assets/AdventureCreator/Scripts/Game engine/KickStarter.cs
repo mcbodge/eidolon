@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"KickStarter.cs"
  * 
@@ -68,11 +68,43 @@ namespace AC
 
 		private static void SetGameEngine ()
 		{
-			if (gameEnginePrefab == null && GameObject.FindObjectOfType <SceneSettings>())
+			if (gameEnginePrefab == null)
 			{
-				gameEnginePrefab = GameObject.FindObjectOfType <SceneSettings>().gameObject;
+				SceneSettings sceneSettings = UnityVersionHandler.GetKickStarterComponent <SceneSettings>();
+				if (sceneSettings != null)
+				{
+					gameEnginePrefab = sceneSettings.gameObject;
+				}
 			}
 		}
+
+
+		private static void SetPersistentEngine ()
+		{
+			if (persistentEnginePrefab == null)
+			{
+				StateHandler stateHandler = UnityVersionHandler.GetKickStarterComponent <StateHandler>();
+				if (stateHandler != null)
+				{
+					persistentEnginePrefab = stateHandler.gameObject;
+				}
+				else
+				{
+					try
+					{
+						persistentEnginePrefab = (GameObject) Instantiate (Resources.Load (Resource.persistentEngine));
+						persistentEnginePrefab.name = AdvGame.GetName (Resource.persistentEngine);
+					}
+					catch {	}
+					
+					stateHandler = persistentEnginePrefab.GetComponent <StateHandler>();
+					stateHandler.OnAwake ();
+				}
+			}
+		}
+
+
+
 		
 		
 		public static SceneManager sceneManager
@@ -659,16 +691,22 @@ namespace AC
 		 */
 		public static void ResetPlayer (Player ref_player, int ID, bool resetReferences, Quaternion _rotation, bool keepInventory = false)
 		{
-			// Delete current player
-			if (GameObject.FindWithTag (Tags.player))
+			// Delete current player(s)
+			if (GameObject.FindGameObjectsWithTag (Tags.player) != null)
 			{
-				if (GameObject.FindWithTag (Tags.player).GetComponent <Player>())
+				foreach (GameObject playerOb in GameObject.FindGameObjectsWithTag (Tags.player))
 				{
-					GameObject.FindWithTag (Tags.player).GetComponent <Player>().ReleaseHeldObjects ();
+					if (playerOb != null)
+					{
+						if (playerOb.GetComponent <Player>())
+						{
+							playerOb.GetComponent <Player>().ReleaseHeldObjects ();
+						}
+						DestroyImmediate (playerOb);
+					}
 				}
-				DestroyImmediate (GameObject.FindWithTag (Tags.player));
 			}
-			
+
 			// Load new player
 			if (ref_player)
 			{
@@ -697,7 +735,7 @@ namespace AC
 					if (KickStarter.saveSystem != null && KickStarter.saveSystem.DoesPlayerDataExist (ID, false))
 					{
 						bool loadNewInventory = !settingsManager.shareInventory;
-						if (!settingsManager.shareInventory && keepInventory)
+						if (settingsManager.playerSwitching == PlayerSwitching.DoNotAllow || (!settingsManager.shareInventory && keepInventory))
 						{
 							loadNewInventory = false;
 						}
@@ -724,7 +762,6 @@ namespace AC
 			// Reset player references
 			if (resetReferences)
 			{
-				KickStarter.sceneSettings.ResetPlayerReference ();
 				KickStarter.playerMovement.AssignFPCamera ();
 				KickStarter.stateHandler.IgnoreNavMeshCollisions ();
 				KickStarter.stateHandler.GatherObjects (false);
@@ -740,6 +777,17 @@ namespace AC
 
 		private void Awake ()
 		{
+			if (GetComponent <MultiSceneChecker>() == null)
+			{
+				ACDebug.LogError ("A 'MultiSceneChecker' component must be attached to the GameEngine prefab - please re-import AC.");
+			}
+		}
+
+
+		public void OnAwake ()
+		{
+			ClearVariables ();
+
 			// Test for key imports
 			References references = (References) Resources.Load (Resource.references);
 			if (references)
@@ -767,6 +815,7 @@ namespace AC
 					if (settingsManager.IsInLoadingScene ())
 					{
 						ACDebug.Log ("Bypassing regular AC startup because the current scene is the 'Loading' scene.");
+						SetPersistentEngine ();
 						return;
 					}
 					if (!GameObject.FindGameObjectWithTag (Tags.player))
@@ -776,21 +825,17 @@ namespace AC
 					else
 					{
 						KickStarter.playerPrefab = GameObject.FindWithTag (Tags.player).GetComponent <Player>();
-						
-						if (sceneChanger != null && sceneChanger.GetPlayerOnTransition () != null && settingsManager.playerSwitching == PlayerSwitching.DoNotAllow)
+
+						if (sceneChanger == null || sceneChanger.GetPlayerOnTransition () == null)
 						{
-							// Replace "prefab" player with a local one if one exists
-							GameObject[] playerObs = GameObject.FindGameObjectsWithTag (Tags.player);
-							foreach (GameObject playerOb in playerObs)
+							// New local player
+							if (KickStarter.playerPrefab != null)
 							{
-								if (playerOb.GetComponent <Player>() && sceneChanger.GetPlayerOnTransition () != playerOb.GetComponent <Player>())
-								{
-									KickStarter.sceneChanger.DestroyOldPlayer ();
-									KickStarter.playerPrefab = playerOb.GetComponent <Player>();
-									break;
-								}
+								KickStarter.playerPrefab.Initialise ();
 							}
 						}
+						
+						AssignLocalPlayer ();
 					}
 				}
 				
@@ -834,15 +879,7 @@ namespace AC
 				ACDebug.LogError ("No References object found. Please set one using the main Adventure Creator window");
 			}
 			
-			if (persistentEnginePrefab == null)
-			{
-				try
-				{
-					persistentEnginePrefab = (GameObject) Instantiate (Resources.Load (Resource.persistentEngine));
-					persistentEnginePrefab.name = AdvGame.GetName (Resource.persistentEngine);
-				}
-				catch {}
-			}
+			SetPersistentEngine ();
 			
 			if (persistentEnginePrefab == null)
 			{
@@ -964,15 +1001,6 @@ namespace AC
 		}
 		
 		
-		private void Start ()
-		{
-			if (stateHandler)
-			{
-				stateHandler.RegisterWithGameEngine ();
-			}
-		}
-		
-		
 		private void OnDestroy ()
 		{
 			if (stateHandler)
@@ -996,9 +1024,13 @@ namespace AC
 		 */
 		public static void TurnOnAC ()
 		{
-			if (KickStarter.stateHandler)
+			if (KickStarter.stateHandler != null && KickStarter.actionListManager != null)
 			{
 				KickStarter.stateHandler.SetACState (true);
+			}
+			else
+			{
+				ACDebug.LogWarning ("Cannot turn AC on because the PersistentEngine and GameEngine are not present!");
 			}
 		}
 		
@@ -1008,25 +1040,103 @@ namespace AC
 		 */
 		public static void TurnOffAC ()
 		{
-			KickStarter.actionListManager.KillAllLists ();
-			KickStarter.dialog.KillDialog (true, true);
-			
-			Moveable[] moveables = FindObjectsOfType (typeof (Moveable)) as Moveable[];
-			foreach (Moveable moveable in moveables)
+			if (KickStarter.actionListManager != null)
 			{
-				moveable.Kill ();
+				KickStarter.actionListManager.KillAllLists ();
+				KickStarter.dialog.KillDialog (true, true);
+				
+				Moveable[] moveables = FindObjectsOfType (typeof (Moveable)) as Moveable[];
+				foreach (Moveable moveable in moveables)
+				{
+					moveable.Kill ();
+				}
+				
+				Char[] chars = FindObjectsOfType (typeof (Char)) as Char[];
+				foreach (Char _char in chars)
+				{
+					_char.EndPath ();
+				}
+				
+				if (KickStarter.stateHandler)
+				{
+					KickStarter.stateHandler.SetACState (false);
+				}
 			}
-			
-			Char[] chars = FindObjectsOfType (typeof (Char)) as Char[];
-			foreach (Char _char in chars)
+			else
 			{
-				_char.EndPath ();
+				ACDebug.LogWarning ("Cannot turn AC off because it is not on!");
 			}
-			
-			if (KickStarter.stateHandler)
+		}
+
+
+		public static void AssignLocalPlayer ()
+		{
+			SetPersistentEngine ();
+			if (sceneChanger != null && sceneChanger.GetPlayerOnTransition () != null)
 			{
-				KickStarter.stateHandler.SetACState (false);
+				// Replace "prefab" player with a local one if one exists
+				GameObject[] playerObs = GameObject.FindGameObjectsWithTag (Tags.player);
+				foreach (GameObject playerOb in playerObs)
+				{
+					if (playerOb.GetComponent <Player>() && sceneChanger.GetPlayerOnTransition () != playerOb.GetComponent <Player>())
+					{
+						KickStarter.sceneChanger.DestroyOldPlayer ();
+						KickStarter.playerPrefab = playerOb.GetComponent <Player>();
+						KickStarter.playerPrefab.ID = -1;
+						break;
+					}
+				}
+				KickStarter.stateHandler.GatherObjects (true);
 			}
+		}
+
+
+		/**
+		 * <summary>Unsets the values of all script variables, so that they can be re-assigned to the correct scene if multiple scenes are open.</summary>
+		 */
+		public void ClearVariables ()
+		{
+			playerPrefab = null;
+			mainCameraPrefab = null;
+			persistentEnginePrefab = null;
+			gameEnginePrefab = null;
+
+			// Managers
+			sceneManagerPrefab = null;
+			settingsManagerPrefab = null;
+			actionsManagerPrefab = null;
+			variablesManagerPrefab = null;
+			inventoryManagerPrefab = null;
+			speechManagerPrefab = null;
+			cursorManagerPrefab = null;
+			menuManagerPrefab = null;
+
+			// PersistentEngine components
+			optionsComponent = null;
+			runtimeInventoryComponent = null;
+			runtimeVariablesComponent = null;
+			playerMenusComponent = null;
+			stateHandlerComponent = null;
+			sceneChangerComponent = null;
+			saveSystemComponent = null;
+			levelStorageComponent = null;
+			runtimeLanguagesComponent = null;
+
+			// GameEngine components
+			menuSystemComponent = null;
+			dialogComponent = null;
+			playerInputComponent = null;
+			playerInteractionComponent = null;
+			playerMovementComponent = null;
+			playerCursorComponent = null;
+			playerQTEComponent = null;
+			sceneSettingsComponent = null;
+			navigationManagerComponent = null;
+			actionListManagerComponent = null;
+			localVariablesComponent = null;
+			menuPreviewComponent = null;
+
+			SetGameEngine ();
 		}
 
 	}

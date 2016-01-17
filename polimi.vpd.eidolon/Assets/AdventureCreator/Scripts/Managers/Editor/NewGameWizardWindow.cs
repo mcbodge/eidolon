@@ -39,7 +39,7 @@ namespace AC
 		{
 			NewGameWizardWindow window = (NewGameWizardWindow) EditorWindow.GetWindow (typeof (NewGameWizardWindow));
 			window.GetReferences ();
-			AdvGame.SetWindowTitle (window, "New Game wizard");
+			UnityVersionHandler.SetWindowTitle (window, "New Game wizard");
 			window.position = new Rect (300, 200, 350, 300);
 		}
 		
@@ -289,6 +289,7 @@ namespace AC
 						{
 							Menu newMenu = ScriptableObject.CreateInstance <Menu>();
 							newMenu.Copy (demoMenu);
+							newMenu.Recalculate ();
 
 							if (wizardMenu == WizardMenu.DefaultAC)
 							{

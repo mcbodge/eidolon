@@ -493,7 +493,7 @@ namespace AC
 				#if UNITY_EDITOR
 				if (Application.isPlaying)
 				{
-					ACDebug.Log ("Conversation '" + gameObject.name + "' has been temporarily upgraded - please view it's Inspector when the game ends and save the scene.");
+					ACDebug.Log ("Conversation '" + gameObject.name + "' has been temporarily upgraded - please view its Inspector when the game ends and save the scene.");
 				}
 				else
 				{

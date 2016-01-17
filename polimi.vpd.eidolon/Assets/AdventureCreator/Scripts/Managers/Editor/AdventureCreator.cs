@@ -11,7 +11,7 @@ namespace AC
 		
 		public References references;
 		
-		public static string version = "1.49a";
+		public static string version = "1.50f";
 	 
 		private bool showScene = true;
 		private bool showSettings = false;
@@ -33,7 +33,7 @@ namespace AC
 			// Get existing open window or if none, make a new one:
 			AdventureCreator window = (AdventureCreator) EditorWindow.GetWindow (typeof (AdventureCreator));
 			window.GetReferences ();
-			AdvGame.SetWindowTitle (window, "AC Game Editor");
+			UnityVersionHandler.SetWindowTitle (window, "AC Game Editor");
 		}
 		
 		
@@ -261,6 +261,8 @@ namespace AC
 						references.menuManager.ShowGUI ();
 					}
 				}
+
+				references.viewingMenuManager = showMenu;
 
 				EditorGUILayout.Separator ();
 				GUILayout.Box ("", GUILayout.ExpandWidth (true), GUILayout.Height(1));

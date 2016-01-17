@@ -1,12 +1,12 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Highlight.cs"
  * 
  *	This script is attached to any gameObject that glows
- *	when a cursor is placed over it's associated interaction
+ *	when a cursor is placed over its associated interaction
  *	object.  These are not always the same object.
  * 
  */
@@ -152,7 +152,7 @@ namespace AC
 
 
 		/**
-		 * Instantly turns the highlight effect on, to it's maximum intensity.
+		 * Instantly turns the highlight effect on, to its maximum intensity.
 		 */
 		public void HighlightOnInstant ()
 		{
@@ -206,7 +206,7 @@ namespace AC
 
 			if (callEvents && onHighlightOff != null)
 			{
-				onHighlightOn.Invoke();
+				onHighlightOff.Invoke();
 			}
 		}
 		

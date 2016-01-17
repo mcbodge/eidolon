@@ -1,11 +1,11 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuCycle.cs"
  * 
- *	This MenuElement is like a label, only it's text cycles through an array when clicked on.
+ *	This MenuElement is like a label, only its text cycles through an array when clicked on.
  * 
  */
 
@@ -120,7 +120,7 @@ namespace AC
 					uiText = uiButton.GetComponentInChildren <Text>();
 				}
 				uiButton.onClick.AddListener (() => {
-					ProcessClick (_menu, 0, KickStarter.playerInput.GetMouseState ());
+					ProcessClickUI (_menu, 0, KickStarter.playerInput.GetMouseState ());
 				});
 			}
 		}

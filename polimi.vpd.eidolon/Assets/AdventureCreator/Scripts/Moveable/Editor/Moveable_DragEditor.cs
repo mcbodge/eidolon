@@ -17,12 +17,7 @@ namespace AC
 			EditorGUILayout.BeginVertical ("Button");
 			EditorGUILayout.LabelField ("Movment settings:", EditorStyles.boldLabel);
 			_target.maxSpeed = EditorGUILayout.FloatField ("Max speed:", _target.maxSpeed);
-
-			if (AdvGame.GetReferences ().settingsManager == null || AdvGame.GetReferences ().settingsManager.movementMethod != MovementMethod.UltimateFPS)
-			{
-				_target.playerMovementReductionFactor = EditorGUILayout.Slider ("Player movement reduction:", _target.playerMovementReductionFactor, 0f, 1f);
-			}
-
+			_target.playerMovementReductionFactor = EditorGUILayout.Slider ("Player movement reduction:", _target.playerMovementReductionFactor, 0f, 1f);
 			_target.invertInput = EditorGUILayout.Toggle ("Invert input?", _target.invertInput);
 			EditorGUILayout.EndVertical ();
 

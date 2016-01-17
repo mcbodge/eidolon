@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Options.cs"
  * 
@@ -30,7 +30,7 @@ namespace AC
 		public static int maxProfiles = 50;
 		
 		
-		private void Start ()
+		public void OnStart ()
 		{
 			LoadPrefs ();
 			OnLevelWasLoaded ();
@@ -99,17 +99,7 @@ namespace AC
 			{
 				_optionsData = Options.optionsData;
 			}
-			
-			string optionsSerialized = "";
-			if (SaveSystem.GetSaveMethod () == SaveMethod.XML)
-			{
-				optionsSerialized = Serializer.SerializeObjectXML <OptionsData> (_optionsData);
-			}
-			else
-			{
-				optionsSerialized = Serializer.SerializeObjectBinary (_optionsData);
-			}
-			
+			string optionsSerialized = Serializer.SerializeObject <OptionsData> (_optionsData, true);
 			if (optionsSerialized != "")
 			{
 				PlayerPrefs.SetString (GetPrefKeyName (ID), optionsSerialized);
@@ -132,11 +122,13 @@ namespace AC
 			}
 
 			optionsData = LoadPrefsFromID (GetActiveProfileID (), Application.isPlaying, true);
-
 			int numLanguages = (Application.isPlaying) ? KickStarter.runtimeLanguages.Languages.Count : AdvGame.GetReferences ().speechManager.languages.Count;
 			if (optionsData.language >= numLanguages)
 			{
-				ACDebug.LogWarning ("Language set to an invalid index - reverting to original language.");
+				if (numLanguages != 0)
+				{
+					ACDebug.LogWarning ("Language set to an invalid index - reverting to original language.");
+				}
 				optionsData.language = 0;
 				SavePrefs ();
 			}
@@ -167,26 +159,13 @@ namespace AC
 			if (PlayerPrefs.HasKey (GetPrefKeyName (ID)))
 			{
 				string optionsSerialized = PlayerPrefs.GetString (GetPrefKeyName (ID));
-				
 				if (optionsSerialized != null && optionsSerialized.Length > 0)
 				{
-					bool isXML = optionsSerialized.Contains ("xml version");
-					if (SaveSystem.GetSaveMethod () == SaveMethod.XML && isXML)
+					if (showLog)
 					{
-						if (showLog)
-						{
-							ACDebug.Log ("PlayerPrefs Key '" + GetPrefKeyName (ID) + "' loaded");
-						}
-						return (OptionsData) Serializer.DeserializeObjectXML <OptionsData> (optionsSerialized);
+						ACDebug.Log ("PlayerPrefs Key '" + GetPrefKeyName (ID) + "' loaded");
 					}
-					else if (SaveSystem.GetSaveMethod () == SaveMethod.Binary && !isXML)
-					{
-						if (showLog)
-						{
-							ACDebug.Log ("PlayerPrefs Key '" + GetPrefKeyName (ID) + "' loaded");
-						}
-						return (OptionsData) Serializer.DeserializeObjectBinary <OptionsData> (optionsSerialized);
-					}
+					return Serializer.DeserializeOptionsData (optionsSerialized);
 				}
 			}
 			
@@ -319,7 +298,7 @@ namespace AC
 		/**
 		 * <summary>Renames a profile.</summary>
 		 * <param name = "newProfileLabel">The new label for the profile</param>
-		 * <param name = "profileIndex">The index in the MenuProfilesList element that represents the profile to delete. If it is set to it's default, -2, the active profile will be deleted</param>
+		 * <param name = "profileIndex">The index in the MenuProfilesList element that represents the profile to delete. If it is set to its default, -2, the active profile will be deleted</param>
 		 * <param name = "includeActive">If True, then the MenuProfilesList element that the profile was selected from also displays the active profile</param>
 		 */
 		public void RenameProfile (string newProfileLabel, int profileIndex = -2, bool includeActive = true)
@@ -524,6 +503,7 @@ namespace AC
 			#endif
 			SetVolume (SoundType.Music);
 			SetVolume (SoundType.SFX);
+			SetVolume (SoundType.Speech);
 		}
 		
 

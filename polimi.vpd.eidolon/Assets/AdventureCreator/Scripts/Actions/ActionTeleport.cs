@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionTeleport.cs"
  * 
@@ -172,6 +172,28 @@ namespace AC
 			}
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo && obToMove != null)
+			{
+				if (obToMove.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (obToMove);
+				}
+				else if (obToMove.GetComponent <Player>() == null && !isPlayer)
+				{
+					AddSaveScript <RememberTransform> (obToMove);
+				}
+			}
+
+			if (!isPlayer)
+			{
+				AssignConstantID (obToMove, obToMoveID, obToMoveParameterID);
+			}
+			AssignConstantID <Marker> (teleporter, markerID, markerParameterID);
 		}
 		
 		

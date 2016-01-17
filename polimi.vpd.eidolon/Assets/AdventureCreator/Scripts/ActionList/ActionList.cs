@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionList.cs"
  * 
@@ -290,7 +290,7 @@ namespace AC
 
 				if (action is ActionParallel)
 				{}
-				else if (waitTime > 0f)
+				else if (waitTime != 0f)
 				{
 					while (action.isRunning)
 					{
@@ -670,5 +670,5 @@ namespace AC
         #endregion
 
     }
-	
+
 }

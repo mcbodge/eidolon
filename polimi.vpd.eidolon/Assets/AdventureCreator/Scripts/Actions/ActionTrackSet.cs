@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionMoveableTrack.cs"
  * 
@@ -46,7 +46,7 @@ namespace AC
 			this.isDisplayed = true;
 			category = ActionCategory.Moveable;
 			title = "Set track position";
-			description = "Moves a Draggable object along it's track automatically to a specific point. The effect will be disabled once the object reaches the intended point, or the Action is run again with the speed value set as a negative number.";
+			description = "Moves a Draggable object along its track automatically to a specific point. The effect will be disabled once the object reaches the intended point, or the Action is run again with the speed value set as a negative number.";
 		}
 
 
@@ -162,6 +162,16 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberMoveable> (dragObject);
+			}
+			AssignConstantID <Moveable_Drag> (dragObject, dragConstantID, dragParameterID);
 		}
 		
 

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionNavMesh.cs"
  * 
@@ -134,13 +134,7 @@ namespace AC
 			else if (sceneSetting == SceneSetting.SortingMap && sortingMap)
 			{
 				KickStarter.sceneSettings.sortingMap = sortingMap;
-
-				// Reset all FollowSortingMap components
-				FollowSortingMap[] followSortingMaps = FindObjectsOfType (typeof (FollowSortingMap)) as FollowSortingMap[];
-				foreach (FollowSortingMap followSortingMap in followSortingMaps)
-				{
-					followSortingMap.UpdateSortingMap ();
-				}
+				KickStarter.sceneSettings.UpdateAllSortingMaps ();
 
 				if (sortingMap.GetComponent <ConstantID>() == null)
 				{
@@ -350,6 +344,64 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (sceneSetting == SceneSetting.DefaultNavMesh)
+			{
+				if (KickStarter.sceneSettings.navigationMethod == AC_NavigationMethod.PolygonCollider && changeNavMeshMethod == ChangeNavMeshMethod.ChangeNumberOfHoles)
+				{
+					if (saveScriptsToo)
+					{
+						if (KickStarter.sceneSettings != null && KickStarter.sceneSettings != null)
+						{
+							AddSaveScript <RememberNavMesh2D> (KickStarter.sceneSettings.navMesh);
+						}
+						AddSaveScript <ConstantID> (hole);
+						AddSaveScript <ConstantID> (replaceHole);
+					}
+					AssignConstantID <PolygonCollider2D> (hole, constantID, parameterID);
+					AssignConstantID <PolygonCollider2D> (replaceHole, replaceConstantID, replaceParameterID);
+				}
+				else
+				{
+					if (saveScriptsToo)
+					{
+						AddSaveScript <ConstantID> (newNavMesh);
+					}
+					AssignConstantID <NavigationMesh> (newNavMesh, constantID, parameterID);
+				}
+			}
+			else if (sceneSetting == SceneSetting.DefaultPlayerStart)
+			{
+				if (saveScriptsToo)
+				{
+					AddSaveScript <ConstantID> (playerStart);
+				}
+				AssignConstantID <PlayerStart> (playerStart, constantID, parameterID);
+			}
+			else if (sceneSetting == SceneSetting.SortingMap)
+			{
+				if (saveScriptsToo)
+				{
+					AddSaveScript <ConstantID> (sortingMap);
+				}
+				AssignConstantID <SortingMap> (sortingMap, constantID, parameterID);
+			}
+			else if (sceneSetting == SceneSetting.TintMap)
+			{
+				if (saveScriptsToo)
+				{
+					AddSaveScript <ConstantID> (tintMap);
+				}
+				AssignConstantID <TintMap> (tintMap, constantID, parameterID);
+			}
+			else if (sceneSetting == SceneSetting.OnLoadCutscene || sceneSetting == SceneSetting.OnStartCutscene)
+			{
+				AssignConstantID <Cutscene> (cutscene, constantID, parameterID);
+			}
 		}
 		
 		

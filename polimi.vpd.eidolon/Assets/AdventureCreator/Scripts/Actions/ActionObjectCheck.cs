@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionObjectCheck.cs"
  * 
@@ -24,7 +24,6 @@ namespace AC
 	[System.Serializable]
 	public class ActionObjectCheck : ActionCheck
 	{
-
 
 		public GameObject gameObject;
 		public int parameterID = -1;
@@ -73,6 +72,12 @@ namespace AC
 				constantID = FieldToID (gameObject, constantID);
 				gameObject = IDToField (gameObject, constantID, false);
 			}
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID (gameObject, constantID, parameterID);
 		}
 		
 		#endif

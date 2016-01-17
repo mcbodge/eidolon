@@ -1,11 +1,12 @@
+
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionVisible.cs"
  * 
- *	This action controls the visibilty of a GameObject and it's children.
+ *	This action controls the visibilty of a GameObject and its children.
  * 
  */
 
@@ -101,6 +102,16 @@ namespace AC
 			affectChildren = EditorGUILayout.Toggle ("Affect children?", affectChildren);
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberVisibility> (obToAffect);
+			}
+			AssignConstantID (obToAffect, constantID, parameterID);
 		}
 		
 		

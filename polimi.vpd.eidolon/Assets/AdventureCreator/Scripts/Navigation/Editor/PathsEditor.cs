@@ -62,6 +62,7 @@ namespace AC
 							Vector3 newNodePosition;
 							newNodePosition = _target.nodes[i] + new Vector3 (1.0f, 0f, 0f);
 							_target.nodes.Insert (i+1, newNodePosition);
+							_target.nodeCommands.Insert (i+1, new NodeCommand ());
 							numNodes += 1;
 							ResetCommandList (_target);
 						}
@@ -69,6 +70,7 @@ namespace AC
 						{
 							Undo.RecordObject (_target, "Delete path node");
 							_target.nodes.RemoveAt (i);
+							_target.nodeCommands.RemoveAt (i);
 							numNodes -= 1;
 							ResetCommandList (_target);
 						}

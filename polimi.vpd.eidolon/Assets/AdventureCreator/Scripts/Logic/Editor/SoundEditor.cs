@@ -23,7 +23,7 @@ namespace AC
 			{
 				if (_target.transform.root != null && _target.transform.root != _target.gameObject.transform)
 				{
-					EditorGUILayout.HelpBox ("For Sound to survive scene-changes, please move this object out of it's hierarchy, so that it has no parent GameObject.", MessageType.Warning);
+					EditorGUILayout.HelpBox ("For Sound to survive scene-changes, please move this object out of its hierarchy, so that it has no parent GameObject.", MessageType.Warning);
 				}
 				if (_target.GetComponent <ConstantID>() == null)
 				{

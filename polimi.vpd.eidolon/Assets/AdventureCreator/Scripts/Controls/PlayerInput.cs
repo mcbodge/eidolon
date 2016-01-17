@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"PlayerInput.cs"
  * 
@@ -106,6 +106,11 @@ namespace AC
 		public delegate bool InputButtonDelegate (string buttonName);
 		/** A delegate template for overriding input axis detection */
 		public delegate float InputAxisDelegate (string axisName);
+		/** A delegate template for overriding mouse position detection */
+		public delegate Vector2 InputMouseDelegate ();
+		/** A delegate template for overriding mouse button detection */
+		public delegate bool InputMouseButtonDelegate (int button);
+
 		/** A delegate for the InputGetButtonDown function, used to detect when a button is first pressed */
 		public InputButtonDelegate InputGetButtonDownDelegate = null;
 		/** A delegate for the InputGetButtonUp function, used to detect when a button is released */
@@ -114,9 +119,15 @@ namespace AC
 		public InputButtonDelegate InputGetButtonDelegate = null;
 		/** A delegate for the InputGetAxis function, used to detect the value of an input axis */
 		public InputAxisDelegate InputGetAxisDelegate = null;
+		/** A delagate for the InputGetMouseButton function, used to detect mouse clicks */
+		public InputMouseButtonDelegate InputGetMouseButtonDelegate;
+		/** A delagate for the InputGetMouseDownButton function, used to detect when a mouse button is first clicked */
+		public InputMouseButtonDelegate InputGetMouseButtonDownDelegate;
+		/** A delagate for the InputMousePosition function, used to detect the mouse position */
+		public InputMouseDelegate InputMousePositionDelegate;
 
 
-		private void Awake ()
+		public void OnAwake ()
 		{
 			if (KickStarter.settingsManager)
 			{
@@ -131,22 +142,13 @@ namespace AC
 			
 			xboxCursor.x = Screen.width / 2;
 			xboxCursor.y = Screen.height / 2;
-		}
-		
-		
-		private void Start ()
-		{
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetCameraState (cursorIsLocked);
-			}
-			
+
 			if (KickStarter.settingsManager.CanDragCursor ())
 			{
 				mousePosition = xboxCursor;
 			}
 		}
-
+		
 
 		/**
 		 * Updates the input handler.
@@ -210,15 +212,7 @@ namespace AC
 				#endif
 				{
 					// Cursor position
-					#if UNITY_5
-					bool shouldLockCursor = false;
-					if (Cursor.lockState == CursorLockMode.Locked)
-					{
-						shouldLockCursor = true;
-					}
-					#else
-					bool shouldLockCursor = Screen.lockCursor;
-					#endif
+					bool shouldLockCursor = UnityVersionHandler.CursorLock;
 
 					if (!cursorIsLocked || KickStarter.stateHandler.gameState == AC.GameState.Paused || KickStarter.stateHandler.gameState == AC.GameState.DialogOptions || (freeAimLock && KickStarter.settingsManager.IsInFirstPerson ()))
 					{
@@ -248,18 +242,7 @@ namespace AC
 						freeAim = new Vector2 (InputGetAxis ("CursorHorizontal"), InputGetAxis ("CursorVertical"));
 					}
 
-					#if UNITY_5
-					if (shouldLockCursor)
-					{
-						Cursor.lockState = CursorLockMode.Locked;
-					}
-					else
-					{
-						Cursor.lockState = CursorLockMode.None;
-					}
-					#else
-					Screen.lockCursor = shouldLockCursor;
-					#endif
+					UnityVersionHandler.CursorLock = shouldLockCursor;
 
 					// Cursor state
 					if (mouseState == MouseState.Normal)
@@ -279,7 +262,6 @@ namespace AC
 							else if (CanClick ())
 							{
 								dragStartPosition = GetInvertedMouse ();
-								
 								mouseState = MouseState.SingleClick;
 								ResetClick ();
 								ResetDoubleClick ();
@@ -746,18 +728,13 @@ namespace AC
 		 */
 		public void InitialiseCursorLock (MovementMethod movementMethod)
 		{
-			if (KickStarter.settingsManager.IsInFirstPerson () && movementMethod != MovementMethod.FirstPerson && movementMethod != MovementMethod.UltimateFPS)
+			if (KickStarter.settingsManager.IsInFirstPerson () && movementMethod != MovementMethod.FirstPerson)
 			{
 				cursorIsLocked = false;
 			}
-			else if (!KickStarter.settingsManager.IsInFirstPerson () && (movementMethod == MovementMethod.FirstPerson || movementMethod == MovementMethod.UltimateFPS))
+			else if (!KickStarter.settingsManager.IsInFirstPerson () && movementMethod == MovementMethod.FirstPerson)
 			{
 				cursorIsLocked = KickStarter.settingsManager.lockCursorOnStart;
-			}
-
-			if (movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetCameraState (IsCursorLocked ());
 			}
 		}
 
@@ -967,7 +944,7 @@ namespace AC
 						v = InputGetAxis ("Vertical");
 					}
 
-					if (InputGetButtonDown ("Jump") && KickStarter.stateHandler.gameState == GameState.Normal && KickStarter.settingsManager.movementMethod != MovementMethod.UltimateFPS)
+					if (InputGetButtonDown ("Jump") && KickStarter.stateHandler.gameState == GameState.Normal)
 					{
 						KickStarter.player.Jump ();
 					}
@@ -1090,8 +1067,9 @@ namespace AC
 				if (newMoveKeys.magnitude < 0.1f || Vector2.Angle (newMoveKeys, moveKeys) > 5f)
 				{
 					cameraLockSnap = false;
+					return newMoveKeys;
 				}
-				return newMoveKeys;
+				return moveKeys;
 			}
 
 			return new Vector2 (h, v);
@@ -1216,7 +1194,7 @@ namespace AC
 				Invoke ("StopSimulatingInput", 0.1f);
 			}
 		}
-		
+
 
 		/**
 		 * <summary>Checks if the cursor is locked.</summary>
@@ -1224,18 +1202,7 @@ namespace AC
 		 */
 		public bool IsCursorLocked ()
 		{
-			#if UNITY_5
-			if (Cursor.lockState == CursorLockMode.Locked)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-			#else
-			return Screen.lockCursor;
-			#endif
+			return UnityVersionHandler.CursorLock;
 		}
 		
 		
@@ -1243,8 +1210,22 @@ namespace AC
 		{
 			menuButtonInput = "";
 		}
-		
-		
+
+
+		/**
+		 * <summary>Checks if any input button is currently being pressed, simulated or otherwise.</summary>
+		 * <returns>True if any input button is currently being pressed, simulated or otherwise.</returns>
+		 */
+		public bool InputAnyKey ()
+		{
+			if (menuButtonInput != null && menuButtonInput != "")
+			{
+				return true;
+			}
+			return Input.anyKey;
+		}
+
+
 		private float InputGetAxisRaw (string axis)
 		{
 			if (axis == "")
@@ -1254,14 +1235,7 @@ namespace AC
 
 			if (KickStarter.settingsManager.assumeInputsDefined)
 			{
-				if (KickStarter.settingsManager.useOuya)
-				{
-					if (OuyaIntegration.GetAxisRaw (axis) != 0f)
-					{
-						return OuyaIntegration.GetAxisRaw (axis);
-					}
-				}
-				else if (Input.GetAxisRaw (axis) != 0f)
+				if (Input.GetAxisRaw (axis) != 0f)
 				{
 					return Input.GetAxisRaw (axis);
 				}
@@ -1275,14 +1249,7 @@ namespace AC
 
 				try
 				{
-					if (KickStarter.settingsManager.useOuya)
-					{
-						if (OuyaIntegration.GetAxisRaw (axis) != 0f)
-						{
-							return OuyaIntegration.GetAxisRaw (axis);
-						}
-					}
-					else if (Input.GetAxisRaw (axis) != 0f)
+					if (Input.GetAxisRaw (axis) != 0f)
 					{
 						return Input.GetAxisRaw (axis);
 					}
@@ -1313,14 +1280,7 @@ namespace AC
 
 			if (KickStarter.settingsManager.assumeInputsDefined)
 			{
-				if (KickStarter.settingsManager.useOuya)
-				{
-					if (OuyaIntegration.GetAxis (axis) != 0f)
-					{
-						return OuyaIntegration.GetAxis (axis);
-					}
-				}
-				else if (Input.GetAxis (axis) != 0f)
+				if (Input.GetAxis (axis) != 0f)
 				{
 					return Input.GetAxis (axis);
 				}
@@ -1334,14 +1294,7 @@ namespace AC
 
 				try
 				{
-					if (KickStarter.settingsManager.useOuya)
-					{
-						if (OuyaIntegration.GetAxis (axis) != 0f)
-						{
-							return OuyaIntegration.GetAxis (axis);
-						}
-					}
-					else if (Input.GetAxis (axis) != 0f)
+					if (Input.GetAxis (axis) != 0f)
 					{
 						return Input.GetAxis (axis);
 					}
@@ -1360,9 +1313,9 @@ namespace AC
 		
 		private bool InputGetMouseButton (int button)
 		{
-			if (KickStarter.settingsManager.useOuya)
+			if (InputGetMouseButtonDelegate != null)
 			{
-				return OuyaIntegration.GetMouseButton (button);
+				return InputGetMouseButtonDelegate (button);
 			}
 			return Input.GetMouseButton (button);
 		}
@@ -1370,9 +1323,9 @@ namespace AC
 		
 		private Vector2 InputMousePosition ()
 		{
-			if (KickStarter.settingsManager.useOuya)
+			if (InputMousePositionDelegate != null)
 			{
-				return OuyaIntegration.mousePosition;
+				return InputMousePositionDelegate ();
 			}
 			return Input.mousePosition;
 		}
@@ -1380,9 +1333,9 @@ namespace AC
 		
 		private bool InputGetMouseButtonDown (int button)
 		{
-			if (KickStarter.settingsManager.useOuya)
+			if (InputGetMouseButtonDownDelegate != null)
 			{
-				return OuyaIntegration.GetMouseButtonDown (button);
+				return InputGetMouseButtonDownDelegate (button);
 			}
 			return Input.GetMouseButtonDown (button);
 		}
@@ -1402,14 +1355,7 @@ namespace AC
 
 			if (KickStarter.settingsManager.assumeInputsDefined)
 			{
-				if (KickStarter.settingsManager.useOuya)
-				{
-					if (OuyaIntegration.GetButton (axis))
-					{
-						return true;
-					}
-				}
-				else if (Input.GetButton (axis))
+				if (Input.GetButton (axis))
 				{
 					return true;
 				}
@@ -1423,14 +1369,7 @@ namespace AC
 
 				try
 				{
-					if (KickStarter.settingsManager.useOuya)
-					{
-						if (OuyaIntegration.GetButton (axis))
-						{
-							return true;
-						}
-					}
-					else if (Input.GetButton (axis))
+					if (Input.GetButton (axis))
 					{
 						return true;
 					}
@@ -1469,14 +1408,7 @@ namespace AC
 
 			if (KickStarter.settingsManager.assumeInputsDefined)
 			{
-				if (KickStarter.settingsManager.useOuya)
-				{
-					if (OuyaIntegration.GetButtonDown (axis))
-					{
-						return true;
-					}
-				}
-				else if (Input.GetButtonDown (axis))
+				if (Input.GetButtonDown (axis))
 				{
 					return true;
 				}
@@ -1490,14 +1422,7 @@ namespace AC
 
 				try
 				{
-					if (KickStarter.settingsManager.useOuya)
-					{
-						if (OuyaIntegration.GetButtonDown (axis))
-						{
-							return true;
-						}
-					}
-					else if (Input.GetButtonDown (axis))
+					if (Input.GetButtonDown (axis))
 					{
 						return true;
 					}
@@ -1717,11 +1642,6 @@ namespace AC
 		public void SetFreeAimLock (bool _state)
 		{
 			freeAimLock = _state;
-
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetCameraState (!_state);
-			}
 		}
 
 
@@ -1729,11 +1649,6 @@ namespace AC
 		{
 			dragObject.LetGo ();
 			dragObject = null;
-			
-			if (unlockFPSCamera && KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS && KickStarter.settingsManager.disableFreeAimWhenDragging)
-			{
-				UltimateFPSIntegration.SetCameraState (true);
-			}
 		}
 		
 		
@@ -1759,11 +1674,6 @@ namespace AC
 						dragObject.Grab (hit.point);
 						lastMousePosition = mousePosition;
 						lastCameraPosition = Camera.main.transform.position;
-
-						if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS && KickStarter.settingsManager.disableFreeAimWhenDragging)
-						{
-							UltimateFPSIntegration.SetCameraState (false);
-						}
 					}
 				}
 			}
@@ -1816,11 +1726,6 @@ namespace AC
 		public void SetUpLock (bool state)
 		{
 			isUpLocked = state;
-			
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetMovementState (state);
-			}
 		}
 
 
@@ -1893,11 +1798,6 @@ namespace AC
 		private void ToggleCursor ()
 		{
 			cursorIsLocked = !cursorIsLocked;
-
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetCameraState (cursorIsLocked);
-			}
 		}
 		
 
@@ -2140,7 +2040,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a MainData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a MainData class with its own variables that need saving.</summary>
 		 * <param name = "mainData">The original MainData class</param>
 		 * <returns>The updated MainData class</returns>
 		 */
@@ -2161,7 +2061,7 @@ namespace AC
 		
 		
 		/**
-		 * <summary>Updates it's own variables from a MainData class.</summary>
+		 * <summary>Updates its own variables from a MainData class.</summary>
 		 * <param name = "mainData">The MainData class to load from</param>
 		 */
 		public void LoadMainData (MainData mainData)
@@ -2181,7 +2081,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a PlayerData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a PlayerData class with its own variables that need saving.</summary>
 		 * <param name = "playerData">The original PlayerData class</param>
 		 * <returns>The updated PlayerData class</returns>
 		 */
@@ -2199,7 +2099,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates it's own variables from a PlayerData class.</summary>
+		 * <summary>Updates its own variables from a PlayerData class.</summary>
 		 * <param name = "playerData">The PlayerData class to load from</param>
 		 */
 		public void LoadPlayerData (PlayerData playerData)

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuManager.cs"
  * 
@@ -103,7 +103,7 @@ namespace AC
 				
 			EditorGUILayout.LabelField ("Menus", EditorStyles.boldLabel);
 			CreateMenusGUI ();
-			
+
 			if (selectedMenu != null)
 			{
 				EditorGUILayout.Space ();
@@ -313,7 +313,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Selects a MenuElement within a Menu and display it's properties.</summary>
+		 * <summary>Selects a MenuElement within a Menu and display its properties.</summary>
 		 * <param name = "_menu">The Menu that the MenuElement is a part of</param>
 		 * <param name = "_element">The MenuElement to select</param>
 		 */
@@ -530,6 +530,7 @@ namespace AC
 				newMenu.Declare (GetIDArray ());
 				int newMenuID = newMenu.id;
 				newMenu.Copy (MenuManager.copiedMenu);
+				newMenu.Recalculate ();
 				newMenu.id = newMenuID;
 				newMenu.title += " (Copy)";
 

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionMenuState.cs"
  * 
@@ -63,7 +63,7 @@ namespace AC
 			{
 				isRunning = true;
 				AC.Menu _menu = PlayerMenus.GetMenuWithName (menuToChange);
-				
+
 				if (_menu != null)
 				{
 					if (changeType == MenuChangeType.TurnOnMenu)
@@ -121,6 +121,7 @@ namespace AC
 							{
 								_element.isVisible = true;
 							}
+
 							_menu.ResetVisibleElements ();
 							_menu.Recalculate ();
 							KickStarter.playerMenus.FindFirstSelectedElement ();

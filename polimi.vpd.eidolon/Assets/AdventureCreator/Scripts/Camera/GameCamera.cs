@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"GameCamera.cs"
  * 
@@ -201,17 +201,23 @@ namespace AC
 				SetTargetOriginalPosition ();
 				MoveCameraInstant ();
 			}
-
-			StartCoroutine ("_Update");
 		}
 
 
-		private IEnumerator _Update ()
+		public override void _Update ()
 		{
-			while (Application.isPlaying)
+			if (!doFixedUpdate)
 			{
 				MoveCamera ();
-				yield return new WaitForFixedUpdate ();
+			}
+		}
+
+
+		public override void _FixedUpdate ()
+		{
+			if (doFixedUpdate)
+			{
+				MoveCamera ();
 			}
 		}
 

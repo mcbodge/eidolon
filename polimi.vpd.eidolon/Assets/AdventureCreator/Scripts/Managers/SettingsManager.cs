@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"SettingsManager.cs"
  * 
@@ -48,13 +48,15 @@ namespace AC
 		public SaveTimeDisplay saveTimeDisplay = SaveTimeDisplay.DateOnly;
 		/** If True, then a screenshot of the game will be taken whenever the game is saved */
 		public bool takeSaveScreenshots;
-		/** If True, then multiple save profiles - each with it's own save files and options data - can be created */
+		/** If True, then multiple save profiles - each with its own save files and options data - can be created */
 		public bool useProfiles = false;
 		/** The maximum number of save files that can be created */
 		public int maxSaves = 5;
 		/** If True, then save files listed in MenuSaveList will be displayed in order of update time */
 		public bool orderSavesByUpdateTime = false;
-		
+		/** If True, then the scene will reload when loading a saved game that takes place in the same scene that the player is already in */
+		public bool reloadSceneWhenLoading = false;
+
 		// Cutscene settings
 
 		/** The ActionListAsset to run when the game begins */
@@ -75,7 +77,7 @@ namespace AC
 		
 		// Interface settings
 
-		/** The movement method (PointAndClick, Direct, FirstPerson, Drag, None, UltimateFPS, StraightToCursor) */
+		/** The movement method (PointAndClick, Direct, FirstPerson, Drag, None, StraightToCursor) */
 		public MovementMethod movementMethod = MovementMethod.PointAndClick;
 		/** The input method (MouseAndKeyboard, KeyboardOrController, TouchScreen) */
 		public InputMethod inputMethod = InputMethod.MouseAndKeyboard;
@@ -110,21 +112,19 @@ namespace AC
 		public bool inventoryDragDrop = false;
 		/** The number of pixels the mouse must be dragged for the inventory drag-drop effect becomes active, if inventoryDragDrop = True */
 		public float dragDropThreshold = 0;
-		/** If True, then using an inventory item on itself will trigger it's Examine interaction */
+		/** If True, then using an inventory item on itself will trigger its Examine interaction */
 		public bool inventoryDropLook = false;
-		/** If True, then the control scheme will adapt for the OUYA platform */
-		public bool useOuya = false;
 		/** How many interactions an inventory item can have (Single, Multiple) */
 		public InventoryInteractions inventoryInteractions = InventoryInteractions.Single;
 		/** If True, then left-clicking will de-select an inventory item */
 		public bool inventoryDisableLeft = true;
-		/** If True, then an inventory item will show it's "active" texture when the mouse hovers over it */
+		/** If True, then an inventory item will show its "active" texture when the mouse hovers over it */
 		public bool activeWhenHover = false;
 		/** The effect to apply to an active inventory item's icon (None, Pulse, Simple) */
 		public InventoryActiveEffect inventoryActiveEffect = InventoryActiveEffect.Simple;
 		/** The speed at which to pulse the active inventory item's icon, if inventoryActiveEffect = InventoryActiveEffect.Pulse */
 		public float inventoryPulseSpeed = 1f;
-		/** If True, then the inventory item will show it's active effect when hovering over a Hotspot that has no matching Interaction */
+		/** If True, then the inventory item will show its active effect when hovering over a Hotspot that has no matching Interaction */
 		public bool activeWhenUnhandled = true;
 		/** If True, then inventory items can be re-ordered in a MenuInventoryBox by the player */
 		public bool canReorderItems = false;
@@ -185,7 +185,7 @@ namespace AC
 
 		/** If True, then first-person games will use the first-person camera during conversations */
 		public bool useFPCamDuringConversations = true;
-		/** If True, then Hotspot interactions are only allowed if the cursor is unlocked (UFPS-games only) */
+		/** If True, then Hotspot interactions are only allowed if the cursor is unlocked (first person-games only) */
 		public bool onlyInteractWhenCursorUnlocked = false;
 
 		// Input settings
@@ -386,6 +386,11 @@ namespace AC
 			EditorGUILayout.HelpBox ("Save-game screenshots are disabled for WebPlayer, Windows Store and Android platforms.", MessageType.Info);
 			takeSaveScreenshots = false;
 			#endif
+
+			if (GUILayout.Button ("Auto-add save components to GameObjects"))
+			{
+				AssignSaveScripts ();
+			}
 			
 			EditorGUILayout.Space ();
 			EditorGUILayout.LabelField ("Cutscene settings:", EditorStyles.boldLabel);
@@ -402,10 +407,6 @@ namespace AC
 			EditorGUILayout.LabelField ("Interface settings", EditorStyles.boldLabel);
 			
 			movementMethod = (MovementMethod) EditorGUILayout.EnumPopup ("Movement method:", movementMethod);
-			if (movementMethod == MovementMethod.UltimateFPS && !UltimateFPSIntegration.IsDefinePresent ())
-			{
-				EditorGUILayout.HelpBox ("The 'UltimateFPSIsPresent' preprocessor define must be declared in the Player Settings.", MessageType.Warning);
-			}
 
 			inputMethod = (InputMethod) EditorGUILayout.EnumPopup ("Input method:", inputMethod);
 			interactionMethod = (AC_InteractionMethod) EditorGUILayout.EnumPopup ("Interaction method:", interactionMethod);
@@ -413,11 +414,6 @@ namespace AC
 			//if (inputMethod != InputMethod.TouchScreen)
 			if (CanUseCursor ())
 			{
-				useOuya = EditorGUILayout.ToggleLeft ("Playing on OUYA platform?", useOuya);
-				if (useOuya && !OuyaIntegration.IsDefinePresent ())
-				{
-					EditorGUILayout.HelpBox ("The 'OUYAIsPresent' preprocessor define must be declared in the Player Settings.", MessageType.Warning);
-				}
 				if (interactionMethod == AC_InteractionMethod.ChooseHotspotThenInteraction)
 				{
 					selectInteractions = (SelectInteractions) EditorGUILayout.EnumPopup ("Select Interactions by:", selectInteractions);
@@ -460,7 +456,10 @@ namespace AC
 			{
 				lockCursorOnStart = EditorGUILayout.ToggleLeft ("Lock cursor in screen's centre when game begins?", lockCursorOnStart);
 				hideLockedCursor = EditorGUILayout.ToggleLeft ("Hide cursor when locked in screen's centre?", hideLockedCursor);
-				onlyInteractWhenCursorUnlocked = EditorGUILayout.ToggleLeft ("Disallow Interactions if cursor is locked?", onlyInteractWhenCursorUnlocked);
+				if (movementMethod == MovementMethod.FirstPerson)
+				{
+					onlyInteractWhenCursorUnlocked = EditorGUILayout.ToggleLeft ("Disallow Interactions if cursor is locked?", onlyInteractWhenCursorUnlocked);
+				}
 			}
 			if (IsInFirstPerson ())
 			{
@@ -487,11 +486,11 @@ namespace AC
 				{
 					if (selectInteractions == SelectInteractions.CyclingCursorAndClickingHotspot)
 					{
-						cycleInventoryCursors = EditorGUILayout.ToggleLeft ("Include Inventory items in Interaction cycles?", cycleInventoryCursors);
+						cycleInventoryCursors = EditorGUILayout.ToggleLeft ("Include Inventory items in Hotspot Interaction cycles?", cycleInventoryCursors);
 					}
 					else
 					{
-						cycleInventoryCursors = EditorGUILayout.ToggleLeft ("Include Inventory items in Interaction menus?", cycleInventoryCursors);
+						cycleInventoryCursors = EditorGUILayout.ToggleLeft ("Include Inventory items in Hotspot Interaction menus?", cycleInventoryCursors);
 					}
 				}
 
@@ -662,7 +661,7 @@ namespace AC
 			}
 			
 			destinationAccuracy = EditorGUILayout.Slider ("Destination accuracy:", destinationAccuracy, 0f, 1f);
-			if (destinationAccuracy == 1f && movementMethod != MovementMethod.StraightToCursor)
+			if (destinationAccuracy == 1f)
 			{
 				experimentalAccuracy = EditorGUILayout.ToggleLeft ("Attempt to be super-accurate? (Experimental)", experimentalAccuracy);
 			}
@@ -713,7 +712,7 @@ namespace AC
 			}
 			
 			EditorGUILayout.Space ();
-			EditorGUILayout.LabelField ("Hotpot settings", EditorStyles.boldLabel);
+			EditorGUILayout.LabelField ("Hotspot settings", EditorStyles.boldLabel);
 			
 			hotspotDetection = (HotspotDetection) EditorGUILayout.EnumPopup ("Hotspot detection method:", hotspotDetection);
 			if (hotspotDetection == HotspotDetection.PlayerVicinity && (movementMethod == MovementMethod.Direct || IsInFirstPerson ()))
@@ -790,6 +789,7 @@ namespace AC
 			
 			EditorGUILayout.Space ();
 			EditorGUILayout.LabelField ("Scene loading", EditorStyles.boldLabel);
+			reloadSceneWhenLoading = EditorGUILayout.ToggleLeft ("Always reload scene when loading a save file?", reloadSceneWhenLoading);
 			useAsyncLoading = EditorGUILayout.ToggleLeft ("Load scenes asynchronously?", useAsyncLoading);
 			useLoadingScreen = EditorGUILayout.ToggleLeft ("Use loading screen?", useLoadingScreen);
 			if (useLoadingScreen)
@@ -975,8 +975,8 @@ namespace AC
 		
 
 		/**
-		 * <summary>Checks if the game uses Unity 2D for it's camera perspective.<summary>
-		 * <returns>True if the game uses Unity 2D for it's camera perspective</returns>
+		 * <summary>Checks if the game uses Unity 2D for its camera perspective.<summary>
+		 * <returns>True if the game uses Unity 2D for its camera perspective</returns>
 		 */
 		public bool IsUnity2D ()
 		{
@@ -989,8 +989,8 @@ namespace AC
 		
 
 		/**
-		 * <summary>Checks if the game uses Top Down for it's camera perspective.<summary>
-		 * <returns>True if the game uses Top Down for it's camera perspective</returns>
+		 * <summary>Checks if the game uses Top Down for its camera perspective.<summary>
+		 * <returns>True if the game uses Top Down for its camera perspective</returns>
 		 */
 		public bool IsTopDown ()
 		{
@@ -1173,7 +1173,7 @@ namespace AC
 
 		/**
 		 * <summary>Gets the ID number of the first-assigned Player prefab.</summary>
-		 * <returns>Gets the ID number of the first-assigned Player prefab</returns>
+		 * <returns>The ID number of the first-assigned Player prefab</returns>
 		 */
 		public int GetEmptyPlayerID ()
 		{
@@ -1330,14 +1330,14 @@ namespace AC
 			{
 				if (loadingSceneIs == ChooseSceneBy.Name)
 				{
-					if (Application.loadedLevelName != "" && Application.loadedLevelName == loadingSceneName)
+					if (UnityVersionHandler.GetCurrentSceneName () != "" && UnityVersionHandler.GetCurrentSceneName () == loadingSceneName)
 					{
 						return true;
 					}
 				}
 				else if (loadingSceneIs == ChooseSceneBy.Number)
 				{
-					if (Application.loadedLevelName != "" && Application.loadedLevel == loadingScene)
+					if (UnityVersionHandler.GetCurrentSceneName () != "" && UnityVersionHandler.GetCurrentSceneNumber () == loadingScene)
 					{
 						return true;
 					}
@@ -1347,23 +1347,17 @@ namespace AC
 		}
 		
 		
-		private bool IsOnOuya ()
-		{
-			if (inputMethod != InputMethod.TouchScreen && useOuya)
-			{
-				return true;
-			}
-			return false;
-		}
-
-
 		/**
 		 * <summary>Checks if the game is played in first-person.</summary>
 		 * <returns>True if the game is played in first-person</returns>
 		 */
 		public bool IsInFirstPerson ()
 		{
-			if (movementMethod == MovementMethod.FirstPerson || movementMethod == MovementMethod.UltimateFPS)
+			if (movementMethod == MovementMethod.FirstPerson)
+			{
+				return true;
+			}
+			if (KickStarter.player != null && KickStarter.player.FirstPersonCamera != null)
 			{
 				return true;
 			}
@@ -1441,7 +1435,292 @@ namespace AC
 			}
 			return false;
 		}
+
+
+		/**
+		 * <summary>Gets the minimum distance that a character can be to its target to be considered "close enough".</summary>
+		 * <param name = "offset">The calculation is 1 + offset - destinationAccuracy, so having a non-zero offset prevents the result ever being zero.</param>
+		 * <returns>The minimum distance that a character can be to its target to be considered "close enough".</returns>
+		 */
+		public float GetDestinationThreshold (float offset = 0.1f)
+		{
+			return (1f + offset - destinationAccuracy);
+		}
+
+
+		#if UNITY_EDITOR
+
+		private void AssignSaveScripts ()
+		{
+			bool canProceed = EditorUtility.DisplayDialog ("Add save scripts", "AC will now go through your game, and attempt to add 'Remember' components where appropriate.\n\nThese components are required for saving to function, and are covered in Section 9.2 of the Manual.\n\nAs this process cannot be undone without manually removing each script, it is recommended to back up your project beforehand.", "OK", "Cancel");
+			if (!canProceed) return;
+
+			string originalScene = UnityVersionHandler.GetCurrentSceneName ();
+
+			if (UnityVersionHandler.SaveSceneIfUserWants ())
+			{
+				Undo.RecordObject (this, "Update speech list");
+				
+				string[] sceneFiles = AdvGame.GetSceneFiles ();
+
+				// First look for lines that already have an assigned lineID
+				foreach (string sceneFile in sceneFiles)
+				{
+					AssignSaveScriptsInScene (sceneFile);
+				}
+
+				AssignSaveScriptsInManagers ();
+
+				if (originalScene == "")
+				{
+					UnityVersionHandler.NewScene ();
+				}
+				else
+				{
+					UnityVersionHandler.OpenScene (originalScene);
+				}
+
+				ACDebug.Log ("Process complete.");
+			}
+		}
+
+
+		private void AssignSaveScriptsInScene (string sceneFile)
+		{
+			UnityVersionHandler.OpenScene (sceneFile);
+			
+			// Speech lines and journal entries
+			ActionList[] actionLists = GameObject.FindObjectsOfType (typeof (ActionList)) as ActionList[];
+			foreach (ActionList list in actionLists)
+			{
+				if (list.source == ActionListSource.AssetFile)
+				{
+					SaveActionListAsset (list.assetFile);
+				}
+				else
+				{
+					SaveActionList (list);
+				}
+			}
+			
+			// Hotspots
+			Hotspot[] hotspots = GameObject.FindObjectsOfType (typeof (Hotspot)) as Hotspot[];
+			foreach (Hotspot hotspot in hotspots)
+			{
+				if (hotspot.interactionSource == InteractionSource.AssetFile)
+				{
+					SaveActionListAsset (hotspot.useButton.assetFile);
+					SaveActionListAsset (hotspot.lookButton.assetFile);
+					SaveActionListAsset (hotspot.unhandledInvButton.assetFile);
+					
+					foreach (Button _button in hotspot.useButtons)
+					{
+						SaveActionListAsset (_button.assetFile);
+					}
+					
+					foreach (Button _button in hotspot.invButtons)
+					{
+						SaveActionListAsset (_button.assetFile);
+					}
+				}
+			}
+
+			// Triggers
+			AC_Trigger[] triggers = GameObject.FindObjectsOfType (typeof (AC_Trigger)) as AC_Trigger[];
+			foreach (AC_Trigger trigger in triggers)
+			{
+				if (trigger.GetComponent <RememberTrigger>() == null)
+				{
+					RememberTrigger rememberTrigger = trigger.gameObject.AddComponent <RememberTrigger>();
+					foreach (ConstantID constantIDScript in trigger.GetComponents <ConstantID>())
+					{
+						if (!(constantIDScript is Remember) && constantIDScript != rememberTrigger)
+						{
+							DestroyImmediate (constantIDScript);
+						}
+					}
+				}
+			}
+
+			// Dialogue options
+			Conversation[] conversations = GameObject.FindObjectsOfType (typeof (Conversation)) as Conversation[];
+			foreach (Conversation conversation in conversations)
+			{
+				foreach (ButtonDialog dialogOption in conversation.options)
+				{
+					SaveActionListAsset (dialogOption.assetFile);
+				}
+			}
+			
+			// Save the scene
+			UnityVersionHandler.SaveScene ();
+			EditorUtility.SetDirty (this);
+		}
+
+
+		private void AssignSaveScriptsInManagers ()
+		{
+			// Settings
+			SaveActionListAsset (actionListOnStart);
+			if (activeInputs != null)
+			{
+				foreach (ActiveInput activeInput in activeInputs)
+				{
+					SaveActionListAsset (activeInput.actionListAsset);
+				}
+			}
+
+			// Inventory
+			InventoryManager inventoryManager = AdvGame.GetReferences ().inventoryManager;
+			if (inventoryManager)
+			{
+				SaveActionListAsset (inventoryManager.unhandledCombine);
+				SaveActionListAsset (inventoryManager.unhandledHotspot);
+				SaveActionListAsset (inventoryManager.unhandledGive);
+
+				// Item-specific events
+				if (inventoryManager.items.Count > 0)
+				{
+					foreach (InvItem item in inventoryManager.items)
+					{
+						SaveActionListAsset (item.useActionList);
+						SaveActionListAsset (item.lookActionList);
+						SaveActionListAsset (item.unhandledActionList);
+						SaveActionListAsset (item.unhandledCombineActionList);
+
+						foreach (ActionListAsset actionList in item.combineActionList)
+						{
+							SaveActionListAsset (actionList);
+						}
+					}
+				}
+				
+				foreach (Recipe recipe in inventoryManager.recipes)
+				{
+					SaveActionListAsset (recipe.invActionList);
+				}
+			}
+
+			// Cursor
+			CursorManager cursorManager = AdvGame.GetReferences ().cursorManager;
+			if (cursorManager)
+			{
+				foreach (ActionListAsset actionListAsset in cursorManager.unhandledCursorInteractions)
+				{
+					SaveActionListAsset (actionListAsset);
+				}
+			}
+
+			// Menu
+			MenuManager menuManager = AdvGame.GetReferences ().menuManager;
+			if (menuManager)
+			{
+				// Gather elements
+				if (menuManager.menus.Count > 0)
+				{
+					foreach (AC.Menu menu in menuManager.menus)
+					{
+						SaveActionListAsset (menu.actionListOnTurnOff);
+						SaveActionListAsset (menu.actionListOnTurnOn);
+						
+						foreach (MenuElement element in menu.elements)
+						{
+							if (element is MenuButton)
+							{
+								MenuButton menuButton = (MenuButton) element;
+								if (menuButton.buttonClickType == AC_ButtonClickType.RunActionList)
+								{
+									SaveActionListAsset (menuButton.actionList);
+								}
+							}
+							else if (element is MenuSavesList)
+							{
+								MenuSavesList menuSavesList = (MenuSavesList) element;
+								SaveActionListAsset (menuSavesList.actionListOnSave);
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+		private void SaveActionListAsset (ActionListAsset actionListAsset)
+		{
+			if (actionListAsset != null)
+			{
+				SaveActions (actionListAsset.actions);
+			}
+		}
 		
+		
+		private void SaveActionList (ActionList actionList)
+		{
+			if (actionList != null)
+			{
+				SaveActions (actionList.actions);
+			}
+			
+		}
+		
+		
+		private void SaveActions (List<Action> actions)
+		{
+			foreach (Action action in actions)
+			{
+				if (action == null)
+				{
+					continue;
+				}
+
+				action.AssignConstantIDs (true);
+
+				if (action is ActionCheck)
+				{
+					ActionCheck actionCheck = (ActionCheck) action;
+					if (actionCheck.resultActionTrue == ResultAction.RunCutscene)
+					{
+						SaveActionListAsset (actionCheck.linkedAssetTrue);
+					}
+					if (actionCheck.resultActionFail == ResultAction.RunCutscene)
+					{
+						SaveActionListAsset (actionCheck.linkedAssetFail);
+					}
+				}
+				else if (action is ActionCheckMultiple)
+				{
+					ActionCheckMultiple actionCheckMultiple = (ActionCheckMultiple) action;
+					foreach (ActionEnd ending in actionCheckMultiple.endings)
+					{
+						if (ending.resultAction == ResultAction.RunCutscene)
+						{
+							SaveActionListAsset (ending.linkedAsset);
+						}
+					}
+				}
+				else if (action is ActionParallel)
+				{
+					ActionParallel actionParallel = (ActionParallel) action;
+					foreach (ActionEnd ending in actionParallel.endings)
+					{
+						if (ending.resultAction == ResultAction.RunCutscene)
+						{
+							SaveActionListAsset (ending.linkedAsset);
+						}
+					}
+				}
+				else
+				{
+					if (action.endAction == ResultAction.RunCutscene)
+					{
+						SaveActionListAsset (action.linkedAsset);
+					}
+				}
+			}
+		}
+
+		#endif
+
 	}
 
 
@@ -1478,6 +1757,12 @@ namespace AC
 	 *
 	 * Welcome to Adventure Creator's scripting guide!
 	 * You can use this guide to get detailed descriptions on all of ACs public functions and variables.
+	 * 
+	 * Adventure Creator's scripts are written in C#, and use the 'AC' namespace, so you'll need to add the following at the top of any script that accesses them:
+	 * 
+	 * \code
+	 * using AC;
+	 * \endcode
 	 * 
 	 * Accessing ACs scripts is very simple: each component on the GameEngine and PersistentEngine prefabs, as well as all Managers, can be accessed by referencing their associated static variable in the KickStarter class, e.g.:
 	 * 

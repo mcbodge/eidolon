@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharRename.cs"
  * 
@@ -79,7 +79,24 @@ namespace AC
 			
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				if (saveScriptsToo)
+				{
+					if (_char != null && _char.GetComponent <NPC>())
+					{
+						AddSaveScript <RememberNPC> (_char);
+					}
+				}
+
+				AssignConstantID <Char> (_char, _charID, 0);
+			}
+		}
+
 		
 		override public string SetLabel ()
 		{

@@ -7,11 +7,14 @@ namespace AC
 	public static class ACDebug
 	{
 
+		private const string hr = "\n\n-----------------------------";
+
+
 		public static void Log (object message)
 		{
 			if (CanDisplay (true))
 			{
-				Debug.Log (message);
+				Debug.Log (message + hr);
 			}
 		}
 
@@ -20,7 +23,7 @@ namespace AC
 		{
 			if (CanDisplay ())
 			{
-				Debug.LogWarning (message, context);
+				Debug.LogWarning (message + hr, context);
 			}
 		}
 
@@ -29,7 +32,7 @@ namespace AC
 		{
 			if (CanDisplay ())
 			{
-				Debug.LogError (message);
+				Debug.LogError (message + hr);
 			}
 		}
 

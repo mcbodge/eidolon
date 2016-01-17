@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"LevelStorage.cs"
  * 
@@ -27,9 +27,9 @@ namespace AC
 		[HideInInspector] public List<SingleLevelData> allLevelData = new List<SingleLevelData>();
 		
 		
-		private void Awake ()
+		public void OnAwake ()
 		{
-			allLevelData = new List<SingleLevelData>();
+			ClearAllLevelData ();
 		}
 
 
@@ -51,7 +51,7 @@ namespace AC
 		{
 			foreach (SingleLevelData levelData in allLevelData)
 			{
-				if (levelData.sceneNumber == Application.loadedLevel)
+				if (levelData.sceneNumber == UnityVersionHandler.GetCurrentSceneNumber ())
 				{
 					allLevelData.Remove (levelData);
 					return;
@@ -68,7 +68,7 @@ namespace AC
 		{
 			foreach (SingleLevelData levelData in allLevelData)
 			{
-				if (levelData.sceneNumber == Application.loadedLevel)
+				if (levelData.sceneNumber == UnityVersionHandler.GetCurrentSceneNumber ())
 				{
 					UnloadCutsceneOnLoad (levelData.onLoadCutscene);
 					UnloadCutsceneOnStart (levelData.onStartCutscene);
@@ -94,6 +94,7 @@ namespace AC
 					}
 
 					UnloadVariablesData (levelData.localVariablesData);
+					KickStarter.sceneSettings.UpdateAllSortingMaps ();
 
 					break;
 				}
@@ -112,7 +113,7 @@ namespace AC
 			List<ScriptData> thisLevelScripts = PopulateScriptData ();
 
 			SingleLevelData thisLevelData = new SingleLevelData ();
-			thisLevelData.sceneNumber = Application.loadedLevel;
+			thisLevelData.sceneNumber = UnityVersionHandler.GetCurrentSceneNumber ();
 			
 			if (KickStarter.sceneSettings)
 			{
@@ -149,7 +150,7 @@ namespace AC
 			bool found = false;
 			for (int i=0; i<allLevelData.Count; i++)
 			{
-				if (allLevelData[i].sceneNumber == Application.loadedLevel)
+				if (allLevelData[i].sceneNumber == UnityVersionHandler.GetCurrentSceneNumber ())
 				{
 					allLevelData[i] = thisLevelData;
 					found = true;
@@ -201,13 +202,7 @@ namespace AC
 			if (sortingMap && KickStarter.sceneSettings)
 			{
 				KickStarter.sceneSettings.sortingMap = sortingMap;
-
-				// Reset all FollowSortingMap components
-				FollowSortingMap[] followSortingMaps = FindObjectsOfType (typeof (FollowSortingMap)) as FollowSortingMap[];
-				foreach (FollowSortingMap followSortingMap in followSortingMaps)
-				{
-					followSortingMap.UpdateSortingMap ();
-				}
+				KickStarter.sceneSettings.UpdateAllSortingMaps ();
 			}
 		}
 
@@ -265,7 +260,7 @@ namespace AC
 				}
 				else
 				{
-					ACDebug.LogWarning ("GameObject " + _transform.name + " was not saved because it's ConstantID has not been set!");
+					ACDebug.LogWarning ("GameObject " + _transform.name + " was not saved because its ConstantID has not been set!");
 				}
 			}
 			
@@ -294,7 +289,7 @@ namespace AC
 					if (!found)
 					{
 						// Can't find: delete
-						Destroy (transformOb.gameObject);
+						KickStarter.sceneSettings.ScheduleForDeletion (transformOb.gameObject);
 					}
 				}
 			}
@@ -328,6 +323,7 @@ namespace AC
 					saveObject.LoadTransformData (_transform);
 				}
 			}
+			KickStarter.stateHandler.GatherObjects ();
 		}
 
 
@@ -344,7 +340,7 @@ namespace AC
 				}
 				else
 				{
-					ACDebug.LogWarning ("GameObject " + _script.name + " was not saved because it's ConstantID has not been set!");
+					ACDebug.LogWarning ("GameObject " + _script.name + " was not saved because its ConstantID has not been set!");
 				}
 			}
 			

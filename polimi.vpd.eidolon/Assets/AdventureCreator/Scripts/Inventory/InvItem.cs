@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"InvItem.cs"
  * 
@@ -67,7 +67,7 @@ namespace AC
 		/** An identifier number of the last Use/Inventory interaction associated with the item */
 		public int lastInteractionIndex = 0;
 
-		/** If True, then the item has it's own "Use X on Y" syntax when selected */
+		/** If True, then the item has its own "Use X on Y" syntax when selected */
 		public bool overrideUseSyntax = false;
 		/** The "Use" in "Use X on Y", if overrideUseSyntax = True */
 		public HotspotPrefix hotspotPrefix1 = new HotspotPrefix ("Use");
@@ -133,7 +133,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>A Constructor that sets all it's values by copying another InvItem.</summary>
+		 * <summary>A Constructor that sets all its values by copying another InvItem.</summary>
 		 * <param name = "assetItem">The InvItem to copy</param>
 		 */
 		public InvItem (InvItem assetItem)

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharMove.cs"
  * 
@@ -74,7 +74,7 @@ namespace AC
 			
 			if (Application.isPlaying)
 			{
-				ACDebug.Log ("'Character: Move along path' Action has been temporarily upgraded - - please view it's Inspector when the game ends and save the scene.");
+				ACDebug.Log ("'Character: Move along path' Action has been temporarily upgraded - - please view its Inspector when the game ends and save the scene.");
 			}
 			else
 			{
@@ -273,6 +273,26 @@ namespace AC
 			
 			AfterRunningOption ();
 		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <ConstantID> (movePath);
+				if (!isPlayer && charToMove != null && charToMove.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (charToMove);
+				}
+			}
+
+			if (!isPlayer)
+			{
+				AssignConstantID <Char> (charToMove, charToMoveID, charToMoveParameterID);
+			}
+			AssignConstantID <Paths> (movePath, movePathID, movePathParameterID);
+		}
+
 		
 		
 		override public string SetLabel ()

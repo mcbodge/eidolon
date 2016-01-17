@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"SceneManager.cs"
  * 
@@ -53,6 +53,14 @@ namespace AC
 		 */
 		public void ShowGUI ()
 		{
+			string sceneName = MultiSceneChecker.EditActiveScene ();
+			if (sceneName != "")
+			{
+				EditorGUILayout.LabelField ("Editing scene: '" + sceneName + "'", EditorStyles.boldLabel);
+				EditorGUILayout.Space ();
+				GetPrefabsInScene ();
+			}
+
 			GUILayout.Label ("Basic structure", EditorStyles.boldLabel);
 			
 			EditorGUILayout.BeginHorizontal ();
@@ -109,15 +117,14 @@ namespace AC
 			
 			GUILayout.Label ("Scene settings", EditorStyles.boldLabel);
 			KickStarter.sceneSettings.navigationMethod = (AC_NavigationMethod) EditorGUILayout.EnumPopup ("Pathfinding method:", KickStarter.sceneSettings.navigationMethod);
+			if (KickStarter.sceneSettings.navigationMethod == AC_NavigationMethod.Custom)
+			{
+				KickStarter.sceneSettings.customNavigationClass = EditorGUILayout.TextField ("Script name:", KickStarter.sceneSettings.customNavigationClass);
+			}
 			KickStarter.navigationManager.ResetEngine ();
 			if (KickStarter.navigationManager.navigationEngine != null)
 			{
 				KickStarter.navigationManager.navigationEngine.SceneSettingsGUI ();
-			}
-			
-			if (settingsManager.IsUnity2D () && KickStarter.sceneSettings.navigationMethod != AC_NavigationMethod.PolygonCollider)
-			{
-				EditorGUILayout.HelpBox ("This pathfinding method is not compatible with 'Unity 2D'.", MessageType.Warning);
 			}
 			
 			EditorGUILayout.BeginHorizontal ();
@@ -129,6 +136,7 @@ namespace AC
 					PlayerStart newPlayerStart = AddPrefab ("Navigation", "PlayerStart", true, false, true).GetComponent <PlayerStart>();
 					newPlayerStart.gameObject.name = "Default PlayerStart";
 					KickStarter.sceneSettings.defaultPlayerStart = newPlayerStart;
+					EditorGUIUtility.PingObject (newPlayerStart.gameObject);
 				}
 			}
 			EditorGUILayout.EndHorizontal ();
@@ -158,6 +166,7 @@ namespace AC
 							newCamera.gameObject.name = "NavCam 1";
 							KickStarter.sceneSettings.defaultPlayerStart.cameraOnStart = newCamera;
 						}
+						EditorGUIUtility.PingObject (KickStarter.sceneSettings.defaultPlayerStart.cameraOnStart);
 					}
 				}
 				EditorGUILayout.EndHorizontal ();
@@ -171,6 +180,7 @@ namespace AC
 					SortingMap newSortingMap = AddPrefab ("Navigation", "SortingMap", true, false, true).GetComponent <SortingMap>();
 					newSortingMap.gameObject.name = "Default SortingMap";
 					KickStarter.sceneSettings.sortingMap = newSortingMap;
+					EditorGUIUtility.PingObject (newSortingMap.gameObject);
 				}
 			}
 			EditorGUILayout.EndHorizontal ();
@@ -186,6 +196,7 @@ namespace AC
 						PutInFolder (newTintMap.gameObject, "_SetGeometry");
 						newTintMap.gameObject.name = "Default TintMap";
 						KickStarter.sceneSettings.tintMap = newTintMap;
+						EditorGUIUtility.PingObject (newTintMap.gameObject);
 					}
 				}
 				EditorGUILayout.EndHorizontal ();
@@ -200,6 +211,7 @@ namespace AC
 					newSound.gameObject.name = "Default Sound";
 					KickStarter.sceneSettings.defaultSound = newSound;
 					newSound.playWhilePaused = true;
+					EditorGUIUtility.PingObject (newSound.gameObject);
 				}
 			}
 			EditorGUILayout.EndHorizontal ();
@@ -224,6 +236,7 @@ namespace AC
 					Cutscene newCutscene = AddPrefab ("Logic", "Cutscene", true, false, true).GetComponent <Cutscene>();
 					newCutscene.gameObject.name = "OnStart";
 					KickStarter.sceneSettings.cutsceneOnStart = newCutscene;
+					EditorGUIUtility.PingObject (newCutscene.gameObject);
 				}
 			}
 			EditorGUILayout.EndHorizontal ();
@@ -236,6 +249,7 @@ namespace AC
 					Cutscene newCutscene = AddPrefab ("Logic", "Cutscene", true, false, true).GetComponent <Cutscene>();
 					newCutscene.gameObject.name = "OnLoad";
 					KickStarter.sceneSettings.cutsceneOnLoad = newCutscene;
+					EditorGUIUtility.PingObject (newCutscene.gameObject);
 				}
 			}
 			EditorGUILayout.EndHorizontal ();
@@ -248,6 +262,7 @@ namespace AC
 					Cutscene newCutscene = AddPrefab ("Logic", "Cutscene", true, false, true).GetComponent <Cutscene>();
 					newCutscene.gameObject.name = "OnVarChange";
 					KickStarter.sceneSettings.cutsceneOnVarChange = newCutscene;
+					EditorGUIUtility.PingObject (newCutscene.gameObject);
 				}
 			}
 			EditorGUILayout.EndHorizontal ();
@@ -391,42 +406,66 @@ namespace AC
 			}
 			
 			// Delete default main camera
-			if (GameObject.FindWithTag (Tags.mainCamera))
+			GameObject[] mainCameras = GameObject.FindGameObjectsWithTag (Tags.mainCamera);
+			foreach (GameObject oldMainCam in mainCameras)
 			{
-				GameObject oldMainCam = GameObject.FindWithTag (Tags.mainCamera);
-
-				// Untag UFPS Camera
-				if (UltimateFPSIntegration.IsUFPSCamera (oldMainCam.GetComponent <Camera>()))
-				{
-					oldMainCam.tag = "Untagged";
-					ACDebug.Log ("Untagged UFPS camera '" + oldMainCam.name + "' as MainCamera, to make way for Adventure Creator MainCamera.");
-				}
-				else if (oldMainCam.GetComponent <MainCamera>() == null)
+				if (UnityVersionHandler.ObjectIsInActiveScene (oldMainCam) && oldMainCam.GetComponent <MainCamera>() == null)
 				{
 					if (oldMainCam.GetComponent <Camera>())
 					{
-						oldMainCam.AddComponent <MainCamera>();
-						
-						string camPrefabfileName = assetFolder + "Automatic" + Path.DirectorySeparatorChar.ToString () + "MainCamera.prefab";
-						GameObject camPrefab = (GameObject) AssetDatabase.LoadAssetAtPath (camPrefabfileName, typeof (GameObject));
-						Texture2D prefabFadeTexture = camPrefab.GetComponent <MainCamera>().fadeTexture;
-						
-						oldMainCam.GetComponent <MainCamera>().Initialise (prefabFadeTexture);
-						
-						PutInFolder (GameObject.FindWithTag (Tags.mainCamera), "_Cameras");
-						ACDebug.Log ("'" + oldMainCam.name + "' has been converted to an Adventure Creator MainCamera.");
+						string camName = oldMainCam.name;
+
+						bool replaceCamera = true;
+
+						if (camName != "Main Camera" || oldMainCam.transform.parent != null)
+						{
+							replaceCamera = EditorUtility.DisplayDialog ("MainCamera detected", "AC has detected the scene object '" + camName + "', which is tagged as 'MainCamera'." +
+						                                             "\n\n" +
+						                                             "AC requires that the scene's MainCamera also has the AC.MainCamera script attached.  Should it convert '" + camName + "', or untag it and create a separate MainCamera for AC?" +
+						                                             "\n\n" +
+						                                             "(Note: If '" + camName + "' is part of a Player prefab, it is recommended to simply untag it.)", "Convert it", "Untag it");
+						}
+
+						if (replaceCamera)
+						{
+							oldMainCam.AddComponent <MainCamera>();
+							
+							string camPrefabfileName = assetFolder + "Automatic" + Path.DirectorySeparatorChar.ToString () + "MainCamera.prefab";
+							GameObject camPrefab = (GameObject) AssetDatabase.LoadAssetAtPath (camPrefabfileName, typeof (GameObject));
+							Texture2D prefabFadeTexture = camPrefab.GetComponent <MainCamera>().fadeTexture;
+							
+							oldMainCam.GetComponent <MainCamera>().Initialise (prefabFadeTexture);
+							
+							PutInFolder (GameObject.FindWithTag (Tags.mainCamera), "_Cameras");
+							ACDebug.Log ("'" + oldMainCam.name + "' has been converted to an Adventure Creator MainCamera.");
+						}
+						else
+						{
+							ACDebug.Log ("Untagged MainCamera '" + oldMainCam.name + "'.");
+							oldMainCam.tag = Tags.untagged;
+							oldMainCam.GetComponent <Camera>().enabled = false;
+						}
 					}
 					else
 					{
-						ACDebug.Log ("Removed old MainCamera '" + oldMainCam.name + "' from scene, as it had no Camera component.");
-						DestroyImmediate (oldMainCam);
+						ACDebug.Log ("Untagged MainCamera '" + oldMainCam.name + "', as it had no Camera component.");
+						oldMainCam.tag = Tags.untagged;
 					}
+				}
+			}
+
+			bool foundMainCamera = false;
+			foreach (GameObject oldMainCam in mainCameras)
+			{
+				if (UnityVersionHandler.ObjectIsInActiveScene (oldMainCam) && oldMainCam.GetComponent <MainCamera>() != null)
+				{
+					foundMainCamera = true;
 				}
 			}
 			
 			// Create main camera if none exists
 			SettingsManager settingsManager = AdvGame.GetReferences ().settingsManager;
-			if (!GameObject.FindWithTag (Tags.mainCamera))
+			if (!foundMainCamera)
 			{
 				GameObject mainCamOb = AddPrefab ("Automatic", "MainCamera", false, false, false);
 				PrefabUtility.DisconnectPrefabInstance (mainCamOb);
@@ -538,7 +577,7 @@ namespace AC
 		 */
 		public static GameObject AddPrefab (string folderName, string prefabName, bool canCreateMultiple, bool selectAfter, bool putInFolder)
 		{
-			if (canCreateMultiple || !GameObject.Find (AdvGame.GetName (prefabName)))
+			if (canCreateMultiple || !UnityVersionHandler.ObjectIsInActiveScene (prefabName))
 			{
 				string fileName = assetFolder + folderName + Path.DirectorySeparatorChar.ToString () + prefabName + ".prefab";
 				
@@ -633,21 +672,13 @@ namespace AC
 		
 		private static bool PutInFolder (GameObject ob, string folderName)
 		{
-			if (ob && GameObject.Find (folderName))
-			{
-				if (GameObject.Find (folderName).transform.position == Vector3.zero && folderName.Contains ("_"))
-				{
-					ob.transform.parent = GameObject.Find (folderName).transform;
-					return true;
-				}
-			}
-			return false;
+			return UnityVersionHandler.PutInFolder (ob, folderName);
 		}
 		
 		
 		private void CreateFolder (string folderName)
 		{
-			if (!GameObject.Find (folderName))
+			if (!UnityVersionHandler.ObjectIsInActiveScene (folderName))
 			{
 				GameObject newFolder = new GameObject();
 				newFolder.name = folderName;
@@ -660,17 +691,13 @@ namespace AC
 		{
 			CreateFolder (baseFolderName);
 			
-			if (!GameObject.Find (subFolderName))
+			if (!UnityVersionHandler.ObjectIsInActiveScene (subFolderName))
 			{
 				GameObject newFolder = new GameObject ();
 				newFolder.name = subFolderName;
 				Undo.RegisterCreatedObjectUndo (newFolder, "Created " + newFolder.name);
-				
-				if (newFolder != null && GameObject.Find (baseFolderName))
-				{
-					newFolder.transform.parent = GameObject.Find (baseFolderName).transform;
-				}
-				else
+
+				if (!PutInFolder (newFolder, baseFolderName))
 				{
 					ACDebug.Log ("Folder " + baseFolderName + " does not exist!");
 				}
@@ -906,6 +933,7 @@ namespace AC
 
 					if (settingsManager.IsUnity2D ())
 					{
+						scenePrefabs.Add (new ScenePrefab ("Camera", "GameCamera 2D Drag", "Camera/GameCamera2DDrag", "_GameCameras", "A 2D camera that can be panned by dragging the mouse/touch.", "GameCamera2D"));
 						scenePrefabs.Add (new ScenePrefab ("Camera", "TintMap", "Camera/TintMap", "_SetGeometry", "A texture used to tint 2D sprites.", "TintMap"));
 					}
 				}
@@ -1009,8 +1037,11 @@ namespace AC
 				objects = FindObjectsOfType (Type.GetType ("AC." + GetActiveScenePrefab ().componentName)) as MonoBehaviour [];
 				foreach (MonoBehaviour _object in objects)
 				{
-					titles.Add (i.ToString () + ": " + _object.gameObject.name);
-					i++;
+					if (UnityVersionHandler.ObjectIsInActiveScene (_object.gameObject))
+					{
+						titles.Add (i.ToString () + ": " + _object.gameObject.name);
+						i++;
+					}
 				}
 			}
 			else if (GetActiveScenePrefab ().componentName != "")
@@ -1018,8 +1049,11 @@ namespace AC
 				objects = FindObjectsOfType (Type.GetType (GetActiveScenePrefab ().componentName)) as MonoBehaviour [];
 				foreach (MonoBehaviour _object in objects)
 				{
-					titles.Add (i.ToString () + ": " + _object.gameObject.name);
-					i++;
+					if (UnityVersionHandler.ObjectIsInActiveScene (_object.gameObject))
+					{
+						titles.Add (i.ToString () + ": " + _object.gameObject.name);
+						i++;
+					}
 				}
 			}
 			

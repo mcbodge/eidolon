@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCheckMultiple.cs"
  * 
@@ -302,14 +302,11 @@ namespace AC
 		}
 
 
-		public override void AfterCopy (List<Action> copyList)
+		public override void PrepareToPaste (int offset)
 		{
 			foreach (ActionEnd end in endings)
 			{
-				if (end.resultAction == ResultAction.Skip && end.skipActionActual == null && copyList.Count > end.skipAction)
-				{
-					end.skipActionActual = copyList[end.skipAction];
-				}
+				end.skipAction += offset;
 			}
 		}
 		

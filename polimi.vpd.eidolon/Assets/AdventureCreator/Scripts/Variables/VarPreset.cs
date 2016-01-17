@@ -1,5 +1,5 @@
 /*	Adventure Creator
-*	by Chris Burton, 2013-2015
+*	by Chris Burton, 2013-2016
 *	
 *	"VarPreset.cs"
 * 
@@ -25,7 +25,7 @@ namespace AC
 	public class VarPreset
 	{
 
-		/** It's display name */
+		/** Its display name */
 		public string label;
 		/** A unique identifier */
 		public int ID;
@@ -162,11 +162,11 @@ namespace AC
 
 		/** The associated variable's ID number */
 		public int id;
-		/** It's value, if an integer, popup or boolean. If a boolean, 0 = False, and 1 = True. */
+		/** Its value, if an integer, popup or boolean. If a boolean, 0 = False, and 1 = True. */
 		public int val;
-		/** It's value, if a float. */
+		/** Its value, if a float. */
 		public float floatVal;
-		/** It's value, if a string */
+		/** Its value, if a string */
 		public string textVal;
 
 

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharDirection.cs"
  * 
@@ -63,12 +63,15 @@ namespace AC
 				
 				if (charToMove)
 				{
+					if (!isInstant)
+					{
+						charToMove.Halt ();
+					}
+
 					charToMove.SetLookDirection (GetLookVector (), isInstant);
 
 					if (!isInstant)
 					{
-						charToMove.Halt ();
-
 						if (willWait)
 						{
 							return (defaultPauseTime);
@@ -182,7 +185,21 @@ namespace AC
 			
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				if (saveScriptsToo && charToMove != null && charToMove.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (charToMove);
+				}
+
+				AssignConstantID <Char> (charToMove, charToMoveID, charToMoveParameterID);
+			}
+		}
+
 		
 		override public string SetLabel ()
 		{

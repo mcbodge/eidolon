@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionHotspotEnable.cs"
  * 
@@ -107,6 +107,16 @@ namespace AC
 			affectChildren = EditorGUILayout.Toggle ("Also affect children?", affectChildren);
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberHotspot> (hotspot);
+			}
+			AssignConstantID <Hotspot> (hotspot, constantID, parameterID);
 		}
 		
 		

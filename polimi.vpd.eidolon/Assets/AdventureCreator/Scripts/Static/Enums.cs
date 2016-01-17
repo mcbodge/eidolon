@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Enums.cs"
  * 
@@ -69,7 +69,7 @@ namespace AC
 	public enum AnimationEngine { Legacy, Sprites2DToolkit, SpritesUnity, Mecanim, SpritesUnityComplex, Custom };
 	public enum MotionControl { Automatic, JustTurning, Manual };
 	public enum TalkingAnimation { Standard, CustomFace };
-	public enum MovementMethod { PointAndClick, Direct, FirstPerson, Drag, None, UltimateFPS, StraightToCursor };
+	public enum MovementMethod { PointAndClick, Direct, FirstPerson, Drag, None, StraightToCursor };
 	public enum InputMethod { MouseAndKeyboard, KeyboardOrController, TouchScreen };
 	public enum DirectMovementType { RelativeToCamera, TankControls };
 	public enum CameraPerspective { TwoD, TwoPointFiveD, ThreeD };
@@ -116,11 +116,11 @@ namespace AC
 	public enum CharDirection { Up, Down, Left, Right, UpLeft, DownLeft, UpRight, DownRight };
 	public enum ArrowPromptType { KeyOnly, ClickOnly, KeyAndClick };
 	
-	public enum AC_NavigationMethod { UnityNavigation, meshCollider, PolygonCollider };
+	public enum AC_NavigationMethod { UnityNavigation, meshCollider, PolygonCollider, Custom };
 	public enum AC_PathType { Loop, PingPong, ForwardOnly, IsRandom };
 	public enum PathSpeed { Walk=0, Run=1 };
 	
-	public enum SoundType { SFX, Music, Other };
+	public enum SoundType { SFX, Music, Other, Speech };
 	
 	public enum NewPlayerPosition { ReplaceCurrentPlayer, ReplaceNPC, AppearAtMarker, AppearInOtherScene };
 	public enum OldPlayer { RemoveFromScene, ReplaceWithNPC };
@@ -139,7 +139,7 @@ namespace AC
 	public enum HighlightState { None, Normal, Flash, Pulse, On };
 	public enum HighlightType { Enable, Disable, PulseOnce, PulseContinually };
 	
-	public enum SaveMethod { Binary, XML };
+	public enum SaveMethod { Binary, XML, Json };
 	public enum HeadFacing { None, Hotspot, Manual };
 	public enum CharFaceType { Body, Head };
 	public enum InputCheckType { Button, Axis, SingleTapOrClick, DoubleTapOrClick };
@@ -211,5 +211,7 @@ namespace AC
 	public enum RotateSprite3D { CameraFacingDirection, RelativePositionToCamera };
 	public enum ScreenWorld { ScreenSpace, WorldSpace };
 	public enum ShowDebugLogs { Always, OnlyWarningsOrErrors, Never };
+	public enum JournalType { NewJournal, DisplayExistingJournal };
+	public enum CharacterEvasion { None, OnlyStationaryCharacters, AllCharacters };
 
 }

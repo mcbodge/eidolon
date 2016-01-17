@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"FirstPersonCamera.cs"
  * 
@@ -80,7 +80,7 @@ namespace AC
 		 * Updates the camera's transform.
 		 * This is called every frame by StateHandler.
 		 */
-		public void _Update ()
+		public void _UpdateFPCamera ()
 		{
 			if (KickStarter.stateHandler.gameState != GameState.Normal)
 			{
@@ -102,11 +102,11 @@ namespace AC
 					
 					if (KickStarter.playerInput.IsPlayerControlledRunning ())
 					{
-						bobTimer = bobTimer + (2f * bobbingSpeed);
+						bobTimer += (2f * bobbingSpeed) * Time.deltaTime * 35f;
 					}
 					else
 					{
-						bobTimer = bobTimer + bobbingSpeed;
+						bobTimer += bobbingSpeed * Time.deltaTime * 35f;
 					}
 					
 					if (bobTimer > Mathf.PI * 2)

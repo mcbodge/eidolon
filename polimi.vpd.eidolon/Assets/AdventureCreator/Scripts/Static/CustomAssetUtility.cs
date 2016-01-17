@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"CustomAssetUtility.cs"
  * 
@@ -36,7 +36,7 @@ namespace AC
 			}
 			catch
 			{
-				path = UnityEditor.AssetDatabase.GenerateUniqueAssetPath("Assets/" + filename);
+				path = UnityEditor.AssetDatabase.GenerateUniqueAssetPath ("Assets/" + filename);
 			}
 			return path;
 		}

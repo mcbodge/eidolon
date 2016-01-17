@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Sound.cs"
  * 
@@ -27,7 +27,7 @@ namespace AC
 		public SoundType soundType;
 		/** If True, then the sound can play when the game is paused */
 		public bool playWhilePaused = false;
-		/** The volume of the sound, relative to it's categoriy's "global" volume set within OptionsData */
+		/** The volume of the sound, relative to its categoriy's "global" volume set within OptionsData */
 		public float relativeVolume = 1f;
 		/** If True, then the GameObject this is attached to will not be destroyed when changing scene */
 		public bool surviveSceneChange = false;
@@ -42,6 +42,7 @@ namespace AC
 
 		private Options options;
 		private AudioSource audioSource;
+		private float otherVolume;
 
 		
 		private void Awake ()
@@ -266,7 +267,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Plays the AudioSource's current AudioClip, without starting over if it was paused or changing it's "loop" variable.</summary>
+		 * <summary>Plays the AudioSource's current AudioClip, without starting over if it was paused or changing its "loop" variable.</summary>
 		 */
 		public void Play ()
 		{
@@ -326,8 +327,8 @@ namespace AC
 		public void SetMaxVolume ()
 		{
 			maxVolume = relativeVolume;
-			
-			if (Options.optionsData != null && soundType != SoundType.Other)
+
+			if (Options.optionsData != null)
 			{
 				if (soundType == SoundType.Music)
 				{
@@ -337,8 +338,34 @@ namespace AC
 				{
 					maxVolume *= Options.optionsData.sfxVolume;
 				}
+				else if (soundType == SoundType.Speech)
+				{
+					maxVolume *= Options.optionsData.speechVolume;
+				}
+			}
+			if (soundType == SoundType.Other)
+			{
+				maxVolume *= otherVolume;
 			}
 
+			SetFinalVolume ();
+		}
+
+
+		/**
+		 * <summary>Sets the volume, but takes relativeVolume into account as well.</summary>
+		 * <param name = "volume">The volume to set</param>
+		 */
+		public void SetVolume (float volume)
+		{
+			maxVolume = relativeVolume * volume;
+			otherVolume = volume;
+			SetFinalVolume ();
+		}
+
+
+		private void SetFinalVolume ()
+		{
 			if (KickStarter.dialog.AudioIsPlaying ())
 			{
 				if (soundType == SoundType.SFX)
@@ -350,7 +377,7 @@ namespace AC
 					maxVolume *= 1f - KickStarter.speechManager.musicDucking;
 				}
 			}
-
+			
 			if (audioSource.isPlaying && playWhilePaused && KickStarter.stateHandler && KickStarter.stateHandler.gameState == GameState.Paused)
 			{
 				smoothVolume = maxVolume;

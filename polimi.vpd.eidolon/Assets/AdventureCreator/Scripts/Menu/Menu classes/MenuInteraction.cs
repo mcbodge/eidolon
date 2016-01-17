@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuInteraction.cs"
  * 
@@ -38,6 +38,9 @@ namespace AC
 		/** The ID number of the interaction's associated CursorIcon */
 		public int iconID;
 
+		public bool overrideTexture;
+		public Texture2D activeTexture;
+
 		private Text uiText;
 		private CursorIcon icon;
 		private string label = "";
@@ -59,6 +62,8 @@ namespace AC
 			SetSize (new Vector2 (5f, 5f));
 			iconID = -1;
 			textEffects = TextEffects.None;
+			overrideTexture = false;
+			activeTexture = null;
 			
 			base.Declare ();
 		}
@@ -85,6 +90,8 @@ namespace AC
 			anchor = _element.anchor;
 			textEffects = _element.textEffects;
 			iconID = _element.iconID;
+			overrideTexture = _element.overrideTexture;
+			activeTexture = _element.activeTexture;
 			
 			base.Copy (_element);
 		}
@@ -104,7 +111,7 @@ namespace AC
 					uiText = uiButton.GetComponentInChildren <Text>();
 				}
 				uiButton.onClick.AddListener (() => {
-					ProcessClick (_menu, 0, KickStarter.playerInput.GetMouseState ());
+					ProcessClickUI (_menu, 0, KickStarter.playerInput.GetMouseState ());
 				});
 			}
 		}
@@ -149,6 +156,18 @@ namespace AC
 				{
 					anchor = (TextAnchor) EditorGUILayout.EnumPopup ("Text alignment:", anchor);
 					textEffects = (TextEffects) EditorGUILayout.EnumPopup ("Text effect:", textEffects);
+				}
+
+				if (displayType != AC_DisplayType.TextOnly)
+				{
+					overrideTexture = EditorGUILayout.Toggle ("Override icon texture?", overrideTexture);
+					if (overrideTexture)
+					{
+						EditorGUILayout.BeginHorizontal ();
+						EditorGUILayout.LabelField ("Active texture:", GUILayout.Width (145f));
+						activeTexture = (Texture2D) EditorGUILayout.ObjectField (activeTexture, typeof (Texture2D), false, GUILayout.Width (70f), GUILayout.Height (30f));
+						EditorGUILayout.EndHorizontal ();
+					}
 				}
 			}
 			else
@@ -236,9 +255,19 @@ namespace AC
 				GUI.Label (ZoomRect (relativeRect, zoom), "", _style);
 			}
 
-			if (displayType != AC_DisplayType.TextOnly && icon != null)
+			if (overrideTexture)
 			{
-				icon.DrawAsInteraction (ZoomRect (relativeRect, zoom), isActive);
+				if (iconID >= 0 && KickStarter.playerCursor.GetSelectedCursorID () == iconID && activeTexture != null)
+				{
+					GUI.DrawTexture (ZoomRect (GetSlotRectRelative (_slot), zoom), activeTexture, ScaleMode.StretchToFill, true, 0f);
+				}
+			}
+			else
+			{
+				if (displayType != AC_DisplayType.TextOnly && icon != null)
+				{
+					icon.DrawAsInteraction (ZoomRect (relativeRect, zoom), isActive);
+				}
 			}
 		}
 

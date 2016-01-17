@@ -1,11 +1,11 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuDrag.cs"
  * 
- *	This MenuElement can be used to drag around it's parent Menu.
+ *	This MenuElement can be used to drag around its parent Menu.
  * 
  */
 
@@ -20,8 +20,8 @@ namespace AC
 {
 
 	/**
-	 * A MenuElement that can be used to drag around another element, or it's parent Menu.
-	 * This element type cannot be used in Unity UI-based Menus, because Unity UI has it's own classes that perform the same functionality.
+	 * A MenuElement that can be used to drag around another element, or its parent Menu.
+	 * This element type cannot be used in Unity UI-based Menus, because Unity UI has its own classes that perform the same functionality.
 	 */
 	[System.Serializable]
 	public class MenuDrag : MenuElement
@@ -229,11 +229,11 @@ namespace AC
 					}
 					else if (element.positionType == AC_PositionType2.Aligned)
 					{
-						ACDebug.LogWarning ("Cannot drag " + elementName + " as it's Position is set to Aligned");
+						ACDebug.LogWarning ("Cannot drag " + elementName + " as its Position is set to Aligned");
 					}
 					else if (_menu.sizeType == AC_SizeType.Automatic)
 					{
-						ACDebug.LogWarning ("Cannot drag " + elementName + " as it's parent Menu's Size is set to Automatic");
+						ACDebug.LogWarning ("Cannot drag " + elementName + " as its parent Menu's Size is set to Automatic");
 					}
 					else
 					{

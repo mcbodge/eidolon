@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharPortrait.cs"
  * 
@@ -101,7 +101,24 @@ namespace AC
 			newPortraitGraphic = (Texture2D) EditorGUILayout.ObjectField ("New Portrait graphic:", newPortraitGraphic, typeof (Texture2D), true);
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				if (saveScriptsToo)
+				{
+					if (_char != null && _char.GetComponent <NPC>())
+					{
+						AddSaveScript <RememberNPC> (_char);
+					}
+				}
+
+				AssignConstantID <Char> (_char, constantID, parameterID);
+			}
+		}
+
 
 		public override string SetLabel ()
 		{

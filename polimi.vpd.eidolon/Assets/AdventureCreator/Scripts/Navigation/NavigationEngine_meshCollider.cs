@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"NavigationEngine_meshCollider.cs"
  * 
@@ -25,6 +25,26 @@ namespace AC
 	{
 		
 		private bool pathFailed = false;
+
+
+		public override void TurnOn (NavigationMesh navMesh)
+		{
+			if (navMesh == null) return;
+			
+			if (LayerMask.NameToLayer (KickStarter.settingsManager.navMeshLayer) == -1)
+			{
+				ACDebug.LogError ("Can't find layer " + KickStarter.settingsManager.navMeshLayer + " - please define it in Unity's Tags Manager (Edit -> Project settings -> Tags and Layers).");
+			}
+			else if (KickStarter.settingsManager.navMeshLayer != "")
+			{
+				navMesh.gameObject.layer = LayerMask.NameToLayer (KickStarter.settingsManager.navMeshLayer);
+			}
+			
+			if (KickStarter.sceneSettings.navigationMethod == AC_NavigationMethod.meshCollider && navMesh.GetComponent <Collider>() == null)
+			{
+				ACDebug.LogWarning ("A Collider component must be attached to " + navMesh.gameObject.name + " for pathfinding to work - please attach one.");
+			}
+		}
 
 			
 		public override Vector3[] GetPointsArray (Vector3 originPos, Vector3 targetPos, AC.Char _char = null)
@@ -109,6 +129,22 @@ namespace AC
 			
 			return pointsList.ToArray ();
 		}
+
+
+		public override void ResetHoles (NavigationMesh navMesh)
+		{
+			if (navMesh == null || navMesh.GetComponent <MeshCollider>() == null || navMesh.GetComponent <MeshCollider>().sharedMesh == null) return;
+
+			if (navMesh.GetComponent <MeshFilter>() && navMesh.GetComponent <MeshFilter>().sharedMesh)
+			{
+				navMesh.GetComponent <MeshCollider>().sharedMesh = navMesh.GetComponent <MeshFilter>().sharedMesh;
+				ACDebug.LogWarning (navMesh.gameObject.name + " has no MeshCollider mesh - temporarily using MeshFilter mesh instead.");
+			}
+			else
+			{
+				ACDebug.LogWarning (navMesh.gameObject.name + " has no MeshCollider mesh.");
+			}
+		}
 		
 		
 		public override string GetPrefabName ()
@@ -147,6 +183,10 @@ namespace AC
 		{
 			#if UNITY_EDITOR
 			KickStarter.sceneSettings.navMesh = (NavigationMesh) EditorGUILayout.ObjectField ("Default NavMesh:", KickStarter.sceneSettings.navMesh, typeof (NavigationMesh), true);
+			if (AdvGame.GetReferences ().settingsManager && AdvGame.GetReferences ().settingsManager.IsUnity2D ())
+			{
+				EditorGUILayout.HelpBox ("This method is not compatible with 'Unity 2D' mode.", MessageType.Warning);
+			}
 			#endif
 		}
 		

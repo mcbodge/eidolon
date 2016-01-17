@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCinemaDirector.cs"
  * 
@@ -133,7 +133,15 @@ namespace AC
 
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			#if CinemaDirectorIsPresent
+			AssignConstantID <CinemaDirector.Cutscene> (cdCutscene, constantID, parameterID);
+			#endif
+		}
+
 		
 		public override string SetLabel ()
 		{

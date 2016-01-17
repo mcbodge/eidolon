@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"PlayerInteraction.cs"
  * 
@@ -64,7 +64,7 @@ namespace AC
 					}
 				}
 				
-				if (KickStarter.playerInput.IsCursorLocked () && KickStarter.settingsManager.onlyInteractWhenCursorUnlocked)
+				if (KickStarter.playerInput.IsCursorLocked () && KickStarter.settingsManager.onlyInteractWhenCursorUnlocked && KickStarter.settingsManager.IsInFirstPerson ())
 				{
 					DeselectHotspot (true);
 					return;
@@ -101,6 +101,12 @@ namespace AC
 				}
 				else 
 				{
+					if (KickStarter.playerMenus.IsMouseOverInteractionMenu () && KickStarter.runtimeInventory.hoverItem == null)
+					{
+						// Don't deselect Hotspot
+						return;
+					}
+
 					DeselectHotspot (false);
 				}
 				
@@ -108,7 +114,7 @@ namespace AC
 				{
 					if (hotspot)
 					{
-						KickStarter.player.SetHeadTurnTarget (hotspot.GetIconPosition (), false, HeadFacing.Hotspot);
+						KickStarter.player.SetHeadTurnTarget (hotspot.transform, hotspot.GetIconPosition (true), false, HeadFacing.Hotspot);
 					}
 					else if (button == null)
 					{
@@ -200,14 +206,7 @@ namespace AC
 			else
 			{
 				Camera _camera = Camera.main;
-				if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-				{
-					if (KickStarter.settingsManager.onlyInteractWhenCursorUnlocked && !UltimateFPSIntegration.IsCursorForced ())
-					{
-						_camera = null;
-					}
-				}
-				
+
 				if (_camera)
 				{
 					Ray ray = _camera.ScreenPointToRay (KickStarter.playerInput.GetMousePosition ());
@@ -429,7 +428,7 @@ namespace AC
 					
 					hotspot = newHotspot;
 					hotspot.Select ();
-					
+
 					if (KickStarter.settingsManager.SelectInteractionMethod () == SelectInteractions.CyclingCursorAndClickingHotspot)
 					{
 						KickStarter.runtimeInventory.MatchInteractions ();
@@ -739,7 +738,7 @@ namespace AC
 			
 			if (KickStarter.player)
 			{
-				if (button != null && !button.isBlocking && (button.playerAction == PlayerAction.WalkToMarker || button.playerAction == PlayerAction.WalkTo) && KickStarter.settingsManager.movementMethod != MovementMethod.UltimateFPS)
+				if (button != null && !button.isBlocking && (button.playerAction == PlayerAction.WalkToMarker || button.playerAction == PlayerAction.WalkTo))
 				{
 					KickStarter.stateHandler.gameState = GameState.Normal;
 					hotspotMovingTo = hotspot;
@@ -794,7 +793,7 @@ namespace AC
 					
 					if (button.playerAction == PlayerAction.WalkToMarker && _hotspot.walkToMarker)
 					{
-						if (Vector3.Distance (KickStarter.player.transform.position, _hotspot.walkToMarker.transform.position) > (1.05f - KickStarter.settingsManager.destinationAccuracy))
+						if (Vector3.Distance (KickStarter.player.transform.position, _hotspot.walkToMarker.transform.position) > KickStarter.settingsManager.GetDestinationThreshold ())
 						{
 							if (KickStarter.navigationManager)
 							{
@@ -826,7 +825,7 @@ namespace AC
 						{
 							lookVector = _hotspot.walkToMarker.transform.forward;
 							lookVector.y = 0;
-							KickStarter.player.EndPath (false);
+							KickStarter.player.EndPath ();
 							KickStarter.player.SetLookDirection (lookVector, false);
 							
 							while (KickStarter.player.IsTurning ())
@@ -841,49 +840,59 @@ namespace AC
 						}
 					}
 					
-					else if (lookVector.magnitude > 2f && button.playerAction == PlayerAction.WalkTo)
+					else if (button.playerAction == PlayerAction.WalkTo)
 					{
-						if (KickStarter.navigationManager)
+						float dist = Vector3.Distance (KickStarter.player.transform.position, targetPos);
+						if (_hotspot.walkToMarker)
 						{
-							Vector3[] pointArray;
-							Vector3 targetPosition = _hotspot.transform.position;
-							if (_hotspot.walkToMarker)
-							{
-								targetPosition = _hotspot.walkToMarker.transform.position;
-							}
-							
-							if (KickStarter.settingsManager.ActInScreenSpace ())
-							{
-								targetPosition = AdvGame.GetScreenNavMesh (targetPosition);
-							}
-							
-							pointArray = KickStarter.navigationManager.navigationEngine.GetPointsArray (KickStarter.player.transform.position, targetPosition, KickStarter.player);
-							KickStarter.player.MoveAlongPoints (pointArray, doRun);
-							targetPos = pointArray [pointArray.Length - 1];
+							dist = Vector3.Distance (KickStarter.player.transform.position, _hotspot.walkToMarker.transform.position);
 						}
-						
-						if (button.setProximity)
+
+						if ((button.setProximity && dist > button.proximity) ||
+							(!button.setProximity && dist > 2f))
 						{
-							button.proximity = Mathf.Max (button.proximity, 1f);
-							targetPos.y = KickStarter.player.transform.position.y;
-							
-							while (Vector3.Distance (KickStarter.player.transform.position, targetPos) > button.proximity && KickStarter.player.GetPath ())
+							if (KickStarter.navigationManager)
 							{
-								if (doSnap)
+								Vector3[] pointArray;
+								Vector3 targetPosition = _hotspot.transform.position;
+								if (_hotspot.walkToMarker)
 								{
-									break;
+									targetPosition = _hotspot.walkToMarker.transform.position;
 								}
-								yield return new WaitForFixedUpdate ();
+								
+								if (KickStarter.settingsManager.ActInScreenSpace ())
+								{
+									targetPosition = AdvGame.GetScreenNavMesh (targetPosition);
+								}
+								
+								pointArray = KickStarter.navigationManager.navigationEngine.GetPointsArray (KickStarter.player.transform.position, targetPosition, KickStarter.player);
+								KickStarter.player.MoveAlongPoints (pointArray, doRun);
+								targetPos = pointArray [pointArray.Length - 1];
 							}
-						}
-						else
-						{
-							if (!doSnap)
+							
+							if (button.setProximity)
 							{
-								yield return new WaitForSeconds (0.6f);
+								button.proximity = Mathf.Max (button.proximity, 1f);
+								targetPos.y = KickStarter.player.transform.position.y;
+								
+								while (Vector3.Distance (KickStarter.player.transform.position, targetPos) > button.proximity && KickStarter.player.GetPath ())
+								{
+									if (doSnap)
+									{
+										break;
+									}
+									yield return new WaitForFixedUpdate ();
+								}
+							}
+							else
+							{
+								if (!doSnap)
+								{
+									yield return new WaitForSeconds (0.6f);
+								}
 							}
 						}
-						
+
 						if (button.faceAfter)
 						{
 							if (KickStarter.settingsManager.ActInScreenSpace ())
@@ -915,10 +924,10 @@ namespace AC
 					KickStarter.player.charState = CharState.Decelerate;
 				}
 				
-				KickStarter.player.EndPath (false);
+				KickStarter.player.EndPath ();
 				hotspotMovingTo = null;
-				yield return new WaitForSeconds (0.1f);
-				KickStarter.player.EndPath (false);
+			//	yield return new WaitForSeconds (0.1f);
+			//	KickStarter.player.EndPath ();
 				hotspotMovingTo = null;
 			}
 			
@@ -999,13 +1008,14 @@ namespace AC
 		public string GetLabel (int languageNumber)
 		{
 			string label = "";
-			
+
 			if (KickStarter.stateHandler.gameState == GameState.DialogOptions)
 			{
 				return "";
 			}
-			
-			if (KickStarter.cursorManager && KickStarter.runtimeInventory.selectedItem != null && KickStarter.cursorManager.inventoryHandling != InventoryHandling.ChangeCursor && KickStarter.settingsManager.CanSelectItems (false))
+
+			if (KickStarter.cursorManager && KickStarter.runtimeInventory.selectedItem != null && KickStarter.cursorManager.inventoryHandling != InventoryHandling.ChangeCursor)
+			    //&& KickStarter.settingsManager.CanSelectItems (false)
 			{
 				label = KickStarter.runtimeInventory.GetHotspotPrefixLabel (KickStarter.runtimeInventory.selectedItem, KickStarter.runtimeInventory.selectedItem.GetLabel (languageNumber), languageNumber, true);
 			}
@@ -1027,6 +1037,16 @@ namespace AC
 					if (KickStarter.settingsManager.selectInteractions == SelectInteractions.CyclingCursorAndClickingHotspot)
 					{
 						label = KickStarter.cursorManager.GetLabelFromID (KickStarter.playerCursor.GetSelectedCursorID (), languageNumber);
+					}
+					else if (KickStarter.settingsManager.selectInteractions == SelectInteractions.CyclingMenuAndClickingHotspot)
+					{
+						if (hotspot != null)
+						{
+							if (hotspot.useButtons.Count > interactionIndex)
+							{
+								label = KickStarter.cursorManager.GetLabelFromID (hotspot.useButtons [interactionIndex].iconID, languageNumber);
+							}
+						}
 					}
 				}
 			}
@@ -1056,7 +1076,7 @@ namespace AC
 			{
 				label = "";
 			}
-			
+
 			return (label);		
 		}
 		
@@ -1640,8 +1660,12 @@ namespace AC
 		public void StopMovingToHotspot ()
 		{
 			hotspotMovingTo = null;
-			KickStarter.player.EndPath ();
-			KickStarter.player.ClearHeadTurnTarget (false, HeadFacing.Hotspot);
+
+			if (KickStarter.player)
+			{
+				KickStarter.player.EndPath ();
+				KickStarter.player.ClearHeadTurnTarget (false, HeadFacing.Hotspot);
+			}
 			StopInteraction ();
 		}
 		

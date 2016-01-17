@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuLabel.cs"
  * 
@@ -356,7 +356,7 @@ namespace AC
 						{
 							string line = speech.GetSpeaker ();
 
-							if (line != "" || updateIfEmpty)
+							if (line != "" || updateIfEmpty || speech.GetSpeakingCharacter () == null)
 							{
 								newLabel = line;
 							}

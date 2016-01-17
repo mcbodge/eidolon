@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharFollow.cs"
  * 
@@ -35,6 +35,7 @@ namespace AC
 		public NPC npcToMove;
 		public Char charToFollow;
 		public bool followPlayer;
+		public bool faceWhenIdle;
 		public float updateFrequency = 2f;
 		public float followDistance = 1f;
 		public float followDistanceMax = 15f;
@@ -70,7 +71,7 @@ namespace AC
 
 				if (followPlayer || charToFollow != (Char) npcToMove)
 				{
-					npcToMove.FollowAssign (charToFollow, followPlayer, updateFrequency, followDistance, followDistanceMax);
+					npcToMove.FollowAssign (charToFollow, followPlayer, updateFrequency, followDistance, followDistanceMax, faceWhenIdle);
 				}
 			}
 
@@ -142,11 +143,39 @@ namespace AC
 				{
 					EditorGUILayout.HelpBox ("Maximum distance must be greater than minimum distance.", MessageType.Warning);
 				}
+
+				if (followPlayer)
+				{
+					faceWhenIdle = EditorGUILayout.Toggle ("Faces Player when idle?", faceWhenIdle);
+				}
+				else
+				{
+					faceWhenIdle = EditorGUILayout.Toggle ("Faces character when idle?", faceWhenIdle);
+				}
 			}
 			
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				if (!followPlayer && charToFollow != null && charToFollow.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (charToFollow);
+				}
+				AddSaveScript <RememberNPC> (npcToMove);
+			}
+
+			if (!followPlayer)
+			{
+				AssignConstantID <Char> (charToFollow, charToFollowID, charToFollowParameterID);
+			}
+			AssignConstantID <NPC> (npcToMove, npcToMoveID, npcToMoveParameterID);
+		}
+
 		
 		override public string SetLabel ()
 		{

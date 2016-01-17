@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Dialog.cs"
  * 
@@ -143,20 +143,35 @@ namespace AC
 			// Play sound and time displayDuration to it
 			if (lineID > -1 && log.speakerName != "" && KickStarter.speechManager.searchAudioFiles)
 			{
-				string fullFilename = "Speech/";
-				string filename = KickStarter.speechManager.GetLineFilename (lineID);
-				if (_language != "" && KickStarter.speechManager.translateAudio)
+				AudioClip clipObj = null;
+
+				if (KickStarter.speechManager.autoNameSpeechFiles)
 				{
-					// Not in original language
-					fullFilename += _language + "/";
+					string fullFilename = "Speech/";
+					string filename = KickStarter.speechManager.GetLineFilename (lineID);
+					if (_language != "" && KickStarter.speechManager.translateAudio)
+					{
+						// Not in original language
+						fullFilename += _language + "/";
+					}
+					if (KickStarter.speechManager.placeAudioInSubfolders)
+					{
+						fullFilename += filename + "/";
+					}
+					fullFilename += filename + lineID;
+
+					clipObj = Resources.Load (fullFilename) as AudioClip;
+
+					if (clipObj == null)
+					{
+						ACDebug.Log ("Cannot find audio file: " + fullFilename);
+					}
 				}
-				if (KickStarter.speechManager.placeAudioInSubfolders)
+				else
 				{
-					fullFilename += filename + "/";
+					clipObj = KickStarter.speechManager.GetLineCustomAudioClip (lineID, Options.GetLanguage ());
 				}
-				fullFilename += filename + lineID;
-				
-				AudioClip clipObj = Resources.Load (fullFilename) as AudioClip;
+
 				if (clipObj)
 				{
 					AudioSource audioSource = null;
@@ -170,11 +185,19 @@ namespace AC
 								FaceFXIntegration.Play (speaker, log.speakerName + lineID, clipObj);
 							}
 						}
-						
+
 						if (_speaker.speechAudioSource)
 						{
-							_speaker.speechAudioSource.volume = Options.optionsData.speechVolume;
 							audioSource = _speaker.speechAudioSource;
+
+							if (_speaker.speechAudioSource.GetComponent <Sound>())
+							{
+								_speaker.speechAudioSource.GetComponent <Sound>().SetVolume (Options.optionsData.speechVolume);
+							}
+							else
+							{
+								_speaker.speechAudioSource.volume = Options.optionsData.speechVolume;
+							}
 						}
 						else
 						{
@@ -208,8 +231,6 @@ namespace AC
 					{
 						displayDuration = 0.5f;
 					}
-					
-					ACDebug.Log ("Cannot find audio file: " + fullFilename);
 				}
 			}
 			else
@@ -316,27 +337,7 @@ namespace AC
 						{
 							if (currentCharIndex == speechGaps [gapIndex].characterIndex)
 							{
-								float waitTime = speechGaps [gapIndex].waitTime;
-								pauseGap = true;
-								pauseIsIndefinite = false;
-								if (speechGaps [gapIndex].pauseIsIndefinite)
-								{
-									pauseEndTime = 0f;
-									pauseIsIndefinite = true;
-								}
-								else if (waitTime >= 0f)
-								{
-									pauseEndTime = waitTime;
-								}
-								else if (speechGaps [gapIndex].expressionID >= 0)
-								{
-									pauseEndTime = 0f;
-									speaker.SetExpression (speechGaps [gapIndex].expressionID);
-								}
-								else
-								{
-									pauseEndTime = 0f;
-								}
+								SetPauseGap ();
 								return;
 							}
 						}
@@ -494,7 +495,7 @@ namespace AC
 								{
 									for (int i=speechGaps.Count-1; i>=gapIndex; i--)
 									{
-										if (speechGaps[i].expressionID >= 0)
+										if (i >= 0 && speechGaps[i].expressionID >= 0)
 										{
 											speaker.SetExpression (speechGaps[i].expressionID);
 											return;
@@ -543,8 +544,8 @@ namespace AC
 								}
 								else
 								{
-									pauseGap = true;
 									displayText = log.fullText.Substring (0, speechGaps[gapIndex].characterIndex);
+									SetPauseGap ();
 								}
 							}
 							else
@@ -564,6 +565,32 @@ namespace AC
 						}
 					}
 				}
+			}
+		}
+
+
+		private void SetPauseGap ()
+		{
+			float waitTime = speechGaps [gapIndex].waitTime;
+			pauseGap = true;
+			pauseIsIndefinite = false;
+			if (speechGaps [gapIndex].pauseIsIndefinite)
+			{
+				pauseEndTime = 0f;
+				pauseIsIndefinite = true;
+			}
+			else if (waitTime >= 0f)
+			{
+				pauseEndTime = waitTime;
+			}
+			else if (speechGaps [gapIndex].expressionID >= 0)
+			{
+				pauseEndTime = 0f;
+				speaker.SetExpression (speechGaps [gapIndex].expressionID);
+			}
+			else
+			{
+				pauseEndTime = 0f;
 			}
 		}
 

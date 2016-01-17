@@ -1,9 +1,9 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
- *	"ThirdPersonCamera.cs"
+ *	"GameCameraThirdPerson.cs"
  * 
  *	This is attached to a scene-based camera, similar to GameCamera and GameCamera2D.
  *	It should not be a child of the Player, but instead scene-specific.
@@ -18,8 +18,8 @@ namespace AC
 
 	/**
 	 * A third-person game similar to those found in action-adventure games.
-	 * The camera will rotate around it's target and follow just behind it.
-	 * It should not be a child of the Player / target - it will attach itself to it's target through script.
+	 * The camera will rotate around its target and follow just behind it.
+	 * It should not be a child of the Player / target - it will attach itself to its target through script.
 	 */
 	public class GameCameraThirdPerson : _Camera
 	{
@@ -77,6 +77,8 @@ namespace AC
 		public float pitchDeceleration = 20f;
 		/** The maximum pitch angle, if pitchLock = RotationLock.Limited */
 		public float maxPitch = 40f;
+		/** The minimum pitch angle, if pitchLock = RotationLock.Limited */
+		public float minPitch = -40f;
 		/** The name of the Input axis that controls pitch rotation, if isDragControlled = False */
 		public string pitchAxis = "";
 		/** If True, then the direction of pitch rotations will be reversed */
@@ -171,11 +173,29 @@ namespace AC
 		}
 
 
-		private void FixedUpdate ()
+		public override void _Update ()
 		{
 			UpdateTargets ();
 			DetectCollisions ();
 
+			if (!doFixedUpdate)
+			{
+				UpdateSelf ();
+			}
+		}
+
+
+		public override void _FixedUpdate ()
+		{
+			if (doFixedUpdate)
+			{
+				UpdateSelf ();
+			}
+		}
+
+
+		private void UpdateSelf ()
+		{
 			transform.rotation = Quaternion.Lerp (transform.rotation, targetRotation, Time.deltaTime * 10f);
 			transform.position = Vector3.Lerp (transform.position, targetPosition - (targetPosition - centrePosition).normalized * actualCollisionOffset, Time.deltaTime * 10f);
 		}
@@ -244,8 +264,7 @@ namespace AC
 							inputMovement = Vector2.zero;
 						}
 					}
-					
-					
+				
 					if (spinLock != RotationLock.Locked)
 					{
 						if (inputMovement.x == 0f)
@@ -313,7 +332,7 @@ namespace AC
 							spin = Mathf.LerpAngle (spin, target.eulerAngles.y + spinOffset, spinAccleration * Time.deltaTime);
 						}
 					}
-					
+				
 					if (pitchLock != RotationLock.Locked)
 					{
 						if (inputMovement.y == 0f)
@@ -353,9 +372,9 @@ namespace AC
 							}
 							else if ((invertPitch && deltaPitch < 0f) || (!invertPitch && deltaPitch > 0f))
 							{
-								if (maxPitch + pitch < 5f)
+								if (minPitch - pitch > -5f)
 								{
-									deltaPitch *= (maxPitch + pitch) / 5f;
+									deltaPitch *= (minPitch - pitch) / -5f;
 								}
 							}
 						}
@@ -371,7 +390,7 @@ namespace AC
 						
 						if (pitchLock == RotationLock.Limited)
 						{
-							pitch = Mathf.Clamp (pitch, -maxPitch, maxPitch);
+							pitch = Mathf.Clamp (pitch, minPitch, maxPitch);
 						}
 					}
 				}
@@ -381,10 +400,25 @@ namespace AC
 					pitch = maxPitch;
 				}
 			}
+			else
+			{
+				if (spinLock != RotationLock.Free)
+				{
+					if (alwaysBehind)
+					{
+						spin = Mathf.LerpAngle (spin, target.eulerAngles.y + spinOffset, spinAccleration * Time.deltaTime);
+					}
+				}
+			}
 			
 			float finalSpin = spin;
 			float finalPitch = pitch;
-			if (!targetIsPlayer)
+
+			if (alwaysBehind && spinLock == RotationLock.Limited)
+			{
+				finalSpin += target.eulerAngles.y;
+			}
+			else if (!targetIsPlayer)
 			{
 				if (spinLock != RotationLock.Locked)
 				{

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuSlider.cs"
  * 
@@ -138,7 +138,7 @@ namespace AC
 				if (isClickable)
 				{
 					uiSlider.onValueChanged.AddListener ((amount) => {
-						ProcessClick (_menu, 0, KickStarter.playerInput.GetMouseState ());
+						ProcessClickUI (_menu, 0, KickStarter.playerInput.GetMouseState ());
 					});
 				}
 			}
@@ -456,6 +456,7 @@ namespace AC
 					if (sliderType == AC_SliderType.Speech)
 					{
 						Options.optionsData.speechVolume = amount;
+						KickStarter.options.SetVolume (SoundType.SFX);
 					}
 					else if (sliderType == AC_SliderType.Music)
 					{

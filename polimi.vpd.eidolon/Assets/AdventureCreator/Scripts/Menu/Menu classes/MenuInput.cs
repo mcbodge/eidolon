@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuInput.cs"
  * 
@@ -208,7 +208,7 @@ namespace AC
 			base.Display (_style, _slot, zoom, isActive);
 
 			string fullText = label;
-			if (isSelected || isActive)
+			if (Application.isPlaying && (isSelected || isActive))
 			{
 				if (Options.GetLanguageName () == "Arabic" || Options.GetLanguageName () == "Hebrew")
 				{

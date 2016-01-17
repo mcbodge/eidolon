@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"FollowTintMap.cs"
  * 
@@ -17,7 +17,7 @@ namespace AC
 {
 
 	/**
-	 * Attach this script to a GameObject to affect the colour values of it's SpriteRenderer component, according to a TintMap.
+	 * Attach this script to a GameObject to affect the colour values of its SpriteRenderer component, according to a TintMap.
 	 * This is intended for 2D character sprites, to provide lighting effects when moving around a scene.
 	 */
 	[RequireComponent (typeof (SpriteRenderer))]
@@ -139,7 +139,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a VisibilityData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a VisibilityData class with its own variables that need saving.</summary>
 		 * <param name = "visibilityData">The original VisibilityData class</param>
 		 * <returns>The updated VisibilityData class</returns>
 		 */
@@ -159,7 +159,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates it's own variables from a VisibilityData class.</summary>
+		 * <summary>Updates its own variables from a VisibilityData class.</summary>
 		 * <param name = "data">The VisibilityData class to load from</param>
 		 */
 		public void LoadData (VisibilityData data)

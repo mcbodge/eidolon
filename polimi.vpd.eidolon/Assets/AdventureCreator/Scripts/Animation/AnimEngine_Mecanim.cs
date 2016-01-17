@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"AnimEngine_Mecanim.cs"
  * 
@@ -139,7 +139,7 @@ namespace AC
 		}
 
 
-		public override void ActionSpeechGUI (ActionSpeech action)
+		public override void ActionSpeechGUI (ActionSpeech action, Char speaker)
 		{
 			#if UNITY_EDITOR
 			
@@ -579,14 +579,14 @@ namespace AC
 			if (action.renderLock_scale == RenderLock.Set)
 			{
 				action._char.lockScale = true;
+				float _scale = (float) action.scale / 100f;
 				
 				if (action._char.spriteChild != null)
 				{
-					action._char.spriteScale = (float) action.scale / 100f;
+					action._char.spriteScale = _scale;
 				}
 				else
 				{
-					float _scale = (float) action.scale;
 					action._char.transform.localScale = new Vector3 (_scale, _scale, _scale);
 				}
 			}
@@ -606,10 +606,7 @@ namespace AC
 				return;
 			}
 
-			if (character.moveSpeedParameter != "")
-			{
-				character.GetAnimator ().SetFloat (character.moveSpeedParameter, character.GetMoveSpeed ());
-			}
+			MoveCharacter ();
 
 			if (character.talkParameter != "")
 			{
@@ -640,6 +637,17 @@ namespace AC
 				return;
 			}
 
+			MoveCharacter ();
+
+			if (character.turnParameter != "")
+			{
+				character.GetAnimator ().SetFloat (character.turnParameter, character.GetTurnFloat ());
+			}
+		}
+
+
+		private void MoveCharacter ()
+		{
 			if (character.moveSpeedParameter != "")
 			{
 				if (character.IsReversing ())
@@ -648,13 +656,8 @@ namespace AC
 				}
 				else
 				{
-					character.GetAnimator ().SetFloat (character.moveSpeedParameter, character.GetMoveSpeed ());
+					character.GetAnimator ().SetFloat (character.moveSpeedParameter, character.GetMoveSpeed (true));
 				}
-			}
-
-			if (character.turnParameter != "")
-			{
-				character.GetAnimator ().SetFloat (character.turnParameter, character.GetTurnFloat ());
 			}
 		}
 
@@ -666,17 +669,7 @@ namespace AC
 				return;
 			}
 
-			if (character.moveSpeedParameter != "")
-			{
-				if (character.IsReversing ())
-				{
-					character.GetAnimator ().SetFloat (character.moveSpeedParameter, -character.GetMoveSpeed ());
-				}
-				else
-				{
-					character.GetAnimator ().SetFloat (character.moveSpeedParameter, character.GetMoveSpeed ());
-				}
-			}
+			MoveCharacter ();
 
 			if (character.turnParameter != "")
 			{
@@ -692,10 +685,7 @@ namespace AC
 				return;
 			}
 
-			if (character.moveSpeedParameter != "")
-			{
-				character.GetAnimator ().SetFloat (character.moveSpeedParameter, character.GetMoveSpeed ());
-			}
+			MoveCharacter ();
 
 			if (character.talkParameter != "")
 			{

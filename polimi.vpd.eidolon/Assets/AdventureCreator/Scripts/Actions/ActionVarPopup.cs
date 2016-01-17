@@ -1,12 +1,12 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionVarSequence.cs"
  * 
  *	This action reads a Popup Variable and performs
- *	different follow-up Actions based on it's value.
+ *	different follow-up Actions based on its value.
  * 
  */
 

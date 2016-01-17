@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuInventoryBox.cs"
  * 
@@ -122,7 +122,7 @@ namespace AC
 				{
 					int j=i;
 					uiSlot.uiButton.onClick.AddListener (() => {
-						ProcessClick (_menu, j, MouseState.SingleClick);
+						ProcessClickUI (_menu, j, MouseState.SingleClick);
 					});
 					uiSlot.AddClickHandler (_menu, this, j);
 				}
@@ -419,7 +419,7 @@ namespace AC
 				{
 					return;
 				}
-
+			
 				if (displayType == ConversationDisplayType.IconOnly)
 				{
 					GUI.Label (GetSlotRectRelative (_slot), "", _style);
@@ -976,6 +976,19 @@ namespace AC
 			{
 				KickStarter.runtimeInventory.ProcessInventoryBoxClick (_menu, this, _slot, _mouseState);
 			}
+		}
+
+
+		public int GetItemSlot (int itemID)
+		{
+			foreach (InvItem invItem in items)
+			{
+				if (invItem.id == itemID)
+				{
+					return items.IndexOf (invItem);
+				}
+			}
+			return 0;
 		}
 
 	}

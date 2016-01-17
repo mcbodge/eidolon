@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCameraSplit.cs"
  * 
@@ -23,6 +23,7 @@ namespace AC
 	[System.Serializable]
 	public class ActionCameraSplit : Action
 	{
+
 		public int parameterID1 = -1;
 		public int parameterID2 = -1;
 
@@ -134,6 +135,19 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <ConstantID> (cam1);
+				AddSaveScript <ConstantID> (cam2);
+			}
+
+			AssignConstantID <_Camera> (cam1, constantID1, parameterID1);
+			AssignConstantID <_Camera> (cam2, constantID2, parameterID2);
 		}
 		
 		

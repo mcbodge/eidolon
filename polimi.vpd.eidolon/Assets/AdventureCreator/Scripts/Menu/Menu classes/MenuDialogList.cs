@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuDialogList.cs"
  * 
@@ -133,7 +133,7 @@ namespace AC
 				{
 					int j=i;
 					uiSlot.uiButton.onClick.AddListener (() => {
-						ProcessClick (_menu, j, KickStarter.playerInput.GetMouseState ());
+						ProcessClickUI (_menu, j, KickStarter.playerInput.GetMouseState ());
 					});
 				}
 				i++;

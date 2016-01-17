@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuGraphic.cs"
  * 
@@ -187,7 +187,7 @@ namespace AC
 			
 			SetUIGraphic ();
 		}
-		
+
 
 		/**
 		 * <summary>Draws the element using OnGUI</summary>
@@ -199,7 +199,7 @@ namespace AC
 		public override void Display (GUIStyle _style, int _slot, float zoom, bool isActive)
 		{
 			base.Display (_style, _slot, zoom, isActive);
-			
+
 			if (graphicType == AC_GraphicType.Normal)
 			{
 				if (graphic != null)

@@ -26,7 +26,7 @@ namespace AC
 		public static void Init ()
 		{
 			CharacterWizardWindow window = (CharacterWizardWindow) EditorWindow.GetWindow (typeof (CharacterWizardWindow));
-			AdvGame.SetWindowTitle (window, "Character wizard");
+			UnityVersionHandler.SetWindowTitle (window, "Character wizard");
 			window.position = new Rect (300, 200, 350, 300);
 		}
 		
@@ -261,11 +261,7 @@ namespace AC
 				if (is2D)
 				{
 					BoxCollider2D boxCollider = newCharacterOb.AddComponent <BoxCollider2D>();
-					#if UNITY_5
-					boxCollider.offset = new Vector2 (0f, 1f);
-					#else
-					boxCollider.center = new Vector2 (0f, 1f);
-					#endif
+					UnityVersionHandler.SetBoxCollider2DCentre (boxCollider, new Vector2 (0f, 1f));
 					boxCollider.size = new Vector2 (1f, 2f);
 					boxCollider.isTrigger = true;
 				}
@@ -405,7 +401,7 @@ namespace AC
 				}
 				else if (animationEngine == AnimationEngine.Legacy)
 				{
-					EditorGUILayout.HelpBox ("Legacy animation is for 3D characters that do not require complex animation trees or multiple layers. It's easier to use than Mecanim, but not as powerful.", MessageType.Info);
+					EditorGUILayout.HelpBox ("Legacy animation is for 3D characters that do not require complex animation trees or multiple layers. Its easier to use than Mecanim, but not as powerful.", MessageType.Info);
 				}
 				else if (animationEngine == AnimationEngine.Mecanim)
 				{
@@ -437,7 +433,7 @@ namespace AC
 				{
 					if (animationEngine == AnimationEngine.Custom)
 					{
-						EditorGUILayout.HelpBox ("A subclass of 'AnimEngine' will be used to bridge AC with an external animation engine. The subclass script defined above must exist for the character to animate. Once created, enter it's name in the box below:", MessageType.Info);
+						EditorGUILayout.HelpBox ("A subclass of 'AnimEngine' will be used to bridge AC with an external animation engine. The subclass script defined above must exist for the character to animate. Once created, enter its name in the box below:", MessageType.Info);
 						customAnimationClass = EditorGUILayout.TextField ("Subclass script name:", customAnimationClass);
 					}
 					else if (animationEngine == AnimationEngine.Mecanim || animationEngine == AnimationEngine.SpritesUnityComplex || animationEngine == AnimationEngine.SpritesUnity)

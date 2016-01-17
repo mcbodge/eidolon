@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionMovie.cs"
  * 
@@ -194,13 +194,11 @@ namespace AC
 			filePath = EditorGUILayout.TextField ("Path to clip file:", filePath);
 			canSkip = EditorGUILayout.Toggle ("Player can skip?", canSkip);
 
+			EditorGUILayout.HelpBox ("The clip must be placed in a folder named 'StreamingAssets'.", MessageType.Info);
+
 			#elif UNITY_5 || UNITY_PRO_LICENSE
 
 			movieClip = (MovieTexture) EditorGUILayout.ObjectField ("Movie clip:", movieClip, typeof (MovieTexture), false);
-			if (movieClip)
-			{
-				EditorGUILayout.HelpBox ("The clip must be placed in a folder named 'StreamingAssets'.", MessageType.Info);
-			}
 
 			movieClipType = (MovieClipType) EditorGUILayout.EnumPopup ("Play clip:", movieClipType);
 			if (movieClipType == MovieClipType.OnMaterial)

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionSceneCheck.cs"
  * 
@@ -55,8 +55,8 @@ namespace AC
 			}
 			else
 			{
-				actualSceneNumber = Application.loadedLevel;
-				actualSceneName = Application.loadedLevelName;
+				actualSceneNumber = UnityVersionHandler.GetCurrentSceneNumber ();
+				actualSceneName = UnityVersionHandler.GetCurrentSceneName ();
 			}
 
 			if (intCondition == IntCondition.EqualTo)
@@ -93,19 +93,19 @@ namespace AC
 
 		override public void ShowGUI ()
 		{
+			sceneToCheck = (SceneToCheck) EditorGUILayout.EnumPopup ("Check previous or current:", sceneToCheck);
 			chooseSceneBy = (ChooseSceneBy) EditorGUILayout.EnumPopup ("Choose scene by:", chooseSceneBy);
 
 			EditorGUILayout.BeginHorizontal();
-				sceneToCheck = (SceneToCheck) EditorGUILayout.EnumPopup (sceneToCheck);
 				if (chooseSceneBy == ChooseSceneBy.Name)
 				{
-					EditorGUILayout.LabelField ("scene name is:", GUILayout.Width (100f));
+					EditorGUILayout.LabelField ("Scene name is:", GUILayout.Width (100f));
 					intCondition = (IntCondition) EditorGUILayout.EnumPopup (intCondition);
 					sceneName = EditorGUILayout.TextField (sceneName);
 				}
 				else
 				{
-					EditorGUILayout.LabelField ("scene number is:", GUILayout.Width (100f));
+					EditorGUILayout.LabelField ("Scene number is:", GUILayout.Width (100f));
 					intCondition = (IntCondition) EditorGUILayout.EnumPopup (intCondition);
 					sceneNumber = EditorGUILayout.IntField (sceneNumber);
 				}

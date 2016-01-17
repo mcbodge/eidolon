@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharFace.cs"
  * 
@@ -82,6 +82,11 @@ namespace AC
 				{
 					if (faceType == CharFaceType.Body)
 					{
+						if (!isInstant)
+						{
+							charToMove.EndPath ();
+						}
+
 						if (lookUpDown && isPlayer && KickStarter.settingsManager.IsInFirstPerson ())
 						{
 							Player player = (Player) charToMove;
@@ -98,14 +103,13 @@ namespace AC
 						}
 						else
 						{
-							Vector3 lookAtPosition = faceObject.transform.position;
-
+							Vector3 offset = Vector3.zero;
 							if (faceObject.GetComponent <Hotspot>())
 							{
-								lookAtPosition = faceObject.GetComponent <Hotspot>().GetIconPosition ();
+								offset = faceObject.GetComponent <Hotspot>().GetIconPosition (true);
 							}
 
-							charToMove.SetHeadTurnTarget (lookAtPosition, isInstant);
+							charToMove.SetHeadTurnTarget (faceObject.transform, offset, isInstant);
 						}
 					}
 
@@ -115,11 +119,6 @@ namespace AC
 					}
 					else
 					{
-						if (faceType == CharFaceType.Body)
-						{
-							charToMove.EndPath ();
-						}
-						
 						if (willWait)
 						{
 							return (defaultPauseTime);
@@ -180,7 +179,13 @@ namespace AC
 					}
 					else
 					{
-						charToMove.SetHeadTurnTarget (faceObject.transform.position, true);
+						Vector3 offset = Vector3.zero;
+						if (faceObject.GetComponent <Hotspot>())
+						{
+							offset = faceObject.GetComponent <Hotspot>().GetIconPosition (true);
+						}
+
+						charToMove.SetHeadTurnTarget (faceObject.transform, offset, true);
 					}
 				}
 			}
@@ -274,6 +279,28 @@ namespace AC
 			}
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				if (!isPlayer && charToMove != null && charToMove.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (charToMove);
+				}
+				if (faceType == CharFaceType.Head && faceObject != null)
+				{
+					AddSaveScript <ConstantID> (faceObject);
+				}
+			}
+
+			if (!isPlayer)
+			{
+				AssignConstantID <Char> (charToMove, charToMoveID, charToMoveParameterID);
+			}
+			AssignConstantID (faceObject, faceObjectID, faceObjectParameterID);
 		}
 
 		

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionListAsset.cs"
  * 
@@ -41,6 +41,94 @@ namespace AC
 		/** A List of ActionParameter objects that can be used to override values within the Actions, if useParameters = True */
 		public List<ActionParameter> parameters = new List<ActionParameter>();
 
+
+		#if UNITY_EDITOR
+
+		[MenuItem("CONTEXT/ActionListAsset/Convert to Cutscene")]
+		public static void ConvertToCutscene (MenuCommand command)
+		{
+			ActionListAsset actionListAsset = (ActionListAsset) command.context;
+			GameObject newOb = new GameObject (actionListAsset.name);
+			if (GameObject.Find ("_Cutscenes") != null && GameObject.Find ("_Cutscenes").transform.position == Vector3.zero)
+			{
+				newOb.transform.parent = GameObject.Find ("_Cutscenes").transform;
+			}
+			Cutscene cutscene = newOb.AddComponent <Cutscene>();
+			cutscene.CopyFromAsset (actionListAsset);
+			EditorGUIUtility.PingObject (newOb);
+		}
+
+
+		[MenuItem("CONTEXT/ActionList/Convert to ActionList asset")]
+		public static void ConvertToActionListAsset (MenuCommand command)
+		{
+			ActionList actionList = (ActionList) command.context;
+			ScriptableObject t = CustomAssetUtility.CreateAsset <ActionListAsset> (actionList.gameObject.name);
+
+			ActionListAsset actionListAsset = (ActionListAsset) t;
+			actionListAsset.CopyFromActionList (actionList);
+			AssetDatabase.SaveAssets ();
+			EditorGUIUtility.PingObject (t);
+
+			EditorUtility.SetDirty (actionListAsset);
+		}
+
+
+		public void CopyFromActionList (ActionList actionList)
+		{
+			isSkippable = actionList.isSkippable;
+			actionListType = actionList.actionListType;
+			useParameters = actionList.useParameters;
+			
+			// Copy parameters
+			parameters = new List<ActionParameter>();
+			parameters.Clear ();
+			foreach (ActionParameter parameter in actionList.parameters)
+			{
+				parameters.Add (new ActionParameter (parameter));
+			}
+			
+			// Actions
+			actions = new List<Action>();
+			actions.Clear ();
+			
+			Vector2 firstPosition = new Vector2 (14f, 14f);
+			foreach (Action originalAction in actionList.actions)
+			{
+				if (originalAction == null)
+				{
+					continue;
+				}
+				
+				AC.Action duplicatedAction = Object.Instantiate (originalAction) as AC.Action;
+				
+				if (actionList.actions.IndexOf (originalAction) == 0)
+				{
+					duplicatedAction.nodeRect.x = firstPosition.x;
+					duplicatedAction.nodeRect.y = firstPosition.y;
+				}
+				else
+				{
+					duplicatedAction.nodeRect.x = firstPosition.x + (originalAction.nodeRect.x - firstPosition.x);
+					duplicatedAction.nodeRect.y = firstPosition.y + (originalAction.nodeRect.y - firstPosition.y);
+				}
+
+				duplicatedAction.isAssetFile = true;
+				duplicatedAction.AssignConstantIDs ();
+				duplicatedAction.isMarked = false;
+
+				duplicatedAction.hideFlags = HideFlags.HideInHierarchy;
+				
+				AssetDatabase.AddObjectToAsset (duplicatedAction, this);
+				AssetDatabase.ImportAsset (AssetDatabase.GetAssetPath (duplicatedAction));
+				AssetDatabase.SaveAssets ();
+				AssetDatabase.Refresh ();
+
+				actions.Add (duplicatedAction);
+			}
+		}
+
+		#endif
 
 		/**
 		 * <summary>Checks if the ActionListAsset is skippable. This is safer than just reading 'isSkippable', because it also accounts for actionListType - since ActionLists that run in the background cannot be skipped</summary>

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"NavigationEngine_meshCollider.cs"
  * 
@@ -23,6 +23,23 @@ namespace AC
 
 	public class NavigationEngine_UnityNavigation : NavigationEngine
 	{
+
+		public override void SceneSettingsGUI ()
+		{
+			#if UNITY_EDITOR
+			if (AdvGame.GetReferences ().settingsManager && AdvGame.GetReferences ().settingsManager.IsUnity2D ())
+			{
+				EditorGUILayout.HelpBox ("This method is not compatible with 'Unity 2D' mode.", MessageType.Warning);
+			}
+			#endif
+		}
+
+
+		public override void TurnOn (NavigationMesh navMesh)
+		{
+			ACDebug.LogWarning ("Cannot enable NavMesh " + navMesh.gameObject.name + " as this scene's Navigation Method is Unity Navigation.");
+		}
+
 
 		public override Vector3[] GetPointsArray (Vector3 startPosition, Vector3 targetPosition, AC.Char _char = null)
 		{

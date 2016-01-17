@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuJournal.cs"
  * 
@@ -43,8 +43,15 @@ namespace AC
 		public TextEffects textEffects;
 		/** An ActionList to run whenever a new page is added */
 		public ActionListAsset actionListOnAddPage;
+		/** What type of journal this is (NewJournal, DisplayExistingJournal) */
+		public JournalType journalType = JournalType.NewJournal;
+		/** The page offset, if journalType = JournalType.DisplayExistingJournal) */
+		public int pageOffset;
+		/** The name of the Journal element within the same Menu that is used as reference, if journalType = JournalType.DisplayExistingJournal) */
+		public string otherJournalTitle;
 
 		private string fullText;
+		private MenuJournal otherJournal;
 
 
 		/**
@@ -66,6 +73,9 @@ namespace AC
 			textEffects = TextEffects.None;
 			fullText = "";
 			actionListOnAddPage = null;
+			journalType = JournalType.NewJournal;
+			pageOffset = 0;
+			otherJournalTitle = "";
 
 			base.Declare ();
 		}
@@ -107,8 +117,24 @@ namespace AC
 			textEffects = _element.textEffects;
 			fullText = "";
 			actionListOnAddPage = _element.actionListOnAddPage;
+			journalType = _element.journalType;
+			pageOffset = _element.pageOffset;
+			otherJournalTitle = _element.otherJournalTitle;;
 
 			base.Copy (_element);
+		}
+
+
+		public override void Initialise (AC.Menu _menu)
+		{
+			if (journalType == JournalType.DisplayExistingJournal)
+			{
+				MenuElement sharedElement = _menu.GetElementWithName (otherJournalTitle);
+				if (sharedElement != null && sharedElement is MenuJournal)
+				{
+					otherJournal = (MenuJournal) sharedElement;
+				}
+			}
 		}
 
 
@@ -167,64 +193,97 @@ namespace AC
 		{
 			EditorGUILayout.BeginVertical ("Button");
 
-			if (pages == null || pages.Count == 0)
+			journalType = (JournalType) EditorGUILayout.EnumPopup ("Journal type:", journalType);
+			if (journalType == JournalType.DisplayExistingJournal)
 			{
-				pages.Clear ();
-				pages.Add (new JournalPage ());
-			}
-			numPages = pages.Count;
+				EditorGUILayout.HelpBox ("This Journal will share pages from another Journal element in the same Menu.", MessageType.Info);
+				otherJournalTitle = EditorGUILayout.TextField ("Existing element name:", otherJournalTitle);
+				pageOffset = EditorGUILayout.IntField ("Page offset #:", pageOffset);
 
-			for (int i=0; i<pages.Count; i++)
-			{
-				EditorGUILayout.BeginHorizontal ();
-				EditorGUILayout.LabelField ("Page #" + (i+1).ToString () + ":");
-				if (GUILayout.Button ("-", GUILayout.Width (20f)))
+				if (pages == null || pages.Count != 1)
 				{
-					Undo.RecordObject (this, "Delete journal page");
-					pages.RemoveAt (i);
-					break;
+					pages.Clear ();
+					pages.Add (new JournalPage ());
 				}
+
+				EditorGUILayout.BeginHorizontal ();
+				EditorGUILayout.LabelField ("Placeholder text:", GUILayout.Width (146f));
+				pages[0].text = EditorGUILayout.TextArea (pages[0].text);
+				showPage = 1;
 				EditorGUILayout.EndHorizontal ();
 
-				pages[i].text = EditorGUILayout.TextArea (pages[i].text);
-				GUILayout.Box ("", GUILayout.ExpandWidth (true), GUILayout.Height(1));
-			}
-
-			if (GUILayout.Button ("Create new page", EditorStyles.miniButton))
-			{
-				Undo.RecordObject (this, "Create journal page");
-				pages.Add (new JournalPage ());
-			}
-
-			numPages = pages.Count;
-
-			EditorGUILayout.EndVertical ();
-			EditorGUILayout.BeginVertical ("Button");
-
-			if (numPages > 1)
-			{
-				showPage = EditorGUILayout.IntSlider ("Preview page #:", showPage, 1, numPages);
-				startFromPage = EditorGUILayout.Toggle ("Start from this page?", startFromPage);
+				if (source == MenuSource.AdventureCreator)
+				{
+					anchor = (TextAnchor) EditorGUILayout.EnumPopup ("Text alignment:", anchor);
+					textEffects = (TextEffects) EditorGUILayout.EnumPopup ("Text effect:", textEffects);
+				}
+				else
+				{
+					EditorGUILayout.EndVertical ();
+					EditorGUILayout.BeginVertical ("Button");
+					uiText = LinkedUiGUI <Text> (uiText, "Linked Text:", source);
+				}
 			}
 			else
 			{
-				showPage = 1;
-			}
+				if (pages == null || pages.Count == 0)
+				{
+					pages.Clear ();
+					pages.Add (new JournalPage ());
+				}
+				numPages = pages.Count;
 
-			if (source == MenuSource.AdventureCreator)
-			{
-				anchor = (TextAnchor) EditorGUILayout.EnumPopup ("Text alignment:", anchor);
-				textEffects = (TextEffects) EditorGUILayout.EnumPopup ("Text effect:", textEffects);
-			}
-			else
-			{
+				for (int i=0; i<pages.Count; i++)
+				{
+					EditorGUILayout.BeginHorizontal ();
+					EditorGUILayout.LabelField ("Page #" + (i+1).ToString () + ":");
+					if (GUILayout.Button ("-", GUILayout.Width (20f)))
+					{
+						Undo.RecordObject (this, "Delete journal page");
+						pages.RemoveAt (i);
+						break;
+					}
+					EditorGUILayout.EndHorizontal ();
+
+					pages[i].text = EditorGUILayout.TextArea (pages[i].text);
+					GUILayout.Box ("", GUILayout.ExpandWidth (true), GUILayout.Height(1));
+				}
+
+				if (GUILayout.Button ("Create new page", EditorStyles.miniButton))
+				{
+					Undo.RecordObject (this, "Create journal page");
+					pages.Add (new JournalPage ());
+				}
+
+				numPages = pages.Count;
+
 				EditorGUILayout.EndVertical ();
 				EditorGUILayout.BeginVertical ("Button");
-				uiText = LinkedUiGUI <Text> (uiText, "Linked Text:", source);
+
+				if (numPages > 1)
+				{
+					showPage = EditorGUILayout.IntSlider ("Preview page #:", showPage, 1, numPages);
+					startFromPage = EditorGUILayout.Toggle ("Start from this page?", startFromPage);
+				}
+				else
+				{
+					showPage = 1;
+				}
+
+				if (source == MenuSource.AdventureCreator)
+				{
+					anchor = (TextAnchor) EditorGUILayout.EnumPopup ("Text alignment:", anchor);
+					textEffects = (TextEffects) EditorGUILayout.EnumPopup ("Text effect:", textEffects);
+				}
+				else
+				{
+					EditorGUILayout.EndVertical ();
+					EditorGUILayout.BeginVertical ("Button");
+					uiText = LinkedUiGUI <Text> (uiText, "Linked Text:", source);
+				}
+
+				actionListOnAddPage = (ActionListAsset) EditorGUILayout.ObjectField ("ActionList on add page:", actionListOnAddPage, typeof (ActionListAsset), false);
 			}
-
-			actionListOnAddPage = (ActionListAsset) EditorGUILayout.ObjectField ("ActionList on add page:", actionListOnAddPage, typeof (ActionListAsset), false);
-
 			EditorGUILayout.EndVertical ();
 			
 			base.ShowGUI (source);
@@ -241,10 +300,29 @@ namespace AC
 		 */
 		public override void PreDisplay (int _slot, int languageNumber, bool isActive)
 		{
-			if (pages.Count >= showPage)
+			if (Application.isPlaying && journalType == JournalType.DisplayExistingJournal)
 			{
-				fullText = TranslatePage (pages[showPage - 1], languageNumber);
-				fullText = AdvGame.ConvertTokens (fullText);
+				if (otherJournal != null)
+				{
+					int index = otherJournal.showPage + pageOffset - 1;
+					if (otherJournal.pages.Count > index)
+					{
+						fullText = TranslatePage (otherJournal.pages[index], languageNumber);
+					}
+					else
+					{
+						fullText = "";
+					}
+					fullText = AdvGame.ConvertTokens (fullText);
+				}
+			}
+			else
+			{
+				if (pages.Count >= showPage)
+				{
+					fullText = TranslatePage (pages[showPage - 1], languageNumber);
+					fullText = AdvGame.ConvertTokens (fullText);
+				}
 			}
 
 			if (uiText != null)
@@ -295,35 +373,69 @@ namespace AC
 		 */
 		public override string GetLabel (int slot, int languageNumber)
 		{
-			return TranslatePage (pages [showPage-1], languageNumber);
+			if (journalType == JournalType.DisplayExistingJournal)
+			{
+				if (otherJournal != null)
+				{
+					int index = otherJournal.showPage + pageOffset - 1;
+					if (index >= 0 && otherJournal.pages.Count > index)
+					{
+						return TranslatePage (otherJournal.pages [index], languageNumber);
+					}
+				}
+				return "";
+			}
+
+			int i = showPage - 1;
+			if (i >= 0 && pages.Count > i)
+			{
+				return TranslatePage (pages [i], languageNumber);
+			}
+			return "";
 		}
 
 
 		/**
 		 * <summary>Shifts which slots are on display, if the number of slots the element has exceeds the number of slots it can show at once.</summary>
-		 * <param name = "shiftType">The direction to shift slots in (Left, Right)</param>
+		 * <param name = "shiftType">The direction to shift pages in (Left, Right)</param>
 		 * <param name = "doLoop">If True, then shifting right beyond the last page will display the first page, and vice-versa</param>
+		 * <param name = "amount">The amount to shift pages by</param>
 		 */
-		public void Shift (AC_ShiftInventory shiftType, bool doLoop)
+		public void Shift (AC_ShiftInventory shiftType, bool doLoop, int amount)
 		{
+			if (journalType == JournalType.DisplayExistingJournal)
+			{
+				ACDebug.LogWarning ("The journal '" + title + "' cannot be shifted - instead its linked journal (" + otherJournalTitle + ") must be shifted instead.");
+				return;
+			}
+
 			if (shiftType == AC_ShiftInventory.ShiftRight)
 			{
-				if (pages.Count > showPage)
+				showPage += amount;
+			}
+			else if (shiftType == AC_ShiftInventory.ShiftLeft)
+			{
+				showPage -= amount;
+			}
+
+			if (showPage < 1)
+			{
+				if (doLoop)
 				{
-					showPage ++;
+					showPage = pages.Count;
 				}
-				else if (doLoop)
+				else
 				{
 					showPage = 1;
 				}
 			}
-			else if (shiftType == AC_ShiftInventory.ShiftLeft)
+			else if (showPage > pages.Count)
 			{
-				if (showPage > 1)
+				if (doLoop)
 				{
-					showPage --;
+					showPage = 1;
 				}
-				else if (doLoop)
+				else
 				{
 					showPage = pages.Count;
 				}
@@ -343,30 +455,78 @@ namespace AC
 		
 		protected override void AutoSize ()
 		{
-			if (showPage > 0 && pages.Count >= showPage-1)
+			string pageText = "";
+			if (Application.isPlaying && journalType == JournalType.DisplayExistingJournal)
 			{
-				if (pages[showPage-1].text == "" && backgroundTexture != null)
+				if (otherJournal != null)
 				{
-					GUIContent content = new GUIContent (backgroundTexture);
-					AutoSize (content);
+					int index = otherJournal.showPage + pageOffset - 1;
+					if (index >= 0 && otherJournal.pages.Count > index)
+					{
+						pageText = otherJournal.pages [index].text;
+					}
 				}
-				else
-				{
-					GUIContent content = new GUIContent (pages[showPage-1].text);
-					AutoSize (content);
-				}
-			
 			}
+			else
+			{
+				int index = showPage - 1;
+				if (index >= 0 && pages.Count > index)
+				{
+					pageText = pages [index].text;
+				}
+			}
+
+			if (pageText == "" && backgroundTexture != null)
+			{
+				GUIContent content = new GUIContent (backgroundTexture);
+				AutoSize (content);
+			}
+			else
+			{
+				GUIContent content = new GUIContent (pageText);
+				AutoSize (content);
+			}
+		}
+
+
+		public override bool CanBeShifted (AC_ShiftInventory shiftType)
+		{
+			if (journalType == JournalType.DisplayExistingJournal)
+			{
+				return false;
+			}
+
+			if (shiftType == AC_ShiftInventory.ShiftLeft)
+			{
+				if (showPage == 1)
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if (pages.Count <= showPage)
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 
 
 		/**
 		 * <summary>Adds a page to the journal.</summary>
 		 * <param name = "newPage">The page to add</param>
-		 * <param name = "onlyAddNew">If True, then the page will not be added if it's lineID number matches that of any page already in the journal</param>
+		 * <param name = "onlyAddNew">If True, then the page will not be added if its lineID number matches that of any page already in the journal</param>
 		 */
 		public void AddPage (JournalPage newPage, bool onlyAddNew)
 		{
+			if (journalType == JournalType.DisplayExistingJournal)
+			{
+				ACDebug.LogWarning ("The journal '" + title + "' cannot be added to - instead its linked journal (" + otherJournalTitle + ") must be modified instead.");
+				return;
+			}
+
 			if (onlyAddNew && newPage.lineID >= 0 && pages != null && pages.Count > 0)
 			{
 				// Check for existing to avoid duplicates
@@ -394,7 +554,7 @@ namespace AC
 
 		/** The translation ID, as set by SpeechManager */
 		public int lineID = -1;
-		/** The page text, in it's original language */
+		/** The page text, in its original language */
 		public string text = "";
 
 

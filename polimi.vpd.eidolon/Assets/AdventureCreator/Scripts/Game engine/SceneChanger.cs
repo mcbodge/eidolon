@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"SceneChanger.cs"
  * 
@@ -35,7 +35,7 @@ namespace AC
 		private float loadingProgress = 0f;
 
 
-		private void Awake ()
+		public void OnAwake ()
 		{
 			previousSceneInfo = new SceneInfo ("", -1);
 			relativePosition = Vector3.zero;
@@ -119,13 +119,14 @@ namespace AC
 		 * <param name = "nextSceneInfo">Info about the scene to load</param>
 		 * <param name = "sceneNumber">The number of the scene to load, if sceneName = ""</param>
 		 * <param name = "saveRoomData">If True, then the states of the current scene's Remember scripts will be recorded in LevelStorage</param>
+		 * <param name = "forceReload">If True, the scene will be re-loaded if it is already open.</param>
 		 */
-		public void ChangeScene (SceneInfo nextSceneInfo, bool saveRoomData)
+		public void ChangeScene (SceneInfo nextSceneInfo, bool saveRoomData, bool forceReload = false)
 		{
 			if (!isLoading)
 			{
 				PrepareSceneForExit (!KickStarter.settingsManager.useAsyncLoading, saveRoomData);
-				LoadLevel (nextSceneInfo, KickStarter.settingsManager.useLoadingScreen, KickStarter.settingsManager.useAsyncLoading);
+				LoadLevel (nextSceneInfo, KickStarter.settingsManager.useLoadingScreen, KickStarter.settingsManager.useAsyncLoading, forceReload);
 			}
 		}
 
@@ -175,7 +176,7 @@ namespace AC
 		}
 
 
-		private void LoadLevel (SceneInfo nextSceneInfo, bool useLoadingScreen, bool useAsyncLoading)
+		private void LoadLevel (SceneInfo nextSceneInfo, bool useLoadingScreen, bool useAsyncLoading, bool forceReload = false)
 		{
 			if (useLoadingScreen)
 			{
@@ -183,13 +184,13 @@ namespace AC
 			}
 			else
 			{
-				if (useAsyncLoading)
+				if (useAsyncLoading && !forceReload)
 				{
 					StartCoroutine (LoadLevelAsync (nextSceneInfo));
 				}
 				else
 				{
-					StartCoroutine (LoadLevel (nextSceneInfo));
+					StartCoroutine (LoadLevelCo (nextSceneInfo, forceReload));
 				}
 			}
 		}
@@ -200,13 +201,13 @@ namespace AC
 			isLoading = true;
 			loadingProgress = 0f;
 
+			loadingSceneInfo.LoadLevel ();
+			yield return null;
+			
 			if (KickStarter.player != null)
 			{
 				KickStarter.player.transform.position += new Vector3 (0f, -10000f, 0f);
 			}
-
-			loadingSceneInfo.LoadLevel ();
-			yield return null;
 
 			PrepareSceneForExit (true, false);
 			if (loadAsynchronously)
@@ -310,12 +311,12 @@ namespace AC
 		}
 
 
-		private IEnumerator LoadLevel (SceneInfo nextSceneInfo)
+		private IEnumerator LoadLevelCo (SceneInfo nextSceneInfo, bool forceReload = false)
 		{
 			isLoading = true;
 			yield return new WaitForEndOfFrame ();
 
-			nextSceneInfo.LoadLevel ();
+			nextSceneInfo.LoadLevel (forceReload);
 			isLoading = false;
 		}
 
@@ -329,11 +330,6 @@ namespace AC
 				if (KickStarter.player)
 				{
 					KickStarter.player.Halt ();
-					
-					if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-					{
-						UltimateFPSIntegration.SetCameraEnabled (false, true);
-					}
 				}
 				
 				KickStarter.stateHandler.gameState = GameState.Normal;
@@ -355,7 +351,7 @@ namespace AC
 			if (saveRoomData)
 			{
 				KickStarter.levelStorage.StoreCurrentLevelData ();
-				previousSceneInfo = new SceneInfo (Application.loadedLevelName, Application.loadedLevel);
+				previousSceneInfo = new SceneInfo ();
 			}
 
 			playerOnTransition = KickStarter.player;
@@ -367,13 +363,21 @@ namespace AC
 	/**
 	 * A container for information about a scene that can be loaded.
 	 */
-	public struct SceneInfo
+	public class SceneInfo
 	{
 
 		/** The scene's name */
 		public string name;
 		/** The scene's number. If name is left empty, this number will be used to reference the scene instead */
 		public int number;
+
+
+
+		public SceneInfo ()
+		{
+			number = UnityVersionHandler.GetCurrentSceneNumber ();
+			name = UnityVersionHandler.GetCurrentSceneName ();
+		}
 
 
 		/**
@@ -416,7 +420,7 @@ namespace AC
 		 */
 		public bool Matches (SceneInfo _sceneInfo)
 		{
-			if (name == _sceneInfo.name && number == _sceneInfo.number)
+			if (_sceneInfo != null && name == _sceneInfo.name && number == _sceneInfo.number)
 			{
 				return true;
 			}
@@ -425,17 +429,18 @@ namespace AC
 
 
 		/**
-		 * Loads the scene normally.
+		 * <summary>Loads the scene normally.</summary>
+		 * <param name = "forceReload">If True, the scene will be re-loaded if it is already open.</param>
 		 */
-		public void LoadLevel ()
+		public void LoadLevel (bool forceReload = false)
 		{
 			if (name != "")
 			{
-				Application.LoadLevel (name);
+				UnityVersionHandler.OpenScene (name, forceReload);
 			}
 			else
 			{
-				Application.LoadLevel (number);
+				UnityVersionHandler.OpenScene (number, forceReload);
 			}
 		}
 
@@ -446,11 +451,7 @@ namespace AC
 		 */
 		public AsyncOperation LoadLevelASync ()
 		{
-			if (name != "")
-			{
-				return Application.LoadLevelAsync (name);
-			}
-			return Application.LoadLevelAsync (number);
+			return UnityVersionHandler.LoadLevelAsync (number, name);
 		}
 
 	}

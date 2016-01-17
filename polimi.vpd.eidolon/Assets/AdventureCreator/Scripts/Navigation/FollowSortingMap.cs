@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"FollowSortingMap.cs"
  * 
@@ -18,7 +18,7 @@ namespace AC
 {
 
 	/**
-	 * Attach this script to a GameObject to affect the sorting values of it's SpriteRenderer component, according to the scene's SortingMap.
+	 * Attach this script to a GameObject to affect the sorting values of its SpriteRenderer component, according to the scene's SortingMap.
 	 * It is also used by the Char script to scale a 2D character's sprite child, if the SortingMap controls scale.
 	 * This is intended for 2D character sprites, to handle their scale and display when moving around a scene.
 	 */
@@ -30,19 +30,21 @@ namespace AC
 		public bool lockSorting = false;
 		/** If True, then the sorting values of child SpriteRenderers will be affected as well */
 		public bool affectChildren = true;
-		/** If True, then the SpriteRenderer's sorting values will be amended based on the GameObject's position relative to the scene's SortingMap */
+		/** If True, then the SpriteRenderer's sorting values will be amended based on the GameObject's position relative to the scene's default SortingMap */
 		public bool followSortingMap = false;
+		/** The SortingMap to follow, if not the scene default (and followSortingMap = False) */
+		public SortingMap customSortingMap = null;
 		/** If True, then the SpriteRenderer's sorting values will be increased by their original values when the game began */
 		public bool offsetOriginal = false;
 		/** If True, then the script will update the SpriteRender's sorting values when the game is not running */ 
 		public bool livePreview = false;
 		
-		private float originalDepth = 0f;
+		private Vector3 originalDepth = Vector3.zero;
 		private enum DepthAxis { Y, Z };
 		private DepthAxis depthAxis = DepthAxis.Y;
 
-		private Renderer[] renderers;
-		private Renderer _renderer;
+		protected Renderer[] renderers;
+		protected Renderer _renderer;
 		
 		private List<int> offsets = new List<int>();
 		private int sortingOrder = 0;
@@ -78,7 +80,6 @@ namespace AC
 				return;
 			}
 			
-			UpdateSortingMap ();
 			SetOriginalOffsets ();
 		}
 		
@@ -151,7 +152,7 @@ namespace AC
 		}
 		
 		
-		private void SetOriginalDepth ()
+		protected void SetOriginalDepth ()
 		{
 			if (KickStarter.settingsManager == null)
 			{
@@ -161,12 +162,19 @@ namespace AC
 			if (KickStarter.settingsManager.IsTopDown ())
 			{
 				depthAxis = DepthAxis.Y;
-				originalDepth = transform.localPosition.y;
 			}
 			else
 			{
 				depthAxis = DepthAxis.Z;
-				originalDepth = transform.localPosition.z;
+			}
+
+			if (transform.parent)
+			{
+				originalDepth = transform.parent.position - transform.parent.position;
+			}
+			else
+			{
+				originalDepth = transform.position;
 			}
 		}
 		
@@ -180,11 +188,25 @@ namespace AC
 		{
 			if (depthAxis == DepthAxis.Y)
 			{
-				transform.localPosition = new Vector3 (transform.localPosition.x, originalDepth + depth, transform.localPosition.z);
+				if (transform.parent)
+				{
+					transform.position = transform.parent.position + originalDepth + (Vector3.down * depth);
+				}
+				else
+				{
+					transform.position = originalDepth + (Vector3.down * depth);
+				}
 			}
 			else
 			{
-				transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y, originalDepth + depth);
+				if (transform.parent)
+				{
+					transform.position = transform.parent.position + originalDepth + (transform.forward * depth);
+				}
+				else
+				{
+					transform.position = originalDepth + (Vector3.forward * depth);
+				}
 			}
 		}
 		
@@ -194,9 +216,15 @@ namespace AC
 		 */
 		public void UpdateSortingMap ()
 		{
-			if (KickStarter.sceneSettings != null && KickStarter.sceneSettings.sortingMap != null)
+			if (followSortingMap && KickStarter.sceneSettings != null && KickStarter.sceneSettings.sortingMap != null)
 			{
 				sortingMap = KickStarter.sceneSettings.sortingMap;
+				SetOriginalDepth ();
+				sortingMap.UpdateSimilarFollowers (this);
+			}
+			else if (!followSortingMap && customSortingMap != null)
+			{
+				sortingMap = customSortingMap;
 				SetOriginalDepth ();
 				sortingMap.UpdateSimilarFollowers (this);
 			}
@@ -205,11 +233,48 @@ namespace AC
 				ACDebug.Log (this.gameObject.name + " cannot find Sorting Map to follow!");
 			}
 		}
+
+
+		/**
+		 * <summary>Gets the SortingMap that this component follows.</summary>
+		 * <returns>The SortingMap that this component follows</returns>
+		 */
+		public SortingMap GetSortingMap ()
+		{
+			return sortingMap;
+		}
+
+
+		public void SetSortingMap (SortingMap _sortingMap)
+		{
+			if (_sortingMap == null)
+			{
+				followSortingMap = false;
+				customSortingMap = null;
+			}
+			else if (KickStarter.sceneSettings.sortingMap == _sortingMap)
+			{
+				followSortingMap = true;
+			}
+			else
+			{
+				followSortingMap = false;
+				customSortingMap = _sortingMap;
+			}
+			KickStarter.sceneSettings.UpdateAllSortingMaps ();
+		}
 		
 		
 		private void UpdateRenderers ()
 		{
-			if (lockSorting || !followSortingMap || sortingMap == null || _renderer == null)
+			#if UNITY_EDITOR
+			if (!Application.isPlaying && livePreview)
+			{
+				UpdateSortingMap ();
+			}
+			#endif
+
+			if (lockSorting || sortingMap == null || _renderer == null)
 			{
 				return;
 			}
@@ -226,7 +291,7 @@ namespace AC
 			#endif
 			
 			sortingMap.UpdateSimilarFollowers (this);
-			
+
 			if (sortingMap.sortingAreas.Count > 0)
 			{
 				// Set initial value as below the last line
@@ -321,8 +386,8 @@ namespace AC
 		
 
 		/**
-		 * <summary>Locks the SpriteRenderer to a specific order within it's layer.</summary>
-		 * <param name = "order">The order within it's current layer to lock the SpriteRenderer to</param>
+		 * <summary>Locks the SpriteRenderer to a specific order within its layer.</summary>
+		 * <param name = "order">The order within its current layer to lock the SpriteRenderer to</param>
 		 */
 		public void LockSortingOrder (int order)
 		{
@@ -369,12 +434,12 @@ namespace AC
 		
 
 		/**
-		 * <summary>Gets the intended scale factor of the GameObject, based on it's position on the scene's SortingMap.</summary>
+		 * <summary>Gets the intended scale factor of the GameObject, based on its position on the scene's SortingMap.</summary>
 		 * <returns>The intended scale factor.  If 0, then the Char script will not make use of it.</returns>
 		 */
 		public float GetLocalScale ()
 		{
-			if (followSortingMap && sortingMap != null && sortingMap.affectScale)
+			if (sortingMap != null && sortingMap.affectScale)
 			{
 				return (sortingMap.GetScale (transform.position) / 100f);
 			}
@@ -383,12 +448,12 @@ namespace AC
 		
 
 		/**
-		 * <summary>Gets the indended speed factor of the GameObject, based on it's position on the scene's SortingMap.</summary>
+		 * <summary>Gets the indended speed factor of the GameObject, based on its position on the scene's SortingMap.</summary>
 		 * <returns>The intended speed factor.  This is used by the Char script to amend the character's speed.</returns>
 		 */
 		public float GetLocalSpeed ()
 		{
-			if (followSortingMap && sortingMap != null && sortingMap.affectScale && sortingMap.affectSpeed)
+			if (sortingMap != null && sortingMap.affectScale && sortingMap.affectSpeed)
 			{
 				return (sortingMap.GetScale (transform.position) / 100f);
 			}

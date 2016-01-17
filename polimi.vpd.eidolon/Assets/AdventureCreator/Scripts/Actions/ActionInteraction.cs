@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionInteraction.cs"
  * 
@@ -184,6 +184,17 @@ namespace AC
 			}
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberHotspot> (hotspot);
+			}
+
+			AssignConstantID <Hotspot> (hotspot, constantID, parameterID);
 		}
 		
 		

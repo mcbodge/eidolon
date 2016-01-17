@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"References.cs"
  * 
@@ -41,6 +41,9 @@ namespace AC
 		public CursorManager cursorManager;
 		/** The current game's MenuManager */
 		public MenuManager menuManager;
+
+		/** True if the Menu Manager is open, so that AC knows to preview Menus in the Game Window */
+		[HideInInspector] public bool viewingMenuManager;
 
 	}
 

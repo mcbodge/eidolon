@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionChangeMaterial.cs"
  * 
@@ -105,6 +105,19 @@ namespace AC
 			newMaterial = (Material) EditorGUILayout.ObjectField ("New material:", newMaterial, typeof (Material), false);
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				if (saveScriptsToo)
+				{
+					AddSaveScript <RememberMaterial> (obToAffect);
+				}
+				AssignConstantID (obToAffect, constantID, parameterID);
+			}
 		}
 		
 		

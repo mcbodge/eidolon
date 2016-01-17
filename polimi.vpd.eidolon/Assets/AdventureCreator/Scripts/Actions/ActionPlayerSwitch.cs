@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionPlayerSwitch.cs"
  * 
@@ -125,12 +125,12 @@ namespace AC
 						Player newPlayer = KickStarter.player;
 						PlayerMenus.ResetInventoryBoxes ();
 						
-						int sceneToLoad = Application.loadedLevel;
+						int sceneToLoad = UnityVersionHandler.GetCurrentSceneNumber ();
 						if (restorePreviousData && KickStarter.saveSystem.DoesPlayerDataExist (playerID, true))
 						{
 							sceneToLoad = KickStarter.saveSystem.GetPlayerScene (playerID);
 							
-							if (sceneToLoad != Application.loadedLevel)
+							if (sceneToLoad != UnityVersionHandler.GetCurrentSceneNumber ())
 							{
 								KickStarter.saveSystem.loadingGame = LoadingGame.JustSwitchingPlayer;
 								KickStarter.sceneChanger.ChangeScene (new SceneInfo ("", sceneToLoad), true);
@@ -166,9 +166,9 @@ namespace AC
 							}
 							else if (newPlayerPosition == NewPlayerPosition.AppearInOtherScene)
 							{
-								if (chooseNewSceneBy == ChooseSceneBy.Name && newPlayerSceneName == Application.loadedLevelName)
+								if (chooseNewSceneBy == ChooseSceneBy.Name && newPlayerSceneName == UnityVersionHandler.GetCurrentSceneName ())
 								{}
-								else if (chooseNewSceneBy == ChooseSceneBy.Number && newPlayerScene == Application.loadedLevel)
+								else if (chooseNewSceneBy == ChooseSceneBy.Number && newPlayerScene == UnityVersionHandler.GetCurrentSceneNumber ())
 								{}
 								else
 								{
@@ -320,7 +320,21 @@ namespace AC
 			
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberNPC> (oldPlayerNPC);
+				AddSaveScript <RememberNPC> (newPlayerNPC);
+			}
+
+			AssignConstantID <NPC> (oldPlayerNPC, oldPlayerNPC_ID, 0);
+			AssignConstantID <NPC> (newPlayerNPC, newPlayerNPC_ID, 0);
+			AssignConstantID <Marker> (newPlayerMarker, newPlayerMarker_ID, 0);
+		}
+
 		
 		public override string SetLabel ()
 		{

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuToggle.cs"
  * 
@@ -35,7 +35,7 @@ namespace AC
 		public ActionListAsset actionListOnClick = null;
 		/** The text that's displayed on-screen */
 		public string label;
-		/** If True, then the toggle will be in it's "on" state by default */
+		/** If True, then the toggle will be in its "on" state by default */
 		public bool isOn;
 		/** The special FX applied to the text (None, Outline, Shadow, OutlineAndShadow) */
 		public TextEffects textEffects;
@@ -127,7 +127,7 @@ namespace AC
 					uiText = uiToggle.GetComponentInChildren <Text>();
 				}
 				uiToggle.onValueChanged.AddListener ((isOn) => {
-					ProcessClick (_menu, 0, KickStarter.playerInput.GetMouseState ());
+					ProcessClickUI (_menu, 0, KickStarter.playerInput.GetMouseState ());
 				});
 			}
 		}

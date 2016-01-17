@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"RuntimeInventory.cs"
  * 
@@ -61,33 +61,31 @@ namespace AC
 		/**
 		 * Transfers any relevant data from InventoryManager when the game begins or restarts.
 		 */
-		public void Start ()
+		public void OnStart ()
 		{
-			selectedItem = null;
-			lastClickedItem = null;
+			SetNull ();
 			hoverItem = null;
 			showHoverLabel = true;
 			
 			craftingItems.Clear ();
 			localItems.Clear ();
 			GetItemsOnStart ();
-			
+
 			if (KickStarter.inventoryManager)
 			{
 				unhandledCombine = KickStarter.inventoryManager.unhandledCombine;
 				unhandledHotspot = KickStarter.inventoryManager.unhandledHotspot;
 				unhandledGive = KickStarter.inventoryManager.unhandledGive;
 			}
-			else
-			{
-				ACDebug.LogError ("An Inventory Manager is required - please use the Adventure Creator window to create one.");
-			}
 		}
 		
-		
-		private void OnLevelWasLoaded ()
+
+		/**
+		 * Initialises the inventory after a scene change. This is called manually by SaveSystem so that the order is correct.
+		 */
+		public void _OnLevelWasLoaded ()
 		{
-			if (!KickStarter.settingsManager.IsInLoadingScene ())
+			if (!KickStarter.settingsManager.IsInLoadingScene () && KickStarter.sceneSettings != null)
 			{
 				SetNull ();
 			}
@@ -107,7 +105,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Selects an inventory item (InvItem) by referencing it's ID number.</summary>
+		 * <summary>Selects an inventory item (InvItem) by referencing its ID number.</summary>
 		 * <param name = "_id">The inventory item's ID number</param>
 		 * <param name = "_mode">What mode the item is selected in (Use, Give)</param>
 		 */
@@ -248,7 +246,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Replaces one inventory item carried by the player with another, retaining it's position in it's MenuInventoryBox element.</summary>
+		 * <summary>Replaces one inventory item carried by the player with another, retaining its position in its MenuInventoryBox element.</summary>
 		 * <param name = "_addID">The ID number of the inventory item (InvItem) to add</param>
 		 * <param name = "_removeID">The ID number of the inventory item (InvItem) to remove</param>
 		 * <param name = "addAmount">The amount if the new inventory item to add, if the InvItem's canCarryMultiple = True</param>
@@ -1636,7 +1634,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a MainData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a MainData class with its own variables that need saving.</summary>
 		 * <param name = "mainData">The original MainData class</param>
 		 * <returns>The updated MainData class</returns>
 		 */

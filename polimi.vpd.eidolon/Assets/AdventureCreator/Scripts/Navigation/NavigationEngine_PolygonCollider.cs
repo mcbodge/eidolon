@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"NavigationEngine_PolygonCollider.cs"
  * 
@@ -27,13 +27,41 @@ namespace AC
 	{
 		
 		public static Collider2D[] results = new Collider2D[1];
+
 		private int MAXNODES = 1000;
+
+
+		public override void OnReset (NavigationMesh navMesh)
+		{
+			ResetHoles (navMesh);
+		}
+
+
+		public override void TurnOn (NavigationMesh navMesh)
+		{
+			if (navMesh == null) return;
+
+			if (LayerMask.NameToLayer (KickStarter.settingsManager.navMeshLayer) == -1)
+			{
+				ACDebug.LogError ("Can't find layer " + KickStarter.settingsManager.navMeshLayer + " - please define it in Unity's Tags Manager (Edit -> Project settings -> Tags and Layers).");
+			}
+			else if (KickStarter.settingsManager.navMeshLayer != "")
+			{
+				navMesh.gameObject.layer = LayerMask.NameToLayer (KickStarter.settingsManager.navMeshLayer);
+			}
+			
+			if (navMesh.GetComponent <Collider2D>() == null)
+			{
+				ACDebug.LogWarning ("A 2D Collider component must be attached to " + navMesh.gameObject.name + " for pathfinding to work - please attach one.");
+			}
+		}
 
 		
 		public override Vector3[] GetPointsArray (Vector3 _originPos, Vector3 _targetPos, AC.Char _char = null)
 		{
 			PolygonCollider2D poly = KickStarter.sceneSettings.navMesh.transform.GetComponent <PolygonCollider2D>();
-			bool changesMade = KickStarter.sceneSettings.navMesh.AddCharHoles (_char);
+
+			AddCharHoles (poly, _char, KickStarter.sceneSettings.navMesh.characterEvasion);
 
 			List<Vector3> pointsList3D = new List<Vector3> ();
 			if (IsLineClear (_originPos, _targetPos))
@@ -42,7 +70,7 @@ namespace AC
 				return pointsList3D.ToArray ();
 			}
 			
-			Vector2[] pointsList = KickStarter.sceneSettings.navMesh.GetVertexArray ();
+			Vector2[] pointsList = vertexData;
 
 			Vector2 originPos = GetNearestToMesh (_originPos, poly);
 			Vector2 targetPos = GetNearestToMesh (_targetPos, poly);
@@ -71,16 +99,55 @@ namespace AC
 				pointsList3D.RemoveAt (0);	// Remove origin point from start
 			}
 
-			ResetHoles (KickStarter.sceneSettings.navMesh, changesMade);
 			return pointsList3D.ToArray ();
 		}
 
 
-		private void ResetHoles (NavigationMesh navMesh, bool changesMade)
+		public override void ResetHoles (NavigationMesh navMesh)
 		{
-			if (changesMade)
+			ResetHoles (navMesh, true);
+		}
+
+
+		private void ResetHoles (NavigationMesh navMesh, bool rebuild)
+		{
+			if (navMesh == null || navMesh.GetComponent <PolygonCollider2D>() == null) return;
+
+			PolygonCollider2D poly = navMesh.GetComponent <PolygonCollider2D>();
+			poly.pathCount = 1;
+			
+			if (navMesh.polygonColliderHoles.Count == 0)
 			{
-				navMesh.ResetHoles ();
+				if (rebuild)
+				{
+					RebuildVertexArray (navMesh.transform, poly);
+				}
+				return;
+			}
+			
+			Vector2 scaleFac = new Vector2 (1f / navMesh.transform.localScale.x, 1f / navMesh.transform.localScale.y);
+			foreach (PolygonCollider2D hole in navMesh.polygonColliderHoles)
+			{
+				if (hole != null)
+				{
+					poly.pathCount ++;
+					
+					List<Vector2> newPoints = new List<Vector2>();
+					foreach (Vector2 holePoint in hole.points)
+					{
+						Vector2 relativePosition = hole.transform.TransformPoint (holePoint) - navMesh.transform.position;
+						newPoints.Add (new Vector2 (relativePosition.x * scaleFac.x, relativePosition.y * scaleFac.y));
+					}
+					
+					poly.SetPath (poly.pathCount-1, newPoints.ToArray ());
+					hole.gameObject.layer = LayerMask.NameToLayer (KickStarter.settingsManager.deactivatedLayer);
+					hole.isTrigger = true;
+				}
+			}
+
+			if (rebuild)
+			{
+				RebuildVertexArray (navMesh.transform, poly);
 			}
 		}
 		
@@ -345,29 +412,28 @@ namespace AC
 		}
 
 
-		public override bool AddCharHoles (PolygonCollider2D navPoly, Char charToExclude)
+		private void AddCharHoles (PolygonCollider2D navPoly, AC.Char charToExclude, CharacterEvasion characterEvasion)
 		{
-			if (navPoly == null) return false;
+			ResetHoles (KickStarter.sceneSettings.navMesh, false);
 
-			bool changesMade = false;
 			Vector2 navPosition = navPoly.transform.position;
 			AC.Char[] characters = GameObject.FindObjectsOfType (typeof (AC.Char)) as AC.Char[];
-			
+
 			foreach (AC.Char character in characters)
 			{
 				CircleCollider2D circleCollider2D = character.GetComponent <CircleCollider2D>();
-				if (circleCollider2D != null && character.charState == CharState.Idle
-				    && (charToExclude == null || character != charToExclude)
-				    && Physics2D.OverlapPointNonAlloc (character.transform.position, NavigationEngine_PolygonCollider.results, 1 << KickStarter.sceneSettings.navMesh.gameObject.layer) != 0)
+				if (circleCollider2D != null &&
+				    (character.charState == CharState.Idle || characterEvasion == CharacterEvasion.AllCharacters) &&
+				    (charToExclude == null || character != charToExclude) && 
+				    Physics2D.OverlapPointNonAlloc (character.transform.position, NavigationEngine_PolygonCollider.results, 1 << KickStarter.sceneSettings.navMesh.gameObject.layer) != 0)
 				{
 					circleCollider2D.isTrigger = true;
-					
 					List<Vector2> newPoints3D = new List<Vector2>();
 					
 					#if UNITY_5
-					Vector2 centrePoint =  character.transform.TransformPoint (circleCollider2D.offset);
+					Vector2 centrePoint = character.transform.TransformPoint (circleCollider2D.offset);
 					#else
-					Vector2 centrePoint =  character.transform.TransformPoint (circleCollider2D.center);
+					Vector2 centrePoint = character.transform.TransformPoint (circleCollider2D.center);
 					#endif
 					
 					float radius = circleCollider2D.radius * character.transform.localScale.x;
@@ -400,13 +466,85 @@ namespace AC
 					if (newPoints.Count > 1)
 					{
 						navPoly.SetPath (navPoly.pathCount-1, newPoints.ToArray ());
-						changesMade = true;
 					}
 				}
 			}
 
-			return changesMade;
+			RebuildVertexArray (navPoly.transform, navPoly);
 		}
+
+
+		private void RebuildVertexArray (Transform navMeshTransform, PolygonCollider2D poly)
+		{
+			List<Vector2> _vertexData = new List<Vector2>();
+			
+			for (int i=0; i<poly.pathCount; i++)
+			{
+				Vector2[] _vertices = poly.GetPath (i);
+				foreach (Vector2 _vertex in _vertices)
+				{
+					Vector3 vertex3D = navMeshTransform.TransformPoint (new Vector3 (_vertex.x, _vertex.y, navMeshTransform.position.z));
+					_vertexData.Add (new Vector2 (vertex3D.x, vertex3D.y));
+				}
+			}
+			vertexData = _vertexData.ToArray ();
+		}
+
+
+		#if UNITY_EDITOR
+
+		public override NavigationMesh NavigationMeshGUI (NavigationMesh _target)
+		{
+			_target = base.NavigationMeshGUI (_target);
+
+			_target.characterEvasion = (CharacterEvasion) EditorGUILayout.EnumPopup ("Character evasion:", _target.characterEvasion);
+			if (_target.characterEvasion != CharacterEvasion.None)
+			{
+				EditorGUILayout.HelpBox ("Note: Characters can only be avoided if they have a Circle Collider 2D (no Trigger) component on their base.\n\n" +
+					"For best results, set a non-zero 'Pathfinding update time' in the Settings Manager.", MessageType.Info);
+			}
+			
+			int numOptions = _target.polygonColliderHoles.Count;
+			numOptions = EditorGUILayout.IntField ("Number of holes:", _target.polygonColliderHoles.Count);
+			if (numOptions < 0)
+			{
+				numOptions = 0;
+			}
+			
+			if (numOptions < _target.polygonColliderHoles.Count)
+			{
+				_target.polygonColliderHoles.RemoveRange (numOptions, _target.polygonColliderHoles.Count - numOptions);
+			}
+			else if (numOptions > _target.polygonColliderHoles.Count)
+			{
+				if (numOptions > _target.polygonColliderHoles.Capacity)
+				{
+					_target.polygonColliderHoles.Capacity = numOptions;
+				}
+				for (int i=_target.polygonColliderHoles.Count; i<numOptions; i++)
+				{
+					_target.polygonColliderHoles.Add (null);
+				}
+			}
+			
+			for (int i=0; i<_target.polygonColliderHoles.Count; i++)
+			{
+				_target.polygonColliderHoles [i] = (PolygonCollider2D) EditorGUILayout.ObjectField ("Hole #" + i.ToString () + ":", _target.polygonColliderHoles [i], typeof (PolygonCollider2D), true);
+			}
+
+			return _target;
+		}
+
+
+		public override void DrawGizmos (GameObject navMeshOb)
+		{
+			if (navMeshOb != null && navMeshOb.GetComponent <PolygonCollider2D>())
+			{
+				AdvGame.DrawPolygonCollider (navMeshOb.transform, navMeshOb.GetComponent <PolygonCollider2D>(), Color.white);
+			}
+		}
+
+		#endif
 
 	}
 	

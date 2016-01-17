@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionContainerOpen.cs"
  * 
@@ -87,6 +87,17 @@ namespace AC
 				}
 			}
 		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberContainer> (container);
+			}
+			AssignConstantID <Container> (container, constantID, parameterID);
+		}
+
 		
 		override public string SetLabel ()
 		{

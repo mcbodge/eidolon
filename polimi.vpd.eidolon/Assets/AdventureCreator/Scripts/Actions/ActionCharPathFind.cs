@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharPathFind.cs"
  * 
@@ -93,46 +93,35 @@ namespace AC
 							targetPosition = AdvGame.GetScreenNavMesh (targetPosition);
 						}
 
-						float dist = Vector3.Distance (charToMove.transform.position, targetPosition);
-						if (dist < KickStarter.settingsManager.destinationAccuracy / 2f && !charToMove.AccurateDestination ())
+						if (pathFind && KickStarter.navigationManager)
 						{
-							if (charToMove.charState == CharState.Move)
-							{
-								charToMove.charState = CharState.Decelerate;
-							}
+							pointArray = KickStarter.navigationManager.navigationEngine.GetPointsArray (charToMove.transform.position, targetPosition, charToMove);
 						}
 						else
 						{
-							if (pathFind && KickStarter.navigationManager)
+							List<Vector3> pointList = new List<Vector3>();
+							pointList.Add (targetPosition);
+							pointArray = pointList.ToArray ();
+						}
+
+						if (speed == PathSpeed.Walk)
+						{
+							charToMove.MoveAlongPoints (pointArray, false);
+						}
+						else
+						{
+							charToMove.MoveAlongPoints (pointArray, true);
+						}
+
+						if (charToMove.GetPath ())
+						{
+							if (!pathFind && doFloat)
 							{
-								pointArray = KickStarter.navigationManager.navigationEngine.GetPointsArray (charToMove.transform.position, targetPosition, charToMove);
+								charToMove.GetPath ().affectY = true;
 							}
 							else
 							{
-								List<Vector3> pointList = new List<Vector3>();
-								pointList.Add (targetPosition);
-								pointArray = pointList.ToArray ();
-							}
-
-							if (speed == PathSpeed.Walk)
-							{
-								charToMove.MoveAlongPoints (pointArray, false);
-							}
-							else
-							{
-								charToMove.MoveAlongPoints (pointArray, true);
-							}
-
-							if (charToMove.GetPath ())
-							{
-								if (!pathFind && doFloat)
-								{
-									charToMove.GetPath ().affectY = true;
-								}
-								else
-								{
-									charToMove.GetPath ().affectY = false;
-								}
+								charToMove.GetPath ().affectY = false;
 							}
 						}
 
@@ -183,6 +172,7 @@ namespace AC
 				if (pathFind && KickStarter.navigationManager)
 				{
 					pointArray = KickStarter.navigationManager.navigationEngine.GetPointsArray (charToMove.transform.position, targetPosition);
+					KickStarter.navigationManager.navigationEngine.ResetHoles (KickStarter.sceneSettings.navMesh);
 				}
 				else
 				{
@@ -254,7 +244,25 @@ namespace AC
 
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				if (!isPlayer && charToMove != null && charToMove.GetComponent <NPC>())
+				{
+					AddSaveScript <RememberNPC> (charToMove);
+				}
+			}
+
+			if (!isPlayer)
+			{
+				AssignConstantID <Char> (charToMove, charToMoveID, charToMoveParameterID);
+			}
+			AssignConstantID <Marker> (marker, markerID, markerParameterID);
+		}
+
 		
 		override public string SetLabel ()
 		{

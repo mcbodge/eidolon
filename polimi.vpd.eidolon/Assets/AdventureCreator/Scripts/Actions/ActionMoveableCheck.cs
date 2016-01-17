@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionMoveableCheck.cs"
  * 
@@ -71,6 +71,12 @@ namespace AC
 				constantID = FieldToID <DragBase> (dragObject, constantID);
 				dragObject = IDToField <DragBase> (dragObject, constantID, false);
 			}
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID <DragBase> (dragObject, constantID, parameterID);
 		}
 
 

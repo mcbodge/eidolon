@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"SpriteFader.cs"
  * 
@@ -106,7 +106,7 @@ namespace AC
 
 
 		/**
-		 * Ends the sprite-fading effect, and set's the Sprite's alpha to it's target value.
+		 * Ends the sprite-fading effect, and sets the Sprite's alpha to its target value.
 		 */
 		public void EndFade ()
 		{

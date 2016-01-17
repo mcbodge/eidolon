@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Moveable_Drag.cs"
  * 
@@ -30,7 +30,7 @@ namespace AC
 		public DragTrack track;
 		/** If True, and the object is locked to a DragTrack, then the object will be placed at a specific point along the track when the game begins */
 		public bool setOnStart = true;
-		/** How far along it's DragTrack that the object should be placed at when the game begins */
+		/** How far along its DragTrack that the object should be placed at when the game begins */
 		public float trackValueOnStart = 0f;
 		/** The Interaction to run whenever the object is moved by the player */
 		public Interaction interactionOnMove = null;
@@ -78,17 +78,10 @@ namespace AC
 			{
 				colliderRadius = GetComponent <SphereCollider>().radius * transform.localScale.x;
 			}
-		}
-
-
-		protected override void Start ()
-		{
-			base.Start ();
 
 			if (track != null)
 			{
 				track.Connect (this);
-
 				if (setOnStart)
 				{
 					track.SetPositionAlong (trackValueOnStart, this);
@@ -102,9 +95,15 @@ namespace AC
 		}
 
 
+		protected override void Start ()
+		{
+			base.Start ();
+		}
+
+
 		/**
-		 * <summary>Gets how far the object is along it's DragTrack.</summary>
-		 * <returns>How far the object is along it's DragTrack. This is normally 0 to 1, but if the object is locked to a looped DragTrack_Hinge, then the number of revolutions will be added to the result.</returns>
+		 * <summary>Gets how far the object is along its DragTrack.</summary>
+		 * <returns>How far the object is along its DragTrack. This is normally 0 to 1, but if the object is locked to a looped DragTrack_Hinge, then the number of revolutions will be added to the result.</returns>
 		 */
 		public float GetPositionAlong ()
 		{
@@ -121,6 +120,8 @@ namespace AC
 		 */
 		public override void UpdateMovement ()
 		{
+			base.UpdateMovement ();
+		
 			if (dragMode == DragMode.LockToTrack && track)
 			{
 				if (track && (_rigidbody.angularVelocity != Vector3.zero || _rigidbody.velocity != Vector3.zero))

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharAnim.cs"
  * 
@@ -182,6 +182,15 @@ namespace AC
 			}
 			
 			return labelAdd;
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				AssignConstantID <Char> (animChar, constantID, parameterID);
+			}
 		}
 
 

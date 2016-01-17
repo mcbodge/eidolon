@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCharRender.cs"
  * 
@@ -40,6 +40,9 @@ namespace AC
 
 		public RenderLock renderLock_direction;
 		public CharDirection direction;
+
+		public RenderLock renderLock_sortingMap;
+		public SortingMap sortingMap;
 		
 		
 		public ActionCharRender ()
@@ -47,7 +50,7 @@ namespace AC
 			this.isDisplayed = true;
 			category = ActionCategory.Character;
 			title = "Change rendering";
-			description = "Overrides a Character's scale, sorting order or sprite direction. This is intended mainly for 2D games.";
+			description = "Overrides a Character's scale, sorting order, sprite direction or Sorting Map. This is intended mainly for 2D games.";
 		}
 
 
@@ -154,6 +157,23 @@ namespace AC
 
 			EditorGUILayout.Space ();
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				if (saveScriptsToo)
+				{
+					if (!isPlayer && _char != null && _char.GetComponent <NPC>())
+					{
+						AddSaveScript <RememberNPC> (_char);
+					}
+				}
+
+				AssignConstantID <Char> (_char, constantID, parameterID);
+			}
 		}
 		
 		

@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCheck.cs"
  * 
@@ -414,16 +414,10 @@ namespace AC
 		}
 
 
-		public override void AfterCopy (List<Action> copyList)
+		public override void PrepareToPaste (int offset)
 		{
-			if (resultActionFail == ResultAction.Skip && skipActionFailActual == null && copyList.Count > skipActionFail)
-			{
-				skipActionFailActual = copyList[skipActionFail];
-			}
-			if (resultActionTrue == ResultAction.Skip && skipActionTrueActual == null && copyList.Count > skipActionTrue)
-			{
-				skipActionTrueActual = copyList[skipActionTrue];
-			}
+			skipActionFail += offset;
+			skipActionTrue += offset;
 		}
 		
 		#endif

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"RememberNPC.cs"
  * 
@@ -84,7 +84,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Deserialises a string of data, and restores the GameObject to it's previous state.</summary>
+		 * <summary>Deserialises a string of data, and restores the GameObject to its previous state.</summary>
 		 * <param name = "stringData">The data, serialised as a string</param>
 		 */
 		public override void LoadData (string stringData)
@@ -171,11 +171,11 @@ namespace AC
 		public bool lockDirection;
 		/** The direction that a sprite-based NPC is facing */
 		public string spriteDirection;
-		/** True if a sprite-based NPC has it's scale locked */
+		/** True if a sprite-based NPC has its scale locked */
 		public bool lockScale;
 		/** The scale of a sprite-based NPC */
 		public float spriteScale;
-		/** True if a sprite-based NPC has it's sorting locked */
+		/** True if a sprite-based NPC has its sorting locked */
 		public bool lockSorting;
 		/** The sorting order of a sprite-based NPC */
 		public int sortingOrder;
@@ -206,21 +206,30 @@ namespace AC
 		public int followTargetID = 0;
 		/** True if the NPC is following the player */
 		public bool followTargetIsPlayer = false;
-		/** The frequency with which the NPC follows it's target */
+		/** The frequency with which the NPC follows its target */
 		public float followFrequency = 0f;
-		/** The distance that the NPC keeps with when following it's target */
+		/** The distance that the NPC keeps with when following its target */
 		public float followDistance = 0f;
-		/** The maximum distance that the NPC keeps when following it's target */
+		/** The maximum distance that the NPC keeps when following its target */
 		public float followDistanceMax = 0f;
+		/** If True, the NPC will face their follow target when idle */
+		public bool followFaceWhenIdle = false;
 
 		/** True if the NPC's head is pointed towards a target */
 		public bool isHeadTurning = false;
-		/** The NPC's head target's X position */
+		/** The ConstantID number of the head target Transform */
+		public int headTargetID = 0;
+		/** The NPC's head target's X position (offset) */
 		public float headTargetX = 0f;
-		/** The NPC's head target's Y position */
+		/** The NPC's head target's Y position (offset) */
 		public float headTargetY = 0f;
-		/** The NPC's head target's Z position */
+		/** The NPC's head target's Z position (offset) */
 		public float headTargetZ = 0f;
+
+		/** True if the NPC has a FollowSortingMap component that follows the scene's default SortingMap */
+		public bool followSortingMap;
+		/** The ConstantID number of the SortingMap that the NPC's FollowSortingMap follows, if not the scene's default */
+		public int customSortingMapID = 0;
 
 		/** The NPC's display name */
 		public string speechLabel;

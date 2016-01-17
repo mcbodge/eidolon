@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionVolume.cs"
  * 
@@ -78,6 +78,16 @@ namespace AC
 			newRelativeVolume = EditorGUILayout.Slider ("New volume:", newRelativeVolume, 0f, 1f);
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberSound> (soundObject);
+			}
+			AssignConstantID <Sound> (soundObject, constantID, parameterID);
 		}
 		
 		

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Player.cs"
  * 
@@ -21,12 +21,8 @@ namespace AC
 	public class Player : Char
 	{
 		
-		// Legacy variables
 		/** The Player's jump animation, if using Legacy animation */
 		public AnimationClip jumpAnim;
-		private bool lockHotspotHeadTurning = false;
-		
-		// Mecanim variables
 		/** The name of the "Jump" boolean parameter, if using Mecanim animation */
 		public string jumpParameter = "Jump";
 
@@ -42,6 +38,7 @@ namespace AC
 		private float tiltSpeed;
 		private float tiltStartTime;
 		
+		private bool lockHotspotHeadTurning = false;
 		private Transform fpCam;
 
 
@@ -52,17 +49,33 @@ namespace AC
 				audioSource = soundChild.gameObject.GetComponent <AudioSource>();
 			}
 
-			if (GetComponentInChildren<FirstPersonCamera>())
+			if (KickStarter.playerMovement)
 			{
-				fpCam = GetComponentInChildren<FirstPersonCamera>().transform;
-			}
-
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				isUFPSPlayer = true;
+				Transform fpCamTransform = KickStarter.playerMovement.AssignFPCamera ();
+				if (fpCamTransform != null)
+				{
+					fpCam = KickStarter.playerMovement.AssignFPCamera ();
+				}
 			}
 
 			_Awake ();
+		}
+
+
+		/**
+		 * <summary>Assigns or sets the FirstPersonCamera Transform. This is done automatically in regular First Person mode, but must be set manually
+		 * if using a custom controller, eg. Ultimate FPS.</summary>
+		 */
+		public Transform FirstPersonCamera
+		{
+			get
+			{
+				return fpCam;
+			}
+			set
+			{
+				fpCam = value;
+			}
 		}
 
 
@@ -81,8 +94,7 @@ namespace AC
 				// Hack: update 2D sprites
 				if (spriteChild.GetComponent <FollowSortingMap>())
 				{
-					KickStarter.sceneSettings.ResetPlayerReference ();
-					spriteChild.GetComponent <FollowSortingMap>().UpdateSortingMap ();
+					KickStarter.sceneSettings.UpdateAllSortingMaps ();
 				}
 				UpdateSpriteChild (KickStarter.settingsManager.IsTopDown (), KickStarter.settingsManager.IsUnity2D ());
 			}
@@ -100,20 +112,18 @@ namespace AC
 				hotspotDetector._Update ();
 			}
 			
-			base._Update ();
-		}
-
-
-		/**
-		 * The Player's "FixedUpdate" function, called by StateHandler.
-		 */
-		public override void _FixedUpdate ()
-		{
 			if (activePath && !pausePath)
 			{
 				if (IsTurningBeforeWalking ())
 				{
-					charState = CharState.Idle;
+					if (charState == CharState.Move)
+					{
+						charState = CharState.Decelerate;
+					}
+					else if (charState == CharState.Custom)
+					{
+						charState = CharState.Idle;
+					}
 				}
 				else if ((KickStarter.stateHandler && KickStarter.stateHandler.gameState == GameState.Cutscene && !lockedPath) || 
 				         (KickStarter.settingsManager && KickStarter.settingsManager.movementMethod == MovementMethod.PointAndClick) || 
@@ -150,27 +160,11 @@ namespace AC
 				}
 			}
 			
-			base._FixedUpdate ();
+			base._Update ();
 			
-			if (isUFPSPlayer)
-			{
-				if (isTilting)
-				{
-					UltimateFPSIntegration.SetRotation (new Vector2 (actualTilt, newRotation.eulerAngles.y));
-				}
-				else if (KickStarter.stateHandler.gameState == GameState.Cutscene)
-				{
-					UltimateFPSIntegration.SetPitch (newRotation.eulerAngles.y);
-				}
-			}
-			else if (isTilting)
+			if (isTilting)
 			{
 				UpdateTilt ();
-			}
-			
-			if (isUFPSPlayer && activePath != null && charState == CharState.Move)
-			{
-				UltimateFPSIntegration.Teleport (transform.position);
 			}
 		}
 		
@@ -257,7 +251,10 @@ namespace AC
 				}
 				else
 				{
-					ACDebug.Log ("Player cannot jump without a Rigidbody component.");
+					if (motionControl == MotionControl.Automatic)
+					{
+						ACDebug.Log ("Player cannot jump without a Rigidbody component.");
+					}
 				}
 			}
 		}
@@ -278,10 +275,10 @@ namespace AC
 		 * <summary>Stops the Player from moving along the current Paths object.</summary>
 		 * <param name = "stopLerpToo">If True, then the lerp effect used to ensure pinpoint accuracy will also be cancelled</param>
 		 */
-		new public void EndPath (bool stopLerpToo = true)
+		new public void EndPath ()
 		{
 			lockedPath = false;
-			base.EndPath (stopLerpToo);
+			base.EndPath ();
 		}
 		
 
@@ -358,45 +355,21 @@ namespace AC
 				
 		protected override void Accelerate ()
 		{
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS && activePath == null)
-			{
-				// Fixes "stuttering" effect
-				moveSpeed = 0f;
-				return;
-			}
-			
-			//base.Accelerate ();
-			float targetSpeed;
-			
-			if (GetComponent <Animator>())
-			{
-				if (isRunning)
-				{
-					targetSpeed = runSpeedScale;
-				}
-				else
-				{
-					targetSpeed = walkSpeedScale;
-				}
-			}
-			else
-			{
-				if (isRunning)
-				{
-					targetSpeed = moveDirection.magnitude * runSpeedScale / walkSpeedScale;
-				}
-				else
-				{
-					targetSpeed = moveDirection.magnitude;
-				}
-			}
+			float targetSpeed = GetTargetSpeed ();
 
-			if (KickStarter.settingsManager.magnitudeAffectsDirect && KickStarter.settingsManager.movementMethod == MovementMethod.Direct && KickStarter.stateHandler.gameState == GameState.Normal && !IsMovingToHotspot ())
+			if (this is Player && KickStarter.settingsManager.magnitudeAffectsDirect && KickStarter.settingsManager.movementMethod == MovementMethod.Direct && KickStarter.stateHandler.gameState == GameState.Normal && !IsMovingToHotspot ())
 			{
 				targetSpeed -= (1f - KickStarter.playerInput.GetMoveKeys ().magnitude) / 2f;
 			}
-			
-			moveSpeed = Mathf.Lerp (moveSpeed, targetSpeed, Time.deltaTime * acceleration);
+
+			if (AccurateDestination () && WillStopAtNextNode ())
+			{
+				AccurateAcc (GetTargetSpeed (), false);
+			}
+			else
+			{
+				moveSpeed = Mathf.Lerp (moveSpeed, targetSpeed, Time.deltaTime * acceleration);
+			}
 		}
 		
 		
@@ -406,10 +379,18 @@ namespace AC
 			{
 				fpCam.GetComponent <FirstPersonCamera>().SetPitch (actualTilt);
 			}
-			else if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				UltimateFPSIntegration.SetTilt (actualTilt);
-			}
+		}
+
+
+		public bool IsTilting ()
+		{
+			return isTilting;
+		}
+
+
+		public float GetTilt ()
+		{
+			return actualTilt;
 		}
 		
 
@@ -420,11 +401,6 @@ namespace AC
 		 */
 		public void SetTilt (Vector3 lookAtPosition, bool isInstant)
 		{
-			if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-			{
-				fpCam = UltimateFPSIntegration.GetFPCamTransform ();
-			}
-
 			if (fpCam == null)
 			{
 				return;
@@ -444,10 +420,6 @@ namespace AC
 				if (fpCam && fpCam.GetComponent <FirstPersonCamera>())
 				{
 					fpCam.GetComponent <FirstPersonCamera>().SetPitch (tilt);
-				}
-				else if (KickStarter.settingsManager.movementMethod == MovementMethod.UltimateFPS)
-				{
-					UltimateFPSIntegration.SetTilt (tilt);
 				}
 			}
 			else
@@ -482,11 +454,12 @@ namespace AC
 
 		/**
 		 * <summary>Controls the head-facing position.</summary>
-		 * <param name = "position">The point in World Space to face</param>
+		 * <param name = "_headTurnTarget">The Transform to face</param>
+		 * <param name = "_headTurnTargetOffset">The position offset of the Transform</param>
 		 * <param name = "isInstant">If True, the head will turn instantly</param>
 		 * <param name = "_headFacing">What the head should face (Manual, Hotspot, None)</param>
 		 */
-		override public void SetHeadTurnTarget (Vector3 position, bool isInstant, HeadFacing _headFacing = HeadFacing.Manual)
+		public override void SetHeadTurnTarget (Transform _headTurnTarget, Vector3 _headTurnTargetOffset, bool isInstant, HeadFacing _headFacing = HeadFacing.Manual)
 		{
 			if (_headFacing == HeadFacing.Hotspot && lockHotspotHeadTurning)
 			{
@@ -494,7 +467,7 @@ namespace AC
 			}
 			else
 			{
-				base.SetHeadTurnTarget (position, isInstant, _headFacing);
+				base.SetHeadTurnTarget (_headTurnTarget, _headTurnTargetOffset, isInstant, _headFacing);
 			}
 		}
 
@@ -510,7 +483,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates a PlayerData class with it's own variables that need saving.</summary>
+		 * <summary>Updates a PlayerData class with its own variables that need saving.</summary>
 		 * <param name = "playerData">The original PlayerData class</param>
 		 * <returns>The updated PlayerData class</returns>
 		 */
@@ -617,19 +590,52 @@ namespace AC
 			
 			// Head target
 			playerData.playerLockHotspotHeadTurning = lockHotspotHeadTurning;
-			if (headFacing == HeadFacing.Manual)
+			if (headFacing == HeadFacing.Manual && headTurnTarget != null)
 			{
 				playerData.isHeadTurning = true;
-				playerData.headTargetX = headTurnTarget.x;
-				playerData.headTargetY = headTurnTarget.y;
-				playerData.headTargetZ = headTurnTarget.z;
+				playerData.headTargetID = Serializer.GetConstantID (headTurnTarget);
+				if (playerData.headTargetID == 0)
+				{
+					ACDebug.LogWarning ("The Player's head-turning target Transform, " + headTurnTarget + ", was not saved because it has no Constant ID");
+				}
+				playerData.headTargetX = headTurnTargetOffset.x;
+				playerData.headTargetY = headTurnTargetOffset.y;
+				playerData.headTargetZ = headTurnTargetOffset.z;
 			}
 			else
 			{
 				playerData.isHeadTurning = false;
+				playerData.headTargetID = 0;
 				playerData.headTargetX = 0f;
 				playerData.headTargetY = 0f;
 				playerData.headTargetZ = 0f;
+			}
+
+			if (GetComponentInChildren <FollowSortingMap>() != null)
+			{
+				FollowSortingMap followSortingMap = GetComponentInChildren <FollowSortingMap>();
+				playerData.followSortingMap = followSortingMap.followSortingMap;
+				if (!playerData.followSortingMap && followSortingMap.GetSortingMap () != null)
+				{
+					if (followSortingMap.GetSortingMap ().GetComponent <ConstantID>() != null)
+					{
+						playerData.customSortingMapID = followSortingMap.GetSortingMap ().GetComponent <ConstantID>().constantID;
+					}
+					else
+					{
+						ACDebug.LogWarning ("The Player's SortingMap, " + followSortingMap.GetSortingMap ().name + ", was not saved because it has no Constant ID");
+						playerData.customSortingMapID = 0;
+					}
+				}
+				else
+				{
+					playerData.customSortingMapID = 0;
+				}
+			}
+			else
+			{
+				playerData.followSortingMap = false;
+				playerData.customSortingMapID = 0;
 			}
 
 			return playerData;
@@ -637,7 +643,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Updates it's own variables from a PlayerData class.</summary>
+		 * <summary>Updates its own variables from a PlayerData class.</summary>
 		 * <param name = "playerData">The PlayerData class to load from</param>
 		 */
 		public void LoadPlayerData (PlayerData playerData)
@@ -761,7 +767,15 @@ namespace AC
 			lockHotspotHeadTurning = playerData.playerLockHotspotHeadTurning;
 			if (playerData.isHeadTurning)
 			{
-				SetHeadTurnTarget (new Vector3 (playerData.headTargetX, playerData.headTargetY, playerData.headTargetZ), true);
+				ConstantID _headTargetID = Serializer.returnComponent <ConstantID> (playerData.headTargetID);
+				if (_headTargetID != null)
+				{
+					SetHeadTurnTarget (_headTargetID.transform, new Vector3 (playerData.headTargetX, playerData.headTargetY, playerData.headTargetZ), true);
+				}
+				else
+				{
+					ClearHeadTurnTarget (true);
+				}
 			}
 			else
 			{
@@ -769,6 +783,21 @@ namespace AC
 			}
 			
 			ignoreGravity = playerData.playerIgnoreGravity;
+
+			if (GetComponentsInChildren <FollowSortingMap>() != null)
+			{
+				FollowSortingMap[] followSortingMaps = GetComponentsInChildren <FollowSortingMap>();
+				SortingMap customSortingMap = Serializer.returnComponent <SortingMap> (playerData.customSortingMapID);
+				
+				foreach (FollowSortingMap followSortingMap in followSortingMaps)
+				{
+					followSortingMap.followSortingMap = playerData.followSortingMap;
+					if (!playerData.followSortingMap)
+					{
+						followSortingMap.SetSortingMap (customSortingMap);
+					}
+				}
+			}
 		}
 
 	}
@@ -791,7 +820,7 @@ namespace AC
 
 		/**
 		 * The default Constructor.
-		 * An array of ID numbers is required, to ensure it's own ID is unique.
+		 * An array of ID numbers is required, to ensure its own ID is unique.
 		 */
 		public PlayerPrefab (int[] idArray)
 		{

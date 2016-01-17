@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionCamera.cs"
  * 
@@ -36,8 +36,7 @@ namespace AC
 		public MoveMethod moveMethod;
 		public bool returnToLast;
 		
-		
-		
+
 		public ActionCamera ()
 		{
 			this.isDisplayed = true;
@@ -227,6 +226,16 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <ConstantID> (linkedCamera);
+			}
+			AssignConstantID <_Camera> (linkedCamera, constantID, parameterID);
 		}
 		
 		

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionSpeech.cs"
  * 
@@ -33,6 +33,7 @@ namespace AC
 		public Char speaker;
 		public string messageText;
 		public int lineID;
+		public int[] multiLineIDs;
 		public bool isBackground = false;
 		public bool noAnimation = false;
 		public AnimationClip headClip;
@@ -49,9 +50,10 @@ namespace AC
 		private float endTime = 0f;
 		private bool stopAction = false;
 		
-		private int splitNumber = 0;
+		private int splitIndex = 0;
 		private bool splitDelay = false;
 
+		private Char runtimeSpeaker;
 		private Speech speech;
 		
 		public static string[] stringSeparators = new string[] {"\n", "\\n"};
@@ -69,12 +71,12 @@ namespace AC
 		
 		override public void AssignValues (List<ActionParameter> parameters)
 		{
-			speaker = AssignFile <Char> (parameters, parameterID, constantID, speaker);
+			runtimeSpeaker = AssignFile <Char> (parameters, parameterID, constantID, speaker);
 			messageText = AssignString (parameters, messageParameterID, messageText);
 			
 			if (isPlayer)
 			{
-				speaker = KickStarter.player;
+				runtimeSpeaker = KickStarter.player;
 			}
 		}
 		
@@ -94,7 +96,7 @@ namespace AC
 					stopAction = false;
 					isRunning = true;
 					splitDelay = false;
-					splitNumber = 0;
+					splitIndex = 0;
 
 					endTime = Time.time + StartSpeech ();
 
@@ -121,10 +123,10 @@ namespace AC
 							if (!splitDelay)
 							{
 								// Begin pause if more lines are present
-								splitNumber ++;
+								splitIndex ++;
 								string[] textArray = messageText.Split (stringSeparators, System.StringSplitOptions.None);
 								
-								if (textArray.Length > splitNumber)
+								if (textArray.Length > splitIndex)
 								{
 									// Still got more to go, so pause for a moment
 									splitDelay = true;
@@ -193,21 +195,34 @@ namespace AC
 			log.lineID = lineID;
 			log.fullText = messageText;
 
-			if (speaker)
+			if (runtimeSpeaker)
 			{
-				log.speakerName = speaker.name;
+				log.speakerName = runtimeSpeaker.name;
 				if (!noAnimation)
 				{
-					speaker.isTalking = false;
+					runtimeSpeaker.isTalking = false;
 					
-					if (speaker.GetAnimEngine () != null)
+					if (runtimeSpeaker.GetAnimEngine () != null)
 					{
-						speaker.GetAnimEngine ().ActionSpeechSkip (this);
+						runtimeSpeaker.GetAnimEngine ().ActionSpeechSkip (this);
 					}
 				}
 			}
 
 			KickStarter.runtimeVariables.AddToSpeechLog (log);
+		}
+
+
+		public AC.Char Speaker
+		{
+			get
+			{
+				if (Application.isPlaying)
+				{
+					return runtimeSpeaker;
+				}
+				return speaker;
+			}
 		}
 		
 		
@@ -219,33 +234,41 @@ namespace AC
 			{
 				EditorGUILayout.LabelField ("Speech Manager ID:", lineID.ToString ());
 			}
-			
+
+			if (Application.isPlaying && runtimeSpeaker == null)
+			{
+				AssignValues ();
+			}
+
 			isPlayer = EditorGUILayout.Toggle ("Player line?",isPlayer);
-			if (isPlayer)
+			if (!isPlayer)
 			{
 				if (Application.isPlaying)
 				{
-					speaker = KickStarter.player;
+					if (runtimeSpeaker)
+					{
+						EditorGUILayout.LabelField ("Speaker: " + runtimeSpeaker.name);
+					}
+					else
+					{
+						EditorGUILayout.HelpBox ("The speaker cannot be assigned while the game is running.", MessageType.Info);
+					}
 				}
 				else
 				{
-					speaker = AdvGame.GetReferences ().settingsManager.GetDefaultPlayer ();
-				}
-			}
-			else
-			{
-				parameterID = Action.ChooseParameterGUI ("Speaker:", parameters, parameterID, ParameterType.GameObject);
-				if (parameterID >= 0)
-				{
-					constantID = 0;
-					speaker = null;
-				}
-				else
-				{
-					speaker = (Char) EditorGUILayout.ObjectField ("Speaker:", speaker, typeof(Char), true);
-					
-					constantID = FieldToID <Char> (speaker, constantID);
-					speaker = IDToField <Char> (speaker, constantID, false);
+					parameterID = Action.ChooseParameterGUI ("Speaker:", parameters, parameterID, ParameterType.GameObject);
+					if (parameterID >= 0)
+					{
+						constantID = 0;
+						speaker = null;
+					}
+					else
+					{
+						speaker = (Char) EditorGUILayout.ObjectField ("Speaker:", speaker, typeof(Char), true);
+						
+						constantID = FieldToID <Char> (speaker, constantID);
+						speaker = IDToField <Char> (speaker, constantID, false);
+					}
 				}
 			}
 			
@@ -258,22 +281,23 @@ namespace AC
 				messageText = EditorGUILayout.TextArea (messageText, GUILayout.MaxWidth (400f));
 				EditorGUILayout.EndHorizontal ();
 			}
-			
-			if (speaker)
+
+			Char _speaker = (Application.isPlaying) ? runtimeSpeaker : speaker;
+			if (_speaker)
 			{
 				noAnimation = EditorGUILayout.Toggle ("Don't animate speaker?", noAnimation);
 				
 				if (!noAnimation)
 				{
-					if (speaker.GetAnimEngine ())
+					if (_speaker.GetAnimEngine ())
 					{
-						speaker.GetAnimEngine ().ActionSpeechGUI (this);
+						_speaker.GetAnimEngine ().ActionSpeechGUI (this, _speaker);
 					}
 				}
 			}
 			else if (!isPlayer && parameterID < 0)
 			{
-				EditorGUILayout.HelpBox ("If no Character is set, this line will be considered to be a Narration.", MessageType.Info);
+				EditorGUILayout.HelpBox ("If no Character is set, this line\nwill be considered to be a Narration.", MessageType.Info);
 			}
 			
 			isBackground = EditorGUILayout.Toggle ("Play in background?", isBackground);
@@ -292,6 +316,12 @@ namespace AC
 			{
 				speaker = IDToField <Char> (speaker, constantID, false);
 			}
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			AssignConstantID <Char> (speaker, constantID, parameterID);
 		}
 		
 		
@@ -316,6 +346,14 @@ namespace AC
 		}
 		
 		#endif
+
+
+		public string[] GetSpeechArray ()
+		{
+			string _text = messageText.Replace ("\\n", "\n");
+			string[] textArray = _text.Split (stringSeparators, System.StringSplitOptions.None);
+			return textArray;
+		}
 		
 		
 		private float StartSpeech ()
@@ -323,11 +361,11 @@ namespace AC
 			string _text = messageText;
 			int _lineID = lineID;
 			
-			int lanuageNumber = Options.GetLanguage ();
-			if (lanuageNumber > 0)
+			int languageNumber = Options.GetLanguage ();
+			if (languageNumber > 0)
 			{
 				// Not in original language, so pull translation in from Speech Manager
-				_text = KickStarter.runtimeLanguages.GetTranslation (_text, lineID, lanuageNumber);
+				_text = KickStarter.runtimeLanguages.GetTranslation (_text, lineID, languageNumber);
 			}
 			
 			bool isSplittingLines = false;
@@ -337,35 +375,45 @@ namespace AC
 
 			if (KickStarter.speechManager.separateLines)
 			{
-				// Split line into an array, and pull the correct one
-				string[] textArray = _text.Split (stringSeparators, System.StringSplitOptions.None);
-				_text = textArray [splitNumber];
-
+				string[] textArray = messageText.Replace ("\\n", "\n").Split (stringSeparators, System.StringSplitOptions.None);
 				if (textArray.Length > 1)
 				{
+					_text = textArray [splitIndex];
 					isSplittingLines = true;
 
-					if (splitNumber > 0)
+					if (splitIndex > 0)
 					{
-						_lineID = -1;
+						if (multiLineIDs != null && multiLineIDs.Length > (splitIndex-1))
+						{
+							_lineID = multiLineIDs[splitIndex-1];
+						}
+						else
+						{
+							_lineID = -1;
+						}
 					}
-					if (textArray.Length > splitNumber)
+					if (textArray.Length > splitIndex)
 					{
 						isLastSplitLine = true;
+					}
+
+					if (languageNumber > 0)
+					{
+						_text = KickStarter.runtimeLanguages.GetTranslation (_text, _lineID, languageNumber);
 					}
 				}
 			}
 			
 			if (_text != "")
 			{
-				speech = KickStarter.dialog.StartDialog (speaker, _text, isBackground, _lineID, noAnimation);
+				speech = KickStarter.dialog.StartDialog (runtimeSpeaker, _text, isBackground, _lineID, noAnimation);
 				float displayDuration = speech.displayDuration;
 
-				if (speaker && !noAnimation)
+				if (runtimeSpeaker && !noAnimation)
 				{
-					if (speaker.GetAnimEngine () != null)
+					if (runtimeSpeaker.GetAnimEngine () != null)
 					{
-						speaker.GetAnimEngine ().ActionSpeechRun (this);
+						runtimeSpeaker.GetAnimEngine ().ActionSpeechRun (this);
 					}
 				}
 				

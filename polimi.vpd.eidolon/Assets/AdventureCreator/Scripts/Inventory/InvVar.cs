@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"InvVar.cs"
  * 
@@ -37,7 +37,7 @@ namespace AC
 
 		/**
 		 * The main Constructor.
-		 * An array of ID numbers is required, to ensure it's own ID is unique.
+		 * An array of ID numbers is required, to ensure its own ID is unique.
 		 */
 		public InvVar (int[] idArray)
 		{

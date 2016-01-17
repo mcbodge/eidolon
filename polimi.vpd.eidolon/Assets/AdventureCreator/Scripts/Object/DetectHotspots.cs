@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"DetectHotspots.cs"
  * 
@@ -189,7 +189,7 @@ namespace AC
 
 
 		/**
-		 * Detects Hotspots in it's vicinity. This is public so that it can be called by StateHandler every frame.
+		 * Detects Hotspots in its vicinity. This is public so that it can be called by StateHandler every frame.
 		 */
 		public void _Update ()
 		{
@@ -247,7 +247,7 @@ namespace AC
 
 
 		/**
-		 * <summary>Checks if a specific Hotspot is within it's volume.</summary>
+		 * <summary>Checks if a specific Hotspot is within its volume.</summary>
 		 * <param name = "hotspot">The Hotspot to check for</param>
 		 * <returns>True if the Hotspot is within the Collider volume</returns>
 		 */
@@ -262,7 +262,7 @@ namespace AC
 
 
 		/**
-		 * Highlights all Hotspots within it's volume.
+		 * Highlights all Hotspots within its volume.
 		 */
 		public void HighlightAll ()
 		{

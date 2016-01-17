@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionQTE.cs"
  * 
@@ -144,10 +144,10 @@ namespace AC
 		{
 			qteType = (QTEType) EditorGUILayout.EnumPopup ("QTE type:" , qteType);
 			
-			inputNameParameterID = Action.ChooseParameterGUI ("Button name:", parameters, inputNameParameterID, ParameterType.String);
+			inputNameParameterID = Action.ChooseParameterGUI ("Input button name:", parameters, inputNameParameterID, ParameterType.String);
 			if (inputNameParameterID < 0)
 			{
-				inputName = EditorGUILayout.TextField ("Button name:", inputName);
+				inputName = EditorGUILayout.TextField ("Input button name:", inputName);
 			}
 			wrongKeyFails = EditorGUILayout.Toggle ("Wrong key fails?", wrongKeyFails);
 			

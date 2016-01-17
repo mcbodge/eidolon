@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ManagerPackage.cs"
  * 
@@ -38,7 +38,7 @@ namespace AC
 
 
 		/**
-		 * Assigns it's various Manager asset files.
+		 * Assigns its various Manager asset files.
 		 */
 		public void AssignManagers ()
 		{

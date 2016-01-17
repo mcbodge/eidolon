@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuElement.cs"
  * 
@@ -79,7 +79,7 @@ namespace AC
 		public bool changeCursor = false;
 		/** The ID number of the cursor (in CursorManager's cursorIcons) to display when the mouse hovers of the element, if changeCursor = True */
 		public int cursorID = 0;
-		/** The ConstantID number of it's GameObject counterpart (Unity UI only) */
+		/** The ConstantID number of its GameObject counterpart (Unity UI only) */
 		public int linkedUiID;
 		/** The method which this element (or slots within it) are hidden from view when made invisible (DisableObject, ClearContent) */
 		public UIHideStyle uiHideStyle = UIHideStyle.DisableObject;
@@ -170,11 +170,26 @@ namespace AC
 
 
 		/**
+		 * <summary>Performs any initialisation that can only be done once the element has been instantiated at runtime.</summary>
+		 * <param name = "_menu">The Menu that the elemnt is a part of.</param>
+		 */
+		public virtual void Initialise (AC.Menu _menu)
+		{}
+
+
+		/**
 		 * <summary>Initialises the linked Unity UI GameObject.</summary>
 		 * <param name = "_menu">The element's parent Menu</param>
 		 */
 		public virtual void LoadUnityUI (AC.Menu _menu)
 		{}
+
+
+		protected void ProcessClickUI (AC.Menu _menu, int _slot, MouseState _mouseState)
+		{
+			KickStarter.playerInput.ResetClick ();
+			ProcessClick (_menu, _slot, _mouseState);
+		}
 
 
 		/**

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"Moveable.cs"
  * 
@@ -24,7 +24,7 @@ namespace AC
 	public class Moveable : MonoBehaviour
 	{
 
-		/** True if the script is currently moving it's GameObject */
+		/** True if the script is currently moving its GameObject */
 		[HideInInspector] public bool isMoving;
 		
 		private bool doEulerRotation = false;
@@ -60,7 +60,7 @@ namespace AC
 
 
 		/**
-		 * Halts the GameObject, and sets it's Transform to it's target values, if it is being moved by this script.
+		 * Halts the GameObject, and sets its Transform to its target values, if it is being moved by this script.
 		 */
 		public void EndMovement ()
 		{
@@ -154,7 +154,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Moves the GameObject by referencing a Vector3 as it's target Transform.</summary>
+		 * <summary>Moves the GameObject by referencing a Vector3 as its target Transform.</summary>
 		 * <param name = "_newVector">The target values of either the GameObject's position, rotation or scale</param>
 		 * <param name = "_moveMethod">The interpolation method by which the GameObject moves (Linear, Smooth, Curved, EaseIn, EaseOut, CustomCurve)</param>
 		 * <param name = "_transitionTime">The time, in seconds, that the movement should take place over</param>
@@ -233,7 +233,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Moves the GameObject by referencing a Marker component as it's target Transform.</summary>
+		 * <summary>Moves the GameObject by referencing a Marker component as its target Transform.</summary>
 		 * <param name = "_marker">A Marker whose position, rotation and scale will be the target values of the GameObject</param>
 		 * <param name = "_moveMethod">The interpolation method by which the GameObject moves (Linear, Smooth, Curved, EaseIn, EaseOut, CustomCurve)</param>
 		 * <param name = "_transitionTime">The time, in seconds, that the movement should take place over</param>

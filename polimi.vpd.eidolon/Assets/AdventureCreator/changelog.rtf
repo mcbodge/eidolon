@@ -1,10 +1,180 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf130
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww20440\viewh15160\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 Version 1.49a:\
+\f0\fs24 \cf0 Version 1.50f:\
+\
+-Fixed: \'93ActionList on game start\'94 running before Options-linked Variables are loaded when a game begins\
+-Fixed: Follow Sorting Maps no longer previewing in Edit mode\
+-Fixed: Further issues with UFPS integration\
+-Fixed: Translation not using local Player names if no Player prefab is defined\
+\
+\
+Version 1.50e:\
+\
+-Added: The \'93Player: Constrain\'94 Action can now be used to manually set the cursor\'92s lock state\
+-Added: Ability to display a custom texture in an Interaction AC Menu element instead of the cursor icon graphic\
+-Added: \'93Speech\'94 type to Sound prefab - which can be used to play non-speech audio at the same volume as regular speech\
+-Fixed: Unity UI elements not always responding to mouse clicks\
+-Fixed: Issues with UFPS integration\
+-Fixed: Not being able to set the Minimum limit values on 2D Drag cameras.\
+-Fixed: Issues with showing Unity UI menu elements that are hidden by default\
+-Fixed: Connections no longer being retained when pasting copied Actions in the ActionList Editor\
+\
+\
+Version 1.50d:\
+\
+-Fixed: Rare issues with Choose Interaction Then Hotspot mode\
+-Fixed: Issue when switching to WebPlayer platform\
+\
+\
+Version 1.50c:\
+\
+-Added: Transform field to Character inspectors that will override the placement of Menus set to display Above Speaking Character and Above Player\
+-Changed: The \'93ToggleCursor\'94 Input is no longer mapped to Left Alt by default, and must be added manually to the Input settings\
+-Fixed: Unity UI objects duplicated for multiple speech lines not being deleted when the speech line they are created for has ended\
+-Fixed: Error with 2D Toolkit integration\
+-Fixed: Issue when teleporting a character that uses a NavMeshAgent\
+\
+\
+Version 1.50b:\
+\
+-Fixed: Issues when editing Input menu elements in the Menu Manager\
+\
+\
+Version 1.50a:\
+\
+-Fixed: Rare issue with Inventory items and Hotspot labels\
+-Fixed: Issues with speech volumes controlled by Sound components\
+-Fixed: Rare error when moving 2D characters with the \'93Character: Move to point\'94 Action\
+-Fixed: Movement issues when changing scene in First Person\
+\
+\
+Version 1.50:\
+\
+= Upgrade notes =\
+-The GameEngine prefab now has an additional component - \'93MultiSceneChecker\'94, and MUST be re-imported when updating\
+-AC\'92s UFPS integration has been updated, but the set-up steps have changed - please see Section 2.7 of the Manual\
+-AC\'92s OUYA integration has been updated, but the set-up steps have changed - please see Section 2.10 of the Manual\
+-Custom navigation scripts are now set by setting a scene\'92s \'93Pathfinding method\'94 to \'93Custom\'94, and entering in the name of the script\
+-If dialogue text is separated by carriage returns, each line is now given it\'92s own translation ID in the Speech Manager\
+-Pitch constraints on Third-person GameCameras are now set with both minimum and maximum values - not just a maximum\
+-2D character turning speeds may need to be adjusted slightly after upgrading\
+\
+= Unity 5.3 =\
+-Added: Compatibility with Unity 5.3\
+-Added: The main AC Game Editor window now respects the active scene, if multiple are being edited at once (Unity 5.3 only)\
+\
+= Third-party =\
+-Changed: AC\'92s UFPS integration has been overhauled, but the set-up steps have changed - please see Section 2.7 of the Manual\
+-Changed: AC\'92s OUYA integration has been updated, but the set-up steps have changed - please see Section 2.10 of the Manual\
+\
+= Navigation =\
+-Added: \'93NavMeshAgent Integration\'94 script - add to a character in a scene that uses Unity Navigation to control that character\'92s movement with a NavMeshAgent\
+-Added: Ability for 2D NavMeshes to allow for pathfinding around moving characters\
+-Added: Option to \'93Character: NPC follow\'94 Action to have the NPC turn to face its target when idle\
+-Added: Chapter to the Manual on precise character movement\
+-Changed: The \'93Attempt to move around characters\'94 checkbox on 2D NavMeshes has been replaced with a drop-down list\
+-Fixed: Various issues with character movement, particularly those in 3D\
+-Fixed: Polygon Collider-based NavMeshes not adding holes in the correct place if the NavMesh has a non-unit scale\
+-Fixed: Node Cutscenes becoming improperly assigned if a Path\'92s nodes are modified\
+\
+= Sorting Maps =\
+-Added: The \'93Character: Change rendering\'94 Action can now be used to change which SortingMap a character follows\
+-Added: FollowSortingMap components can now follow SortingMaps that are not the scene\'92s default\
+-Changed: The \'93Follow Sorting map?\'94 option on the FollowSortingMap component has been changed to \'93Follow default Sorting Map?\'94\
+-Fixed: 2D characters occasionally being rendered in the wrong order\
+\
+= Speech and translations =\
+-Added: Non-default Player prefabs can be assigned in the \'93Dialogue: Play speech\'94 Action manually, so that their name appears in the Speech Manager\
+-Added: Ability to assign custom speech AudioClips and lipsync text files to a speech line, rather than having it read automatically by name\
+-Added: If a Sound component is added to a character\'92s speech audio source, then it can be used to set the relative volume of their speech\
+-Changed: If dialogue text is separated by carriage returns, each line is now given it\'92s own translation ID in the Speech Manager\
+-Fixed: Unhandled Hotspot interactions not always being included in translations\
+-Fixed: Original text of a translatable line not showing in Speech Manager once it is selected\
+-Fixed: Rare issue when skipping speech text\
+-Fixed: Display issue with subtitle \'93speaker\'94 Labels if narration and character speech is played in succession\
+-Fixed: Issues when skipping speech that contains [wait] tokens\
+\
+= Saving and loading =\
+-Added: Ability to let AC attempt to \'93auto-tag\'94 GameObjects with appropriate \'91Remember\'92 scripts needed for saving to function\
+-Added: Option to always force-reload the scene when loading a save file in the same scene\
+-Fixed: Issues when loading a saved game that include a RememberTransform component that has been removed from the scene\
+-Fixed: Constant ID numbers always not being set for prefabs that have multiple \'93Remember\'94 components\
+-Fixed: Issues with save files for projects that have no Player prefab\
+\
+= ActionLists =\
+-Added: Ability to convert ActionList assets to Cutscenes, via the top-right menu in the Inspector\
+-Added: Ability to convert scene-based ActionLists to ActionList assets, via the top-right menu in the Inspector\
+-Added: String parameters now support Variable and custom tokens\
+-Added: Field to the Actions Manager that controls the panning or zooming speed when using the ActionList Editor window\
+-Fixed: ActionList fields sometimes appearing empty under specific circumstances\
+-Fixed: Issues when copying scene-based Actions using the ActionList Editor window\
+-Fixed: Action fields sometimes unsetting if they refer to a prefab that is also in a scene\
+\
+= Custom scripting =\
+-Added: New delegates to the PlayerInput script to override mouse input detection\
+-Added: Character \'93Motion control\'94 setting is now exposed even if the Animation engine isn\'92t set to Custom, so that it can be overridden independently\
+-Changed: Custom navigation scripts are now set by setting a scene\'92s \'93Pathfinding method\'94 to \'93Custom\'94, and entering in the name of the script\
+\
+= Actions =\
+-Changed: The Actions Manager now display a list of Action categories as buttons - clicking a button expands it to show a list of Actions for that type\
+-Fixed: Error when using the \'93Object: Add or remove\'94 Action to replace one GameObject with another\
+-Fixed: Errors if a 2D NPC is removed from the scene using the \'93Object: Add or remove\'94 Action\
+\
+= Cameras =\
+-Added: \'93GameCamera 2D Drag\'94 prefab to Unity2D games - moves by clicking/touch-dragging around the screen\
+-Added: If AC detects a non-standard MainCamera when creating a new scene, it will ask you if it should replace it or simply untag it\
+-Added: The \'93Always behind target?\'94 option for Third-person GameCameras is now also available when spin rotation is Limited, not just Locked\
+-Added: Option to crossfade to the last-active gameplay camera with the \'93Camera: Crossfade\'94 Action\
+-Changed: Pitch constraints on Third-person GameCameras are now set with both minimum and maximum values - not just a maximum\
+-Fixed: Third-person Cameras set to rotate \'93Always behind target\'94 not doing so during Cutscenes\
+\
+= Journals =\
+-Added: Ability to use a Journal element to display another Journal\'92s contents with a page offset\
+-Added: Ability to set the number of pages to offset by when using a Button element to offset a Journal\'92s page\
+-Added: Ability to only display a Button that offsets a Journal\'92s page if clicking it will be effective\
+-Fixed: Line-break issues when exporting translations with multi-line Journal elements\
+\
+= Quick-time events =\
+-Added: The \'93Wrong key fails?\'94 option in QTE sequences now responds to simulated input\
+-Fixed: Mouse clicks ending QTE sequences that have \'93Wrong key fails?\'94 checked\
+-Fixed: Display issues with Timer Menu Elements that are used to display the time remaining of a QTE\
+\
+= Menus =\
+-Fixed: Rare display issues with Menus when using a Button to offset another Element\
+-Fixed: Menu previews showing in Game Window even when the active Manager is not the Menu Manager\
+-Fixed: Minor issues with Interaction Menus\
+-Fixed: Minor issues when clicking on Unity UI-based Menu Elements\
+\
+= Scene editing =\
+-Added: If a prefab is auto-created using the Scene Manager, that object is now highlighted in the Hierarchy window\
+-Fixed: Hotspots, Triggers and CollisionCube boundaries not displaying properly if their colliders are resized\
+\
+= Hotspots =\
+-Fixed: Hotspot icons rendered in World Space not fading out correctly\
+-Fixed: Hotspot verbs not showing in rare circumstances\
+-Fixed: Player not always moving to within a Hotspot\'92s Proximity value if a Walk-To Marker is also defined\
+\
+= Player prefabs =\
+-Fixed: Inventory occasionally re-setting when leaving a scene that uses a local Player prefab\
+-Fixed: Errors when switching Player prefab if multiple GameObjects tagged as \'93Player\'94 are present in the scene\
+\
+= Other =\
+-Added: Error messages to Console if either of the demo scenes are run with the incorrect Managers loaded\
+-Added: Line breaks to console messages, to improve readability\
+-Added: Messages sent to the Console using the \'93ActionList: Comment\'94 Action now support Variable and custom tokens\
+-Added: Double-clicking on a Manager Package asset file will now bulk-assign all Managers it references\
+-Added: If a character\'92s head is turned using the \'93Character: Face object\'94 Action, then moving the object they face will also turn the character\'92s head\
+-Changed: The GameEngine prefab now has an additional component - \'93MultiSceneChecker\'94\
+-Fixed: Character scales set for 3D characters with \'93Character: Rendering\'94 Action not being in percentages\
+-Fixed: Further issues when switching from an AC scene to a non-AC scene\
+-Fixed: RememberMoveable component not always restoring a Draggable\'92s position when loading a save file\
+\
+\
+Version 1.49a:\
 \
 -Added: Warning message to Settings Manager if the \'91save filename\'92 contains special characters\
 -Fixed: Issues with Rogo Digital Lipsync integration\

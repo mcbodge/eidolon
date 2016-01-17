@@ -30,11 +30,11 @@ namespace AC
 				{
 					EditorGUILayout.HelpBox ("The 'tk2DIsPresent' preprocessor define must be declared in the\ntk2DIntegration.cs script. Please open it and follow instructions.", MessageType.Warning);
 				}
-				if (_target.animationEngine == AnimationEngine.Custom)
+				else if (_target.animationEngine == AnimationEngine.Custom)
 				{
 					_target.customAnimationClass = EditorGUILayout.TextField ("Script name:", _target.customAnimationClass);
-					_target.motionControl = (MotionControl) EditorGUILayout.EnumPopup ("Motion control:", _target.motionControl);
 				}
+				_target.motionControl = (MotionControl) EditorGUILayout.EnumPopup ("Motion control:", _target.motionControl);
 			EditorGUILayout.EndVertical ();
 
 			_target.GetAnimEngine ().CharSettingsGUI ();
@@ -86,6 +86,7 @@ namespace AC
 
 			_target.speechColor = EditorGUILayout.ColorField ("Speech text colour:", _target.speechColor);
 			_target.speechLabel = EditorGUILayout.TextField ("Speaker label:", _target.speechLabel);
+			_target.speechMenuPlacement = (Transform) EditorGUILayout.ObjectField ("Speech menu placement child:", _target.speechMenuPlacement, typeof (Transform), true);
 			if (_target.useExpressions)
 			{
 				EditorGUILayout.LabelField ("Default portrait graphic:");

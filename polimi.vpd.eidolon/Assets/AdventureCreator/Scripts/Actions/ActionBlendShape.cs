@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionBlendShape.cs"
  * 
@@ -299,6 +299,19 @@ namespace AC
 			}
 			
 			return keyID;
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (!isPlayer)
+			{
+				if (saveScriptsToo)
+				{
+					AddSaveScript <RememberShapeable> (shapeObject);
+				}
+				AssignConstantID <Shapeable> (shapeObject, constantID, parameterID);
+			}
 		}
 		
 		#endif

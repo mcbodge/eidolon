@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionHighlight.cs"
  * 
@@ -214,6 +214,15 @@ namespace AC
 			}
 
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (whatToHighlight == WhatToHighlight.SceneObject)
+			{
+				AssignConstantID <Highlight> (highlightObject, constantID, parameterID);
+			}
 		}
 		
 		

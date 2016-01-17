@@ -22,7 +22,7 @@ namespace AC
 		public static void Init ()
 		{
 			PhonemesWindow window = (PhonemesWindow) EditorWindow.GetWindow (typeof (PhonemesWindow));
-			AdvGame.SetWindowTitle (window, "Phonemes Editor");
+			UnityVersionHandler.SetWindowTitle (window, "Phonemes Editor");
 			window.position = new Rect (300, 200, 450, 400);
 		}
 

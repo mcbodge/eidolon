@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"AdvGame.cs"
  * 
@@ -60,7 +60,7 @@ namespace AC
 		#endif
 
 		/**
-		 * <summary>Sets the 'Output Audio Mixer Group' of an Audio Source, based on it's sound type (Unity 5 only).</summary>
+		 * <summary>Sets the 'Output Audio Mixer Group' of an Audio Source, based on its sound type (Unity 5 only).</summary>
 		 * <param name = "audioSource">The Audio Source component to affect</param>
 		 * <param name = "soundType">The sound type that controls the volume</param>
 		 * <param name = "isSpeech">True if the Audio Source is used to play speech</param>
@@ -97,7 +97,7 @@ namespace AC
 						ACDebug.LogWarning ("Cannot assign " + audioSource.gameObject.name + " a sfx AudioMixerGroup!");
 					}
 				}
-				else
+				else if (soundType == AC.SoundType.Speech)
 				{
 					if (KickStarter.settingsManager.speechMixerGroup)
 					{
@@ -258,52 +258,6 @@ namespace AC
 
 
 		/**
-		 * <summary>Draws a cube gizmo in the Scene window.</summary>
-		 * <param name = "transform">The transform of the object to draw around</param>
-		 * <param name = "color">The colour of the cube</param>
-		 */
-		public static void DrawCubeCollider (Transform transform, Color color)
-		{
-			Gizmos.matrix = transform.localToWorldMatrix;
-			Gizmos.color = color;
-			Gizmos.DrawCube (Vector3.zero, Vector3.one);
-		}
-		
-
-		/**
-		 * <summary>Draws a box gizmo in the Scene window.</summary>
-		 * <param name = "transform">The transform of the object to draw around</param>
-		 * <param name = "color">The colour of the box</param>
-		 */
-		public static void DrawBoxCollider (Transform transform, Color color)
-		{
-			Gizmos.matrix = transform.localToWorldMatrix;
-			Gizmos.color = color;
-			Gizmos.DrawLine (new Vector3 (-0.5f, -0.5f), new Vector3 (-0.5f, 0.5f));
-			Gizmos.DrawLine (new Vector3 (-0.5f, 0.5f), new Vector3 (0.5f, 0.5f));
-			Gizmos.DrawLine (new Vector3 (0.5f, 0.5f), new Vector3 (0.5f, -0.5f));
-			Gizmos.DrawLine (new Vector3 (0.5f, -0.5f), new Vector3 (-0.5f, -0.5f));
-		}
-		
-		
-		/**
-		 * <summary>Draws an outline of a Polygon Collider 2D in the Scene window.</summary>
-		 * <param name = "transform">The transform of the object to draw around</param>
-		 * <param name = "poly">The Polygon Collider 2D</param>
-		 * <param name = "color">The colour of the outline</param>
-		 */
-		public static void DrawPolygonCollider (Transform transform, PolygonCollider2D poly, Color color)
-		{
-			Gizmos.color = color;
-			Gizmos.DrawLine (transform.TransformPoint (poly.points [0]), transform.TransformPoint (poly.points [poly.points.Length-1]));
-			for (int i=0; i<poly.points.Length-1; i++)
-			{
-				Gizmos.DrawLine (transform.TransformPoint (poly.points [i]), transform.TransformPoint (poly.points [i+1]));
-			}
-		}
-		
-
-		/**
 		 * <summary>Calculates a formula (Not available for Windows Phone devices).</summary>
 		 * <param name = "formula">The formula string to calculate</param>
 		 * <returns>The result</returns>
@@ -371,6 +325,69 @@ namespace AC
 		
 		
 		#if UNITY_EDITOR
+
+		/**
+		 * <summary>Draws a cube gizmo in the Scene window.</summary>
+		 * <param name = "transform">The transform of the object to draw around</param>
+		 * <param name = "color">The colour of the cube</param>
+		 */
+		public static void DrawCubeCollider (Transform transform, Color color)
+		{
+			if (transform.GetComponent <BoxCollider2D>() != null)
+			{
+				BoxCollider2D _boxCollider2D = transform.GetComponent <BoxCollider2D>();
+				Vector2 pos = UnityVersionHandler.GetBoxCollider2DCentre (_boxCollider2D);
+
+				Gizmos.matrix = transform.localToWorldMatrix;
+				Gizmos.color = color;
+				Gizmos.DrawCube (pos, _boxCollider2D.size);
+				Gizmos.matrix = Matrix4x4.identity;
+			}
+			else if (transform.GetComponent <BoxCollider>() != null)
+			{
+				BoxCollider _boxCollider = transform.GetComponent <BoxCollider>();
+
+				Gizmos.matrix = transform.localToWorldMatrix;
+				Gizmos.color = color;
+				Gizmos.DrawCube (_boxCollider.center, _boxCollider.size);
+				Gizmos.matrix = Matrix4x4.identity;
+			}
+		}
+
+
+		/**
+		 * <summary>Draws a box gizmo in the Scene window.</summary>
+		 * <param name = "transform">The transform of the object to draw around</param>
+		 * <param name = "color">The colour of the box</param>
+		 */
+		public static void DrawBoxCollider (Transform transform, Color color)
+		{
+			Gizmos.matrix = transform.localToWorldMatrix;
+			Gizmos.color = color;
+			Gizmos.DrawLine (new Vector3 (-0.5f, -0.5f), new Vector3 (-0.5f, 0.5f));
+			Gizmos.DrawLine (new Vector3 (-0.5f, 0.5f), new Vector3 (0.5f, 0.5f));
+			Gizmos.DrawLine (new Vector3 (0.5f, 0.5f), new Vector3 (0.5f, -0.5f));
+			Gizmos.DrawLine (new Vector3 (0.5f, -0.5f), new Vector3 (-0.5f, -0.5f));
+		}
+
+
+		/**
+		 * <summary>Draws an outline of a Polygon Collider 2D in the Scene window.</summary>
+		 * <param name = "transform">The transform of the object to draw around</param>
+		 * <param name = "poly">The Polygon Collider 2D</param>
+		 * <param name = "color">The colour of the outline</param>
+		 */
+		public static void DrawPolygonCollider (Transform transform, PolygonCollider2D poly, Color color)
+		{
+			Gizmos.color = color;
+			Gizmos.DrawLine (transform.TransformPoint (poly.points [0]), transform.TransformPoint (poly.points [poly.points.Length-1]));
+			for (int i=0; i<poly.points.Length-1; i++)
+			{
+				Gizmos.DrawLine (transform.TransformPoint (poly.points [i]), transform.TransformPoint (poly.points [i+1]));
+			}
+		}
+
+
 		/**
 		 * <summary>Locates an object with a supplied ConstantID number (Unity Editor only).
 		 * If the object is not found in the current scene, all scenes in the Build Settings will be searched.
@@ -379,19 +396,16 @@ namespace AC
 		 */
 		public static void FindObjectWithConstantID (int _constantID)
 		{
-			string originalScene = EditorApplication.currentScene;
+			string originalScene = UnityVersionHandler.GetCurrentSceneName ();
 			
-			if (EditorApplication.SaveCurrentSceneIfUserWantsTo ())
+			if (UnityVersionHandler.SaveSceneIfUserWants ())
 			{
 				// Search scene files for ID
 				string[] sceneFiles = GetSceneFiles ();
 				foreach (string sceneFile in sceneFiles)
 				{
-					if (EditorApplication.currentScene != sceneFile)
-					{
-						EditorApplication.OpenScene (sceneFile);
-					}
-					
+					UnityVersionHandler.OpenScene (sceneFile);
+
 					ConstantID[] idObjects = FindObjectsOfType (typeof (ConstantID)) as ConstantID[];
 					if (idObjects != null && idObjects.Length > 0)
 					{
@@ -409,10 +423,7 @@ namespace AC
 				}
 				
 				ACDebug.LogWarning ("Cannot find object with Constant ID: " + _constantID);
-				if (EditorApplication.currentScene != originalScene)
-				{
-					EditorApplication.OpenScene (originalScene);
-				}
+				UnityVersionHandler.OpenScene (originalScene);
 			}
 		}
 		
@@ -638,28 +649,8 @@ namespace AC
 				}
 			}
 			
-			foreach (Action action in tempList)
-			{
-				action.AfterCopy (tempList);
-			}
-			
 			copiedActions.Clear ();
 			copiedActions = tempList;
-		}
-
-
-		/**
-		 * <summary>Sets the title of an editor window (Unity Editor only).</summary>
-		 * <param name = "window">The EditorWindow to affect</param>
-		 * <param name = "label">The title of the window</param>
-		 */
-		public static void SetWindowTitle <T> (T window, string label) where T : EditorWindow
-		{
-			#if UNITY_5_1 || UNITY_5_2
-			window.titleContent.text = label;
-			#else
-			window.title = label;
-			#endif
 		}
 
 
@@ -741,7 +732,7 @@ namespace AC
 		 */
 		public static Vector2 GetMainGameViewSize ()
 		{
-			#if UNITY_EDITOR
+			#if UNITY_EDITOR && !UNITY_5_4
 			System.Type T = System.Type.GetType("UnityEditor.GameView, UnityEditor");
 			System.Reflection.MethodInfo GetSizeOfMainGameView = T.GetMethod ("GetSizeOfMainGameView", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 			System.Object Res = GetSizeOfMainGameView.Invoke (null,null);
@@ -823,7 +814,7 @@ namespace AC
 		
 
 		/**
-		 * <summary>Gets the name of an asset file, given it's path.</summary>
+		 * <summary>Gets the name of an asset file, given its path.</summary>
 		 * <param name = "resourceName">The full path of the asset file</param>
 		 * <returns>The name of the asset</returns>
 		 */

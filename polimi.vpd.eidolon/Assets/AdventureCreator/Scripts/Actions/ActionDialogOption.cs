@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionDialogOption.cs"
  * 
@@ -144,6 +144,16 @@ namespace AC
 			}
 			
 			return optionID;
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberConversation> (linkedConversation);
+			}
+			AssignConstantID <Conversation> (linkedConversation, constantID, 0);
 		}
 		
 		#endif

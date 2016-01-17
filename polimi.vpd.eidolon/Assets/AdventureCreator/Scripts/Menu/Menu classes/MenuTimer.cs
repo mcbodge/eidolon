@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"MenuTimer.cs"
  * 
@@ -168,10 +168,18 @@ namespace AC
 				}
 				else if (timerType == AC_TimerType.QuickTimeEventProgress)
 				{
+					if (!KickStarter.playerQTE.QTEIsActive ())
+					{
+						return;
+					}
 					progress = KickStarter.playerQTE.GetProgress ();
 				}
 				else if (timerType == AC_TimerType.QuickTimeEventRemaining)
 				{
+					if (!KickStarter.playerQTE.QTEIsActive ())
+					{
+						return;
+					}
 					progress = KickStarter.playerQTE.GetRemainingTimeFactor ();
 				}
 				else if (timerType == AC_TimerType.LoadingProgress)

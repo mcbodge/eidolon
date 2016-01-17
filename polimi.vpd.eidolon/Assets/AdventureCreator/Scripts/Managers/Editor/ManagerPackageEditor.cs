@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using UnityEditor.Callbacks;
 
 namespace AC
 {
@@ -40,6 +41,21 @@ namespace AC
 			{
 				EditorUtility.SetDirty (_target);
 			}
+		}
+
+
+		[OnOpenAssetAttribute(2)]
+		public static bool OnOpenAsset (int instanceID, int line)
+		{
+			if (Selection.activeObject is ManagerPackage)
+			{
+				ManagerPackage managerPackage = (ManagerPackage) Selection.activeObject as ManagerPackage;
+				Undo.RecordObject (AdvGame.GetReferences (), "Assign managers");
+				managerPackage.AssignManagers ();
+				AdventureCreator.RefreshActions ();
+				return true;
+			}
+			return false;
 		}
 
 	}

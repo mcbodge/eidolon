@@ -24,7 +24,6 @@ namespace AC
 				SerializedProperty onHighlightOn = serializedObject.FindProperty ("onHighlightOn");
 				SerializedProperty onHighlightOff = serializedObject.FindProperty ("onHighlightOff");
 
-				EditorGUIUtility.LookLikeControls ();
 				EditorGUILayout.PropertyField (onHighlightOn);
 				EditorGUILayout.PropertyField (onHighlightOff);
 			}

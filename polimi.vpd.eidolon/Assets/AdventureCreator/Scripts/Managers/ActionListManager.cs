@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionListManager.cs"
  * 
@@ -38,7 +38,7 @@ namespace AC
 		private SkipList activeConversationPoint = new SkipList ();
 
 		
-		private void Awake ()
+		public void OnAwake ()
 		{
 			activeLists.Clear ();
 		}
@@ -78,7 +78,7 @@ namespace AC
 			{
 				return;
 			}
-			
+
 			if (AdvGame.GetReferences ().settingsManager.blackOutWhenSkipping)
 			{
 				KickStarter.mainCamera.HideScene ();
@@ -430,7 +430,7 @@ namespace AC
 
 		/**
 		 * <summary>Destroys the RuntimeActionList scene object that is running Actions from an ActionListAsset.</summary>
-		 * <param name = "asset">The asset file that the RuntimeActionList has sourced it's Actions from</param>
+		 * <param name = "asset">The asset file that the RuntimeActionList has sourced its Actions from</param>
 		 */
 		public void DestroyAssetList (ActionListAsset asset)
 		{

@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionParent.cs"
  * 
@@ -144,6 +144,31 @@ namespace AC
 			}
 			
 			AfterRunningOption ();
+		}
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberTransform> (obToAffect);
+				if (parentTransform != null)
+				{
+					AddSaveScript <ConstantID> (parentTransform.gameObject);
+				}
+				if (obToAffect != null && obToAffect.GetComponent <RememberTransform>())
+				{
+					obToAffect.GetComponent <RememberTransform>().saveParent = true;
+
+					if (obToAffect.transform.parent)
+					{
+						AddSaveScript <ConstantID> (obToAffect.transform.parent.gameObject);
+					}
+				}
+			}
+
+			AssignConstantID (obToAffect, obToAffectID, obToAffectParameterID);
+			AssignConstantID (parentTransform, parentTransformID, parentTransformParameterID);
 		}
 		
 		

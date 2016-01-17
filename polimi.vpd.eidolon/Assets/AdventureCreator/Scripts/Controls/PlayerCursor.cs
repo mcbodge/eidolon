@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"PlayerCursor.cs"
  * 
@@ -38,15 +38,6 @@ namespace AC
 		private string lastCursorName;
 		
 
-		private void Awake ()
-		{
-			if (AdvGame.GetReferences () == null)
-			{
-				ACDebug.LogError ("A References file is required - please use the Adventure Creator window to create one.");
-			}
-		}
-		
-
 		/**
 		 * Updates the cursor. This is called every frame by StateHandler.
 		 */
@@ -77,11 +68,7 @@ namespace AC
 					shouldShowCursor = false;
 				}
 
-				#if UNITY_5
-				Cursor.visible = shouldShowCursor;
-				#else
-				Screen.showCursor = shouldShowCursor;
-				#endif
+				UnityVersionHandler.SetCursorVisibility (shouldShowCursor);
 			}
 			
 			if (KickStarter.settingsManager && KickStarter.stateHandler)
@@ -147,11 +134,7 @@ namespace AC
 			
 			if (KickStarter.cursorManager.cursorRendering == CursorRendering.Hardware)
 			{
-				#if UNITY_5
-				Cursor.visible = showCursor;
-				#else
-				Screen.showCursor = showCursor;
-				#endif
+				UnityVersionHandler.SetCursorVisibility (showCursor);
 			}
 		}
 		
@@ -696,7 +679,7 @@ namespace AC
 			{
 				selectedCursor ++;
 
-				if (selectedCursor < KickStarter.cursorManager.cursorIcons.Count && KickStarter.cursorManager.cursorIcons [selectedCursor].dontCycle)
+				if (selectedCursor >= 0 && selectedCursor < KickStarter.cursorManager.cursorIcons.Count && KickStarter.cursorManager.cursorIcons [selectedCursor].dontCycle)
 				{
 					while (KickStarter.cursorManager.cursorIcons [selectedCursor].dontCycle)
 					{

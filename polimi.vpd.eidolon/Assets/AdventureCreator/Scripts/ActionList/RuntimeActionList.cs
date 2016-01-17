@@ -1,7 +1,7 @@
 /*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"RuntimeActionList.cs"
  * 
@@ -21,7 +21,7 @@ namespace AC
 
 	/**
 	 * An ActionList subclass used to run ActionListAssets, which exist in asset files outside of the scene.
-	 * When an ActionListAsset is run, it's Actions are copied to a new RuntimeActionList and run locally.
+	 * When an ActionListAsset is run, its Actions are copied to a new RuntimeActionList and run locally.
 	 */
 	public class RuntimeActionList : ActionList
 	{

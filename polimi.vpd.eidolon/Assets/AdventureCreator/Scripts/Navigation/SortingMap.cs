@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"SortingMap.cs"
  * 
@@ -37,19 +37,23 @@ namespace AC
 		
 		private FollowSortingMap[] followers;
 		
-		
-		private void Start ()
-		{
-			GetAllFollowers ();
-		}
-		
 
 		/**
 		 * Recalculates the "followers" array, which is an array of all FollowSortingMap components present in the scene.
 		 */
 		public void GetAllFollowers ()
 		{
-			followers = FindObjectsOfType (typeof (FollowSortingMap)) as FollowSortingMap[];
+			FollowSortingMap[] _followers = FindObjectsOfType (typeof (FollowSortingMap)) as FollowSortingMap[];
+			List<FollowSortingMap> followerList = new List<FollowSortingMap>();
+			foreach (FollowSortingMap _follower in _followers)
+			{
+				_follower.UpdateSortingMap ();
+				if (_follower.GetSortingMap () == this)
+				{
+					followerList.Add (_follower);
+				}
+			}
+			followers = followerList.ToArray ();
 		}
 		
 		
@@ -90,7 +94,7 @@ namespace AC
 				
 				foreach (FollowSortingMap testFollower in followers)
 				{
-					if (testFollower.followSortingMap && !testFollower.lockSorting && testFollower != follower && testFollower.GetOrder () == testOrder)
+					if (testFollower != null && testFollower.followSortingMap && !testFollower.lockSorting && testFollower != follower && testFollower.GetOrder () == testOrder)
 					{
 						// Found a follower with the same order/layer
 						testFollowers.Add (testFollower);

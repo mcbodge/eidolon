@@ -1,7 +1,7 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2015
+ *	by Chris Burton, 2013-2016
  *	
  *	"ActionInstantiate.cs"
  * 
@@ -35,6 +35,7 @@ namespace AC
 
 		public InvAction invAction;
 		public PositionRelativeTo positionRelativeTo = PositionRelativeTo.Nothing;
+		private GameObject _gameObject;
 
 
 		public ActionInstantiate ()
@@ -50,7 +51,7 @@ namespace AC
 		{
 			if (invAction == InvAction.Add || invAction == InvAction.Replace)
 			{
-				gameObject = AssignFile (parameters, parameterID, 0, gameObject);
+				_gameObject = AssignFile (parameters, parameterID, 0, gameObject);
 
 				if (invAction == InvAction.Replace)
 				{
@@ -59,14 +60,14 @@ namespace AC
 			}
 			else if (invAction == InvAction.Remove)
 			{
-				gameObject = AssignFile (parameters, parameterID, constantID, gameObject);
+				_gameObject = AssignFile (parameters, parameterID, constantID, gameObject);
 			}
 		}
 		
 		
 		override public float Run ()
 		{
-			if (gameObject == null)
+			if (_gameObject == null)
 			{
 				return 0f;
 			}
@@ -75,21 +76,21 @@ namespace AC
 			{
 				// Instantiate
 
-				GameObject oldOb = AssignFile (constantID, gameObject);
-				if (gameObject.activeInHierarchy || (oldOb != null && oldOb.activeInHierarchy))
+				GameObject oldOb = AssignFile (constantID, _gameObject);
+				if (_gameObject.activeInHierarchy || (oldOb != null && oldOb.activeInHierarchy))
 				{
 					ACDebug.Log (gameObject.name + " won't be instantiated, as it is already present in the scene.");
 					return 0f;
 				}
 
-				Vector3 position = gameObject.transform.position;
-				Quaternion rotation = gameObject.transform.rotation;
+				Vector3 position = _gameObject.transform.position;
+				Quaternion rotation = _gameObject.transform.rotation;
 				
 				if (positionRelativeTo != PositionRelativeTo.Nothing)
 				{
-					float forward = gameObject.transform.position.z;
-					float right = gameObject.transform.position.x;
-					float up = gameObject.transform.position.y;
+					float forward = _gameObject.transform.position.z;
+					float right = _gameObject.transform.position.x;
+					float up = _gameObject.transform.position.y;
 
 					if (positionRelativeTo == PositionRelativeTo.RelativeToActiveCamera)
 					{
@@ -108,14 +109,14 @@ namespace AC
 					}
 				}
 
-				GameObject newObject = (GameObject) Instantiate (gameObject, position, rotation);
-				newObject.name = gameObject.name;
+				GameObject newObject = (GameObject) Instantiate (_gameObject, position, rotation);
+				newObject.name = _gameObject.name;
 				KickStarter.stateHandler.GatherObjects ();
 			}
 			else if (invAction == InvAction.Remove)
 			{
 				// Delete
-				KickStarter.sceneSettings.ScheduleForDeletion (gameObject);
+				KickStarter.sceneSettings.ScheduleForDeletion (_gameObject);
 			}
 			else if (invAction == InvAction.Replace)
 			{
@@ -128,17 +129,17 @@ namespace AC
 				Vector3 position = replaceGameObject.transform.position;
 				Quaternion rotation = replaceGameObject.transform.rotation;
 
-				GameObject oldOb = AssignFile (constantID, gameObject);
+				GameObject oldOb = AssignFile (constantID, _gameObject);
 				if (gameObject.activeInHierarchy || (oldOb != null && oldOb.activeInHierarchy))
 				{
 					ACDebug.Log (gameObject.name + " won't be instantiated, as it is already present in the scene.");
 					return 0f;
 				}
 
-				KickStarter.sceneSettings.ScheduleForDeletion (gameObject);
+				KickStarter.sceneSettings.ScheduleForDeletion (replaceGameObject);
 
-				GameObject newObject = (GameObject) Instantiate (gameObject, position, rotation);
-				newObject.name = gameObject.name;
+				GameObject newObject = (GameObject) Instantiate (_gameObject, position, rotation);
+				newObject.name = _gameObject.name;
 				KickStarter.stateHandler.GatherObjects ();
 			}
 
@@ -196,7 +197,35 @@ namespace AC
 
 			AfterRunningOption ();
 		}
-		
+
+
+		override public void AssignConstantIDs (bool saveScriptsToo)
+		{
+			if (saveScriptsToo)
+			{
+				AddSaveScript <RememberTransform> (replaceGameObject);
+				AddSaveScript <RememberTransform> (gameObject);
+
+				if (replaceGameObject != null && replaceGameObject.GetComponent <RememberTransform>())
+				{
+					replaceGameObject.GetComponent <RememberTransform>().saveScenePresence = true;
+				}
+				if (gameObject != null && gameObject.GetComponent <RememberTransform>())
+				{
+					gameObject.GetComponent <RememberTransform>().saveScenePresence = true;
+				}
+			}
+
+			if (invAction == InvAction.Replace)
+			{
+				AssignConstantID (replaceGameObject, replaceConstantID, replaceParameterID);
+			}
+			else if (invAction == InvAction.Remove)
+			{
+				AssignConstantID (gameObject, constantID, parameterID);
+			}
+		}
+
 		
 		public override string SetLabel ()
 		{

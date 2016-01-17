@@ -1,11 +1,11 @@
 ﻿/*
  *
  *	Adventure Creator
- *	by Chris Burton, 2013-2014
+ *	by Chris Burton, 2013-2016
  *	
  *	"LimitVisibility.cs"
  * 
- *	Attach this script to a GameObject to limit it's visibility
+ *	Attach this script to a GameObject to limit its visibility
  *	to a specific GameCamera in your scene.
  * 
  */
