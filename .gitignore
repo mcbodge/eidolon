@@ -34,3 +34,4 @@ Thumbs.db
 # ================= #
 # Adventure creator #
 # ================= #
+*.csproj
