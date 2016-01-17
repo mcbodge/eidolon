@@ -89,36 +89,36 @@
 	}
 
 		// fragment shader responsible for the final color
-		half4 Outline(v2f i) : SV_Target
+	half4 Outline(v2f i) : SV_Target
 	{
 		half4 original = tex2D(_MainTex, i.uv[0]);
 
-	half4 center = tex2D(_MainTex, i.uv[1]);
-	half4 sample1 = tex2D(_MainTex, i.uv[2]);
-	half4 sample2 = tex2D(_MainTex, i.uv[3]);
+		half4 center = tex2D(_MainTex, i.uv[1]);
+		half4 sample1 = tex2D(_MainTex, i.uv[2]);
+		half4 sample2 = tex2D(_MainTex, i.uv[3]);
 
-	// encoded normal
-	half2 centerNormal = center.xy;
-	// decoded depth
-	float centerDepth = DecodeFloatRG(center.zw);
+		// encoded normal
+		half2 centerNormal = center.xy;
+		// decoded depth
+		float centerDepth = DecodeFloatRG(center.zw);
 
-	half edge = 1.0;
+		half edge = 1.0;
 
-	edge *= CheckSame(centerNormal, centerDepth, sample1);
-	edge *= CheckSame(centerNormal, centerDepth, sample2);
+		edge *= CheckSame(centerNormal, centerDepth, sample1);
+		edge *= CheckSame(centerNormal, centerDepth, sample2);
 
-int colored = length(original) < 1.2;
-float4 color = original * colored;
+		int colored = length(original) < 1.01;
+		float4 color = original * colored;
 
-float4 result = edge * lerp(original, _BgColor, _BgFade);
-result *= 1. - colored;
+		float4 result = edge * lerp(original, _BgColor, _BgFade);
+		result *= 1. - colored;
 
-float4 final = step(0.1, result + color);
-final = result;
-float lengthVar = length(final);
-// b&w + color
-final = float4(lengthVar, lengthVar, lengthVar, lengthVar) + 3.*color;
-return final;
+		float4 final = step(0.1, result + color);
+		final = result;
+		float lengthVar = length(final);
+		// b&w + color
+		final = float4(lengthVar, lengthVar, lengthVar, lengthVar) + 20*color;
+		return final;
 	}
 
 		ENDCG

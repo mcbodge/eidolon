@@ -3,6 +3,7 @@ using System.Collections;
 using AC;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public enum Action
 {
@@ -45,5 +46,10 @@ public class ActionHelper : MonoBehaviour
     internal void OpenGameOverMenu()
     {
         gameOverMenu.TurnOn();
+    }
+
+    public void ReloadScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
