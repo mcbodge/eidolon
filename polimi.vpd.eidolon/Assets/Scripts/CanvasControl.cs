@@ -50,7 +50,8 @@ public class CanvasControl : MonoBehaviour
                 AddDeathImage();
             }
         }
-        if ( !deathSceneEnabled && Input.GetKeyDown(KeyCode.I))
+        if ( !deathSceneEnabled && !controlsScreenEnabled && !tutorialEnabled &&
+            Input.GetKeyDown(KeyCode.I))
         {
             DeathSceneEnable();
         }
