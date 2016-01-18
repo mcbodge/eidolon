@@ -15,7 +15,7 @@ public class ObjectDropTrigger : MonoBehaviour {
 }
 
 	void OnTriggerEnter(Collider other) {
-        if (isKetchupReady && isRcCarReady &&
+        if (isRcCarReady &&
                    other.name.Equals("Peter")) {
             actionHelperRef.RunOutroLevelZero();
         }
@@ -46,7 +46,7 @@ public class ObjectDropTrigger : MonoBehaviour {
 
     private void CheckHotspotIsFull()
     {
-        if (isRcCarReady && isKetchupReady)
+        if (isRcCarReady)
         {
             // this means the Theatre on the floor is ready
             // so say last phrase
