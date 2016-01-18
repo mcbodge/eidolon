@@ -19,6 +19,7 @@ public class CanvasControl : MonoBehaviour
         SetTutorialCanvas(false);
         controlScreensShown = 0;
 		TutorialEnable (); // start frome here cause there isn't intro scene
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
     }
 
     void Update()
@@ -50,6 +51,7 @@ public class CanvasControl : MonoBehaviour
         } else
         {
             SetTutorialCanvas(false);
+            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
         }
             
     }
@@ -57,6 +59,7 @@ public class CanvasControl : MonoBehaviour
     public void TutorialEnable()
     {
         SetTutorialCanvas(true);
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
         AddImageToCanvas();
     }
     
@@ -68,6 +71,7 @@ public class CanvasControl : MonoBehaviour
     public void ControlScreenEnable()
     {
         SetTutorialCanvasControl(true);
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
         AddImageToControlScreen();
     }
 
@@ -82,6 +86,7 @@ public class CanvasControl : MonoBehaviour
         {
             SetTutorialCanvasControl(false);
             controlScreensShown = 0;
+            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
         }
     }
 
