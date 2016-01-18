@@ -25,7 +25,6 @@ public class CanvasControl : MonoBehaviour
         controlsScreenEnabled = false;
         deathSceneEnabled = false;
 		TutorialEnable (); // start frome here cause there isn't intro scene
-        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
     }
 
     void Update()
