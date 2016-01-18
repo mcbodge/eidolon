@@ -26,13 +26,17 @@ public class ComicV2 : MonoBehaviour
 
             if (objectRenderer != null && myObj.tag != "Color")
             {
-                Material[] allMaterials = objectRenderer.sharedMaterials;
+                //Material[] allMaterials = objectRenderer.sharedMaterials;
+                Material[] allMaterials = objectRenderer.materials;
                 foreach (Material mat in allMaterials)
-                    mat.shader = Normals; // a material executes all the passes in the shader
+                {
+                    if(mat.name != "Particle")
+                        mat.shader = Normals; // a material executes all the passes in the shader
+                }
+                    
             }
         }
         material = new Material(Outline);
-        //GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
     }
     // Postprocess the image
     void OnRenderImage(RenderTexture source, RenderTexture destination)
