@@ -7,17 +7,23 @@ public class CanvasControl : MonoBehaviour
 {
     public List<Sprite> Images;
     public List<Sprite> Controls;
+    public Sprite DeathImage;
 
 	private Image imageBox;
     private int controlScreensShown;
+    private int deathImageShown;
     private bool tutorialEnabled;
     private bool controlsScreenEnabled;
+    private bool deathSceneEnabled;
 
     void Start()
     {
 		imageBox = gameObject.GetComponentInChildren<Image> ();
         SetTutorialCanvas(false);
         controlScreensShown = 0;
+        deathImageShown = 0;
+        controlsScreenEnabled = false;
+        deathSceneEnabled = false;
 		TutorialEnable (); // start frome here cause there isn't intro scene
         AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
     }
@@ -36,6 +42,17 @@ public class CanvasControl : MonoBehaviour
             {
                 AddImageToControlScreen();
             }
+        }
+        if (deathSceneEnabled)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                AddDeathImage();
+            }
+        }
+        if ( !deathSceneEnabled && Input.GetKeyDown(KeyCode.I))
+        {
+            DeathSceneEnable();
         }
     }
 
@@ -75,6 +92,13 @@ public class CanvasControl : MonoBehaviour
         AddImageToControlScreen();
     }
 
+    public void DeathSceneEnable()
+    {
+        SetDeathScene(true);
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
+        AddDeathImage();
+    }
+
     public void AddImageToControlScreen()
     {
         if (controlScreensShown < Controls.Count)
@@ -90,11 +114,29 @@ public class CanvasControl : MonoBehaviour
         }
     }
 
-
+    public void AddDeathImage()
+    {
+        if (deathImageShown == 0)
+        {
+            imageBox.sprite = DeathImage;
+            deathImageShown++;
+        }
+        else
+        {
+            SetDeathScene(false);
+            deathImageShown = 0;
+            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
+        }
+    }
 
     private void SetTutorialCanvasControl(bool isEnabed)
     {
         imageBox.enabled = controlsScreenEnabled = isEnabed;
+    }
+
+    private void SetDeathScene(bool isEnabed)
+    {
+        imageBox.enabled = deathSceneEnabled = isEnabed;
     }
 
 }
