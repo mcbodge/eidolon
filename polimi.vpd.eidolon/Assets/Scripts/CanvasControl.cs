@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class CanvasControl : MonoBehaviour
 {
     public List<Sprite> Images;
+    public List<Sprite> Controls;
 
 	private Image imageBox;
+    private int controlScreensShown;
     private bool tutorialEnabled;
+    private bool controlsScreenEnabled;
 
     void Start()
     {
 		imageBox = gameObject.GetComponentInChildren<Image> ();
         SetTutorialCanvas(false);
+        controlScreensShown = 0;
 		TutorialEnable (); // start frome here cause there isn't intro scene
     }
 
@@ -25,7 +29,13 @@ public class CanvasControl : MonoBehaviour
                 AddImageToCanvas();
             }
         }
-
+        if (controlsScreenEnabled)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                AddImageToControlScreen();
+            }
+        }
     }
 
 	/*
@@ -53,6 +63,33 @@ public class CanvasControl : MonoBehaviour
     private void SetTutorialCanvas(bool isEnabed)
     {
         imageBox.enabled = tutorialEnabled = isEnabed;
+    }
+
+    public void ControlScreenEnable()
+    {
+        SetTutorialCanvasControl(true);
+        AddImageToControlScreen();
+    }
+
+    public void AddImageToControlScreen()
+    {
+        if (controlScreensShown < Controls.Count)
+        {
+            imageBox.sprite = Controls[controlScreensShown];
+            controlScreensShown++;
+        }
+        else
+        {
+            SetTutorialCanvasControl(false);
+            controlScreensShown = 0;
+        }
+    }
+
+
+
+    private void SetTutorialCanvasControl(bool isEnabed)
+    {
+        imageBox.enabled = controlsScreenEnabled = isEnabed;
     }
 
 }
