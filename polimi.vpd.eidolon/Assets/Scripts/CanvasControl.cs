@@ -8,12 +8,10 @@ public class CanvasControl : MonoBehaviour
     public List<Sprite> Images;
 
 	private Image imageBox;
-    private int imageShown;
     private bool tutorialEnabled;
 
     void Start()
     {
-        imageShown = 0;
 		imageBox = gameObject.GetComponentInChildren<Image> ();
         SetTutorialCanvas(false);
 		TutorialEnable (); // start frome here cause there isn't intro scene
@@ -35,14 +33,13 @@ public class CanvasControl : MonoBehaviour
 	 */
     public void AddImageToCanvas()
     {
-        if (imageShown < Images.Count)
+        if (ApplicationModel.CanvasStatus.ImagesShown < Images.Count)
         {
-            imageBox.sprite = Images[imageShown];
-            imageShown++;
+            imageBox.sprite = Images[ApplicationModel.CanvasStatus.ImagesShown];
+            ApplicationModel.CanvasStatus.ImagesShown++;
         } else
         {
             SetTutorialCanvas(false);
-            imageShown = 0;
         }
             
     }
