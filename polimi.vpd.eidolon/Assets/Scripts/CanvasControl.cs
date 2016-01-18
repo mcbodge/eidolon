@@ -54,6 +54,10 @@ public class CanvasControl : MonoBehaviour
         {
             DeathSceneEnable();
         }
+        if (deathSceneEnabled && Input.GetKeyUp(KeyCode.I))
+        {
+            AddDeathImage();
+        }
     }
 
 	/*
