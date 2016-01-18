@@ -19,18 +19,16 @@ public class ComicV2 : MonoBehaviour
 
     void Start()
     {
-        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
         foreach (GameObject myObj in allObjects)
         {
-            if (myObj.GetComponent<Renderer>())
-            {
-                Material[] allMaterials = myObj.GetComponent<Renderer>().sharedMaterials;
-                if (myObj.tag != "Color")
-                {
-                    foreach (Material mat in allMaterials)
-                        mat.shader = Normals; // a material executes all the passes in the shader
-                }
+            Renderer objectRenderer = myObj.GetComponent<Renderer>();
 
+            if (objectRenderer != null && myObj.tag != "Color")
+            {
+                Material[] allMaterials = objectRenderer.sharedMaterials;
+                foreach (Material mat in allMaterials)
+                    mat.shader = Normals; // a material executes all the passes in the shader
             }
         }
         material = new Material(Outline);
