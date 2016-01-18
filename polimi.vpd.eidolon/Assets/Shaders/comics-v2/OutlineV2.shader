@@ -1,4 +1,4 @@
-﻿Shader "Outline" {
+﻿Shader "OutlineV2" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 	}
@@ -29,10 +29,10 @@
 		float2 uv = v.texcoord.xy;
 		o.uv[0] = uv;
 		
-		#if UNITY_UV_STARTS_AT_TOP
-		if (_MainTex_TexelSize.y < 0)
-			uv.y = 1-uv.y;
-		#endif
+		////#if UNITY_UV_STARTS_AT_TOP
+		////if (_MainTex_TexelSize.y < 0)
+		////	uv.y = 1-uv.y;
+		////#endif
 		
 		o.uv[1] = uv;
 		o.uv[4] = uv;

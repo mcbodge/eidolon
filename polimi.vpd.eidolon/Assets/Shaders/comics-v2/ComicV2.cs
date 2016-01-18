@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Camera))]
-
 public class ComicV2 : MonoBehaviour
 {
 
