@@ -159,6 +159,10 @@ public class CanvasControl : MonoBehaviour
             imageBox.sprite = OutroImages[outroImageShown];
             outroImageShown++;
         }
+        else if (outroImageShown.Equals(OutroImages.Count))
+        {
+            ActionHelper.ReloadCurrentScene();
+        }
         else
         {
             SetTutorialCanvasControl(false);

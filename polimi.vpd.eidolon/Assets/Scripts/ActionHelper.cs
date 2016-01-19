@@ -48,12 +48,18 @@ public class ActionHelper : MonoBehaviour
         gameOverMenu.TurnOn();
     }
 
-    public void ReloadScene()
+    //TODO Code refactoring
+    public static void ReloadCurrentScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void LoadSecondScene()
+    public void ReloadScene()
+    {
+        ReloadCurrentScene();
+    }
+
+    public static void LoadSecondScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SecondScene");
     }
