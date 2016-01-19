@@ -10,6 +10,7 @@ public class ActionHelperLevel1 : ActionHelper
     public void Start()
     {
         gameOverMenu = PlayerMenus.GetMenuWithName("GameOverLvl1");
+		AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
     }
 
     /*
