@@ -7,31 +7,36 @@ public class CanvasControl : MonoBehaviour
 {
     public List<Sprite> Images;
     public List<Sprite> Controls;
+    public List<Sprite> OutroImages;
     public Sprite DeathImage;
 
-	private Image imageBox;
+    private Image imageBox;
     private int controlScreensShown;
     private int deathImageShown;
+    private int outroImageShown;
     private bool tutorialEnabled;
     private bool controlsScreenEnabled;
     private bool deathSceneEnabled;
+    private bool outroEnabled;
 
     void Start()
     {
-		imageBox = gameObject.GetComponentInChildren<Image> ();
+        imageBox = gameObject.GetComponentInChildren<Image>();
         SetTutorialCanvas(false);
         controlScreensShown = 0;
         deathImageShown = 0;
         controlsScreenEnabled = false;
         deathSceneEnabled = false;
-		TutorialEnable (); // start frome here cause there isn't intro scene
+        outroEnabled = false;
+        TutorialEnable(); // start frome here cause there isn't intro scene
     }
 
     void Update()
     {
         if (tutorialEnabled)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 AddImageToCanvas();
             }
         }
@@ -49,8 +54,14 @@ public class CanvasControl : MonoBehaviour
                 AddDeathImage();
             }
         }
-        if ( !deathSceneEnabled && !controlsScreenEnabled && !tutorialEnabled &&
-            Input.GetKeyDown(KeyCode.I))
+        if (outroEnabled)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                AddOutroImage();
+            }
+        }
+        if (!deathSceneEnabled && !controlsScreenEnabled && !tutorialEnabled && !outroEnabled && Input.GetKeyDown(KeyCode.I))
         {
             DeathSceneEnable();
         }
@@ -60,7 +71,7 @@ public class CanvasControl : MonoBehaviour
         }
     }
 
-	/*
+    /*
 	 * Function to control the tutorial screen on canvas	
 	 */
     public void AddImageToCanvas()
@@ -69,12 +80,13 @@ public class CanvasControl : MonoBehaviour
         {
             imageBox.sprite = Images[ApplicationModel.CanvasStatus.ImagesShown];
             ApplicationModel.CanvasStatus.ImagesShown++;
-        } else
+        }
+        else
         {
             SetTutorialCanvas(false);
             AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
         }
-            
+
     }
 
     public void TutorialEnable()
@@ -83,7 +95,7 @@ public class CanvasControl : MonoBehaviour
         AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
         AddImageToCanvas();
     }
-    
+
     private void SetTutorialCanvas(bool isEnabed)
     {
         imageBox.enabled = tutorialEnabled = isEnabed;
@@ -101,6 +113,13 @@ public class CanvasControl : MonoBehaviour
         SetDeathScene(true);
         AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
         AddDeathImage();
+    }
+
+    public void EnableOutro()
+    {
+        SetOutroPictures(true);
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
+        AddOutroImage();
     }
 
     public void AddImageToControlScreen()
@@ -133,6 +152,20 @@ public class CanvasControl : MonoBehaviour
         }
     }
 
+    public void AddOutroImage()
+    {
+        if (outroImageShown < OutroImages.Count)
+        {
+            imageBox.sprite = OutroImages[outroImageShown];
+            outroImageShown++;
+        }
+        else
+        {
+            SetTutorialCanvasControl(false);
+            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
+        }
+    }
+
     private void SetTutorialCanvasControl(bool isEnabed)
     {
         imageBox.enabled = controlsScreenEnabled = isEnabed;
@@ -141,6 +174,11 @@ public class CanvasControl : MonoBehaviour
     private void SetDeathScene(bool isEnabed)
     {
         imageBox.enabled = deathSceneEnabled = isEnabed;
+    }
+
+    private void SetOutroPictures(bool isEnabed)
+    {
+        imageBox.enabled = outroEnabled = isEnabed;
     }
 
 }
