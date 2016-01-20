@@ -18,6 +18,9 @@ obj/
 *.user
 *.unityproj
 *.booproj
+polimi.vpd.eidolon/polimi.vpd.eidolon.CSharp.csproj
+polimi.vpd.eidolon/polimi.vpd.eidolon.CSharp.Editor.csproj
+polimi.vpd.eidolon/polimi.vpd.eidolon.CSharp.Plugins.csproj
 
 # ============ #
 # OS generated #
