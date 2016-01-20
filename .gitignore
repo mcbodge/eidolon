@@ -11,10 +11,10 @@ ExportedObj/
 obj/
 *.svd
 *.userprefs
-/*.csproj
+*.csproj
 *.pidb
 *.suo
-/*.sln
+*.sln
 *.user
 *.unityproj
 *.booproj
@@ -34,6 +34,12 @@ Thumbs.db
 # ================= #
 # Adventure creator #
 # ================= #
-*.csproj
 polimi.vpd.eidolon/Assets/AdventureCreator/Demo/UI/InGameUI.prefab
 polimi.vpd.eidolon/Assets/AdventureCreator/Demo/UI/PauseUI.prefab
+polimi.vpd.eidolon/Assets/Daniele/modelli/materials/
+polimi.vpd.eidolon/Assets/Daniele/modelli/objects/car/Materials/
+polimi.vpd.eidolon/Assets/Daniele/modelli/objects/doll/Materials/
+polimi.vpd.eidolon/Assets/Daniele/modelli/objects/door/Materials/
+polimi.vpd.eidolon/Assets/Daniele/modelli/objects/ketchup/Materials/
+
+
