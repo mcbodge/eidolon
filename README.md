@@ -39,11 +39,14 @@ We highly recommend:
 
 <div id='notes'/>
 ### Important Notes
-Until the shader is fixed and working, we replaced it with a simple grayscale shader on the camera
+Use the right manager for every level. Here is a list:
+* EidTEst -> level0 managers
+* Eid -> level1 managers
 
 <div id='requirements'/>
 ### Requirements
 * Unity3d 5.3.x
+* Blender
 
 <div id='kanban'/>
 ### Project Kanban
