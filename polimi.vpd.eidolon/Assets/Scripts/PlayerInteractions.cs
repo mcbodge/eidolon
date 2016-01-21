@@ -12,6 +12,7 @@ public enum Direction
 public class PlayerInteractions : MonoBehaviour
 {
     public GameObject RespawnReference;
+    public ActionHelper SceneHelper;
 
     private bool triggerWalk;
     private Vector3 finalPosition;
@@ -98,6 +99,8 @@ public class PlayerInteractions : MonoBehaviour
 
     public void Respawn()
     {
+        if (SceneHelper.HasObjectInHand)
+            SceneHelper.ObjectInHand.GetComponent<ObjectHolder>().ResetObjectPosition();
         StartCoroutine(MoveResource(gameObject.transform, RespawnReference.transform.position, 0.4f));
     }
 

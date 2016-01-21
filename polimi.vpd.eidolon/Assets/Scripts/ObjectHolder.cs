@@ -10,6 +10,8 @@ public class ObjectHolder : MonoBehaviour
     private bool isHeld = false;
     private int actionID;
     private ActionHelper actionManager;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
 
     // Use this for initialization
     void Start()
@@ -17,6 +19,8 @@ public class ObjectHolder : MonoBehaviour
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
         actionManager = ActionHelper.GetManager();
+        startPosition = gameObject.transform.position;
+        startRotation = gameObject.transform.rotation;
     }
 
     void Update()
@@ -91,6 +95,13 @@ public class ObjectHolder : MonoBehaviour
         rigidBody.isKinematic = false;
         GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
 		actionManager.HasObjectInHand = false;
+    }
+
+    public void ResetObjectPosition()
+    {
+        Drop();
+        gameObject.transform.position = startPosition;
+        gameObject.transform.rotation = startRotation;
     }
 
 }
