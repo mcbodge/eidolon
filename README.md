@@ -4,7 +4,6 @@
   * [Download](#download)
 * [Developers](#developers)
   * [Rules](#rules)
-  * [Important notes](#notes)
   * [Requirements](#requirements)
   * [Kanban](#kanban)
 
@@ -36,12 +35,6 @@ We highly recommend:
 * <b>Test</b> all Shaders or Assets with a windows build of Unity before pushing.
 * Always <b>pull before pushing</b>
 * After importing a model from blender, remove the mark on "Import Materials" in the unity Inspector, otherwise it will import a white material for every component of the model.
-
-<div id='notes'/>
-### Important Notes
-Use the right manager for every level. Here is a list:
-* EidTEst -> level0 managers
-* Eid -> level1 managers
 
 <div id='requirements'/>
 ### Requirements
