@@ -7,6 +7,8 @@ public class ActionHelperLevel0 : ActionHelper
 {
 
     public GameObject TeddyBear;
+    public GameObject Player;
+    public GameObject FinalDestination;
 
     // Hotspots
     public GameObject TeddyBearHotspot;
@@ -56,6 +58,21 @@ public class ActionHelperLevel0 : ActionHelper
             case 2:
                 break;
             case 3:
+                break;
+        }
+    }
+
+    public override void Respawn(Room parameter)
+    {
+        switch (parameter)
+        {
+            case Room.Room104:
+                //TODO
+                StartCoroutine(MoveResource(Player.transform, FinalDestination.transform.position, 0.5f));
+                break;
+            case Room.Room105:
+                break;
+            case Room.Room106:
                 break;
         }
     }
@@ -115,14 +132,21 @@ public class ActionHelperLevel0 : ActionHelper
         }
     }
 
-    public void OpenGameOverMenu()
-    {
-        gameOverMenu.TurnOn();
-    }
-
     public void RunOutroLevelZero()
     {
         KickStarter.stateHandler.gameState = GameState.Normal;
         LevelZeroCutscene.Interact();
+    }
+
+    public static IEnumerator MoveResource(Transform resourceTransform, Vector3 endPosition, float speed)
+    {
+        var startPosition = resourceTransform.position;
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * speed;
+            resourceTransform.position = Vector3.Lerp(startPosition, endPosition, t);
+            yield return 0;
+        }
     }
 }

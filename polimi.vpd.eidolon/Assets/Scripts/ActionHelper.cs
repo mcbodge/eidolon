@@ -38,10 +38,9 @@ public class ActionHelper : MonoBehaviour
     /*
         TODO: define objects ids
     */
-    public virtual void Dispatcher(int param, Action sender)
-    {
+    public virtual void Dispatcher(int param, Action sender) { }
 
-    }
+    public virtual void Respawn(Room parameter) { }
 
     internal void OpenGameOverMenu()
     {
