@@ -11,6 +11,7 @@ public enum Direction
 
 public class PlayerInteractions : MonoBehaviour
 {
+    public GameObject RespawnReference;
 
     private bool triggerWalk;
     private Vector3 finalPosition;
@@ -92,6 +93,23 @@ public class PlayerInteractions : MonoBehaviour
         {
             triggerWalk = false;
             Debug.Log("Reached other side");
+        }
+    }
+
+    public void Respawn()
+    {
+        StartCoroutine(MoveResource(gameObject.transform, RespawnReference.transform.position, 0.4f));
+    }
+
+    private static IEnumerator MoveResource(Transform resourceTransform, Vector3 endPosition, float speed)
+    {
+        Vector3 startPosition = resourceTransform.position;
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * speed;
+            resourceTransform.position = Vector3.Lerp(startPosition, endPosition, t);
+            yield return 0;
         }
     }
 }

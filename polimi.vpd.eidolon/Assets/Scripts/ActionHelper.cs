@@ -40,8 +40,6 @@ public class ActionHelper : MonoBehaviour
     */
     public virtual void Dispatcher(int param, Action sender) { }
 
-    public virtual void Respawn(Room parameter) { }
-
     internal void OpenGameOverMenu()
     {
         gameOverMenu.TurnOn();

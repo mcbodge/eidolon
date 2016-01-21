@@ -62,21 +62,6 @@ public class ActionHelperLevel0 : ActionHelper
         }
     }
 
-    public override void Respawn(Room parameter)
-    {
-        switch (parameter)
-        {
-            case Room.Room104:
-                //TODO
-                StartCoroutine(MoveResource(Player.transform, FinalDestination.transform.position, 0.5f));
-                break;
-            case Room.Room105:
-                break;
-            case Room.Room106:
-                break;
-        }
-    }
-
     private void ObjectAction(Action sender)
     {
         switch (sender)
@@ -138,15 +123,5 @@ public class ActionHelperLevel0 : ActionHelper
         LevelZeroCutscene.Interact();
     }
 
-    public static IEnumerator MoveResource(Transform resourceTransform, Vector3 endPosition, float speed)
-    {
-        var startPosition = resourceTransform.position;
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * speed;
-            resourceTransform.position = Vector3.Lerp(startPosition, endPosition, t);
-            yield return 0;
-        }
-    }
+
 }
