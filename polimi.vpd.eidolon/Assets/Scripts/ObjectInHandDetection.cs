@@ -19,7 +19,6 @@ public class ObjectInHandDetection : MonoBehaviour
     {
         actionManager = ActionHelper.GetManager();
         currentCamera = gameObject.GetComponent<Camera>();
-        gameOverStarted = false;
     }
 
     // Update is called once per frame
@@ -70,17 +69,14 @@ public class ObjectInHandDetection : MonoBehaviour
 
     private void GameOver()
     {
-        if (!gameOverStarted)
-        {
-            CaughtCutscene.InteractWithActionCamera(gameObject.GetComponent<_Camera>());
-            Invoke("FinallyGameOver", 4.9f);
-            gameOverStarted = true;
-        }
+
+        CaughtCutscene.InteractWithActionCamera(gameObject.GetComponent<_Camera>());
+        Invoke("FinallyGameOver", 2.9f);
     }
 
-    private void FinallyGaonomeOver()
+    private void FinallyGameOver()
     {
-        actionManager.OpenGameOverMenu();
+        actionManager.Player.GetComponent<PlayerInteractions>().Respawn();
     }
 
     public void SetCurrentRoom(Room room)

@@ -18,6 +18,7 @@ public class ActionHelper : MonoBehaviour
     public GameObject ObjectInHand;
     public bool HasObjectInHand;
     public Room RoomWithPlayer;
+    public GameObject Player;
 
 	protected Menu gameOverMenu;
 

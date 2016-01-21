@@ -7,8 +7,6 @@ public class ActionHelperLevel0 : ActionHelper
 {
 
     public GameObject TeddyBear;
-    public GameObject Player;
-    public GameObject FinalDestination;
 
     // Hotspots
     public GameObject TeddyBearHotspot;
