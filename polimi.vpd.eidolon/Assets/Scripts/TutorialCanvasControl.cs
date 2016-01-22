@@ -9,15 +9,14 @@ public class TutorialCanvasControl : MonoBehaviour
     public List<Sprite> SecondSlot;
     public List<Sprite> ThirdSlot;
     public List<Sprite> FourthSlot;
+    public Sprite HintImage;
 
     private Image imageBox;
-    private KeyCode keyCodeToNextPicture;
 
     private bool isManagerBusy;
 
     void Start()
     {
-        //isFirstSlotEnabled = isSecondSlotEnabled = isThirdSlotEnabled = isFourthSlotEnabled = false;
         imageBox = gameObject.GetComponentInChildren<Image>();
         isManagerBusy = false;
         EnableSlot(FirstSlot);
@@ -36,7 +35,7 @@ public class TutorialCanvasControl : MonoBehaviour
 
     private IEnumerator ManageSlot(List<Sprite> currentSlot)
     {
-        imageBox.enabled = true;
+        imageBox.enabled = isManagerBusy = true;
         imageBox.sprite = currentSlot[0];
         int currentIndex = 1;
         while (currentIndex <= currentSlot.Count)

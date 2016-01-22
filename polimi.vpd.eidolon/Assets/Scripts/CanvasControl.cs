@@ -5,184 +5,86 @@ using UnityEngine.UI;
 
 public class CanvasControl : MonoBehaviour
 {
-    public List<Sprite> Images;
-    public List<Sprite> Controls;
-    public List<Sprite> OutroImages;
-    public Sprite DeathImage;
+    public List<Sprite> FirstSlot;
+    public List<Sprite> SecondSlot;
+    public List<Sprite> ThirdSlot;
+    public List<Sprite> FourthSlot;
+    public Sprite HintImage;
 
     private Image imageBox;
-    private int controlScreensShown;
-    private int deathImageShown;
-    private int outroImageShown;
-    private bool tutorialEnabled;
-    private bool controlsScreenEnabled;
-    private bool deathSceneEnabled;
-    private bool outroEnabled;
+    private bool isManagerBusy;
+    private bool showingHintImage;
 
     void Start()
     {
         imageBox = gameObject.GetComponentInChildren<Image>();
-        SetTutorialCanvas(false);
-        controlScreensShown = 0;
-        deathImageShown = 0;
-        controlsScreenEnabled = false;
-        deathSceneEnabled = false;
-        outroEnabled = false;
-        TutorialEnable(); // start frome here cause there isn't intro scene
+        isManagerBusy = false;
+        showingHintImage = false;
+        EnableSlot(FirstSlot);
     }
 
     void Update()
     {
-        if (tutorialEnabled)
+        if (Input.GetKeyDown(KeyCode.I) && !isManagerBusy)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                AddImageToCanvas();
-            }
+            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
+            EnableHintImage();
         }
-        if (controlsScreenEnabled)
+        else if (Input.GetKeyUp(KeyCode.I) && showingHintImage)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                AddImageToControlScreen();
-            }
-        }
-        if (deathSceneEnabled)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                AddDeathImage();
-            }
-        }
-        if (outroEnabled)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                AddOutroImage();
-            }
-        }
-        if (!deathSceneEnabled && !controlsScreenEnabled && !tutorialEnabled && !outroEnabled && Input.GetKeyDown(KeyCode.I))
-        {
-            DeathSceneEnable();
-        }
-        if (deathSceneEnabled && Input.GetKeyUp(KeyCode.I))
-        {
-            AddDeathImage();
-        }
-    }
-
-    /*
-	 * Function to control the tutorial screen on canvas	
-	 */
-    public void AddImageToCanvas()
-    {
-        if (ApplicationModel.CanvasStatus.ImagesShown < Images.Count)
-        {
-            imageBox.sprite = Images[ApplicationModel.CanvasStatus.ImagesShown];
-            ApplicationModel.CanvasStatus.ImagesShown++;
-        }
-        else
-        {
-            SetTutorialCanvas(false);
-            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
-        }
-
-    }
-
-    public void TutorialEnable()
-    {
-        SetTutorialCanvas(true);
-        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
-        AddImageToCanvas();
-    }
-
-    private void SetTutorialCanvas(bool isEnabed)
-    {
-        imageBox.enabled = tutorialEnabled = isEnabed;
-    }
-
-    public void ControlScreenEnable()
-    {
-        SetTutorialCanvasControl(true);
-        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
-        AddImageToControlScreen();
-    }
-
-    public void DeathSceneEnable()
-    {
-        SetDeathScene(true);
-        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
-        AddDeathImage();
-    }
-
-    public void EnableOutro()
-    {
-        SetOutroPictures(true);
-        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
-        AddOutroImage();
-    }
-
-    public void AddImageToControlScreen()
-    {
-        if (controlScreensShown < Controls.Count)
-        {
-            imageBox.sprite = Controls[controlScreensShown];
-            controlScreensShown++;
-        }
-        else
-        {
-            SetTutorialCanvasControl(false);
-            controlScreensShown = 0;
+            DisableHintImage();
             AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
         }
     }
 
-    public void AddDeathImage()
+    public void EnableFirstSlot()
     {
-        if (deathImageShown == 0)
-        {
-            imageBox.sprite = DeathImage;
-            deathImageShown++;
-        }
+        EnableSlot(FirstSlot);
+    }
+
+    #region [ Private methods ]
+    private void EnableHintImage()
+    {
+        imageBox.enabled = showingHintImage = true;
+        imageBox.sprite = HintImage;
+    }
+
+    private void DisableHintImage()
+    {
+        imageBox.enabled = showingHintImage = false;
+    }
+
+    private void EnableSlot(List<Sprite> specificSlot)
+    {
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
+        if (showingHintImage)
+            DisableHintImage();
+        if (!isManagerBusy)
+            StartCoroutine(ManageSlot(specificSlot));
+#if UNITY_EDITOR
         else
-        {
-            SetDeathScene(false);
-            deathImageShown = 0;
-            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
-        }
+            Debug.LogWarning("Canvas is busy! New Coroutine not launched.");
+#endif
     }
 
-    public void AddOutroImage()
+    private IEnumerator ManageSlot(List<Sprite> currentSlot)
     {
-        if (outroImageShown < OutroImages.Count)
+        imageBox.enabled = true;
+        imageBox.sprite = currentSlot[0];
+        int currentIndex = 1;
+        while (currentIndex <= currentSlot.Count)
         {
-            imageBox.sprite = OutroImages[outroImageShown];
-            outroImageShown++;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (currentIndex < currentSlot.Count)
+                    imageBox.sprite = currentSlot[currentIndex];
+                else
+                    imageBox.enabled = false;
+                currentIndex++;
+            }
+            yield return null;
         }
-        else if (outroImageShown.Equals(OutroImages.Count))
-        {
-            ActionHelper.ReloadCurrentScene();
-        }
-        else
-        {
-            SetTutorialCanvasControl(false);
-            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
-        }
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
     }
-
-    private void SetTutorialCanvasControl(bool isEnabed)
-    {
-        imageBox.enabled = controlsScreenEnabled = isEnabed;
-    }
-
-    private void SetDeathScene(bool isEnabed)
-    {
-        imageBox.enabled = deathSceneEnabled = isEnabed;
-    }
-
-    private void SetOutroPictures(bool isEnabed)
-    {
-        imageBox.enabled = outroEnabled = isEnabed;
-    }
-
+    #endregion
 }
