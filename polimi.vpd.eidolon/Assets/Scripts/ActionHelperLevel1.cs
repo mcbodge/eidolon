@@ -6,13 +6,10 @@ using System.Collections.Generic;
 public class ActionHelperLevel1 : ActionHelper
 {
 
-    public List<AC.Hotspot> hotspots;
-
     private static ActionHelperLevel1 actionHelperReference;
 
     public void Start()
     {
-        gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
 		AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
     }
 
@@ -26,17 +23,17 @@ public class ActionHelperLevel1 : ActionHelper
 
     public void DisableAllHotspots()
     {
-        foreach (AC.Hotspot hs in hotspots)
+        foreach (GameObject hs in CutsceneHotspots)
         {
-            hs.gameObject.SetActive(false);
+            hs.SetActive(false);
         }
     }
 
     public void EnableAllHotspots()
     {
-        foreach (AC.Hotspot hs in hotspots)
+        foreach (GameObject hs in CutsceneHotspots)
         {
-            hs.gameObject.SetActive(true);
+            hs.SetActive(true);
         }
     }
 }

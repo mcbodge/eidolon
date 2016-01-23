@@ -20,7 +20,9 @@ public class ActionHelper : MonoBehaviour
     public Room RoomWithPlayer;
     public GameObject Player;
 
-	protected Menu gameOverMenu;
+    public List<GameObject> CutsceneHotspots;
+
+    protected Menu gameOverMenu;
 
     private static ActionHelper actionHelperReference;
 
@@ -34,6 +36,7 @@ public class ActionHelper : MonoBehaviour
         actionHelperReference = this;
         ObjectInHand = null;
         HasObjectInHand = false;
+        gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
     }
 
     /*

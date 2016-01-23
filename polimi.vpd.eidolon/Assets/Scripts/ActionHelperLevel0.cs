@@ -36,11 +36,6 @@ public class ActionHelperLevel0 : ActionHelper
         ObjectPlacingLastFeedbackCutscene.Interact();
     }
 
-    public void Start()
-    {
-        gameOverMenu = PlayerMenus.GetMenuWithName("GameOver");
-    }
-
     /*
         1 Dool (bear)
         2 Ketchup
