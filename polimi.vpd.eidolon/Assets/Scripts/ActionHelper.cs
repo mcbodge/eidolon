@@ -21,6 +21,7 @@ public class ActionHelper : MonoBehaviour
     public GameObject Player;
 
     public List<GameObject> CutsceneHotspots;
+    public List<GameObject> ClosetTriggers;
 
     protected Menu gameOverMenu;
 
@@ -47,6 +48,22 @@ public class ActionHelper : MonoBehaviour
     internal void OpenGameOverMenu()
     {
         gameOverMenu.TurnOn();
+    }
+
+    public void DisableClosetTriggers()
+    {
+        foreach (GameObject tr in ClosetTriggers)
+        {
+            tr.SetActive(false);
+        }
+    }
+
+    public void EnableClosetTriggers()
+    {
+        foreach (GameObject tr in ClosetTriggers)
+        {
+            tr.SetActive(true);
+        }
     }
 
     //TODO Code refactoring

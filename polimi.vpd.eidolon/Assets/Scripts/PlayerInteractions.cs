@@ -114,5 +114,6 @@ public class PlayerInteractions : MonoBehaviour
             resourceTransform.position = Vector3.Lerp(startPosition, endPosition, t);
             yield return 0;
         }
+        ActionHelper.GetManager().EnableClosetTriggers();
     }
 }

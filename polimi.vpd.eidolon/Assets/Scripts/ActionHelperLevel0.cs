@@ -15,7 +15,6 @@ public class ActionHelperLevel0 : ActionHelper
     public GameObject RcCarHotspot;
     public GameObject Character106Hotspot;
     
-    
     public Cutscene LevelZeroCutscene;
     public Cutscene ObjectPlacingFeedbackCutscene;
     public Cutscene ObjectPlacingMiddleFeedbackCutscene;
@@ -23,6 +22,7 @@ public class ActionHelperLevel0 : ActionHelper
 
     // these are Ketchup/Dool/Car gameobjects
     public List<GameObject> PlacedObjects;
+    
 
     // these are Left boxes gameobjects
     private List<GameObject> triggersQueue;
@@ -146,10 +146,17 @@ public class ActionHelperLevel0 : ActionHelper
         {
             AddTriggerToQueue(trig);
             Debug.Log("ACTIONHELPER: isFirstObjectPlace=" + isFirstObjectPlaced.ToString());
+            // if in hand we have ketchup and doll is on ground , doll should be
+            // ketchupped
+            if (ObjectInHand.name.Equals("Ketchup") &&
+                PlacedObjects.Contains(TeddyBear))
+            {
+                ChangeTextureToDoll();
+            }
         }
     }
 
-    public void ChangeTextureToBear()
+    public void ChangeTextureToDoll()
     {
         TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
     }
@@ -171,6 +178,7 @@ public class ActionHelperLevel0 : ActionHelper
             hotspot.SetActive(true);
         }
     }
+
 
     public void RunOutroLevelZero()
     {

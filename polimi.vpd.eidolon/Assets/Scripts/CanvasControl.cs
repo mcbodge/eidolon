@@ -42,6 +42,11 @@ public class CanvasControl : MonoBehaviour
         EnableSlot(FirstSlot);
     }
 
+    public void EnableSecondSlot()
+    {
+        EnableSlot(SecondSlot);
+    }
+
     #region [ Private methods ]
     private void EnableHintImage()
     {
