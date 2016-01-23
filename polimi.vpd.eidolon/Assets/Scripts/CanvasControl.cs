@@ -25,15 +25,17 @@ public class CanvasControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isManagerBusy)
-        {
-            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
-            EnableHintImage();
-        }
-        else if (Input.GetKeyUp(KeyCode.I) && showingHintImage)
-        {
-            DisableHintImage();
-            AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
+        if (Input.GetKeyDown(KeyCode.I)){
+            if (!isManagerBusy)
+            {
+                AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
+                EnableHintImage();
+            }
+            else if (showingHintImage)
+            {
+                DisableHintImage();
+                AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
+            }
         }
     }
 
