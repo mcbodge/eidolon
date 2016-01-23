@@ -178,6 +178,20 @@ public class ActionHelperLevel0 : ActionHelper
         LevelZeroCutscene.Interact();
     }
 
+    public void DisableMainObjectsHS()
+    {
+        TeddyBearHotspot.SetActive(false);
+        KetchupHotspot.SetActive(false);
+        RcCarHotspot.SetActive(false);
+    }
+
+    public void EnableMainObjectsHS()
+    {
+        TeddyBearHotspot.SetActive(true);
+        KetchupHotspot.SetActive(true);
+        RcCarHotspot.SetActive(true);
+    }
+
     public void DebugLists()
     {
         string output1 = "";

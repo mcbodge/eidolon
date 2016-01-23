@@ -9,7 +9,7 @@ public class ObjectHolder : MonoBehaviour
 	private Rigidbody rigidBody;
     private bool isHeld = false;
     private int actionID;
-    private ActionHelper actionManager;
+    private ActionHelperLevel0 actionManager;
     private Vector3 startPosition;
     private Quaternion startRotation;
 
@@ -18,7 +18,7 @@ public class ObjectHolder : MonoBehaviour
     {
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
-        actionManager = ActionHelper.GetManager();
+        actionManager = ActionHelper.GetManager() as ActionHelperLevel0;
         startPosition = gameObject.transform.position;
         startRotation = gameObject.transform.rotation;
     }
@@ -54,11 +54,9 @@ public class ObjectHolder : MonoBehaviour
     public void Grab(int param)
     {
         isHeld = true;
+        actionManager.DisableMainObjectsHS();
         GetComponent<Collider>().enabled = false;
         rigidBody.isKinematic = true;
-        // get the hotspot component from the children of the main object
-		// and disable it
-		GetComponentInChildren<AC.Hotspot>().gameObject.SetActive(false);
         if (param > 0)
         {
             actionID = param;
@@ -90,10 +88,10 @@ public class ObjectHolder : MonoBehaviour
     public void Drop()
     {
         isHeld = false;
+        actionManager.EnableMainObjectsHS();
         GetComponent<Collider>().enabled = true;
         rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
-        GetComponentsInChildren<AC.Hotspot>(true)[0].gameObject.SetActive(true);
 		actionManager.HasObjectInHand = false;
     }
 
