@@ -62,9 +62,9 @@ public class ObjectHolder : MonoBehaviour
         if (param > 0)
         {
             actionID = param;
-            actionManager.Dispatcher(actionID, Action.Grab);
             actionManager.ObjectInHand = this.gameObject;
-			actionManager.HasObjectInHand = true;
+            actionManager.HasObjectInHand = true;
+            actionManager.Dispatcher(actionID, Action.Grab);
         }
     }
 
@@ -102,6 +102,12 @@ public class ObjectHolder : MonoBehaviour
         Drop();
         gameObject.transform.position = startPosition;
         gameObject.transform.rotation = startRotation;
+    }
+
+    
+    public override string ToString()
+    {
+        return gameObject.name;
     }
 
 }

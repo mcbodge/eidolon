@@ -2,10 +2,11 @@
 using System.Collections;
 using AC;
 using System.Collections.Generic;
+using System;
 
 public class ActionHelperLevel0 : ActionHelper
 {
-
+    public bool isFirstObjectPlaced;
     public GameObject TeddyBear;
 
     // Hotspots
@@ -13,13 +14,42 @@ public class ActionHelperLevel0 : ActionHelper
     public GameObject KetchupHotspot;
     public GameObject RcCarHotspot;
     public GameObject Character106Hotspot;
-
-    public List<GameObject> CutsceneHotspots;
+    
     
     public Cutscene LevelZeroCutscene;
     public Cutscene ObjectPlacingFeedbackCutscene;
     public Cutscene ObjectPlacingMiddleFeedbackCutscene;
     public Cutscene ObjectPlacingLastFeedbackCutscene;
+
+    // these are Ketchup/Dool/Car gameobjects
+    public List<GameObject> PlacedObjects;
+
+    // these are Left boxes gameobjects
+    private List<GameObject> triggersQueue;
+
+    public void Start()
+    {
+        PlacedObjects = new List<GameObject>(2);
+        triggersQueue = new List<GameObject>();
+        isFirstObjectPlaced = false;
+    }
+
+    // Queue helpers
+
+    public GameObject GetFirstTrigger()
+    {
+        return (triggersQueue.Count > 0) ? triggersQueue[0] : null;
+    }
+
+    public void AddTriggerToQueue(GameObject latest)
+    {
+        triggersQueue.Add(latest);
+    }
+
+    public void RemoveTriggerFromQueue(GameObject item)
+    {
+        triggersQueue.Remove(item);
+    }
 
     public void RunPlayerFeedback()
     {
@@ -49,8 +79,10 @@ public class ActionHelperLevel0 : ActionHelper
                 ObjectAction(sender);
                 break;
             case 2:
+                ObjectAction(sender);
                 break;
             case 3:
+                ObjectAction(sender);
                 break;
         }
     }
@@ -60,6 +92,7 @@ public class ActionHelperLevel0 : ActionHelper
         switch (sender)
         {
             case Action.Grab:
+                RemoveObjectFromFloorHotspot();
                 break;
             case Action.Ungrab:
                 PutObjectInFloorHotSpot();
@@ -69,27 +102,56 @@ public class ActionHelperLevel0 : ActionHelper
         }
     }
 
+    public void RemoveObjectFromFloorHotspot()
+    {
+        GameObject trig = ObjectInHand.transform.FindChild("LeftBox").gameObject;
+        if (RoomWithPlayer == Room.Corridor)
+        {
+            RemoveTriggerFromQueue(trig);
+            GameObject t = GetFirstTrigger();
+            trig.SetActive(false);
+            if (t == null) //significa che era il primo
+            {
+                isFirstObjectPlaced = false;
+            } else
+            {
+                if (t.activeSelf == false)
+                {
+                    t.SetActive(true);
+                    PlacedObjects.Clear();
+                }
+                if (PlacedObjects.Contains(ObjectInHand))
+                {
+                    PlacedObjects.Remove(ObjectInHand);
+                }
+            }
+            Debug.Log("ACTIONHELPER: isFirstObjectPlace=" + isFirstObjectPlaced.ToString());
+            DebugLists();
+        }
+    }
+
     public void PutObjectInFloorHotSpot()
     {
-        if (ObjectInHand.name == "doll")
+        GameObject trig = ObjectInHand.transform.FindChild("LeftBox").gameObject;
+        if (RoomWithPlayer == Room.Corridor &&
+             !isFirstObjectPlaced)
         {
-            if (RoomWithPlayer.Equals(Room.Corridor))
-            {
-                RunPlayerFeedback();
-            }
-            Debug.LogFormat("Dropping object {0} in T statement", ObjectInHand.name);
-        }
-        else if (ObjectInHand.name == "Ketchup")
+            AddTriggerToQueue(trig);
+            trig.SetActive(true);
+            RunPlayerFeedback();
+            isFirstObjectPlaced = true;
+            Debug.Log("ACTIONHELPER: isFirstObjectPlace=" + isFirstObjectPlaced.ToString());
+        } else if (RoomWithPlayer == Room.Corridor &&
+             isFirstObjectPlaced)
         {
-            KetchupHotspot.SetActive(false);
-            TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
-            Debug.LogFormat("Dropping object {0} in K statement", ObjectInHand.name);
+            AddTriggerToQueue(trig);
+            Debug.Log("ACTIONHELPER: isFirstObjectPlace=" + isFirstObjectPlaced.ToString());
         }
-        else if (ObjectInHand.name == "RCcar")
-        {
-            RcCarHotspot.SetActive(false);
-            Debug.LogFormat("Dropping object {0} in K statement", ObjectInHand.name);
-        }
+    }
+
+    public void ChangeTextureToBear()
+    {
+        TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
     }
 
     // Helpers
@@ -116,5 +178,20 @@ public class ActionHelperLevel0 : ActionHelper
         LevelZeroCutscene.Interact();
     }
 
+    public void DebugLists()
+    {
+        string output1 = "";
+        foreach ( GameObject g in triggersQueue)
+        {
+            output1 += g.transform.parent.name + " + ";
+        }
+        Debug.Log("ACTIONHELPER: triggersQueue: " + output1);
+        output1 = "";
+        foreach (GameObject g in PlacedObjects)
+        {
+            output1 += g.name + " + ";
+        }
+        Debug.Log("ACTIONHELPER: PlacedObjects: " + output1);
+    }
 
 }

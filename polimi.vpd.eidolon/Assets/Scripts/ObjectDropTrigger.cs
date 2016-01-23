@@ -1,60 +1,57 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectDropTrigger : MonoBehaviour {
 
-
 	private ActionHelperLevel0 actionHelperRef;
-    private bool isKetchupReady;
-    private bool isRcCarReady;
 
 	public void Start() {
 		actionHelperRef = ActionHelper.GetManager () as ActionHelperLevel0;
-        isKetchupReady = false;
-        isRcCarReady = false;
-}
+    }
 
 	void OnTriggerEnter(Collider other) {
-        if (isRcCarReady &&
-                   other.name.Equals("Peter")) {
+        if (CheckEnter(other))
+        {
+            if (!actionHelperRef.PlacedObjects.Contains(other.gameObject))
+            {
+                actionHelperRef.PlacedObjects.Add(other.gameObject);
+                actionHelperRef.DebugLists();
+                if (actionHelperRef.PlacedObjects.Count == 1)
+                {
+                    actionHelperRef.RunMiddlePlayerFeedback();
+                } else if (actionHelperRef.PlacedObjects.Count == 2)
+                {
+                    actionHelperRef.RunLastPlayerFeedback();
+                }
+                Debug.Log("OBJECTDROPTRIGGER: added to list " + other.gameObject.name);
+            }
+        }
+
+        // End game
+        if (other.name.Equals("Peter") && actionHelperRef.PlacedObjects.Count == 2)
+        {
             actionHelperRef.RunOutroLevelZero();
         }
 	}
 
-    void OnTriggerStay(Collider other)
+    public bool CheckEnter(Collider other)
     {
-        // If player drops ketchup we check if the player
-        // isn't grabbing anything else: this means that he has dropped it
-        if (other.name.Equals("Ketchup") &&
-            !actionHelperRef.HasObjectInHand && 
-            !isKetchupReady)
+        GameObject parent = transform.parent.gameObject;
+        if (!other.gameObject.Equals(parent))
         {
-            isKetchupReady = true;
-            CheckHotspotIsFull();
-            actionHelperRef.PutObjectInFloorHotSpot();
+            if (other.name.Equals("doll") || other.name.Equals("Ketchup") ||
+            other.name.Equals("RCCar"))
+            {
+                return true;
+            }
         }
-        // if player drops car 
-        if (other.name.Equals("RCcar") &&
-            !actionHelperRef.HasObjectInHand &&
-            !isRcCarReady)
-        {
-            isRcCarReady = true;
-            CheckHotspotIsFull();
-            actionHelperRef.PutObjectInFloorHotSpot();
-        }
+            
+        return false;
     }
 
-    private void CheckHotspotIsFull()
+    public override string ToString()
     {
-        if (isRcCarReady)
-        {
-            // this means the Theatre on the floor is ready
-            // so say last phrase
-            actionHelperRef.RunLastPlayerFeedback();
-        } else
-        {
-            // the Theatre on floor is not finished
-            actionHelperRef.RunMiddlePlayerFeedback();
-        }
+        return gameObject.name;
     }
+
 }
