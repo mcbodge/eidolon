@@ -98,6 +98,7 @@ ModelImporter:
     100180: toe_R
     100182: upper_arm_L
     100184: upper_arm_R
+    100186: lookAt
     400000: //RootNode
     400002: daughter-highpoly
     400004: finger_index_01_L
@@ -191,6 +192,7 @@ ModelImporter:
     400180: toe_R
     400182: upper_arm_L
     400184: upper_arm_R
+    400186: lookAt
     2300000: foot_IK_shape_L_000
     2300002: foot_IK_shape_R_000
     2300004: hand_shape_L_000

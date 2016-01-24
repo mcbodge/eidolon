@@ -99,6 +99,7 @@ ModelImporter:
     100182: toe_R
     100184: upper_arm_L
     100186: upper_arm_R
+    100188: lookAt
     400000: chair
     400002: //RootNode
     400004: daughter-highpoly
@@ -193,6 +194,7 @@ ModelImporter:
     400182: toe_R
     400184: upper_arm_L
     400186: upper_arm_R
+    400188: lookAt
     2300000: chair
     2300002: drawing
     2300004: foot_IK_shape_L_000

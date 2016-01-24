@@ -104,6 +104,8 @@ ModelImporter:
     100192: upper_arm_FK_shape_L_001
     100194: upper_arm_L
     100196: upper_arm_R
+    100198: Empty
+    100200: lookAt
     400000: //RootNode
     400002: Cube
     400004: drunk-highpoly
@@ -203,6 +205,8 @@ ModelImporter:
     400192: upper_arm_FK_shape_L_001
     400194: upper_arm_L
     400196: upper_arm_R
+    400198: Empty
+    400200: lookAt
     2300000: Cube
     2300002: finger_FK_shape_001
     2300004: finger_main_shape_001
@@ -276,10 +280,12 @@ ModelImporter:
     4300044: toe_shape_001
     4300046: sgabello_004
     4300048: Cube
+    4300050: lookAt
     7400000: Default Take
     7400002: use-tablet
     9500000: //RootNode
     13700000: drunk-highpoly
+    13700002: lookAt
   materials:
     importMaterials: 1
     materialName: 0

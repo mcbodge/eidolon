@@ -139,6 +139,7 @@ ModelImporter:
     100262: upper_arm_L
     100264: upper_arm_R
     100266: woman-rig
+    100268: lookAt
     400000: drunk-highpoly
     400002: finger_FK_shape_001
     400004: finger_FK_shape_002
@@ -273,6 +274,7 @@ ModelImporter:
     400262: upper_arm_L
     400264: upper_arm_R
     400266: woman-rig
+    400268: lookAt
     2300000: finger_FK_shape_001
     2300002: finger_FK_shape_002
     2300004: finger_main_shape_001

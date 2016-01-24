@@ -102,6 +102,7 @@ ModelImporter:
     100188: //RootNode
     100190: woman-highpoly
     100192: woman-rig
+    100194: lookAt
     400000: finger_FK_shape_001
     400002: finger_index_01_L
     400004: finger_index_01_R
@@ -199,6 +200,7 @@ ModelImporter:
     400188: //RootNode
     400190: woman-highpoly
     400192: woman-rig
+    400194: lookAt
     2300000: finger_FK_shape_001
     2300002: finger_main_shape_001
     2300004: finger_main_shape_R_001

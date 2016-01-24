@@ -149,6 +149,7 @@ ModelImporter:
     100282: upper_arm_L
     100284: upper_arm_R
     100286: beer
+    100288: lookAt
     400000: //RootNode
     400002: drunk-highpoly
     400004: drunk-rig
@@ -293,6 +294,7 @@ ModelImporter:
     400282: upper_arm_L
     400284: upper_arm_R
     400286: beer
+    400288: lookAt
     2300000: finger_FK_shape_000
     2300002: finger_FK_shape_001
     2300004: finger_FK_shape_002
