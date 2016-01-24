@@ -149,7 +149,7 @@ public class ActionHelperLevel0 : ActionHelper
             // if in hand we have ketchup and doll is on ground , doll should be
             // ketchupped
             if (ObjectInHand.name.Equals("Ketchup") &&
-                PlacedObjects.Contains(TeddyBear))
+                triggersQueue.Contains(TeddyBear.transform.FindChild("LeftBox").gameObject))
             {
                 ChangeTextureToDoll();
             }

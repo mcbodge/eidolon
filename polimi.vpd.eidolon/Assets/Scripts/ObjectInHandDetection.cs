@@ -71,7 +71,7 @@ public class ObjectInHandDetection : MonoBehaviour
     {
 
         CaughtCutscene.InteractWithActionCamera(gameObject.GetComponent<_Camera>());
-        Invoke("FinallyGameOver", 2.9f);
+        Invoke("FinallyGameOver", 4.9f);
     }
 
     private void FinallyGameOver()
