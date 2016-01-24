@@ -22,16 +22,18 @@ public class ActionHelperLevel0 : ActionHelper
 
     // these are Ketchup/Dool/Car gameobjects
     public List<GameObject> PlacedObjects;
-    
+    public List<GameObject> BeerHotspots;
 
     // these are Left boxes gameobjects
     private List<GameObject> triggersQueue;
+    private int BeerNumber;
 
     public void Start()
     {
         PlacedObjects = new List<GameObject>(2);
         triggersQueue = new List<GameObject>();
         isFirstObjectPlaced = false;
+        BeerNumber = 0;
         AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
     }
 
@@ -40,6 +42,11 @@ public class ActionHelperLevel0 : ActionHelper
     public GameObject GetFirstTrigger()
     {
         return (triggersQueue.Count > 0) ? triggersQueue[0] : null;
+    }
+
+    public void NextBeer()
+    {
+        BeerNumber++;
     }
 
     public void AddTriggerToQueue(GameObject latest)
@@ -170,6 +177,8 @@ public class ActionHelperLevel0 : ActionHelper
         {
             hotspot.SetActive(false);
         }
+        if (BeerNumber < 3)
+            BeerHotspots[BeerNumber].SetActive(false);
     }
 
     public void EnableCutsceneHotspots()
@@ -178,6 +187,8 @@ public class ActionHelperLevel0 : ActionHelper
         {
             hotspot.SetActive(true);
         }
+        if (BeerNumber < 3)
+            BeerHotspots[BeerNumber].SetActive(true);
     }
 
 
