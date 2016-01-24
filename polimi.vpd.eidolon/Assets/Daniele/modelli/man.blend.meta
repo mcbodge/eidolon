@@ -140,6 +140,7 @@ ModelImporter:
     100264: upper_arm_R
     100266: woman-rig
     100268: lookAt
+    100270: couch
     400000: drunk-highpoly
     400002: finger_FK_shape_001
     400004: finger_FK_shape_002
@@ -275,6 +276,7 @@ ModelImporter:
     400264: upper_arm_R
     400266: woman-rig
     400268: lookAt
+    400270: couch
     2300000: finger_FK_shape_001
     2300002: finger_FK_shape_002
     2300004: finger_main_shape_001
@@ -334,6 +336,7 @@ ModelImporter:
     2300112: toe_shape_002
     2300114: upper_arm_FK_shape_L_001
     2300116: upper_arm_FK_shape_L_002
+    2300118: couch
     3300000: finger_FK_shape_001
     3300002: finger_FK_shape_002
     3300004: finger_main_shape_001
@@ -393,6 +396,7 @@ ModelImporter:
     3300112: toe_shape_002
     3300114: upper_arm_FK_shape_L_001
     3300116: upper_arm_FK_shape_L_002
+    3300118: couch
     4300000: finger_FK_shape_001
     4300002: finger_main_shape_001
     4300004: finger_main_shape_R_001
@@ -453,6 +457,7 @@ ModelImporter:
     4300114: finger_main_shape_R_002
     4300116: palm_shape_R_002
     4300118: toe_shape_002
+    4300120: couch
     7400000: Default Take
     7400002: in_bed
     7400004: wake-up
