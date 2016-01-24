@@ -77,6 +77,11 @@ public class ActionHelper : MonoBehaviour
         ReloadCurrentScene();
     }
 
+    public void LoadFirstScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("AlmostFinalScene");
+    }
+
     public void LoadSecondScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SecondScene");

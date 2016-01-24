@@ -9,6 +9,7 @@ public class TutorialCanvasControl : MonoBehaviour
     public List<Sprite> SecondSlot;
     public List<Sprite> ThirdSlot;
     public List<Sprite> FourthSlot;
+    public List<Sprite> FifthSlot;
     public Sprite HintImage;
     public ActionHelperTutorial SceneManager;
     public Text MiddleBottomBox;
@@ -29,7 +30,7 @@ Try to enter room number 104";
 
     private const string clickText =
 @"Use
-[left click]
+[mouse click]
 to touch Peter";
 
     private const string reflectionText =
@@ -56,11 +57,11 @@ to see the scene to reenact";
                 AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Never;
                 EnableHintImage();
             }
-            else if (Input.GetKeyUp(KeyCode.I) && showingHintImage)
-            {
-                DisableHintImage();
-                AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
-            }
+            ////else if (Input.GetKeyUp(KeyCode.I) && showingHintImage)
+            ////{
+            ////    DisableHintImage();
+            ////    AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
+            ////}
         }
         if (IsCurrent(Status.FirstSlotShowed)) {
             SetText(directionText);
@@ -77,10 +78,15 @@ to see the scene to reenact";
             SetText(spaceText);
             SetStatus(Status.SpaceKeyShowed);
         }
-        else if (IsCurrent(Status.SpaceKeyShowed) && SceneManager.RoomWithPlayer.Equals(Room.Room104))
+        else if ((IsCurrent(Status.SpaceKeyShowed) && SceneManager.RoomWithPlayer.Equals(Room.Room104)))
         {
             SetStatus(Status._FlushBoxWithSpaceKeyTextPressed);
-            Invoke("FlushBoxWithSpaceKeyTextPressed", 2f);
+            Invoke("FlushBoxWithSpaceKeyTextPressed", 0.4f);
+        }
+        else if (IsCurrent(Status.SpaceKeyTextPressed) && SceneManager.RoomWithPlayer.Equals(Room.Tutorial_Bathroom))
+        {
+            SetStatus(Status._InBathroom);
+            EnableSlot(SecondSlot, Status.SecondSlotShowed);
         }
         else if(IsCurrent(Status.SecondSlotShowed))
         {
@@ -90,7 +96,7 @@ to see the scene to reenact";
         else if (IsCurrent(Status.HasPeterBeenTouched))
         {
             SetStatus(Status._FlushBoxWithLeftClickTextRemoved);
-            Invoke("FlushBoxWithLeftClickTextRemoved", 2f);
+            Invoke("FlushBoxWithLeftClickTextRemoved", 0.4f);
         }
         else if (IsCurrent(Status.ThirdSlotShowed))
         {
@@ -100,7 +106,7 @@ to see the scene to reenact";
         else if (IsCurrent(Status.ClosetReached))
         {
             SetStatus(Status._FlushBoxWithCameraShakingTextRemoved);
-            Invoke("FlushBoxWithCameraShakingTextRemoved", 2f);
+            Invoke("FlushBoxWithCameraShakingTextRemoved", 1f);
         }
         else if (IsCurrent(Status.CameraShakingTextRemoved))
         {
@@ -110,7 +116,7 @@ to see the scene to reenact";
         else if (IsCurrent(Status.PeterReached))
         {
             SetStatus(Status._FlushBoxWithReachPeterTextRemoved);
-            Invoke("FlushBoxWithReachPeterTextRemoved", 2f);
+            Invoke("FlushBoxWithReachPeterTextRemoved", 0.8f);
         }
         else if (IsCurrent(Status.FourthSlotShowed))
         {
@@ -172,9 +178,6 @@ to see the scene to reenact";
             case Status.DirectionKeyTextPressed:
                 SceneManager.FirstCutscene.Interact();
                 break;
-            case Status.SpaceKeyPressed:
-                EnableSlot(SecondSlot, Status.SecondSlotShowed);
-                break;
             case Status.LeftClickTextRemoved:
                 EnableSlot(ThirdSlot, Status.ThirdSlotShowed);
                 break;
@@ -205,7 +208,9 @@ to see the scene to reenact";
         if (showingHintImage)
             DisableHintImage();
         if (!isManagerBusy)
+        {
             StartCoroutine(ManageSlot(specificSlot, tutorialStatusToSetInExit));
+        }
 #if UNITY_EDITOR
         else
             Debug.LogWarning("Canvas is busy! New Coroutine not launched.");
@@ -219,18 +224,25 @@ to see the scene to reenact";
         int currentIndex = 1;
         while (currentIndex <= currentSlot.Count)
         {
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (currentIndex < currentSlot.Count)
+                {
+                    //AC.KickStarter.stateHandler.gameState = AC.GameState.Paused;
                     ImageBox.sprite = currentSlot[currentIndex];
+                }
                 else
+                {
+                    //AC.KickStarter.stateHandler.gameState = AC.GameState.Normal;
                     ImageBox.enabled = false;
+                    AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
+                    SetStatus(tutorialStatusToSetInExit);
+                }
                 currentIndex++;
             }
             yield return null;
         }
-        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
-        SetStatus(tutorialStatusToSetInExit);
     }
     #endregion
 
@@ -258,7 +270,7 @@ to see the scene to reenact";
 
     private void FlushBoxWithSpaceKeyTextPressed()
     {
-        FlushBoxAndExecuteActions(Status.SpaceKeyPressed);
+        FlushBoxAndExecuteActions(Status.SpaceKeyTextPressed);
     }
     #endregion
 

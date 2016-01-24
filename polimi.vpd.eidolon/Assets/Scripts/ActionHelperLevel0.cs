@@ -32,6 +32,7 @@ public class ActionHelperLevel0 : ActionHelper
         PlacedObjects = new List<GameObject>(2);
         triggersQueue = new List<GameObject>();
         isFirstObjectPlaced = false;
+        AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
     }
 
     // Queue helpers

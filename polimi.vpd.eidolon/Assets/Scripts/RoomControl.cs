@@ -35,5 +35,6 @@ public enum Room : int
     LVL1_WalkInCloset = 204,
     LVL1_Studio = 205,
     LVL1_Kitchen = 206,
-    LVL1_Bathroom = 207
+    LVL1_Bathroom = 207,
+    Tutorial_Bathroom = 5
 }
