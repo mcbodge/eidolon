@@ -10,9 +10,9 @@ public class ActionHelperLevel0 : ActionHelper
     public GameObject TeddyBear;
 
     // Hotspots
-    public GameObject TeddyBearHotspot;
-    public GameObject KetchupHotspot;
-    public GameObject RcCarHotspot;
+    //public GameObject TeddyBearHotspot;
+    //public GameObject KetchupHotspot;
+    //public GameObject RcCarHotspot;
     public GameObject Character106Hotspot;
     
     public Cutscene LevelZeroCutscene;
@@ -185,20 +185,6 @@ public class ActionHelperLevel0 : ActionHelper
     {
         KickStarter.stateHandler.gameState = GameState.Normal;
         LevelZeroCutscene.Interact();
-    }
-
-    public void DisableMainObjectsHS()
-    {
-        TeddyBearHotspot.SetActive(false);
-        KetchupHotspot.SetActive(false);
-        RcCarHotspot.SetActive(false);
-    }
-
-    public void EnableMainObjectsHS()
-    {
-        TeddyBearHotspot.SetActive(true);
-        KetchupHotspot.SetActive(true);
-        RcCarHotspot.SetActive(true);
     }
 
     public void DebugLists()

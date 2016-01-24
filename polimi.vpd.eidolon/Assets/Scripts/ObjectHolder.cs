@@ -9,7 +9,7 @@ public class ObjectHolder : MonoBehaviour
 	private Rigidbody rigidBody;
     private bool isHeld = false;
     private int actionID;
-    private ActionHelperLevel0 actionManager;
+    private ActionHelper actionManager;
     private Vector3 startPosition;
     private Quaternion startRotation;
 
@@ -18,7 +18,7 @@ public class ObjectHolder : MonoBehaviour
     {
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
-        actionManager = ActionHelper.GetManager() as ActionHelperLevel0;
+        actionManager = ActionHelper.GetManager();
         startPosition = gameObject.transform.position;
         startRotation = gameObject.transform.rotation;
     }

@@ -21,6 +21,7 @@ public class ActionHelper : MonoBehaviour
     public GameObject Player;
 
     public List<GameObject> CutsceneHotspots;
+    public List<GameObject> MainObjectHotspots;
     public List<GameObject> ClosetTriggers;
 
     protected Menu gameOverMenu;
@@ -41,7 +42,7 @@ public class ActionHelper : MonoBehaviour
     }
 
     /*
-        TODO: define objects ids
+        HELPERS
     */
     public virtual void Dispatcher(int param, Action sender) { }
 
@@ -63,6 +64,22 @@ public class ActionHelper : MonoBehaviour
         foreach (GameObject tr in ClosetTriggers)
         {
             tr.SetActive(true);
+        }
+    }
+
+    public void DisableMainObjectsHS()
+    {
+        foreach (GameObject obj in MainObjectHotspots)
+        {
+            obj.SetActive(false);
+        }
+    }
+
+    public void EnableMainObjectsHS()
+    {
+        foreach (GameObject obj in MainObjectHotspots)
+        {
+            obj.SetActive(true);
         }
     }
 

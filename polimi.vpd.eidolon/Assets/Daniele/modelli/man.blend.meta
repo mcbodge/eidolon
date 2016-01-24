@@ -1661,6 +1661,8 @@ ModelImporter:
         weight: 1
       - path: woman-rig/hips_main/hips/thigh_R/shin_R/foot_R/toe_R
         weight: 1
+      - path: woman-rig/lookAt
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
