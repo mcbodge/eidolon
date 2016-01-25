@@ -112,6 +112,8 @@ public class PlayerInteractions : MonoBehaviour
         {
             t += Time.deltaTime * speed;
             resourceTransform.position = Vector3.Lerp(startPosition, endPosition, t);
+            if (Vector3.Distance(resourceTransform.position, endPosition) < 0.4f)
+                t = 1f;
             yield return 0;
         }
         ActionHelper.GetManager().EnableClosetTriggers();
