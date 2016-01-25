@@ -19,6 +19,7 @@ public class ObjectInHandDetection : MonoBehaviour
     {
         actionManager = ActionHelper.GetManager();
         currentCamera = gameObject.GetComponent<Camera>();
+        gameOverStarted = false;
     }
 
     // Update is called once per frame
@@ -48,7 +49,7 @@ public class ObjectInHandDetection : MonoBehaviour
 #if UNITY_STANDALONE
 
         // These conditions must be checked in the given order
-        if (
+        if ( !gameOverStarted &&
             // 0. If the player is in the current room
             actionManager.RoomWithPlayer == CurrentRoom &&
             // 1. The player has an object in his/her hand
@@ -61,6 +62,7 @@ public class ObjectInHandDetection : MonoBehaviour
             (hit.collider.gameObject.name.Equals("Eidolon") || hit.collider.gameObject.name.Equals(actionManager.ObjectInHand.name))
             )
         {
+            gameOverStarted = true;
             GameOver();
         }
 #endif
