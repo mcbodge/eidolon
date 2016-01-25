@@ -79,6 +79,7 @@ public class ObjectInHandDetection : MonoBehaviour
     private void FinallyGameOver()
     {
         actionManager.Player.GetComponent<PlayerInteractions>().Respawn();
+        gameOverStarted = false;
     }
 
     public void SetCurrentRoom(Room room)
