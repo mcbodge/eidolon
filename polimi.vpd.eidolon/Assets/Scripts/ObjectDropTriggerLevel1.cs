@@ -21,6 +21,14 @@ public class ObjectDropTriggerLevel1 : MonoBehaviour {
                 Debug.Log("number of objects placed: " + actionHelper.PlacedObjects.Count.ToString());
             }
         }
+
+        if (other.gameObject.name.Equals("Christofer"))
+        {
+            if (actionHelper.PlacedObjects.Count > 3)
+            {
+                actionHelper.LoadSecondScene();
+            }
+        }
     }
 
     private bool CheckEnteredObject(string name)
