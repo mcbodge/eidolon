@@ -7,7 +7,7 @@ using System;
 public class ActionHelperLevel0 : ActionHelper
 {
     public bool isFirstObjectPlaced;
-    public GameObject TeddyBear;
+    public GameObject Doll;
 
     // Hotspots
     //public GameObject TeddyBearHotspot;
@@ -39,9 +39,9 @@ public class ActionHelperLevel0 : ActionHelper
 
     // Queue helpers
 
-    public GameObject GetFirstTrigger()
+    public GameObject GetElement(int index)
     {
-        return (triggersQueue.Count > 0) ? triggersQueue[0] : null;
+        return (triggersQueue.Count > 0) ? triggersQueue[index] : null;
     }
 
     public void NextBeer()
@@ -57,6 +57,11 @@ public class ActionHelperLevel0 : ActionHelper
     public void RemoveTriggerFromQueue(GameObject item)
     {
         triggersQueue.Remove(item);
+    }
+
+    public List<GameObject> GetQueue()
+    {
+        return triggersQueue;
     }
 
     public void RunPlayerFeedback()
@@ -116,7 +121,7 @@ public class ActionHelperLevel0 : ActionHelper
         if (RoomWithPlayer == Room.Corridor)
         {
             RemoveTriggerFromQueue(trig);
-            GameObject t = GetFirstTrigger();
+            GameObject t = GetElement(0);
             trig.SetActive(false);
             if (t == null) //significa che era il primo
             {
@@ -157,7 +162,7 @@ public class ActionHelperLevel0 : ActionHelper
             // if in hand we have ketchup and doll is on ground , doll should be
             // ketchupped
             if (ObjectInHand.name.Equals("Ketchup") &&
-                triggersQueue.Contains(TeddyBear.transform.FindChild("LeftBox").gameObject))
+                triggersQueue.Contains(Doll.transform.FindChild("LeftBox").gameObject))
             {
                 ChangeTextureToDoll();
             }
@@ -166,7 +171,7 @@ public class ActionHelperLevel0 : ActionHelper
 
     public void ChangeTextureToDoll()
     {
-        TeddyBear.GetComponent<TextureControl>().ChangeMainTextureToTarget();
+        Doll.GetComponent<TextureControl>().ChangeMainTextureToTarget();
     }
 
     // Helpers

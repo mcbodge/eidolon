@@ -28,11 +28,36 @@ public class ObjectDropTrigger : MonoBehaviour {
         }
 
         // End game
-        if (other.name.Equals("Peter") && actionHelperRef.PlacedObjects.Count == 2)
+        if ( CheckEndGame(other) )
         {
             actionHelperRef.RunOutroLevelZero();
         }
 	}
+
+    public bool CheckEndGame(Collider other)
+    {
+        List<GameObject> temp;
+        if ( other.gameObject.name.Equals("Peter") &&
+            FindObjectInQueue("doll") &&
+            FindObjectInQueue("RCCar"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool FindObjectInQueue (string name)
+    {
+        bool returnValue = false;
+        foreach (GameObject g in actionHelperRef.GetQueue())
+        {
+            if (g.transform.parent.name.Equals(name))
+            {
+                returnValue = true;
+            }
+        }
+        return returnValue;
+    }
 
     public bool CheckEnter(Collider other)
     {
