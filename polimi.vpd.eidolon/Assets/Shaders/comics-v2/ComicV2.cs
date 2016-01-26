@@ -50,7 +50,7 @@ public class ComicV2 : MonoBehaviour
         material.SetFloat("_SampleDistance", sampleDist);
         material.SetVector("_BgColor", edgesOnlyBgColor);
 
-        Graphics.Blit(source, destination, material, 0);
+        Graphics.Blit(source, destination, material,0);
     }
 
 }

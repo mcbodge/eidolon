@@ -103,6 +103,7 @@ ModelImporter:
     100190: upper_arm_L
     100192: upper_arm_R
     100194: //RootNode
+    100196: TEXTURE-valerie-mask
     400000: Armature
     400002: finger_FK_shape_001
     400004: finger_index_01_L
@@ -201,6 +202,7 @@ ModelImporter:
     400190: upper_arm_L
     400192: upper_arm_R
     400194: //RootNode
+    400196: TEXTURE-valerie-mask
     2300000: finger_FK_shape_001
     2300002: finger_main_shape_001
     2300004: finger_main_shape_R_001
@@ -223,6 +225,7 @@ ModelImporter:
     2300038: spine_shape_001
     2300040: toe_shape_001
     2300042: upper_arm_FK_shape_L_001
+    2300044: TEXTURE-valerie-mask
     3300000: finger_FK_shape_001
     3300002: finger_main_shape_001
     3300004: finger_main_shape_R_001
@@ -245,6 +248,7 @@ ModelImporter:
     3300038: spine_shape_001
     3300040: toe_shape_001
     3300042: upper_arm_FK_shape_L_001
+    3300044: TEXTURE-valerie-mask
     4300000: Sphere_000
     4300002: Sphere_001
     4300004: foot_IK_shape_L_001
@@ -269,6 +273,7 @@ ModelImporter:
     4300042: finger_main_shape_R_001
     4300044: palm_shape_R_001
     4300046: toe_shape_001
+    4300048: TEXTURE-valerie-mask
     7400000: Default Take
     7400002: ArmatureAction
     7400004: idle
