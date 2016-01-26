@@ -277,7 +277,7 @@ ModelImporter:
     13700002: Sphere_001
   materials:
     importMaterials: 1
-    materialName: 0
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
