@@ -14,6 +14,8 @@ public class CanvasControl : MonoBehaviour
     private Image imageBox;
     private bool isManagerBusy;
     private bool showingHintImage;
+    // i need this to show menu
+    private bool isOutroLevel0;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class CanvasControl : MonoBehaviour
         isManagerBusy = false;
         showingHintImage = false;
         imageBox.enabled = false;
+        isOutroLevel0 = false;
     }
 
     void Update()
@@ -44,6 +47,7 @@ public class CanvasControl : MonoBehaviour
 
     public void EnableSecondSlot()
     {
+        isOutroLevel0 = true;
         EnableSlot(SecondSlot);
     }
 
@@ -88,6 +92,11 @@ public class CanvasControl : MonoBehaviour
                 currentIndex++;
             }
             yield return null;
+        }
+        if (isOutroLevel0)
+        {
+            ActionHelper.GetManager().LoadSecondScene();
+            isOutroLevel0 = false;
         }
         AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
     }
