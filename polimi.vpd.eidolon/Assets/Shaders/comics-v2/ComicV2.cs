@@ -30,7 +30,7 @@ public class ComicV2 : MonoBehaviour
                 Material[] allMaterials = objectRenderer.materials;
                 foreach (Material mat in allMaterials)
                 {
-					if(mat.name != "Particle" && ! mat.name.Contains("ignore-color"))
+					if(mat.name != "Particle" && ! mat.name.Contains("mask"))
                         mat.shader = Normals; // a material executes all the passes in the shader
                 }
                     
