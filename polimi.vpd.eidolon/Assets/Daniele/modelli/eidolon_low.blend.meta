@@ -3,7 +3,7 @@ guid: 3d907e7da483a264e801cb9ac6ab1112
 timeCreated: 1448013207
 licenseType: Free
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: Armature
     100002: //RootNode
@@ -102,6 +102,102 @@ ModelImporter:
     100188: upper_arm_FK_shape_L_001
     100190: upper_arm_L
     100192: upper_arm_R
+    100194: Armature_001
+    100196: finger_FK_shape_000
+    100198: finger_main_shape_000
+    100200: finger_main_shape_R_000
+    100202: foot_IK_shape_L_000
+    100204: foot_IK_shape_R_000
+    100206: foot_roll_shape_000
+    100208: forearm_FK_shape_L_000
+    100210: hand_shape_L_000
+    100212: hand_shape_R_000
+    100214: head_shape_000
+    100216: hips_shape_000
+    100218: neck_shape_000
+    100220: palm_shape_L_000
+    100222: palm_shape_R_000
+    100224: pole_shape_L_000
+    100226: pole_shape_R_000
+    100228: ribs_shape_000
+    100230: shoulder_shape_L_000
+    100232: shoulder_shape_R_000
+    100234: Sphere_000
+    100236: spine_shape_000
+    100238: toe_shape_000
+    100240: upper_arm_FK_shape_L_000
+    100242: finger_index_01_L_0
+    100244: finger_index_01_R_0
+    100246: finger_index_02_L_0
+    100248: finger_index_02_R_0
+    100250: finger_index_03_L_0
+    100252: finger_index_03_R_0
+    100254: finger_middle_01_L_0
+    100256: finger_middle_01_R_0
+    100258: finger_middle_02_L_0
+    100260: finger_middle_02_R_0
+    100262: finger_middle_03_L_0
+    100264: finger_middle_03_R_0
+    100266: finger_pinky_01_L_0
+    100268: finger_pinky_01_R_0
+    100270: finger_pinky_02_L_0
+    100272: finger_pinky_02_R_0
+    100274: finger_pinky_03_L_0
+    100276: finger_pinky_03_R_0
+    100278: finger_ring_01_L_0
+    100280: finger_ring_01_R_0
+    100282: finger_ring_02_L_0
+    100284: finger_ring_02_R_0
+    100286: finger_ring_03_L_0
+    100288: finger_ring_03_R_0
+    100290: foot_IK_L_0
+    100292: foot_IK_main_L_0
+    100294: foot_IK_main_R_0
+    100296: foot_IK_R_0
+    100298: foot_L_0
+    100300: foot_R_0
+    100302: forearm_L_0
+    100304: forearm_R_0
+    100306: hand_L_0
+    100308: hand_R_0
+    100310: head_0
+    100312: hips_0
+    100314: hips_main_0
+    100316: neck_0
+    100318: palm_01_L_0
+    100320: palm_01_R_0
+    100322: palm_02_L_0
+    100324: palm_02_R_0
+    100326: palm_03_L_0
+    100328: palm_03_R_0
+    100330: palm_04_L_0
+    100332: palm_04_R_0
+    100334: pole_target_L_0
+    100336: pole_target_R_0
+    100338: ribs_0
+    100340: roll_back_L_0
+    100342: roll_back_R_0
+    100344: roll_front_L_0
+    100346: roll_front_R_0
+    100348: roll_main_L_0
+    100350: roll_main_R_0
+    100352: shin_L_0
+    100354: shin_R_0
+    100356: shoulder_L_0
+    100358: shoulder_R_0
+    100360: spine_0
+    100362: thigh_L_0
+    100364: thigh_R_0
+    100366: thumb_01_L_0
+    100368: thumb_01_R_0
+    100370: thumb_02_L_0
+    100372: thumb_02_R_0
+    100374: thumb_03_L_0
+    100376: thumb_03_R_0
+    100378: toe_L_0
+    100380: toe_R_0
+    100382: upper_arm_L_0
+    100384: upper_arm_R_0
     400000: Armature
     400002: //RootNode
     400004: finger_FK_shape_001
@@ -199,6 +295,102 @@ ModelImporter:
     400188: upper_arm_FK_shape_L_001
     400190: upper_arm_L
     400192: upper_arm_R
+    400194: Armature_001
+    400196: finger_FK_shape_000
+    400198: finger_main_shape_000
+    400200: finger_main_shape_R_000
+    400202: foot_IK_shape_L_000
+    400204: foot_IK_shape_R_000
+    400206: foot_roll_shape_000
+    400208: forearm_FK_shape_L_000
+    400210: hand_shape_L_000
+    400212: hand_shape_R_000
+    400214: head_shape_000
+    400216: hips_shape_000
+    400218: neck_shape_000
+    400220: palm_shape_L_000
+    400222: palm_shape_R_000
+    400224: pole_shape_L_000
+    400226: pole_shape_R_000
+    400228: ribs_shape_000
+    400230: shoulder_shape_L_000
+    400232: shoulder_shape_R_000
+    400234: Sphere_000
+    400236: spine_shape_000
+    400238: toe_shape_000
+    400240: upper_arm_FK_shape_L_000
+    400242: finger_index_01_L_0
+    400244: finger_index_01_R_0
+    400246: finger_index_02_L_0
+    400248: finger_index_02_R_0
+    400250: finger_index_03_L_0
+    400252: finger_index_03_R_0
+    400254: finger_middle_01_L_0
+    400256: finger_middle_01_R_0
+    400258: finger_middle_02_L_0
+    400260: finger_middle_02_R_0
+    400262: finger_middle_03_L_0
+    400264: finger_middle_03_R_0
+    400266: finger_pinky_01_L_0
+    400268: finger_pinky_01_R_0
+    400270: finger_pinky_02_L_0
+    400272: finger_pinky_02_R_0
+    400274: finger_pinky_03_L_0
+    400276: finger_pinky_03_R_0
+    400278: finger_ring_01_L_0
+    400280: finger_ring_01_R_0
+    400282: finger_ring_02_L_0
+    400284: finger_ring_02_R_0
+    400286: finger_ring_03_L_0
+    400288: finger_ring_03_R_0
+    400290: foot_IK_L_0
+    400292: foot_IK_main_L_0
+    400294: foot_IK_main_R_0
+    400296: foot_IK_R_0
+    400298: foot_L_0
+    400300: foot_R_0
+    400302: forearm_L_0
+    400304: forearm_R_0
+    400306: hand_L_0
+    400308: hand_R_0
+    400310: head_0
+    400312: hips_0
+    400314: hips_main_0
+    400316: neck_0
+    400318: palm_01_L_0
+    400320: palm_01_R_0
+    400322: palm_02_L_0
+    400324: palm_02_R_0
+    400326: palm_03_L_0
+    400328: palm_03_R_0
+    400330: palm_04_L_0
+    400332: palm_04_R_0
+    400334: pole_target_L_0
+    400336: pole_target_R_0
+    400338: ribs_0
+    400340: roll_back_L_0
+    400342: roll_back_R_0
+    400344: roll_front_L_0
+    400346: roll_front_R_0
+    400348: roll_main_L_0
+    400350: roll_main_R_0
+    400352: shin_L_0
+    400354: shin_R_0
+    400356: shoulder_L_0
+    400358: shoulder_R_0
+    400360: spine_0
+    400362: thigh_L_0
+    400364: thigh_R_0
+    400366: thumb_01_L_0
+    400368: thumb_01_R_0
+    400370: thumb_02_L_0
+    400372: thumb_02_R_0
+    400374: thumb_03_L_0
+    400376: thumb_03_R_0
+    400378: toe_L_0
+    400380: toe_R_0
+    400382: upper_arm_L_0
+    400384: upper_arm_R_0
     2300000: finger_FK_shape_001
     2300002: finger_main_shape_001
     2300004: finger_main_shape_R_001
@@ -221,6 +413,29 @@ ModelImporter:
     2300038: spine_shape_001
     2300040: toe_shape_001
     2300042: upper_arm_FK_shape_L_001
+    2300044: finger_FK_shape_000
+    2300046: finger_main_shape_000
+    2300048: finger_main_shape_R_000
+    2300050: foot_IK_shape_L_000
+    2300052: foot_IK_shape_R_000
+    2300054: foot_roll_shape_000
+    2300056: forearm_FK_shape_L_000
+    2300058: hand_shape_L_000
+    2300060: hand_shape_R_000
+    2300062: head_shape_000
+    2300064: hips_shape_000
+    2300066: neck_shape_000
+    2300068: palm_shape_L_000
+    2300070: palm_shape_R_000
+    2300072: pole_shape_L_000
+    2300074: pole_shape_R_000
+    2300076: ribs_shape_000
+    2300078: shoulder_shape_L_000
+    2300080: shoulder_shape_R_000
+    2300082: spine_shape_000
+    2300084: toe_shape_000
+    2300086: upper_arm_FK_shape_L_000
+    2300088: Sphere_000
     3300000: finger_FK_shape_001
     3300002: finger_main_shape_001
     3300004: finger_main_shape_R_001
@@ -243,6 +458,29 @@ ModelImporter:
     3300038: spine_shape_001
     3300040: toe_shape_001
     3300042: upper_arm_FK_shape_L_001
+    3300044: finger_FK_shape_000
+    3300046: finger_main_shape_000
+    3300048: finger_main_shape_R_000
+    3300050: foot_IK_shape_L_000
+    3300052: foot_IK_shape_R_000
+    3300054: foot_roll_shape_000
+    3300056: forearm_FK_shape_L_000
+    3300058: hand_shape_L_000
+    3300060: hand_shape_R_000
+    3300062: head_shape_000
+    3300064: hips_shape_000
+    3300066: neck_shape_000
+    3300068: palm_shape_L_000
+    3300070: palm_shape_R_000
+    3300072: pole_shape_L_000
+    3300074: pole_shape_R_000
+    3300076: ribs_shape_000
+    3300078: shoulder_shape_L_000
+    3300080: shoulder_shape_R_000
+    3300082: spine_shape_000
+    3300084: toe_shape_000
+    3300086: upper_arm_FK_shape_L_000
+    3300088: Sphere_000
     4300000: Sphere_001
     4300002: foot_IK_shape_L_001
     4300004: foot_roll_shape_001
@@ -266,10 +504,36 @@ ModelImporter:
     4300040: finger_main_shape_R_001
     4300042: palm_shape_R_001
     4300044: toe_shape_001
+    4300046: Sphere_000
+    4300048: foot_IK_shape_L_000
+    4300050: foot_roll_shape_000
+    4300052: pole_shape_L_000
+    4300054: foot_IK_shape_R_000
+    4300056: pole_shape_R_000
+    4300058: hips_shape_000
+    4300060: spine_shape_000
+    4300062: ribs_shape_000
+    4300064: neck_shape_000
+    4300066: head_shape_000
+    4300068: shoulder_shape_L_000
+    4300070: upper_arm_FK_shape_L_000
+    4300072: forearm_FK_shape_L_000
+    4300074: hand_shape_L_000
+    4300076: finger_main_shape_000
+    4300078: finger_FK_shape_000
+    4300080: palm_shape_L_000
+    4300082: shoulder_shape_R_000
+    4300084: hand_shape_R_000
+    4300086: finger_main_shape_R_000
+    4300088: palm_shape_R_000
+    4300090: toe_shape_000
     7400000: Default Take
     7400002: ArmatureAction
+    7400004: idle
+    7400006: walk
     9500000: //RootNode
     13700000: Sphere_001
+    13700002: Sphere_000
   materials:
     importMaterials: 0
     materialName: 0
@@ -277,6 +541,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -284,9 +549,9 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
@@ -310,20 +575,19 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
