@@ -83,7 +83,6 @@ public class PlayerInteractions : MonoBehaviour
 
     private void MoveForward()
     {
-        Debug.Log("Start walking through wall");
         finalPosition = transform.position + (transform.forward * 2.5f);
         triggerWalk = true;
     }
@@ -93,7 +92,6 @@ public class PlayerInteractions : MonoBehaviour
         if (Vector3.Distance(transform.position, finalPosition) < 0.25f)
         {
             triggerWalk = false;
-            Debug.Log("Reached other side");
         }
     }
 

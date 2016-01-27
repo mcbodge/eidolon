@@ -96,7 +96,7 @@ public class ActionHelper : MonoBehaviour
 
     public void LoadFirstScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("AlmostFinalScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("level1mirrors");
     }
 
     public void LoadSecondScene()

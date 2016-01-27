@@ -12,7 +12,6 @@ public class ObjectDropTriggerLevel1 : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider other)
     {
-        Debug.Log("ASDASDASD " + other.name);
         if (CheckEnteredObject(other.gameObject.name))
         {
             if (!actionHelper.PlacedObjects.Contains(other.gameObject))
