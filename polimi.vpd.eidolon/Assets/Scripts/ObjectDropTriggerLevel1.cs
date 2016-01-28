@@ -19,6 +19,7 @@ public class ObjectDropTriggerLevel1 : MonoBehaviour {
                 actionHelper.PlacedObjects.Add(other.gameObject);
                 Debug.Log("placing: " + other.gameObject.name);
                 Debug.Log("number of objects placed: " + actionHelper.PlacedObjects.Count.ToString());
+                actionHelper.RunPlacingCutscene();
             }
         }
 

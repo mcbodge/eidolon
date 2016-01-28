@@ -7,6 +7,7 @@ public class ActionHelperLevel1 : ActionHelper
 {
 
     public List<GameObject> PlacedObjects;
+    public Cutscene ObjectPlacingCS;
 
     private static ActionHelperLevel1 actionHelperReference;
 
@@ -48,5 +49,10 @@ public class ActionHelperLevel1 : ActionHelper
         {
             hs.SetActive(true);
         }
+    }
+
+    public void RunPlacingCutscene()
+    {
+        ObjectPlacingCS.Interact();
     }
 }
