@@ -23,14 +23,18 @@ namespace AC
 	 */
 	public class PlayerMovement : MonoBehaviour
 	{
+        //MG CUSTOM variable
+        public bool ForceForward;
+        //MG end of custom variable: it affects code!
 
 		private FirstPersonCamera firstPersonCamera;
-
 
 		public void OnStart ()
 		{
 			AssignFPCamera ();
-		}
+            ForceForward = false;
+
+        }
 
 
 		/**
@@ -70,13 +74,17 @@ namespace AC
 		}
 
 
-		/**
+        /**
 		 * Updates the movement handler.
 		 * This is called every frame by StateHandler.
 		 */
-		public void UpdatePlayerMovement ()
+        public void UpdatePlayerMovement()
 		{
-			if (KickStarter.settingsManager && KickStarter.player && KickStarter.playerInput && KickStarter.playerInteraction)
+            if (ForceForward)
+            {
+                DirectControlPlayer(false, new Vector2(0, 50));
+            }
+            else if (KickStarter.settingsManager && KickStarter.player && KickStarter.playerInput && KickStarter.playerInteraction)
 			{
 				if (!KickStarter.playerInput.IsMouseOnScreen () || KickStarter.playerInput.activeArrows != null)
 				{

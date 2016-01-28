@@ -13,30 +13,9 @@ public class PlayerInteractions : MonoBehaviour
 {
     public GameObject RespawnReference;
     public ActionHelper SceneHelper;
+    public float WallTransitionTime;
 
-    private bool triggerWalk;
-    private Vector3 finalPosition;
-
-    // Use this for initialization
-    void Start()
-    {
-        triggerWalk = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (triggerWalk)
-        {
-            transform.position = Vector3.Lerp
-            (
-                transform.position,
-                finalPosition,
-                Time.deltaTime * 4f
-            );
-            CheckWalkFinish();
-        }
-    }
+    public float Speed;
 
     void FaceDirection(Direction dir)
     {
@@ -83,16 +62,14 @@ public class PlayerInteractions : MonoBehaviour
 
     private void MoveForward()
     {
-        finalPosition = transform.position + (transform.forward * 2.5f);
-        triggerWalk = true;
+        AC.KickStarter.player.SetLookDirection(transform.forward, true);
+        AC.KickStarter.playerMovement.ForceForward = true;
+        Invoke("StopPlayer", WallTransitionTime);
     }
 
-    public void CheckWalkFinish()
+    public void StopPlayer()
     {
-        if (Vector3.Distance(transform.position, finalPosition) < 0.25f)
-        {
-            triggerWalk = false;
-        }
+        AC.KickStarter.playerMovement.ForceForward = false;
     }
 
     public void Respawn()

@@ -20,6 +20,8 @@ public class ActionHelper : MonoBehaviour
     public Room RoomWithPlayer;
     public GameObject Player;
 
+    public float WallToggleTime;
+
     public List<GameObject> CutsceneHotspots;
     public List<GameObject> MainObjectHotspots;
     public List<GameObject> ClosetTriggers;

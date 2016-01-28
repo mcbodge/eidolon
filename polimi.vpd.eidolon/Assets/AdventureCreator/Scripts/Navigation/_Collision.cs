@@ -26,11 +26,22 @@ namespace AC
 		/** If True, then a Gizmo will be drawn in the Scene window at the Collider's position */
 		[HideInInspector] public bool showInEditor = false;
 
+        //MG CUSTOM code
+        public bool PersonalizedToggleTime;
+        public float ToggleTime;
+        public void Toggle()
+        {
+            TurnOff();
+            if (!PersonalizedToggleTime)
+                ToggleTime = ActionHelper.GetManager().WallToggleTime;
+            Invoke("TurnOn", ToggleTime);
+        }
+        //MG end of custom code
 
-		/**
+        /**
 		 * Enables 3D and 2D colliders attached to the GameObject, and places it on the Hotspot (Default) layer - causing it to block Hotspot raycasts.
 		 */
-		public void TurnOn ()
+        public void TurnOn ()
 		{
 			if (GetComponent <Collider>())
 			{
