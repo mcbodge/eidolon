@@ -9,6 +9,7 @@ public class CanvasControlLevel1 : MonoBehaviour
     public List<Sprite> SecondSlot;
     public List<Sprite> ThirdSlot;
     public List<Sprite> FourthSlot;
+    public List<Sprite> credits;
     public Sprite HintImage;
 
     private Image imageBox;
@@ -44,6 +45,11 @@ public class CanvasControlLevel1 : MonoBehaviour
     public void EnableFirstSlot()
     {
         EnableSlot(FirstSlot);
+    }
+
+    public void EnableCreditsSlot()
+    {
+        EnableSlot(credits);
     }
 
     public void EnableSecondSlot()

@@ -8,6 +8,7 @@ public class ActionHelperLevel1 : ActionHelper
 
     public List<GameObject> PlacedObjects;
     public Cutscene ObjectPlacingCS;
+    public Canvas canvas;
 
     private static ActionHelperLevel1 actionHelperReference;
 

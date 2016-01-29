@@ -12,7 +12,7 @@ public class ObjectDropTriggerLevel1 : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider other)
     {
-		Debug.Log(other.gameObject.name);
+		Debug.Log("ENTERED: " + other.gameObject.name);
         if (CheckEnteredObject(other.gameObject.name))
         {
             if (!actionHelper.PlacedObjects.Contains(other.gameObject))
@@ -26,9 +26,9 @@ public class ObjectDropTriggerLevel1 : MonoBehaviour {
 
         if (other.gameObject.name.Equals("Christopher"))
         {
-            if (actionHelper.PlacedObjects.Count >= 3)
+            if (actionHelper.PlacedObjects.Count > 3)
             {
-                actionHelper.ReloadScene();
+                actionHelper.canvas.GetComponent<CanvasControlLevel1>().EnableCreditsSlot();
             }
         }
     }
