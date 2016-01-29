@@ -158,9 +158,7 @@ public class ActionHelperLevel0 : ActionHelper
              isFirstObjectPlaced)
         {
             AddTriggerToQueue(trig);
-            Debug.Log("ACTIONHELPER: isFirstObjectPlace=" + isFirstObjectPlaced.ToString());
-            // if in hand we have ketchup and doll is on ground , doll should be
-            // ketchupped
+            Debug.Log("THERE ARE ALREADY OTHER ITEMS INTO LIST");
             if (ObjectInHand.name.Equals("Ketchup") &&
                 triggersQueue.Contains(Doll.transform.FindChild("LeftBox").gameObject))
             {

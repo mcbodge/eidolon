@@ -16,10 +16,11 @@ public class ObjectDropTrigger : MonoBehaviour {
             {
                 actionHelperRef.PlacedObjects.Add(other.gameObject);
                 actionHelperRef.DebugLists();
-                if (actionHelperRef.PlacedObjects.Count == 1)
+                if (actionHelperRef.GetQueue().Count == 2 && FindObjectInQueue("doll") 
+                    && FindObjectInQueue("RCCar"))
                 {
                     actionHelperRef.RunMiddlePlayerFeedback();
-                } else if (actionHelperRef.PlacedObjects.Count == 2)
+                } else if (actionHelperRef.GetQueue().Count == 3)
                 {
                     actionHelperRef.RunLastPlayerFeedback();
                 }
