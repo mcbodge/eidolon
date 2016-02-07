@@ -19,6 +19,7 @@ public class ActionHelperLevel0 : ActionHelper
     public Cutscene ObjectPlacingFeedbackCutscene;
     public Cutscene ObjectPlacingMiddleFeedbackCutscene;
     public Cutscene ObjectPlacingLastFeedbackCutscene;
+    public Cutscene TakeObjectCS;
 
     // these are Ketchup/Dool/Car gameobjects
     public List<GameObject> PlacedObjects;
@@ -140,6 +141,10 @@ public class ActionHelperLevel0 : ActionHelper
             }
             Debug.Log("ACTIONHELPER: isFirstObjectPlace=" + isFirstObjectPlaced.ToString());
             DebugLists();
+        }
+        if (triggersQueue.Count == 0)
+        {
+            TakeObjectCS.Interact();
         }
     }
 
