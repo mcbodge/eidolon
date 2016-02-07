@@ -26,27 +26,23 @@ public class ObjectInHandDetection : MonoBehaviour
     void FixedUpdate()
     {
 
-#if UNITY_EDITOR
-        if (actionManager.RoomWithPlayer == CurrentRoom && actionManager.HasObjectInHand)
-        {
-            Debug.DrawRay(transform.position, actionManager.ObjectInHand.transform.position - transform.position);
-            if (GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(currentCamera), actionManager.ObjectInHand.GetComponent<Renderer>().bounds))
-            {
-                Debug.Log("Frustum view true");
-                if (Physics.Raycast(transform.position, actionManager.ObjectInHand.transform.position - transform.position, out hit))
-                {
-                    Debug.Log("Raycast hit true");
-                    if (hit.collider.gameObject.name.Equals("Eidolon") || hit.collider.gameObject.name.Equals(actionManager.ObjectInHand.name))
-                    {
-                        GameOver();
-                    }
-                }
-            }
-        }
-
-
-#endif
-#if UNITY_STANDALONE
+//#if UNITY_EDITOR
+//        if (actionManager.RoomWithPlayer == CurrentRoom && actionManager.HasObjectInHand)
+//        {
+//            Debug.DrawRay(transform.position, actionManager.ObjectInHand.transform.position - transform.position);
+//            if (GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(currentCamera), actionManager.ObjectInHand.GetComponent<Renderer>().bounds))
+//            {
+//                Debug.Log("Frustum view true");
+//                if (Physics.Raycast(transform.position, actionManager.ObjectInHand.transform.position - transform.position, out hit))
+//                {
+//                    Debug.Log("Raycast hit true");
+//                    if (hit.collider.gameObject.name.Equals("Eidolon") || hit.collider.gameObject.name.Equals(actionManager.ObjectInHand.name))
+//                    {
+//                        GameOver();
+//                    }
+//                }
+//            }
+//        }
 
         // These conditions must be checked in the given order
         if ( !gameOverStarted &&
@@ -65,15 +61,14 @@ public class ObjectInHandDetection : MonoBehaviour
             gameOverStarted = true;
             GameOver();
         }
-#endif
+
     }
 
 
     private void GameOver()
     {
-
-        CaughtCutscene.InteractWithActionCamera(gameObject.GetComponent<_Camera>());
         Invoke("FinallyGameOver", 4.9f);
+        CaughtCutscene.InteractWithActionCamera(gameObject.GetComponent<_Camera>());
     }
 
     private void FinallyGameOver()

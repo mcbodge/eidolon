@@ -19,8 +19,8 @@ public class ObjectHolder : MonoBehaviour
         actionID = -1;
         rigidBody = GetComponent<Rigidbody>();
         actionManager = ActionHelper.GetManager();
-        startPosition = gameObject.transform.position;
-        startRotation = gameObject.transform.rotation;
+        startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
     void Update()

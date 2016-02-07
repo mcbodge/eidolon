@@ -10,8 +10,6 @@ public class ActionHelperLevel1 : ActionHelper
     public Cutscene ObjectPlacingCS;
     public Canvas canvas;
 
-    private static ActionHelperLevel1 actionHelperReference;
-
     public void Start()
     {
 		AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
