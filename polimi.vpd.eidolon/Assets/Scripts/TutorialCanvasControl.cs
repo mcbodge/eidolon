@@ -80,15 +80,15 @@ to see the scene to reenact";
         }
         else if ((IsCurrent(Status.SpaceKeyShowed) && SceneManager.RoomWithPlayer.Equals(Room.Room104)))
         {
+            EnableSlot(SecondSlot, Status.SecondSlotShowed);
             SetStatus(Status._FlushBoxWithSpaceKeyTextPressed);
             Invoke("FlushBoxWithSpaceKeyTextPressed", 0.4f);
         }
         else if (IsCurrent(Status.SpaceKeyTextPressed) && SceneManager.RoomWithPlayer.Equals(Room.Tutorial_Bathroom))
         {
             SetStatus(Status._InBathroom);
-            EnableSlot(SecondSlot, Status.SecondSlotShowed);
         }
-        else if(IsCurrent(Status.SecondSlotShowed))
+        else if(IsCurrent(Status.SecondSlotShowed) && SceneManager.RoomWithPlayer.Equals(Room.Tutorial_Bathroom))
         {
             SetText(clickText);
             SetStatus(Status.LeftClickTextShowed);
@@ -238,6 +238,10 @@ to see the scene to reenact";
                     ImageBox.enabled = false;
                     AC.KickStarter.cursorManager.cursorDisplay = AC.CursorDisplay.Always;
                     SetStatus(tutorialStatusToSetInExit);
+                    if (currentSlot[0].name.Equals("3"))
+                    {
+                        SceneManager.EnableClosetTriggers();
+                    }
                 }
                 currentIndex++;
             }
@@ -271,6 +275,7 @@ to see the scene to reenact";
     private void FlushBoxWithSpaceKeyTextPressed()
     {
         FlushBoxAndExecuteActions(Status.SpaceKeyTextPressed);
+        
     }
     #endregion
 
