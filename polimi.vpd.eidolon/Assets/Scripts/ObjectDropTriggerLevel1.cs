@@ -24,6 +24,14 @@ public class ObjectDropTriggerLevel1 : MonoBehaviour {
             }
         }
 
+        if (other.gameObject.name.Equals("Eidolon"))
+        {
+            if (actionHelper.HasObjectInHand && actionHelper.PlacedObjects.Count == 0)
+            {
+                actionHelper.RightPlaceCS.Interact();
+            }
+        }
+
         if (other.gameObject.name.Equals("Christopher"))
         {
             if (actionHelper.PlacedObjects.Count > 3)
